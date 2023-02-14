@@ -23,8 +23,10 @@ var newYear = () => {
 
         // 小于0则表示已经过年
         if (second < 0) {
-            document.querySelector('#newYear .title').innerHTML = 'Happy New Year!';
-            document.querySelector('#newYear .newYear-time').innerHTML = '<span class="happyNewYear">新年快乐</p>';
+            // document.querySelector('#newYear .title').innerHTML = 'Happy New Year!';
+            // document.querySelector('#newYear .newYear-time').innerHTML = '<span class="happyNewYear">新年快乐</p>';
+	    document.querySelector('#newYear .title').innerHTML = '新年已经过去了：';
+            document.querySelector('#newYear .newYear-time').innerHTML = `<span class="day">${Math.ceil(-second / 86400)}<span class="unit">天</span></span>`
         } else {
             // 大于0则还未过年
             document.querySelector('#newYear .title').innerHTML = '距离2023年春节：'
