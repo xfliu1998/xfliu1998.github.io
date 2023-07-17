@@ -1,18 +1,18 @@
-<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Greedy Algorithm | 一直进步 做喜欢的</title><meta name="keywords" content="Data Structures and Algorithms,LeetCode"><meta name="author" content="贪钱算法还我头发"><meta name="copyright" content="贪钱算法还我头发"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="算法——贪心算法">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Number Theory and Geometry | 一直进步 做喜欢的</title><meta name="keywords" content="Data Structures and Algorithms,LeetCode"><meta name="author" content="贪钱算法还我头发"><meta name="copyright" content="贪钱算法还我头发"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数论与几何">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Greedy Algorithm">
-<meta property="og:url" content="https://xfliu1998.github.io/2023/05/21/Greedy-Algorithm/index.html">
+<meta property="og:title" content="Number Theory and Geometry">
+<meta property="og:url" content="https://xfliu1998.github.io/2023/07/05/Number-Theory-and-Geometry/index.html">
 <meta property="og:site_name" content="一直进步 做喜欢的">
-<meta property="og:description" content="算法——贪心算法">
+<meta property="og:description" content="数论与几何">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://img.shijue.me/73abae19e7ed4f279380e078361cafff_d.jpg!dp6">
-<meta property="article:published_time" content="2023-05-21T09:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-27T05:40:58.160Z">
+<meta property="og:image" content="http://img.shijue.me/d9a0b9ce22d44e6f9213e5ef8917385d_d.jpg!dp6">
+<meta property="article:published_time" content="2023-07-05T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-07T08:39:40.923Z">
 <meta property="article:author" content="贪钱算法还我头发">
 <meta property="article:tag" content="Data Structures and Algorithms">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://img.shijue.me/73abae19e7ed4f279380e078361cafff_d.jpg!dp6"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2023/05/21/Greedy-Algorithm/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="http://img.shijue.me/d9a0b9ce22d44e6f9213e5ef8917385d_d.jpg!dp6"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2023/07/05/Number-Theory-and-Geometry/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
@@ -54,12 +54,12 @@
   islazyload: false,
   isanchor: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Greedy Algorithm',
+  title: 'Number Theory and Geometry',
   isPost: true,
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-06-27 13:40:58'
+  postUpdate: '2023-07-07 16:39:40'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -148,100 +148,78 @@
       }
     }
     detectApple()
-    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://img.shijue.me/73abae19e7ed4f279380e078361cafff_d.jpg!dp6')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Greedy Algorithm</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-21T09:00:00.000Z" title="Created 2023-05-21 17:00:00">2023-05-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-06-27T05:40:58.160Z" title="Updated 2023-06-27 13:40:58">2023-06-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Data-Structures-and-Algorithms/">Data Structures and Algorithms</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">635</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>1min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Greedy Algorithm"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2023/05/21/Greedy-Algorithm/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h1><p>贪心算法（Greedy algorithm）是一种常用的算法设计策略，用于解决优化问题。它的基本思想是在每一步选择中都采取当前状态下的最优选择，希望通过局部最优选择的累积，达到全局最优解。知识点：</p>
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://img.shijue.me/d9a0b9ce22d44e6f9213e5ef8917385d_d.jpg!dp6')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Number Theory and Geometry</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-05T04:00:00.000Z" title="Created 2023-07-05 12:00:00">2023-07-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-07T08:39:40.923Z" title="Updated 2023-07-07 16:39:40">2023-07-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Data-Structures-and-Algorithms/">Data Structures and Algorithms</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">516</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>1min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Number Theory and Geometry"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2023/07/05/Number-Theory-and-Geometry/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="数论与几何"><a href="#数论与几何" class="headerlink" title="数论与几何"></a>数论与几何</h1><p>这部分知识点比较考验数学功底和思维。</p>
+<p>水塘抽样（Reservoir Sampling）是一系列的随机算法，其目的在于从包含n个项目的集合S中选取k个样本，其中n为一很大或未知的数量，尤其适用于不能把所有n个项目都存放到内存的情况。水塘抽样由于空间小，时间复杂度低，可以用于大数据流中的随机抽样问题。</p>
+<p>遍历集合，当我们第 i 次遇到值为 target 的元素时，随机选择区间 $[0,i)$ 内的一个整数，如果其等于 0，则将返回值置为该元素的下标，否则返回值不变。设 nums 中有 k 个值为 target 的元素，该算法会保证这 k 个元素的下标成为最终返回值的概率均为 $1/k$，证明如下：<br>$\begin{aligned} &amp;P(第\ i\ 次遇到值为\ \textit{target}\ \ 的元素的下标成为最终返回值)\<br>=&amp;P(第\ i\ 次随机选择的值= 0) \times P(第\ i+1\ 次随机选择的值\ne 0) \times \cdots \times P(第\ k\ 次随机选择的值\ne 0)\<br>=&amp;\dfrac{1}{i} \times (1-\dfrac{1}{i+1}) \times \cdots \times (1-\dfrac{1}{k})\<br>=&amp;\dfrac{1}{i} \times \dfrac{i}{i+1} \times \cdots \times \dfrac{k-1}{k}\<br>=&amp;\dfrac{1}{k} \end{aligned}$</p>
 <ul>
-<li>贪心选择性质：贪心算法每一步都选择当前最优解，不考虑未来的结果。它通常通过贪心选择性质来判断当前最优解是否会导致最终的全局最优解。</li>
-<li>最优子结构：问题具有最优子结构性质意味着最优解可以通过子问题的最优解来构造。贪心算法常常利用最优子结构性质来推导问题的最优解。</li>
-<li>适用性：贪心算法适用于一些特定类型的问题，如活动选择问题、霍夫曼编码、最小生成树等。对于一些问题，贪心算法可能会得到近似最优解，但不一定是全局最优解。</li>
-<li>与动态规划的区别：贪心算法与动态规划类似，都是求解优化问题的方法。然而，贪心算法每一步的选择都只考虑当前状态，不需要保存子问题的解。而动态规划则需要记录并利用子问题的解来构建最优解。</li>
+<li><code>num = random.choice(list())</code>：在list中随机返回一个num</li>
+<li><code>num = random.randrange(start, end, step)</code>：指定排列中随机返回一个num</li>
 </ul>
-<p>虽然贪心算法具有一定的局限性，无法解决所有优化问题，但在一些特定情况下，它具有简单、高效的优势，并且可以用于快速求解近似最优解的问题。比如一个算法问题使用暴力解法需要指数级时间，如果能使用动态规划消除重叠子问题，就可以降到多项式级别的时间，如果满足贪心选择性质，那么可以进一步降低时间复杂度，达到线性级别的。</p>
 <h3 id="力扣指南"><a href="#力扣指南" class="headerlink" title="力扣指南"></a>力扣指南</h3><table>
     <tr>
-        <th align='center', colspan="3">动态规划——贪心</th>
+        <th align='center', colspan="3">数论与几何</th>
     </tr>
     <tr>
         <th>题目</th>
         <th>技巧</th>
         <th>难度</th>
     </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/non-overlapping-intervals/description>✅435. 无重叠区间
+    <tr> 
+        <td><a href=https://leetcode.cn/problems/factorial-trailing-zeroes/description>✅172. 阶乘后的零
 </td>
-        <td>【贪心】排序</td> 
+        <td>因子5的数量必小于2的数量，循环计算n除5的结果数</td> 
         <td>🌟🌟</td> 
     </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/description>✅452. 用最少数量的箭引爆气球</td>
-        <td>【贪心】排序</td> 
-        <td>🌟🌟</td> 
+    <tr> 
+        <td><a href=https://leetcode.cn/problems/preimage-size-of-factorial-zeroes-function/description>✅阶乘函数后 K 个零</td>
+        <td>末尾0为k+1的数量的左边界 - 末尾0为k个的数量的左边界 = 末尾0为k的数量</td> 
+        <td>🌟🌟🌟</td> 
     </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/remove-covered-intervals/description>✅1288. 删除被覆盖区间
+    <tr> 
+        <td><a href=https://leetcode.cn/problems/count-primes/description>✅204. 计数质数
 </td>
-        <td>【贪心】排序</td> 
+        <td>埃氏筛：质数的倍数肯定是合数</td> 
         <td>🌟🌟</td> 
     </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/merge-intervals/description>✅56. 合并区间</td>
-        <td>【贪心】排序</td> 
-        <td>🌟🌟</td> 
-    </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/interval-list-intersections/description>✅986. 区间列表的交集</td>
-        <td>【贪心】排序</td> 
-        <td>🌟🌟</td> 
-    </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/video-stitching/description>✅1024. 视频拼接</td>
-        <td>【贪心】排序 很绕</td> 
-        <td>🌟🌟</td> 
-    </tr>
-    <tr>
-        <td><a href=https://www.lintcode.com/problem/920/description>✅920 · 会议室</td>
-        <td></td> 
-        <td>🌟</td> 
-    </tr>
-    <tr>
-        <td><a href=https://www.lintcode.com/problem/919>✅
-919 · 会议室 II</td>
-        <td>差分思想</td> 
-        <td>🌟🌟</td> 
-    </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/jump-game/description>✅55. 跳跃游戏</td>
-        <td></td> 
-        <td>🌟</td> 
-    </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/jump-game-ii/description>✅45. 跳跃游戏 II</td>
-        <td>还是很难</td> 
-        <td>🌟🌟</td> 
-    </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/gas-station/description>✅134. 加油站
+    <tr> 
+        <td><a href=https://leetcode.cn/problems/powx-n/description>✅50. Pow(x, n)
 </td>
-        <td></td> 
+        <td>10的二进制为1010，即x^10=x^2*x^8</td> 
         <td>🌟🌟</td> 
     </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/split-array-into-consecutive-subsequences/description>✅659. 分割数组为连续子序列
+    <tr> 
+        <td><a href=https://leetcode.cn/problems/super-pow/description>✅372. 超级次方
 </td>
-        <td>斗地主：记录freq和need</td> 
+        <td>正序逆序计算均可</td> 
         <td>🌟🌟</td> 
     </tr>
-    <tr>
-        <td><a href=https://leetcode.cn/problems/pancake-sorting/description>✅969. 煎饼排序
+    <tr> 
+        <td><a href=https://leetcode.cn/problems/random-pick-index/solutions/1444589/sui-ji-shu-suo-yin-by-leetcode-solution-ofsq>✅398. 随机数索引
 </td>
-        <td></td> 
+        <td>水塘抽样</td> 
         <td>🌟🌟</td> 
     </tr>
-    <tr>
+    <tr> 
+        <td><a href=https://leetcode.cn/problems/linked-list-random-node/description>✅382. 链表随机节点</td>
+        <td>水塘抽样</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr> 
         <td><a href=>✅</td>
         <td></td> 
         <td>🌟</td> 
     </tr>
-    <tr>
+    <tr> 
+        <td><a href=>✅</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr> 
+        <td><a href=>✅</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr> 
         <td><a href=>✅</td>
         <td></td> 
         <td>🌟</td> 
@@ -249,7 +227,7 @@
 </table>
 
 
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">贪钱算法还我头发</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2023/05/21/Greedy-Algorithm/">https://xfliu1998.github.io/2023/05/21/Greedy-Algorithm/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Data-Structures-and-Algorithms/">Data Structures and Algorithms</a><a class="post-meta__tags" href="/tags/LeetCode/">LeetCode</a></div><div class="post_share"><div class="social-share" data-image="http://img.shijue.me/73abae19e7ed4f279380e078361cafff_d.jpg!dp6" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/29/Divide-and-Conquer/"><img class="prev-cover" src="http://img.shijue.me/d5e5c8cc7dae431386f1d15c0006f217.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Divide and Conquer</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/20/Git/"><img class="next-cover" src="http://img.shijue.me/fbcb488e90c14199bc12cc0c6505824e_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Git</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/07/05/Number-Theory-and-Geometry/" title="Number Theory and Geometry"><img class="cover" src="http://img.shijue.me/d9a0b9ce22d44e6f9213e5ef8917385d_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-05</div><div class="title">Number Theory and Geometry</div></div></a></div><div><a href="/2023/06/13/Sort-Algorithm/" title="Sort Algorithm"><img class="cover" src="http://img.shijue.me/05adac4bd8b1447697e1053623e74d68_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-13</div><div class="title">Sort Algorithm</div></div></a></div><div><a href="/2023/06/04/Graph-Theory/" title="Graph Theory"><img class="cover" src="http://img.shijue.me/845aa0476235409e9ef646afb7c05ab7_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-04</div><div class="title">Graph Theory</div></div></a></div><div><a href="/2023/05/29/Divide-and-Conquer/" title="Divide and Conquer"><img class="cover" src="http://img.shijue.me/d5e5c8cc7dae431386f1d15c0006f217.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-29</div><div class="title">Divide and Conquer</div></div></a></div><div><a href="/2023/04/19/Dynamic-Programming/" title="Dynamic Programming"><img class="cover" src="http://img.shijue.me/eb9640e472e540b4bce2f24b9f11237d_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-19</div><div class="title">Dynamic Programming</div></div></a></div><div><a href="/2023/04/12/Search-and-Backstrack/" title="Search and Backstrack"><img class="cover" src="https://www.omegaxyz.com/wp-content/uploads/2019/05/recall.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-12</div><div class="title">Search and Backstrack</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">贪钱算法还我头发</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/keiven_" target="_blank" title="CSDN"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">欢迎来这里掉头发</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">贪心算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E6%89%A3%E6%8C%87%E5%8D%97"><span class="toc-number">1.0.1.</span> <span class="toc-text">力扣指南</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('http://img.shijue.me/73abae19e7ed4f279380e078361cafff_d.jpg!dp6')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 贪钱算法还我头发</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">贪钱算法还我头发</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2023/07/05/Number-Theory-and-Geometry/">https://xfliu1998.github.io/2023/07/05/Number-Theory-and-Geometry/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Data-Structures-and-Algorithms/">Data Structures and Algorithms</a><a class="post-meta__tags" href="/tags/LeetCode/">LeetCode</a></div><div class="post_share"><div class="social-share" data-image="http://img.shijue.me/d9a0b9ce22d44e6f9213e5ef8917385d_d.jpg!dp6" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/06/13/Sort-Algorithm/"><img class="next-cover" src="http://img.shijue.me/05adac4bd8b1447697e1053623e74d68_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Sort Algorithm</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/06/13/Sort-Algorithm/" title="Sort Algorithm"><img class="cover" src="http://img.shijue.me/05adac4bd8b1447697e1053623e74d68_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-13</div><div class="title">Sort Algorithm</div></div></a></div><div><a href="/2023/06/04/Graph-Theory/" title="Graph Theory"><img class="cover" src="http://img.shijue.me/845aa0476235409e9ef646afb7c05ab7_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-04</div><div class="title">Graph Theory</div></div></a></div><div><a href="/2023/05/29/Divide-and-Conquer/" title="Divide and Conquer"><img class="cover" src="http://img.shijue.me/d5e5c8cc7dae431386f1d15c0006f217.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-29</div><div class="title">Divide and Conquer</div></div></a></div><div><a href="/2023/05/21/Greedy-Algorithm/" title="Greedy Algorithm"><img class="cover" src="http://img.shijue.me/73abae19e7ed4f279380e078361cafff_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-21</div><div class="title">Greedy Algorithm</div></div></a></div><div><a href="/2023/04/19/Dynamic-Programming/" title="Dynamic Programming"><img class="cover" src="http://img.shijue.me/eb9640e472e540b4bce2f24b9f11237d_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-19</div><div class="title">Dynamic Programming</div></div></a></div><div><a href="/2023/04/12/Search-and-Backstrack/" title="Search and Backstrack"><img class="cover" src="https://www.omegaxyz.com/wp-content/uploads/2019/05/recall.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-12</div><div class="title">Search and Backstrack</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">贪钱算法还我头发</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/keiven_" target="_blank" title="CSDN"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">欢迎来这里掉头发</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E8%AE%BA%E4%B8%8E%E5%87%A0%E4%BD%95"><span class="toc-number">1.</span> <span class="toc-text">数论与几何</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E6%89%A3%E6%8C%87%E5%8D%97"><span class="toc-number">1.0.1.</span> <span class="toc-text">力扣指南</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('http://img.shijue.me/d9a0b9ce22d44e6f9213e5ef8917385d_d.jpg!dp6')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 贪钱算法还我头发</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
   window.MathJax = {
     tex: {
       inlineMath: [ ['$','$'], ["\\(","\\)"]],
@@ -309,7 +287,7 @@ function loadGitalk () {
       repo: 'xfliu1998.github.io',
       owner: 'xfliu1998',
       admin: ['xfliu1998'],
-      id: 'b2130c7ac97a9702a08cb11ede395f5f',
+      id: '489552f15ed2d92b5fb57cdd3911eec5',
       language: 'en',
       perPage: 10,
       distractionFreeMode: false,
