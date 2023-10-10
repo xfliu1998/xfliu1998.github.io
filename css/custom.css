@@ -1,3 +1,5 @@
+@import "//at.alicdn.com/t/font_2264842_b004iy0kk2b.css";
+
 /* 新年侧边栏 */
 
 #newYear {
@@ -152,3 +154,11 @@ web_bg {
   background-size: cover;
 }
 
+.iconfont {
+  font-family: "iconfont" !important;
+  /* 这里可以自定义图标大小 */
+  font-size: 3em;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

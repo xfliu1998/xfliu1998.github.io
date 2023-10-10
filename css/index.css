@@ -2542,25 +2542,15 @@ blockquote footer cite:before {
   }
 }
 :root {
-  --recent-post-bgcolor: rgba(200,200,200,0.5);
-  --article-content-bgcolor: #49b1f5;
-  --recent-post-arrow: #fff;
-  --recent-post-cover-shadow: #fff;
-  --recent-post-transition: all 0.5s cubic-bezier(0.59, 0.01, 0.48, 1.17);
-}
-[data-theme="dark"] {
-  --recent-post-bgcolor: rgba(35,35,35,0.5);
-  --article-content-bgcolor: #99999a;
-  --recent-post-arrow: #37e2dd;
-  --recent-post-cover-shadow: #232323;
+  --theme-color: #39c5bb;
+  --text-bg-hover: rgba(57,197,187,0.7);
 }
 .recent-posts {
-  padding: 0 15px 0 15px;
+  padding: 0 5px 0 5px;
   height: fit-content;
 }
 .recent-posts .recent-post-item {
   margin-bottom: 15px;
-  background: var(--recent-post-bgcolor);
   overflow: hidden;
   border-radius: 15px;
 }
@@ -2571,7 +2561,6 @@ blockquote footer cite:before {
   display: -ms-flexbox;
   display: box;
   display: flex;
-  background: var(--recent-post-bgcolor);
   position: relative;
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-cover {
@@ -2650,7 +2639,7 @@ blockquote footer cite:before {
   overflow: hidden;
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-info .article-title .article-title-link:hover {
-  color: #49b1f5;
+  color: var(--theme-color);
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-info .recent-post-meta {
   height: 50%;
@@ -2696,7 +2685,7 @@ blockquote footer cite:before {
   color: #969797;
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-info .recent-post-meta .article-meta-wrap a:hover {
-  color: #49b1f5;
+  color: var(--theme-color);
 }
 .recent-posts .recent-post-item .recent-post-content .article-content {
   display: -webkit-box;
@@ -2733,6 +2722,18 @@ blockquote footer cite:before {
   overflow: hidden;
   color: #fff;
   text-shadow: 1px 2px 3px #000;
+  -webkit-transition: -webkit-transform 0.6s;
+  -moz-transition: -moz-transform 0.6s;
+  -o-transition: -o-transform 0.6s;
+  -ms-transition: -ms-transform 0.6s;
+  transition: transform 0.6s;
+}
+.recent-posts .recent-post-item .recent-post-content .article-content .article-content-text:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 .recent-posts .recent-post-item.ads-wrap {
   display: block !important;
@@ -2742,7 +2743,7 @@ blockquote footer cite:before {
   width: 100%;
 }
 .recent-posts {
-  padding: 0 15px 0 15px;
+  padding: 0 5px 0 5px;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -2800,13 +2801,13 @@ blockquote footer cite:before {
   object-fit: cover;
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-info {
-  height: 150px;
+  height: 145px;
   width: 100%;
   padding: 0px 25px 5px 25px;
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-info .article-title {
   margin: 0px 40px;
-  font-size: 18px;
+  font-size: 19px;
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-info .article-title .article-title-link {
   -webkit-line-clamp: 2;
@@ -2815,14 +2816,14 @@ blockquote footer cite:before {
   margin: 0px 20px;
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-info .recent-post-meta .article-meta-wrap {
-  font-size: 12px;
+  font-size: 13px;
   -webkit-line-clamp: 3;
 }
 .recent-posts .recent-post-item .recent-post-content .article-content {
   position: absolute;
   height: 200px;
   width: 100%;
-  background: rgba(25,25,25,0.5);
+  background: rgba(25,25,25,0.4);
   clip-path: polygon(0 130px, 0 0, 100% 0, 100% 130px, 50% 100%);
 }
 .recent-posts .recent-post-item .recent-post-content .article-content .article-content-text {
@@ -2831,21 +2832,20 @@ blockquote footer cite:before {
   margin: 0px 25px 30px 25px;
 }
 .recent-posts .recent-post-item .recent-post-content .article-content .article-content-text::before {
-  content: "❝";
+  content: "「";
   font-size: 20px;
 }
 .recent-posts .recent-post-item .recent-post-content .article-content .article-content-text::after {
-  content: "❞";
+  content: "」";
   font-size: 20px;
 }
 .recent-posts .recent-post-item .recent-post-content .recent-post-arrow {
   display: block;
-  background: var(--article-content-bgcolor);
+  background: var(--text-bg-hover);
   position: absolute;
   height: 10px;
   width: 20px;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
-  top: 20px;
 }
 @media screen and (min-width: 1069px) {
   .recent-posts .recent-post-item {
