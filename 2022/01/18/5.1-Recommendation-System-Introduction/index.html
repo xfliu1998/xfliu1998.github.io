@@ -211,7 +211,8 @@
     <td> 简明 </td>
     <td> 复杂 </td>
   </tr>
-</table></li>
+</table>
+</li>
 <li><p>推荐系统的作用</p>
 <ul>
 <li>高效连接用户和物品, 发现长尾商品</li>
@@ -250,12 +251,11 @@
 <li>算法</li>
 </ul>
 <h3 id="推荐系统架构"><a href="#推荐系统架构" class="headerlink" title="推荐系统架构"></a>推荐系统架构</h3><ul>
-<li><p>推荐系统整体架构<br><img src="%E6%8E%A8%E8%8D%90%E6%B5%81%E7%A8%8B.png"></p>
+<li><p>推荐系统整体架构<br><img src="%E6%8E%A8%E8%8D%90%E6%B5%81%E7%A8%8B.png" alt=""></p>
 </li>
 <li><p>大数据Lambda架构</p>
 <ul>
-<li><p>由Twitter工程师Nathan Marz(storm项目发起人)提出</p>
-</li>
+<li>由Twitter工程师Nathan Marz(storm项目发起人)提出</li>
 <li><p>Lambda系统架构提供了一个结合实时数据和Hadoop预先计算的数据环境和混合平台, 提供一个实时的数据视图</p>
 </li>
 <li><p>分层架构</p>
@@ -290,7 +290,7 @@
 </li>
 </ul>
 </li>
-<li><p>Lambda架构图<br><img src="lambda3.png"></p>
+<li><p>Lambda架构图<br><img src="lambda3.png" alt=""></p>
 </li>
 </ul>
 </li>
@@ -311,10 +311,10 @@
 <li>CTR预估 (点击率预估 使用LR算法) 估计用户是否会点击某个商品，需要用户的点击数据</li>
 </ul>
 </li>
-<li>策略调整<br><img src="recommend7.jpeg"></li>
+<li>策略调整<br><img src="recommend7.jpeg" alt=""></li>
 </ul>
 </li>
-<li><p>推荐系统的整体架构<br><img src="RS%E5%9F%BA%E7%A1%80%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84.png"><br><img src="RS%E5%9F%BA%E7%A1%80%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84.png"></p>
+<li><p>推荐系统的整体架构<br><img src="RS基础业务架构.png" alt=""><br><img src="RS基础技术架构.png" alt=""></p>
 </li>
 </ul>
 <h2 id="推荐算法"><a href="#推荐算法" class="headerlink" title="推荐算法"></a>推荐算法</h2><ul>
@@ -325,7 +325,7 @@
 </ul>
 <h3 id="推荐模型构建流程"><a href="#推荐模型构建流程" class="headerlink" title="推荐模型构建流程"></a>推荐模型构建流程</h3><p>Data(数据)-&gt;Features(特征)-&gt;ML Algorithm(机器学习算法)-&gt;Prediction Output(预测输出)</p>
 <ul>
-<li><p>数据清洗/数据处理<br><img src="algorithm1.png"></p>
+<li><p>数据清洗/数据处理<br><img src="algorithm1.png" alt=""></p>
 </li>
 <li><p>数据来源</p>
 <ul>
@@ -344,14 +344,13 @@
 </li>
 </ul>
 </li>
-<li><p>数据量/数据能否满足要求</p>
-</li>
-<li><p>特征工程<br><img src="algorithm2.png"></p>
+<li>数据量/数据能否满足要求</li>
+<li><p>特征工程<br><img src="algorithm2.png" alt=""></p>
 </li>
 <li><p>从数据中筛选特征</p>
 <ul>
 <li>一个给定的商品，可能被拥有类似品味或需求的用户购买</li>
-<li>使用用户行为数据描述商品<br><img src="algorithm3.png"></li>
+<li>使用用户行为数据描述商品<br><img src="algorithm3.png" alt=""></li>
 </ul>
 </li>
 <li><p>用数据表示特征</p>
@@ -359,9 +358,9 @@
 <li>将所有用户行为合并在一起 ，形成一个user-item 矩阵<br><img src="algorithm4.png" alt="1545452707102"></li>
 </ul>
 </li>
-<li><p>选择合适的算法<br><img src="algorithm5.png"></p>
+<li><p>选择合适的算法<br><img src="algorithm5.png" alt=""></p>
 </li>
-<li><p>产生推荐结果<br><img src="algorithm6.png"></p>
+<li><p>产生推荐结果<br><img src="algorithm6.png" alt=""></p>
 </li>
 </ul>
 <h3 id="最经典的推荐算法：协同过滤推荐算法（Collaborative-Filtering）"><a href="#最经典的推荐算法：协同过滤推荐算法（Collaborative-Filtering）" class="headerlink" title="最经典的推荐算法：协同过滤推荐算法（Collaborative Filtering）"></a>最经典的推荐算法：协同过滤推荐算法（Collaborative Filtering）</h3><p>算法思想：<strong>物以类聚，人以群分</strong></p>
@@ -378,19 +377,18 @@
 <p>以下是一个简单的示例，数据集相当于一个用户对物品的购买记录表：打勾表示用户对物品的有购买记录</p>
 <ul>
 <li><p>关于相似度计算这里先用一个简单的思想：如有两个同学X和Y，X同学爱好[足球、篮球、乒乓球]，Y同学爱好[网球、足球、篮球、羽毛球]，可见他们的共同爱好有2个，那么他们的相似度可以用：2/3 * 2/4 = 1/3 ≈ 0.33 来表示。</p>
-<p><strong>User-Based CF</strong><br><img src="%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E6%8E%A8%E8%8D%901.png"></p>
-<p><strong>Item-Based CF</strong><br><img src="%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E6%8E%A8%E8%8D%901.png"></p>
+<p><strong>User-Based CF</strong><br><img src="%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E6%8E%A8%E8%8D%901.png" alt=""></p>
+<p><strong>Item-Based CF</strong><br><img src="%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E6%8E%A8%E8%8D%901.png" alt=""></p>
 </li>
 </ul>
 <h3 id="相似度计算-Similarity-Calculation"><a href="#相似度计算-Similarity-Calculation" class="headerlink" title="相似度计算(Similarity Calculation)"></a>相似度计算(Similarity Calculation)</h3><ul>
-<li><p>相似度的计算方法</p>
-<ul>
+<li>相似度的计算方法<ul>
 <li>数据分类<ul>
 <li>实数值(物品评分情况)</li>
 <li>布尔值(用户的行为 是否点击 是否收藏)</li>
 </ul>
 </li>
-<li>欧氏距离，衡量这两个点之间的距离，不适用于布尔向量之间<br>$$E(p,q) = \sqrt{\sum_{i=1}^n (p_i - q_i)^2}<br>$$<br>​    欧氏距离的值非负, 最大值正无穷, 通常计算相似度的结果希望是[-1,1]或[0,1]之间,一般可以使用如下转化公式:$\frac{1}{1+E(p,q)}$</li>
+<li>欧氏距离，衡量这两个点之间的距离，不适用于布尔向量之间<script type="math/tex; mode=display">E(p,q) = \sqrt{\sum_{i=1}^n (p_i - q_i)^2}</script>​    欧氏距离的值非负, 最大值正无穷, 通常计算相似度的结果希望是[-1,1]或[0,1]之间,一般可以使用如下转化公式:$\frac{1}{1+E(p,q)}$</li>
 </ul>
 </li>
 <li><p>杰卡德相似度&amp;余弦相似度&amp;皮尔逊相关系数</p>
@@ -417,21 +415,21 @@
 </li>
 <li>余弦相似度适合用户评分数据(实数值), 杰卡德相似度适用于隐式反馈数据(0,1布尔值)(是否收藏,是否点击,是否加购物车)</li>
 </ul>
-<p><img src="similarity_calc2.png"></p>
+<p><img src="similarity_calc2.png" alt=""></p>
 </li>
-<li><p>余弦相似度<br><img src="similarity_calc5.png"></p>
+<li><p>余弦相似度<br><img src="similarity_calc5.png" alt=""></p>
 </li>
-<li><p>皮尔逊相关系数<br><img src="similarity_calc3.png"><br><img src="similarity_calc4.png"></p>
+<li><p>皮尔逊相关系数<br><img src="similarity_calc3.png" alt=""><br><img src="similarity_calc4.png" alt=""></p>
 </li>
-<li><p>计算出用户1和其它用户之间的相似度<br><img src="similarity_calc6.png"></p>
+<li><p>计算出用户1和其它用户之间的相似度<br><img src="similarity_calc6.png" alt=""></p>
 </li>
-<li><p>按照相似度大小排序, K近邻 如K取4:<br><img src="similarity_calc7.png"></p>
+<li><p>按照相似度大小排序, K近邻 如K取4:<br><img src="similarity_calc7.png" alt=""></p>
 </li>
-<li><p>取出近邻用户的购物清单<br><img src="similarity_calc8.png"></p>
+<li><p>取出近邻用户的购物清单<br><img src="similarity_calc8.png" alt=""></p>
 </li>
-<li><p>去除用户1已经购买过的商品<br><img src="similarity_calc9.png"></p>
+<li><p>去除用户1已经购买过的商品<br><img src="similarity_calc9.png" alt=""></p>
 </li>
-<li><p>在剩余的物品中根据评分排序<br><img src="similarity_calc10.png"></p>
+<li><p>在剩余的物品中根据评分排序<br><img src="similarity_calc10.png" alt=""></p>
 </li>
 <li><p>物品相似度计算</p>
 <ul>
@@ -443,31 +441,34 @@
 </ul>
 </li>
 </ul>
-<p><img src="similarity_calc11.png"></p>
+<p><img src="similarity_calc11.png" alt=""></p>
 <ul>
-<li><p>物品相似度计算案例<br><img src="similarity_calc12.png"></p>
+<li><p>物品相似度计算案例<br><img src="similarity_calc12.png" alt=""></p>
 </li>
-<li><p>找出物品1的相似商品<br><img src="similarity_calc13.png"></p>
+<li><p>找出物品1的相似商品<br><img src="similarity_calc13.png" alt=""></p>
 </li>
-<li><p>选择最近似的物品<br><img src="similarity_calc14.png"></p>
+<li><p>选择最近似的物品<br><img src="similarity_calc14.png" alt=""></p>
 </li>
-<li><p>基于用户与物品的协同过滤比较<br><img src="similarity_calc15.png"><br><img src="similarity_calc16.png"></p>
+<li><p>基于用户与物品的协同过滤比较<br><img src="similarity_calc15.png" alt=""><br><img src="similarity_calc16.png" alt=""></p>
 </li>
 </ul>
 <h3 id="协同过滤推荐算法代码实现"><a href="#协同过滤推荐算法代码实现" class="headerlink" title="协同过滤推荐算法代码实现"></a>协同过滤推荐算法代码实现</h3><ul>
 <li><p>构建数据集： </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 构建数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>],</span><br><span class="line">    [<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="literal">None</span>],</span><br><span class="line">    [<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>],</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 构建数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>],</span><br><span class="line">    [<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="literal">None</span>],</span><br><span class="line">    [<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>,<span class="string">&quot;buy&quot;</span>,<span class="literal">None</span>,<span class="string">&quot;buy&quot;</span>],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>计算时我们数据通常都需要对数据进行处理，或者编码，目的是为了便于我们对数据进行运算处理，比如这里是比较简单的情形，我们用1、0分别来表示用户的是否购买过该物品，则我们的数据集其实应该是这样的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 用户购买记录数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">]</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(datasets,</span><br><span class="line">                  columns=items,</span><br><span class="line">                  index=users)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 用户购买记录数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">]</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(datasets,</span><br><span class="line">                  columns=items,</span><br><span class="line">                  index=users)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>进行相似度的计算，不过对于相似度的计算其实是有很多专门的相似度计算方法的，比如余弦相似度、皮尔逊相关系数、杰卡德相似度等等。选择使用杰卡德相似系数[0,1]</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直接计算某两项的杰卡德相似系数</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> jaccard_similarity_score</span><br><span class="line"><span class="comment"># 计算Item A 和Item B的相似度</span></span><br><span class="line"><span class="built_in">print</span>(jaccard_similarity_score(df[<span class="string">&quot;Item A&quot;</span>], df[<span class="string">&quot;Item B&quot;</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算所有的数据两两的杰卡德相似系数</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances</span><br><span class="line"><span class="comment"># 计算用户间相似度</span></span><br><span class="line">user_similar = <span class="number">1</span> - pairwise_distances(df, metric=<span class="string">&quot;jaccard&quot;</span>)</span><br><span class="line">user_similar = pd.DataFrame(user_similar, columns=users, index=users)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;用户之间的两两相似度：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(user_similar)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算物品间相似度</span></span><br><span class="line">item_similar = <span class="number">1</span> - pairwise_distances(df.T, metric=<span class="string">&quot;jaccard&quot;</span>)</span><br><span class="line">item_similar = pd.DataFrame(item_similar, columns=items, index=items)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;物品之间的两两相似度：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(item_similar)</span><br></pre></td></tr></table></figure>
-
 <p>有了两两的相似度，接下来筛选TOP-N相似结果，并进行推荐</p>
 </li>
 <li><p>User-Based CF</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pprint <span class="keyword">import</span> pprint</span><br><span class="line"></span><br><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 用户购买记录数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(datasets,</span><br><span class="line">                  columns=items,</span><br><span class="line">                  index=users)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算所有的数据两两的杰卡德相似系数</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances</span><br><span class="line"><span class="comment"># 计算用户间相似度</span></span><br><span class="line">user_similar = <span class="number">1</span> - pairwise_distances(df, metric=<span class="string">&quot;jaccard&quot;</span>)</span><br><span class="line">user_similar = pd.DataFrame(user_similar, columns=users, index=users)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;用户之间的两两相似度：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(user_similar)</span><br><span class="line"></span><br><span class="line">topN_users = &#123;&#125;</span><br><span class="line"><span class="comment"># 遍历每一行数据</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> user_similar.index:</span><br><span class="line">    <span class="comment"># 取出每一列数据，并删除自身，然后排序数据</span></span><br><span class="line">    _df = user_similar.loc[i].drop([i])</span><br><span class="line">    _df_sorted = _df.sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    top2 = <span class="built_in">list</span>(_df_sorted.index[:<span class="number">2</span>])</span><br><span class="line">    topN_users[i] = top2</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Top2相似用户：&quot;</span>)</span><br><span class="line">pprint(topN_users)</span><br><span class="line"></span><br><span class="line">rs_results = &#123;&#125;</span><br><span class="line"><span class="comment"># 构建推荐结果</span></span><br><span class="line"><span class="keyword">for</span> user, sim_users <span class="keyword">in</span> topN_users.items():</span><br><span class="line">    rs_result = <span class="built_in">set</span>()    <span class="comment"># 存储推荐结果</span></span><br><span class="line">    <span class="keyword">for</span> sim_user <span class="keyword">in</span> sim_users:</span><br><span class="line">        <span class="comment"># 构建初始的推荐结果</span></span><br><span class="line">        rs_result = rs_result.union(<span class="built_in">set</span>(df.ix[sim_user].replace(<span class="number">0</span>,np.nan).dropna().index))</span><br><span class="line">    <span class="comment"># 过滤掉已经购买过的物品</span></span><br><span class="line">    rs_result -= <span class="built_in">set</span>(df.ix[user].replace(<span class="number">0</span>,np.nan).dropna().index)</span><br><span class="line">    rs_results[user] = rs_result</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最终推荐结果：&quot;</span>)</span><br><span class="line">pprint(rs_results)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pprint <span class="keyword">import</span> pprint</span><br><span class="line"></span><br><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 用户购买记录数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(datasets,</span><br><span class="line">                  columns=items,</span><br><span class="line">                  index=users)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算所有的数据两两的杰卡德相似系数</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances</span><br><span class="line"><span class="comment"># 计算用户间相似度</span></span><br><span class="line">user_similar = <span class="number">1</span> - pairwise_distances(df, metric=<span class="string">&quot;jaccard&quot;</span>)</span><br><span class="line">user_similar = pd.DataFrame(user_similar, columns=users, index=users)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;用户之间的两两相似度：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(user_similar)</span><br><span class="line"></span><br><span class="line">topN_users = &#123;&#125;</span><br><span class="line"><span class="comment"># 遍历每一行数据</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> user_similar.index:</span><br><span class="line">    <span class="comment"># 取出每一列数据，并删除自身，然后排序数据</span></span><br><span class="line">    _df = user_similar.loc[i].drop([i])</span><br><span class="line">    _df_sorted = _df.sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    top2 = <span class="built_in">list</span>(_df_sorted.index[:<span class="number">2</span>])</span><br><span class="line">    topN_users[i] = top2</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Top2相似用户：&quot;</span>)</span><br><span class="line">pprint(topN_users)</span><br><span class="line"></span><br><span class="line">rs_results = &#123;&#125;</span><br><span class="line"><span class="comment"># 构建推荐结果</span></span><br><span class="line"><span class="keyword">for</span> user, sim_users <span class="keyword">in</span> topN_users.items():</span><br><span class="line">    rs_result = <span class="built_in">set</span>()    <span class="comment"># 存储推荐结果</span></span><br><span class="line">    <span class="keyword">for</span> sim_user <span class="keyword">in</span> sim_users:</span><br><span class="line">        <span class="comment"># 构建初始的推荐结果</span></span><br><span class="line">        rs_result = rs_result.union(<span class="built_in">set</span>(df.ix[sim_user].replace(<span class="number">0</span>,np.nan).dropna().index))</span><br><span class="line">    <span class="comment"># 过滤掉已经购买过的物品</span></span><br><span class="line">    rs_result -= <span class="built_in">set</span>(df.ix[user].replace(<span class="number">0</span>,np.nan).dropna().index)</span><br><span class="line">    rs_results[user] = rs_result</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最终推荐结果：&quot;</span>)</span><br><span class="line">pprint(rs_results)</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>Item-Based CF</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pprint <span class="keyword">import</span> pprint</span><br><span class="line"></span><br><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 用户购买记录数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(datasets,</span><br><span class="line">                  columns=items,</span><br><span class="line">                  index=users)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算所有的数据两两的杰卡德相似系数</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances</span><br><span class="line"><span class="comment"># 计算物品间相似度</span></span><br><span class="line">item_similar = <span class="number">1</span> - pairwise_distances(df.T.values, metric=<span class="string">&quot;jaccard&quot;</span>)</span><br><span class="line">item_similar = pd.DataFrame(item_similar, columns=items, index=items)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;物品之间的两两相似度：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(item_similar)</span><br><span class="line"></span><br><span class="line">topN_items = &#123;&#125;</span><br><span class="line"><span class="comment"># 遍历每一行数据</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> item_similar.index:</span><br><span class="line">    <span class="comment"># 取出每一列数据，并删除自身，然后排序数据</span></span><br><span class="line">    _df = item_similar.loc[i].drop([i])</span><br><span class="line">    _df_sorted = _df.sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    top2 = <span class="built_in">list</span>(_df_sorted.index[:<span class="number">2</span>])</span><br><span class="line">    topN_items[i] = top2</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Top2相似物品：&quot;</span>)</span><br><span class="line">pprint(topN_items)</span><br><span class="line"></span><br><span class="line">rs_results = &#123;&#125;</span><br><span class="line"><span class="comment"># 构建推荐结果</span></span><br><span class="line"><span class="keyword">for</span> user <span class="keyword">in</span> df.index:    <span class="comment"># 遍历所有用户</span></span><br><span class="line">    rs_result = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> df.ix[user].replace(<span class="number">0</span>,np.nan).dropna().index:   <span class="comment"># 取出每个用户当前已购物品列表</span></span><br><span class="line">        <span class="comment"># 根据每个物品找出最相似的TOP-N物品，构建初始推荐结果</span></span><br><span class="line">        rs_result = rs_result.union(topN_items[item])</span><br><span class="line">    <span class="comment"># 过滤掉用户已购的物品</span></span><br><span class="line">    rs_result -= <span class="built_in">set</span>(df.ix[user].replace(<span class="number">0</span>,np.nan).dropna().index)</span><br><span class="line">    <span class="comment"># 添加到结果中</span></span><br><span class="line">    rs_results[user] = rs_result</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最终推荐结果：&quot;</span>)</span><br><span class="line">pprint(rs_results)</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> pprint <span class="keyword">import</span> pprint</span><br><span class="line"></span><br><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 用户购买记录数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(datasets,</span><br><span class="line">                  columns=items,</span><br><span class="line">                  index=users)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算所有的数据两两的杰卡德相似系数</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics.pairwise <span class="keyword">import</span> pairwise_distances</span><br><span class="line"><span class="comment"># 计算物品间相似度</span></span><br><span class="line">item_similar = <span class="number">1</span> - pairwise_distances(df.T.values, metric=<span class="string">&quot;jaccard&quot;</span>)</span><br><span class="line">item_similar = pd.DataFrame(item_similar, columns=items, index=items)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;物品之间的两两相似度：&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(item_similar)</span><br><span class="line"></span><br><span class="line">topN_items = &#123;&#125;</span><br><span class="line"><span class="comment"># 遍历每一行数据</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> item_similar.index:</span><br><span class="line">    <span class="comment"># 取出每一列数据，并删除自身，然后排序数据</span></span><br><span class="line">    _df = item_similar.loc[i].drop([i])</span><br><span class="line">    _df_sorted = _df.sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    top2 = <span class="built_in">list</span>(_df_sorted.index[:<span class="number">2</span>])</span><br><span class="line">    topN_items[i] = top2</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Top2相似物品：&quot;</span>)</span><br><span class="line">pprint(topN_items)</span><br><span class="line"></span><br><span class="line">rs_results = &#123;&#125;</span><br><span class="line"><span class="comment"># 构建推荐结果</span></span><br><span class="line"><span class="keyword">for</span> user <span class="keyword">in</span> df.index:    <span class="comment"># 遍历所有用户</span></span><br><span class="line">    rs_result = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> df.ix[user].replace(<span class="number">0</span>,np.nan).dropna().index:   <span class="comment"># 取出每个用户当前已购物品列表</span></span><br><span class="line">        <span class="comment"># 根据每个物品找出最相似的TOP-N物品，构建初始推荐结果</span></span><br><span class="line">        rs_result = rs_result.union(topN_items[item])</span><br><span class="line">    <span class="comment"># 过滤掉用户已购的物品</span></span><br><span class="line">    rs_result -= <span class="built_in">set</span>(df.ix[user].replace(<span class="number">0</span>,np.nan).dropna().index)</span><br><span class="line">    <span class="comment"># 添加到结果中</span></span><br><span class="line">    rs_results[user] = rs_result</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;最终推荐结果：&quot;</span>)</span><br><span class="line">pprint(rs_results)</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <p><strong>关于协同过滤推荐算法使用的数据集</strong><br>在前面的demo中，我们只是使用用户对物品的一个购买记录，类似也可以是比如浏览点击记录、收听记录等等。这样数据我们预测的结果其实相当于是在预测用户是否对某物品感兴趣，对于喜好程度不能很好的预测。</p>
 <p>因此在协同过滤推荐算法中其实会更多的利用用户对物品的“评分”数据来进行预测，通过评分数据集，我们可以预测用户对于他没有评分过的物品的评分。其实现原理和思想和都是一样的，只是使用的数据集是用户-物品的评分数据。</p>
@@ -479,26 +480,27 @@
 <h4 id="使用协同过滤推荐算法对用户进行评分预测"><a href="#使用协同过滤推荐算法对用户进行评分预测" class="headerlink" title="使用协同过滤推荐算法对用户进行评分预测"></a>使用协同过滤推荐算法对用户进行评分预测</h4><p><strong>目的：预测用户1对物品E的评分</strong></p>
 <ul>
 <li><p>构建数据集：对于缺失的部分我们需要保留为None，如果设置为0那么会被当作评分值为0去对待</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 用户购买记录数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="literal">None</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>],</span><br><span class="line">    [<span class="number">4</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">4</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>],</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">users = [<span class="string">&quot;User1&quot;</span>, <span class="string">&quot;User2&quot;</span>, <span class="string">&quot;User3&quot;</span>, <span class="string">&quot;User4&quot;</span>, <span class="string">&quot;User5&quot;</span>]</span><br><span class="line">items = [<span class="string">&quot;Item A&quot;</span>, <span class="string">&quot;Item B&quot;</span>, <span class="string">&quot;Item C&quot;</span>, <span class="string">&quot;Item D&quot;</span>, <span class="string">&quot;Item E&quot;</span>]</span><br><span class="line"><span class="comment"># 用户购买记录数据集</span></span><br><span class="line">datasets = [</span><br><span class="line">    [<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="literal">None</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>],</span><br><span class="line">    [<span class="number">4</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>],</span><br><span class="line">    [<span class="number">3</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">4</span>],</span><br><span class="line">    [<span class="number">1</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>计算相似度：对于评分数据这里我们采用皮尔逊相关系数[-1,1]来计算，-1表示强负相关，+1表示强正相关</p>
 <blockquote>
 <p>pandas中corr方法可直接用于计算皮尔逊相关系数</p>
-</blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(datasets,</span><br><span class="line">                  columns=items,</span><br><span class="line">                  index=users)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;用户之间的两两相似度：&quot;</span>)</span><br><span class="line"><span class="comment"># 直接计算皮尔逊相关系数</span></span><br><span class="line"><span class="comment"># 默认是按列进行计算，因此如果计算用户间的相似度，当前需要进行转置</span></span><br><span class="line">user_similar = df.T.corr()</span><br><span class="line"><span class="built_in">print</span>(user_similar.<span class="built_in">round</span>(<span class="number">4</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;物品之间的两两相似度：&quot;</span>)</span><br><span class="line">item_similar = df.corr()</span><br><span class="line"><span class="built_in">print</span>(item_similar.<span class="built_in">round</span>(<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-
+</blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 运行结果：</span><br><span class="line">用户之间的两两相似度：</span><br><span class="line">        User1   User2   User3   User4   User5</span><br><span class="line">User1  1.0000  0.8528  0.7071  0.0000 -0.7921</span><br><span class="line">User2  0.8528  1.0000  0.4677  0.4900 -0.9001</span><br><span class="line">User3  0.7071  0.4677  1.0000 -0.1612 -0.4666</span><br><span class="line">User4  0.0000  0.4900 -0.1612  1.0000 -0.6415</span><br><span class="line">User5 -0.7921 -0.9001 -0.4666 -0.6415  1.0000</span><br><span class="line">物品之间的两两相似度：</span><br><span class="line">        Item A  Item B  Item C  Item D  Item E</span><br><span class="line">Item A  1.0000 -0.4767 -0.1231  0.5322  0.9695</span><br><span class="line">Item B -0.4767  1.0000  0.6455 -0.3101 -0.4781</span><br><span class="line">Item C -0.1231  0.6455  1.0000 -0.7206 -0.4276</span><br><span class="line">Item D  0.5322 -0.3101 -0.7206  1.0000  0.5817</span><br><span class="line">Item E  0.9695 -0.4781 -0.4276  0.5817  1.0000</span><br></pre></td></tr></table></figure>
-
 <p>可以看到与用户1最相似的是用户2和用户3；与物品A最相似的物品分别是物品E和物品D。</p>
 <p><strong>注意：</strong>我们在预测评分时，往往是通过与其有正相关的用户或物品进行预测，如果不存在正相关的情况，那么将无法做出预测。这一点尤其是在稀疏评分矩阵中尤为常见，因为稀疏评分矩阵中很难得出正相关系数。</p>
 </li>
 <li><p><strong>评分预测：</strong><br><strong>User-Based CF 评分预测：使用用户间的相似度进行预测</strong></p>
-<p>关于评分预测的方法也有比较多的方案，下面介绍一种效果比较好的方案，该方案考虑了用户本身的评分以及近邻用户的加权平均相似度打分来进行预测：$$pred(u,i)=\hat r_{ui}=\frac{\sum_{v\in U}sim(u,v)*r_{vi}}{\sum_{v\in U}|sim(u,v)|}$$</p>
-<p>我们要预测用户1对物品E的评分，那么可以根据与用户1最近邻的用户2和用户3进行预测，计算如下：<br>$$<br>pred(u_1,i_5) = \frac{0.85 * 3 + 0.71 * 5}{0.85+0.71}=3.91<br>$$</p>
-<p>最终预测出用户1对物品5的评分为3.91</p>
+<p>关于评分预测的方法也有比较多的方案，下面介绍一种效果比较好的方案，该方案考虑了用户本身的评分以及近邻用户的加权平均相似度打分来进行预测：<script type="math/tex">pred(u,i)=\hat r_{ui}=\frac{\sum_{v\in U}sim(u,v)*r_{vi}}{\sum_{v\in U}|sim(u,v)|}</script></p>
+<p>我们要预测用户1对物品E的评分，那么可以根据与用户1最近邻的用户2和用户3进行预测，计算如下：</p>
+<script type="math/tex; mode=display">
+pred(u_1,i_5) = \frac{0.85 * 3 + 0.71 * 5}{0.85+0.71}=3.91</script><p>最终预测出用户1对物品5的评分为3.91</p>
 <p><strong>Item-Based CF 评分预测：使用物品间的相似度进行预测</strong></p>
-<p>这里利用物品相似度预测的计算同上，同样考虑了用户自身的平均打分因素，结合预测物品与相似物品的加权平均相似度打分进行来进行预测<br>$$pred(u,i)=\hat r_{ui}=\frac{\sum_{j\in I_{rated}}sim(i,j)*r_{uj}}{\sum_{j\in I_{rated}}sim(i,j)}$$</p>
-<p>我们要预测用户1对物品E的评分，那么可以根据与物品E最近邻的物品A和物品D进行预测，计算如下：<br>$$<br>pred(u_1, i_5) = \frac{0.97 * 5 + 0.58 * 4}{0.97+0.58} = 4.63<br>$$</p>
-<p>对比可见，User-Based CF预测评分和Item-Based CF的评分结果也是存在差异的，因为严格意义上他们其实应当属于两种不同的推荐算法，各自在不同的领域不同场景下，都会比另一种的效果更佳，但具体哪一种更佳，必须经过合理的效果评估，因此在实现推荐系统时这两种算法往往都是需要去实现的，然后对产生的推荐效果进行评估分析选出更优方案。</p>
+<p>这里利用物品相似度预测的计算同上，同样考虑了用户自身的平均打分因素，结合预测物品与相似物品的加权平均相似度打分进行来进行预测</p>
+<script type="math/tex; mode=display">pred(u,i)=\hat r_{ui}=\frac{\sum_{j\in I_{rated}}sim(i,j)*r_{uj}}{\sum_{j\in I_{rated}}sim(i,j)}</script><p>我们要预测用户1对物品E的评分，那么可以根据与物品E最近邻的物品A和物品D进行预测，计算如下：</p>
+<script type="math/tex; mode=display">
+pred(u_1, i_5) = \frac{0.97 * 5 + 0.58 * 4}{0.97+0.58} = 4.63</script><p>对比可见，User-Based CF预测评分和Item-Based CF的评分结果也是存在差异的，因为严格意义上他们其实应当属于两种不同的推荐算法，各自在不同的领域不同场景下，都会比另一种的效果更佳，但具体哪一种更佳，必须经过合理的效果评估，因此在实现推荐系统时这两种算法往往都是需要去实现的，然后对产生的推荐效果进行评估分析选出更优方案。</p>
 </li>
 </ul>
 <h3 id="基于模型的方法"><a href="#基于模型的方法" class="headerlink" title="基于模型的方法"></a>基于模型的方法</h3><ul>
@@ -522,7 +524,7 @@
 </li>
 <li><p>基于图的模型</p>
 <ul>
-<li><p>基于邻域的模型看做基于图的模型的简单形式<br><img src="graph1.png"></p>
+<li><p>基于邻域的模型看做基于图的模型的简单形式<br><img src="graph1.png" alt=""></p>
 </li>
 <li><p>原理</p>
 <ul>
@@ -540,8 +542,8 @@
 <li>根据用户与物品的潜在表现，我们就可以预测用户对未评分的物品的喜爱程度</li>
 <li>把原来的大矩阵, 近似分解成两个小矩阵的乘积, 在实际推荐计算时不再使用大矩阵, 而是使用分解得到的两个小矩阵  </li>
 <li>用户-物品评分矩阵A是M X N维, 即一共有M个用户, N个物品 我们选一个很小的数 K (K &lt;&lt; M, K &lt;&lt; N)</li>
-<li>通过计算得到两个矩阵U、V，U是M * K矩阵 , V是 N * K矩阵</li>
-<li>$U_{m<em>k} * V^T_{n</em>k}$ 约等于 $A_{m*n}$<br>$U_{m*k} * V^{T}<em>{n*k}$ 约等于 $A</em>{m*n}$<br>类似这样的计算过程就是矩阵分解</li>
+<li>通过计算得到两个矩阵U、V，U是M <em> K矩阵 , V是 N </em> K矩阵</li>
+<li>$U<em>{m<em>k} </em> V^T</em>{n<em>k}$ 约等于 $A_{m</em>n}$<br>$U<em>{m*k} * V^{T}</em>{n*k}$ 约等于 $A_{m*n}$<br>类似这样的计算过程就是矩阵分解</li>
 </ul>
 </li>
 <li><p>基于矩阵分解的方法</p>
@@ -556,16 +558,16 @@
 </li>
 </ul>
 </li>
-<li><p>ALS方法<br><img src="als1.png"></p>
+<li><p>ALS方法<br><img src="als1.png" alt=""></p>
 <ul>
 <li>ALS的矩阵分解算法常应用于推荐系统中，将用户(user)对商品(item)的评分矩阵，分解为用户对商品隐含特征的偏好矩阵，和商品在隐含特征上的映射矩阵。</li>
-<li>与传统的矩阵分解SVD方法来分解矩阵R(R∈ℝm×n)不同的是，ALS(alternating least squares)希望找到两个低维矩阵，以 R̃ =XY 来逼近矩阵R，其中 ，X∈ℝm×d，Y∈ℝd×n，这样，将问题的复杂度由O(m*n)转换为O((m+n)*d)。</li>
+<li>与传统的矩阵分解SVD方法来分解矩阵R(R∈ℝm×n)不同的是，ALS(alternating least squares)希望找到两个低维矩阵，以 R̃ =XY 来逼近矩阵R，其中 ，X∈ℝm×d，Y∈ℝd×n，这样，将问题的复杂度由O(m<em>n)转换为O((m+n)</em>d)。</li>
 <li>计算X和Y过程：首先用一个小于1的随机数初始化Y，并根据公式求X，此时就可以得到初始的XY矩阵了，根据平方差和得到的X，重新计算并覆盖Y，计算差平方和，反复进行以上两步的计算，直到差平方和小于一个预设的数，或者迭代次数满足要求则停止</li>
 </ul>
 </li>
 </ul>
 <h2 id="推荐系统评估"><a href="#推荐系统评估" class="headerlink" title="推荐系统评估"></a>推荐系统评估</h2><ul>
-<li><p>好的推荐系统可以实现用户, 服务提供方, 内容提供方的共赢<br><img src="recommend2.png"></p>
+<li><p>好的推荐系统可以实现用户, 服务提供方, 内容提供方的共赢<br><img src="recommend2.png" alt=""></p>
 </li>
 <li><p>显示反馈和隐式反馈</p>
 <table>
@@ -595,11 +597,11 @@
     <td> 高 </td>
     <td> 低 </td>
   </tr>
-</table></li>
+</table>
+</li>
 <li><p>常用评估指标<br>• 准确性  • 信任度<br>• 满意度  • 实时性<br>• 覆盖率  • 鲁棒性<br>• 多样性  • 可扩展性<br>• 新颖性  • 商业⽬标<br>• 惊喜度  • ⽤户留存</p>
 <ul>
-<li><p>准确性 (理论角度) Netflix 美国录像带租赁</p>
-<ul>
+<li>准确性 (理论角度) Netflix 美国录像带租赁<ul>
 <li>评分预测<ul>
 <li>RMSE   MAE</li>
 </ul>
@@ -610,7 +612,7 @@
 </li>
 </ul>
 </li>
-<li><p>准确性 (业务角度)<br><img src="recommend3.png"></p>
+<li><p>准确性 (业务角度)<br><img src="recommend3.png" alt=""></p>
 </li>
 <li><p>覆盖度</p>
 <ul>
@@ -618,8 +620,7 @@
 <li>覆盖率</li>
 </ul>
 </li>
-<li><p>多样性&amp;新颖性&amp;惊喜性</p>
-<ul>
+<li>多样性&amp;新颖性&amp;惊喜性<ul>
 <li>多样性：推荐列表中两两物品的不相似性。（相似性如何度量？</li>
 <li>新颖性：未曾关注的类别、作者；推荐结果的平均流⾏度</li>
 <li>惊喜性：历史不相似（惊）但很满意（喜）</li>
@@ -628,15 +629,13 @@
 <li>系统过度强调实时性</li>
 </ul>
 </li>
-<li><p>Exploitation &amp; Exploration 探索与利用问题</p>
-<ul>
+<li>Exploitation &amp; Exploration 探索与利用问题<ul>
 <li>Exploitation(开发 利用)：选择现在可能最佳的⽅案</li>
 <li>Exploration(探测 搜索)：选择现在不确定的⼀些⽅案，但未来可能会有⾼收益的⽅案</li>
 <li>在做两类决策的过程中，不断更新对所有决策的不确定性的认知，优化<br>长期的⽬标</li>
 </ul>
 </li>
-<li><p>EE问题实践</p>
-<ul>
+<li>EE问题实践<ul>
 <li>兴趣扩展: 相似话题, 搭配推荐</li>
 <li>人群算法: userCF 用户聚类</li>
 <li>平衡个性化推荐和热门推荐比例</li>
@@ -644,8 +643,7 @@
 <li>随机扰动模型参数</li>
 </ul>
 </li>
-<li><p>EE可能带来的问题</p>
-<ul>
+<li>EE可能带来的问题<ul>
 <li>探索伤害用户体验, 可能导致用户流失</li>
 <li>探索带来的长期收益(留存率)评估周期长, KPI压力大</li>
 <li>如何平衡实时兴趣和长期兴趣</li>
@@ -653,8 +651,7 @@
 <li>如何平衡大众口味和小众需求</li>
 </ul>
 </li>
-<li><p>评估方法</p>
-<ul>
+<li>评估方法<ul>
 <li>问卷调查: 成本高</li>
 <li>离线评估:<ul>
 <li>只能在用户看到过的候选集上做评估, 且跟线上真实效果存在偏差</li>
@@ -684,10 +681,10 @@
 <ul>
 <li>⽤户注册信息：性别、年龄、地域</li>
 <li>设备信息：定位、⼿机型号、app列表</li>
-<li>社交信息、推⼴素材、安装来源<br><img src="recommend4.png"></li>
+<li>社交信息、推⼴素材、安装来源<br><img src="recommend4.png" alt=""></li>
 </ul>
 </li>
-<li><p>2 引导用户填写兴趣<br><img src="recommend5.png"></p>
+<li><p>2 引导用户填写兴趣<br><img src="recommend5.png" alt=""></p>
 </li>
 <li><p>3 使用其它站点的行为数据, 例如腾讯视频&amp;QQ音乐 今日头条&amp;抖音</p>
 </li>
@@ -698,14 +695,14 @@
 <li>使⽤单独的特征和模型预估</li>
 </ul>
 </li>
-<li><p>举例 性别与电视剧的关系<br><img src="firststart.png"><br><img src="firststart1.png"></p>
+<li><p>举例 性别与电视剧的关系<br><img src="firststart.png" alt=""><br><img src="firststart1.png" alt=""></p>
 </li>
 </ul>
 </li>
 <li><p>物品冷启动</p>
 <ul>
 <li>给物品打标签</li>
-<li>利用物品的内容信息，将新物品先投放给曾经喜欢过和它内容相似的其他物品的用户。<br><img src="firststart2.png"></li>
+<li>利用物品的内容信息，将新物品先投放给曾经喜欢过和它内容相似的其他物品的用户。<br><img src="firststart2.png" alt=""></li>
 </ul>
 </li>
 <li><p>系统冷启动</p>
