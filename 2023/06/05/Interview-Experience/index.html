@@ -173,8 +173,8 @@
 <p>损失函数：<br>逻辑回归中用到sigmoid函数，若用均方误差则为非凸函数，有多个极小值，采用梯度下降法容易陷入局部最优解中。<br>逻辑回归其实是概率类模型，通过极大似然估计（MLE）推导逻辑回归损失函数。目的是将所得似然函数极大化，而损失函数是最小化。</p>
 <p>求解：<br>最小二乘法的误差符合正态分布，而逻辑回归的误差符合的是二项分布，所以不能用最小二乘法来作为损失函数，那么能够用最大似然预计来做。使用梯度下降法求解。</p>
 <ul>
-<li>如果用最小二乘法，目标函数就是 $E<em>{w,b}=\sum</em>{i=1}^{m}\left ( y<em>{i}-\frac{1}{1+e^{-\left ( w^{T}x</em>{i}+b \right )}}\right )^2$ ,是非凸的，不容易求解，会得到局部最优。</li>
-<li>如果用最大似然估计，目标函数就是对数似然函数： $l<em>{w,b}=\sum</em>{i=1}^{m}\left ( -y<em>{i}\left ( w^{T}x</em>{i}+b \right )+ln\left ( 1+e^{w^{T}x_{i}+b} \right ) \right )$ ,是关于 (w,b) 的高阶连续可导凸函数，可以方便通过一些凸优化算法求解，比如梯度下降法、牛顿法等。</li>
+<li>如果用最小二乘法，目标函数就是 $E_{w,b}=\sum_{i=1}^{m}\left ( y_{i}-\frac{1}{1+e^{-\left ( w^{T}x_{i}+b \right )}}\right )^2$ ,是非凸的，不容易求解，会得到局部最优。</li>
+<li>如果用最大似然估计，目标函数就是对数似然函数： $l_{w,b}=\sum_{i=1}^{m}\left ( -y_{i}\left ( w^{T}x_{i}+b \right )+ln\left ( 1+e^{w^{T}x_{i}+b} \right ) \right )$ ,是关于 (w,b) 的高阶连续可导凸函数，可以方便通过一些凸优化算法求解，比如梯度下降法、牛顿法等。</li>
 </ul>
 <p>优点：</p>
 <ol>
@@ -192,9 +192,8 @@
   <img src="logistic_regression.png" height=70% width=70%>
 </div>
 
-<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1373192#:~:text=关于逻辑回归，可以用一句话来总结：,逻辑回归假设数据服从伯努利分布，通过极大似然函数的方法，运用梯度下降来求解参数，来达到将数据二分类的目的%E3%80%82">从零开始学会逻辑回归（一）</a></p>
-<h2 id="二分类和多分类的损失函数"><a href="#二分类和多分类的损失函数" class="headerlink" title="二分类和多分类的损失函数"></a>二分类和多分类的损失函数</h2><div class="table-container">
-<table>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1373192#:~:text=%E5%85%B3%E4%BA%8E%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%94%A8%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9D%A5%E6%80%BB%E7%BB%93%EF%BC%9A,%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%81%87%E8%AE%BE%E6%95%B0%E6%8D%AE%E6%9C%8D%E4%BB%8E%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%88%86%E5%B8%83%EF%BC%8C%E9%80%9A%E8%BF%87%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E8%BF%90%E7%94%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%9D%A5%E6%B1%82%E8%A7%A3%E5%8F%82%E6%95%B0%EF%BC%8C%E6%9D%A5%E8%BE%BE%E5%88%B0%E5%B0%86%E6%95%B0%E6%8D%AE%E4%BA%8C%E5%88%86%E7%B1%BB%E7%9A%84%E7%9B%AE%E7%9A%84%E3%80%82">从零开始学会逻辑回归（一）</a></p>
+<h2 id="二分类和多分类的损失函数"><a href="#二分类和多分类的损失函数" class="headerlink" title="二分类和多分类的损失函数"></a>二分类和多分类的损失函数</h2><table>
 <thead>
 <tr>
 <th>分类问题</th>
@@ -203,8 +202,7 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>二分类</td>
 <td>Sigmoid</td>
 <td>二分类交叉熵损失函数（binary_crossentropy）</td>
@@ -222,12 +220,10 @@
 <td>二分类交叉熵损失函数（binary_crossentropy）</td>
 <td>计算一个样本各个标签的损失取平均值。把一个多标签问题转化为在每个标签上的二分类问题</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <ul>
 <li>BCE Loss: $L=\frac{1}{N}\sum_iL_i=\frac{1}{N}\sum_i[y_ilog(p_i)+(1-y_i)log(1-p_i)]$</li>
-<li>CE Loss: $L=\frac{1}{N}\sum<em>iL_i=-\frac{1}{N}\sum_i \sum^M</em>{c=1}y<em>{ic}log(p</em>{ic})$</li>
+<li>CE Loss: $L=\frac{1}{N}\sum_iL_i=-\frac{1}{N}\sum_i \sum^M_{c=1}y_{ic}log(p_{ic})$</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/617375968">二分类和多分类的激活函数和损失</a></p>
 <h2 id="二分类为什么用交叉熵损失而不用MSE损失？"><a href="#二分类为什么用交叉熵损失而不用MSE损失？" class="headerlink" title="二分类为什么用交叉熵损失而不用MSE损失？"></a>二分类为什么用交叉熵损失而不用MSE损失？</h2><ul>
@@ -457,7 +453,7 @@
 <li>定义：ROC曲线下的面积（横坐标为假阳性率FPR，纵坐标为真阳性率TPR/召回），ROC曲线对于模型预估的一个正例，如果真实标签是正例，就往上走，如果是负例，就往左走，遍历完所有样本形成的曲线就是ROC曲线。</li>
 <li>含义：随机抽出一对样本（一个正样本，一个负样本），然后用训练得到的分类器来对这两个样本进行预测，预测得到正样本的概率大于负样本概率的概率。</li>
 <li>计算方法：<ol>
-<li>$AUC=\frac{\sum I(P<em>{正样本}, P</em>{负样本})}{M*N}$。在$M*N$对样本里（$M$和$N$分别表示正负样本的数量），统计正样本的预测概率大于负样本的预测概率的个数。</li>
+<li>$AUC=\frac{\sum I(P_{正样本}, P_{负样本})}{M*N}$。在$M*N$对样本里（$M$和$N$分别表示正负样本的数量），统计正样本的预测概率大于负样本的预测概率的个数。</li>
 <li>$AUC=\frac{\sum_{i\in 正样本}rank(i)-\frac{M(M+1)}{2}}{M*N}$。$rank(i)$表示按照预估概率升序排序后正样本$i$的排序编号。对预估概率得分相同，将其排序编号取平均作为新的排序编号。</li>
 </ol>
 </li>
@@ -477,34 +473,34 @@
 <li>Softmax函数：可以看作是用作多分类的激活函数，将神经网络的输出值变成概率。</li>
 <li>线性激活函数：效果等同于未激活，在Keras中不激活时就是用f(x)=x这一激活函数。二分类时用sigmoid函数和tanh函数，但存在梯度消失问题时应避免使用这两种函数。ReLU函数适用于绝大多数情况，如果存在梯度不更新的问题时可以用Leaky ReLU函数替代。</li>
 </ol>
-<h2 id="Softmax函数及求导"><a href="#Softmax函数及求导" class="headerlink" title="Softmax函数及求导"></a>Softmax函数及求导</h2><p>Softmax函数通常用于多分类问题中，它将一个包含任意实数的 K 维向量（K 是类别数量）映射为一个概率分布，每个类别的预测概率值都在 0 到 1 之间，所有类别的概率总和为 1。Softmax函数的作用是将原始得分转换为概率值，使得模型的输出更符合实际的概率分布。函数公式：<script type="math/tex">S_i=\frac{e^{a_i}}{\sum ^K_{k=1} e^{a_k}}</script><br>其中，$a$ 是输入向量，上述公式表示第 $i$ 个类别的输出概率。函数求导分类讨论：</p>
+<h2 id="Softmax函数及求导"><a href="#Softmax函数及求导" class="headerlink" title="Softmax函数及求导"></a>Softmax函数及求导</h2><p>Softmax函数通常用于多分类问题中，它将一个包含任意实数的 K 维向量（K 是类别数量）映射为一个概率分布，每个类别的预测概率值都在 0 到 1 之间，所有类别的概率总和为 1。Softmax函数的作用是将原始得分转换为概率值，使得模型的输出更符合实际的概率分布。函数公式：$$S_i=\frac{e^{a_i}}{\sum ^K_{k=1} e^{a_k}}$$<br>其中，$a$ 是输入向量，上述公式表示第 $i$ 个类别的输出概率。函数求导分类讨论：</p>
 <ul>
-<li>当 $i=j$时：<script type="math/tex">\frac{\partial S_i}{\partial a_j}=\frac{e^{a_i}\sum-e^{a_j}e^{a_i}}{\sum ^2}=S_i-S_iS_j</script></li>
-<li>当 $i\not =j$时：<script type="math/tex">\frac{\partial S_i}{\partial a_j}=\frac{0-e^{a_j}e^{a_i}}{\sum ^2}=-S_iS_j</script></li>
+<li>当 $i=j$时：$$\frac{\partial S_i}{\partial a_j}=\frac{e^{a_i}\sum-e^{a_j}e^{a_i}}{\sum ^2}=S_i-S_iS_j$$</li>
+<li>当 $i\not =j$时：$$\frac{\partial S_i}{\partial a_j}=\frac{0-e^{a_j}e^{a_i}}{\sum ^2}=-S_iS_j$$</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cassiePython/article/details/80089760">Softmax函数及其导数</a></p>
 <h2 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h2><ul>
 <li>梯度下降法（Gradient Descent）：最基本最常用的优化算法。通过计算损失函数关于参数的梯度，以负梯度方向更新参数，使损失函数最小化。梯度下降法有多个变种，如批量梯度下降、随机梯度下降和小批量梯度下降。<ul>
-<li>$g<em>t=▽f(θ</em>{t−1}), △θ_t=−η∗g_t$</li>
+<li>$g_t=▽f(θ_{t−1}), △θ_t=−η∗g_t$</li>
 <li>批梯度下降：每次使用所有数据用于更新梯度，使得梯度总是朝着最小的方向更新，但数据量很大的时候更新速度太慢，容易陷入局部最优。</li>
 <li>随机梯度下降：每次使用一条数据来更新梯度，在梯度更新过程中梯度可能上升也可能下降，但总的来说梯度还是朝着最低的方向前进；最后梯度会在极小值附近徘徊。随机梯度下降的梯度更新速度快于批梯度下降，且由于每次梯度的更新方向不确定，陷入局部最优的时候有可能能跳出该局部极小值。</li>
 <li>mini-batch梯度下降：介于批梯度下降和随机梯度下降之间，每次用若干条数据更新梯度。mini-batch梯度下降可以使用矩阵的方式来计算梯度，因此速度快于随机梯度下降，且同样具有跳出局部最优的特点。</li>
 </ul>
 </li>
 <li>动量优化器（Momentum）：引入动量项加速收敛过程。在参数更新时考虑之前的更新方向，在梯度方向上积累速度。如果本次梯度衰减方向与上一次相同，则可以加速梯度下降；如果不一致，则抑制梯度的改变。有助于在平坦区域中加快学习速度并减少震荡。<ul>
-<li>$m<em>t=μ∗m</em>{t−1}+(1−μ)g_t$ </li>
+<li>$m_t=μ∗m_{t−1}+(1−μ)g_t$ </li>
 <li>$△θ_t=−η∗m_t$</li>
 </ul>
 </li>
 <li>自适应动量估计（Adaptive Moment Estimation，Adam）：基于一阶矩估计和二阶矩估计的自适应优化器。结合了动量和学习率衰减机制，并具有自适应学习率调整。在很多情况下能快速收敛。</li>
 <li>自适应学习率优化器（Adagrad、RMSProp）：Adagrad和RMSProp是常用的自适应学习率优化器。Adagrad适应性地调整参数的学习率，对于稀疏梯度的问题表现较好。RMSProp通过指数加权平均的方式动态调整学习率，适用于非平稳或具有较大梯度变化的问题。用初始学习率除以通过衰减系数控制的梯度平方和的平方根，相当于给每个参数赋予了各自的学习率。梯度相对平缓的地方，累积梯度小，学习率会增大；梯度相对陡峭的地方，累积梯度大，学习率会减小。从而加速训练。<ul>
-<li>RMSprop: $n<em>t=νn</em>{t−1}+(1−ν)g_t^2$</li>
+<li>RMSprop: $n_t=νn_{t−1}+(1−ν)g_t^2$</li>
 <li>$△θ_t=−\frac{η}{\sqrt{n_t+ϵ}}*g_t$</li>
 </ul>
 </li>
 <li>Adam：本质上是带有动量项的RMSprop，结合了两者的优点，可以为不同的参数计算不同的自适应学习率，实践中常用。<ul>
-<li>$m<em>t=μm</em>{t−1}+(1−μ)g_t$</li>
-<li>$n<em>t=νn</em>{t−1}+(1−ν)g_t^2$</li>
+<li>$m_t=μm_{t−1}+(1−μ)g_t$</li>
+<li>$n_t=νn_{t−1}+(1−ν)g_t^2$</li>
 <li>$\hat m_t=\frac{m_t}{1−μ^t}$</li>
 <li>$\hat n_t=\frac{n_t}{1−ν^t}$</li>
 <li>$△θ_t=-\frac{η}{\sqrt{\hat n_t+ϵ}}$ </li>
@@ -553,15 +549,15 @@
 <li>这样调整分布后能加速训练，但之前层学习到的参数信息可能会丢失，所以加入参数 $\gamma$、$\beta$ 调整： $\widetilde{Z}^i=\gamma{Z_{norm}^i}+\beta$</li>
 </ol>
 </li>
-<li>反向传播: <script type="math/tex; mode=display">\frac{\partial{L}}{\partial{Z_{norm}^i}}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}\lambda</script><script type="math/tex; mode=display">\frac{\partial{L}}{\partial\lambda}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}Z_{norm}^i</script><script type="math/tex; mode=display">\frac{\partial{L}}{\partial\beta}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}</script><script type="math/tex; mode=display">\frac{\partial{L}}{\partial\sigma^2}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial\sigma^2}=\frac{\partial{L}}{\partial{Z_{norm}^i}}(-\frac{1}{2})(\sigma^2+\epsilon)^{\frac{-3}{2}}</script><script type="math/tex; mode=display">\frac{\partial{L}}{\partial\mu}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial\mu}+\frac{\partial{L}}{\partial\sigma^2}\frac{\partial{\sigma^2}}{\partial{\mu}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{-1}{\sqrt{\sigma^2+\epsilon}}+\frac{\partial{L}}{\partial\sigma^2}\frac{-2\sum_{i=1}^{m}(z^i-\mu)}{m}</script><script type="math/tex; mode=display">\frac{\partial{L}}{\partial{Z^i}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial{Z^i}}+\frac{\partial{L}}{\partial\sigma^2}\frac{\partial{\sigma^2}}{\partial{Z^i}}+\frac{\partial{L}}{\partial\mu}\frac{\partial\mu}{\partial{Z^i}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{1}{\sqrt{\sigma^2+\epsilon}}+\frac{\partial{L}}{\partial\sigma^2}\frac{2(Z^i-\mu)}{m}+\frac{\partial{L}}{\partial\mu}\frac{1}{m}</script></li>
-<li>测试: 测试时一般每次只送入一个数据，计算其均值和方差都是有偏估计，但训练过程中保存了每一组batch每一层的均值和方差，则对每一层都可以使用均值和方差的无偏估计：<script type="math/tex; mode=display">\mu_{test}=E(\mu_{batch})</script><script type="math/tex; mode=display">\sigma^2_{test}=\frac{m}{m-1}E(\sigma^2_{batch})</script>然后计算该层的输出：$\widetilde{Z}^i=\gamma{\frac{Z^i<em>{test}-\mu}{\sqrt{\sigma</em>{test}^2+\epsilon}}}+\beta$</li>
+<li>反向传播:<br>$$\frac{\partial{L}}{\partial{Z_{norm}^i}}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}\lambda$$<br>$$\frac{\partial{L}}{\partial\lambda}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}Z_{norm}^i$$<br>$$\frac{\partial{L}}{\partial\beta}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}$$<br>$$\frac{\partial{L}}{\partial\sigma^2}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial\sigma^2}=\frac{\partial{L}}{\partial{Z_{norm}^i}}(-\frac{1}{2})(\sigma^2+\epsilon)^{\frac{-3}{2}}$$<br>$$\frac{\partial{L}}{\partial\mu}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial\mu}+\frac{\partial{L}}{\partial\sigma^2}\frac{\partial{\sigma^2}}{\partial{\mu}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{-1}{\sqrt{\sigma^2+\epsilon}}+\frac{\partial{L}}{\partial\sigma^2}\frac{-2\sum_{i=1}^{m}(z^i-\mu)}{m}$$<br>$$\frac{\partial{L}}{\partial{Z^i}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial{Z^i}}+\frac{\partial{L}}{\partial\sigma^2}\frac{\partial{\sigma^2}}{\partial{Z^i}}+\frac{\partial{L}}{\partial\mu}\frac{\partial\mu}{\partial{Z^i}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{1}{\sqrt{\sigma^2+\epsilon}}+\frac{\partial{L}}{\partial\sigma^2}\frac{2(Z^i-\mu)}{m}+\frac{\partial{L}}{\partial\mu}\frac{1}{m}$$</li>
+<li>测试: 测试时一般每次只送入一个数据，计算其均值和方差都是有偏估计，但训练过程中保存了每一组batch每一层的均值和方差，则对每一层都可以使用均值和方差的无偏估计：<br>$$\mu_{test}=E(\mu_{batch})$$<br>$$\sigma^2_{test}=\frac{m}{m-1}E(\sigma^2_{batch})$$<br>然后计算该层的输出：$\widetilde{Z}^i=\gamma{\frac{Z^i_{test}-\mu}{\sqrt{\sigma_{test}^2+\epsilon}}}+\beta$</li>
 <li>加在哪里: 原始论文中加在激活函数前面，但改论文部分作者主张加在激活函数后面，从实践上来说也是加在激活函数后面效果更好。</li>
 <li>局限: 实验表明，当batch_size小于8时，BN反而会带来负面作用；不适用于RNN</li>
 </ul>
-<h2 id="负梯度方向是函数局部值最快的方向"><a href="#负梯度方向是函数局部值最快的方向" class="headerlink" title="负梯度方向是函数局部值最快的方向"></a>负梯度方向是函数局部值最快的方向</h2><p>假设存在函数f(x)，l是任意方向的单位向量，要现在的目的就是要找到一个l使得f(x+l)−f(x)的变化值最大。根据公式有$f(x+l)-f(x)=<grad_f, l>$，所以原问题变为找到l使得$|grad_f|<em>|l|</em>cos(\theta)$最大，其中θ是 l与$grad_f$的夹角），很明显$\theta=0$时该值最大，也就是说l方向就是$grad_f$的方向，从而证明梯度方向是使得函数局布值变化最快的方向。</p>
+<h2 id="负梯度方向是函数局部值最快的方向"><a href="#负梯度方向是函数局部值最快的方向" class="headerlink" title="负梯度方向是函数局部值最快的方向"></a>负梯度方向是函数局部值最快的方向</h2><p>假设存在函数f(x)，l是任意方向的单位向量，要现在的目的就是要找到一个l使得f(x+l)−f(x)的变化值最大。根据公式有$f(x+l)-f(x)=&lt;grad_f, l&gt;$，所以原问题变为找到l使得$|grad_f|*|l|*cos(\theta)$最大，其中θ是 l与$grad_f$的夹角），很明显$\theta=0$时该值最大，也就是说l方向就是$grad_f$的方向，从而证明梯度方向是使得函数局布值变化最快的方向。</p>
 <h2 id="softmax-loss和cross-entropy"><a href="#softmax-loss和cross-entropy" class="headerlink" title="softmax loss和cross entropy"></a>softmax loss和cross entropy</h2><p>输入数据经过神经网络后得到的logits是一个[n, 1]向量（n表示进行n分类），此时向量中的数字可以是负无穷到正无穷的任意数字，经过softmax函数后才转换为概率。交叉熵函数形式与softmax loss函数几乎一样，当cross entropy的输入是softmax函数函数的输出时，二者就完全一样。将网络输出的预测值logit先用使用Softmax转换为预测概率值再传入 Cross Entropy Loss，就得到了最终的Softmax Loss。</p>
 <ul>
-<li>softmax: $P<em>i=\frac{e^i}{\sum</em>{k=1}^{n}e^k}$</li>
+<li>softmax: $P_i=\frac{e^i}{\sum_{k=1}^{n}e^k}$</li>
 <li>softmax loss:$L=-\sum_{i=1}^{n}y_ilogp_i$</li>
 <li>cross entropy:$L=-\sum_{i=1}^{n}y_ilogp_i$</li>
 <li>logistic regression: $L=-y_ilogp_i-(1-y_i)log(1-p_i)$</li>
@@ -625,10 +621,10 @@
 <p>Transformer位置编码不是单一的一个数值，而是包含句子中特定位置信息的d维向量（非常像词向量）。编码没有整合进模型，而是用这个向量让每个词具有它在句子中的位置的信息。换句话说，通过注入词的顺序信息来增强模型输入。<br>把512维的向量两两一组，每组都是一个sin和一个cos，这两个函数共享同一个频率 $w_i$，共256组，从0开始编号，最后一组编号是255。sin/cos函数的波长（由$w_i$决定）则从 2π 增长到 2π * 10000。位置编码性质：</p>
 <ul>
 <li>两个位置编码的点积(dot product)仅取决于偏移量 △t，也即两个位置编码的点积可以反应出两个位置编码间的距离。</li>
-<li>位置编码的点积是无向的，即$PE<em>t^T*PE</em>{t+△t}=PE<em>t^T*PE</em>{t-△t}$</li>
+<li>位置编码的点积是无向的，即$PE_t^T*PE_{t+△t}=PE_t^T*PE_{t-△t}$</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/454482273">Transformer学习笔记一：Positional Encoding（位置编码）</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/106644634">一文读懂Transformer模型的位置编码</a></p>
-<h3 id="head降维"><a href="#head降维" class="headerlink" title="head降维"></a>head降维</h3><p>Transformer的多头注意力看上去是借鉴了CNN中同一卷积层内使用多个卷积核的思想，原文中使用 8 个“scaled dot-product attention”，在同一“multi-head attention”层中，输入均为“KQV”，同时进行注意力的计算，彼此之前参数不共享，最终将结果拼接起来，这样可以允许模型在不同的表示子空间里学习到相关的信息。即希望每个注意力头只关注最终输出序列中一个子空间，互相独立。核心思想在于抽取到更加丰富的特征信息。如果只使用 one head 并且维度为 $d<em>{model}$ ，相较于 8 head 并且维度为 $d</em>{model} / 8$，存在高维空间下学习难度较大的问题，文中实验也证实了这一点，于是将原有的高维空间转化为多个低维子空间并再最后进行拼接，取得了更好的效果，十分巧妙。</p>
+<h3 id="head降维"><a href="#head降维" class="headerlink" title="head降维"></a>head降维</h3><p>Transformer的多头注意力看上去是借鉴了CNN中同一卷积层内使用多个卷积核的思想，原文中使用 8 个“scaled dot-product attention”，在同一“multi-head attention”层中，输入均为“KQV”，同时进行注意力的计算，彼此之前参数不共享，最终将结果拼接起来，这样可以允许模型在不同的表示子空间里学习到相关的信息。即希望每个注意力头只关注最终输出序列中一个子空间，互相独立。核心思想在于抽取到更加丰富的特征信息。如果只使用 one head 并且维度为 $d_{model}$ ，相较于 8 head 并且维度为 $d_{model} / 8$，存在高维空间下学习难度较大的问题，文中实验也证实了这一点，于是将原有的高维空间转化为多个低维子空间并再最后进行拼接，取得了更好的效果，十分巧妙。</p>
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/350369171">transformer中multi-head attention中每个head为什么要进行降维？</a></p>
 <h3 id="自注意力比例系数"><a href="#自注意力比例系数" class="headerlink" title="自注意力比例系数"></a>自注意力比例系数</h3><p>$d_k$是词向量/隐藏层的维度，Q<em>K的维度也是$d_k$，Q</em>K越大，相乘后的varience越大，除以$d_k$来平衡。</p>
 <ol>
@@ -682,9 +678,8 @@
 <li>保持平移、旋转、尺度不变性，增强了神经网络的鲁棒性</li>
 </ol>
 <p>最大池化更能捕捉图像上的变化、梯度的变化，带来更大的局部信息差异化，从而更好地捕捉边缘、纹理等特征。</p>
-<h2 id="计算感受野"><a href="#计算感受野" class="headerlink" title="计算感受野"></a>计算感受野</h2><p>卷积层(conv)和池化层(pooling)都会影响感受野,激活函数层通常对于感受野没有影响,当前层的步长并不影响当前层的感受野,感受野和填补(padding)没有关系, 计算当层感受野的公式如下: </p>
-<script type="math/tex; mode=display">RF_{i+1}=RF_i+(k-1) \times S_i</script><p>其中, $RF_{i+1}$ 表示当前层的感受野,  $RF_i$ 表示上一层的感受野, $k$ 表示卷积核的大小, $S_i$ 表示之前所有层的步长的乘积(不包括本层),公式如下: </p>
-<script type="math/tex; mode=display">S_i=\prod^i_{i+1}Stride_i</script><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113487374">感受野(Receptive Field)的理解与计算</a></p>
+<h2 id="计算感受野"><a href="#计算感受野" class="headerlink" title="计算感受野"></a>计算感受野</h2><p>卷积层(conv)和池化层(pooling)都会影响感受野,激活函数层通常对于感受野没有影响,当前层的步长并不影响当前层的感受野,感受野和填补(padding)没有关系, 计算当层感受野的公式如下:<br>  $$RF_{i+1}=RF_i+(k-1) \times S_i$$<br>其中, $RF_{i+1}$ 表示当前层的感受野,  $RF_i$ 表示上一层的感受野, $k$ 表示卷积核的大小, $S_i$ 表示之前所有层的步长的乘积(不包括本层),公式如下:<br>  $$S_i=\prod^i_{i+1}Stride_i$$</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113487374">感受野(Receptive Field)的理解与计算</a></p>
 <h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h2 id="径向基函数神经网络"><a href="#径向基函数神经网络" class="headerlink" title="径向基函数神经网络"></a>径向基函数神经网络</h2><p>Radial Basis Function NN一种基于人工神经网络的模型，使用径向基函数作为激活函数。通常由三层组成：输入层、隐藏层和输出层。隐藏层神经元的径向基函数将输入数据映射到高维特征空间。常用径向基函数包括高斯函数、多项式函数和超球函数等。RBFNN训练过程分为两步：中心点选择和权重计算。中心点选择通过一定的聚类方法确定隐藏层神经元的中心点，常见方法包括k-means聚类和高斯混合模型。权重计算通过解线性方程组来确定隐藏层神经元与输出层之间的连接权重，可使用最小二乘法或正则化方法进行求解。相比于传统前馈神经网络的优势：</p>
 <ul>
 <li>非线性逼近能力强：径向基函数的使用使RBFNN更好逼近非线性函数和复杂的数据分布。</li>
