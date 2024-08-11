@@ -1,0 +1,460 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Papers Reading about NLP | 一直进步 做喜欢的</title><meta name="keywords" content="Machine Learning,Deep Learning,NLP"><meta name="author" content="贪钱算法还我头发"><meta name="copyright" content="贪钱算法还我头发"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="自然语言处理论文阅读笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Papers Reading about NLP">
+<meta property="og:url" content="https://xfliu1998.github.io/2022/09/17/Papers-Reading-about-NLP/index.html">
+<meta property="og:site_name" content="一直进步 做喜欢的">
+<meta property="og:description" content="自然语言处理论文阅读笔记">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&h=201&c=7&r=0&o=5&dpr=1.88&pid=1.7">
+<meta property="article:published_time" content="2022-09-17T07:55:59.000Z">
+<meta property="article:modified_time" content="2023-03-23T08:21:56.452Z">
+<meta property="article:author" content="贪钱算法还我头发">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&h=201&c=7&r=0&o=5&dpr=1.88&pid=1.7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2022/09/17/Papers-Reading-about-NLP/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Papers Reading about NLP',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-23 16:21:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Papers Reading about NLP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-09-17T07:55:59.000Z" title="Created 2022-09-17 15:55:59">2022-09-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-03-23T08:21:56.452Z" title="Updated 2023-03-23 16:21:56">2023-03-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Reading-Notes/">Reading Notes</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>3min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Papers Reading about NLP"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2022/09/17/Papers-Reading-about-NLP/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>阅读大纲</strong><br><img src='index.png' height=100% width=100%></p>
+<table>
+  <tr>
+      <td rowspan="1"><b>NLP</b></td>
+        <td>Adaptive input & DLCL</td>
+        <td>23-03-23</td>
+    </tr>
+    <tr>
+        <td rowspan="3"><b>NLP</b>: Language Model</td>
+        <td>HELM</td>
+        <td>23-02-06</td>
+    </tr>
+    <tr>
+        <td>InstructGPT, Anthropic_LLM</td>
+        <td>23-03-12</td>
+    </tr>
+  <tr>
+        <td>Visual ChatGPT</td>
+        <td>23-03-17</td>
+    </tr>
+    <tr>
+        <td rowspan="1"><b>NLP</b>: Retrieval</td>
+        <td>Neural Corpus Indexer</td>
+        <td>22-12-21</td>
+    </tr>
+    <tr>
+        <td rowspan="1"><b>NLP</b>: Audio</td>
+        <td>Whisper</td>
+        <td>22-11-17</td>
+    </tr>
+</table>
+
+<h1 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h1><h3>Learning Deep Transformer Models for Machine Translation</h3>
+
+<ul>
+<li>【ACL2019】 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1906.01787">ArXiv</a> <a target="_blank" rel="noopener" href="https://github.com/wangqiangneu/dlcl">Code</a></li>
+<li>简介：原始的Transformer的encoder层&gt;12时很难训练。针对机器翻译任务，本文加入两个技巧（pre-LN和动态线性结合残差连接）训练更深层的Transformer，使模型参数更少训练更快</li>
+<li>关键技术：<ol>
+<li>相较于原始Transformer的Post-norm，使用Pre-norm可以减少梯度反传计算量，训练更高效</li>
+<li>使用动态线性结合层（DLCL）代替传统的残差连接，用可学习的权值计算历史记忆的连接<ul>
+<li>更早的层连接更稠密，层深越深连接变得稀疏</li>
+<li>距离输出层最近的连接权值越高</li>
+<li>不同层的权值动态变化</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>思考：不一定专注模型创新，把小的tricks灵活修改做足实验也是好work</li>
+</ul>
+<div align="center">
+  <img src="23-03-23DLCL.png">
+</div>
+<br>
+
+<hr>
+<h3>Adaptive Input Representations for Neural Language Modeling</h3>
+
+<ul>
+<li>FAIR【ICLR2019】 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1809.10853">ArXiv</a> <a target="_blank" rel="noopener" href="http://github.com/pytorch/fairseq">Code</a></li>
+<li>相关Paper:《Efficient softmax approximation for GPUs》FAIR【ICML2017】<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1609.04309v3">Arxiv</a> <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/adaptive-softmax">Code</a></li>
+<li>简介：在自适应softmax基础上，提出了神经网络语言模型的自适应输入表示，使得网络参数更少且训练更快</li>
+<li>关键技术：如果输出层使用与自适应输入表示相同参数(V, k, d)的自适应softmax，可以通过参数共享进一步减少参数，还可以共享减少容量的线性变化参数</li>
+<li>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/109125864">Adaptive Softmax</a>; <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/67666803">Adaptive Input</a></li>
+</ul>
+<div align="center">
+  <img src="23-03-23Adaptive_input.png">
+</div>
+<br>
+
+<h1 id="NLP-Language-Model"><a href="#NLP-Language-Model" class="headerlink" title="NLP - Language Model"></a>NLP - Language Model</h1><h3>Holistic Evaluation of Language Models</h3>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.09110">ArXiv</a></li>
+<li>简介：全面的语言模型评测，针对现有语言模型的评测内容包括：核心场景、通用评价标准、针对性评估、模型、适用性等（要有钱有人力有人脉）</li>
+<li>关键技术：<ol>
+<li>先对语言模型分类，补充标准语言模型对各类模型的评价（准确率、校准、鲁棒性、公平性、偏见、有毒性、效率）</li>
+<li>实验发现：InstructGPT davinci v2(175B*)综合表现最好；未开源的模型效果比开源模型效果好得多；所有模型对Prompting有很大的敏感性；模型越大效果越好</li>
+</ol>
+</li>
+<li>Limitation：场景、评价标准、适用性不全等</li>
+<li>参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1z24y1B7uX/?spm_id_from=444.41.list.card_archive.click&vd_source=486265fa677326a8f53894f05277bfb9">沐神论文精读</a></li>
+</ul>
+<div align="center">
+  <img src="23-02-06HELM.png">
+</div>
+<br>
+
+<hr>
+<h3>Training language models to follow instructions with human feedback</h3>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.02155">ArXiv</a></li>
+<li>参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hd4y187CR/?spm_id_from=333.999.0.0&vd_source=486265fa677326a8f53894f05277bfb9">沐神论文精读</a></li>
+</ul>
+<div align="center">
+  <img src="23-03-12InstructGPT.png">
+  <img src="23-03-12InstructGPT_c.png">
+</div>
+<br>
+
+<h3>Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback</h3>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2204.05862">ArXiv</a></li>
+<li>参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XY411B7nM/?spm_id_from=333.788&vd_source=486265fa677326a8f53894f05277bfb9">沐神论文精读</a></li>
+</ul>
+<div align="center">
+  <img src="23-03-12Anthropic_LLM.png">
+  <img src="23-03-12Anthropic_LLM_c.png">
+</div>
+<br>
+
+<hr>
+<h3>Visual ChatGPT: Talking, Drawing and Editing with Visual Foundation Models</h3>
+
+<ul>
+<li>Microsoft <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.04671">ArXiv</a></li>
+<li>简介：联合不同的视觉基础模型（VFM）使得ChatGPT可以处理复杂的视觉任务</li>
+<li>关键技术：<ol>
+<li>包含22个不同VFMs的Prompt Manager使得ChatGPT更好的交互和结合处理图像任务</li>
+<li>复杂的Zero-shot实验验证了模型的优越性</li>
+</ol>
+</li>
+<li>Limitation：依赖ChatGPT和VFMs的结合；需要大量大的Prompt工程；实时性不好；限制于ChatGPT的token的长度；安全和隐私</li>
+</ul>
+<div align="center">
+  <img src="23-03-17Visual_ChatGPT.png">
+</div>
+<br>
+
+
+<h1 id="NLP-Retrieval"><a href="#NLP-Retrieval" class="headerlink" title="NLP - Retrieval"></a>NLP - Retrieval</h1><h3>A Neural Corpus Indexer for Document Retrieval</h3>
+
+<ul>
+<li>【NeurlIPS2022】<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.02743v1">ArXiv</a></li>
+<li>简介：基于Transformer的sequence-to-sequence架构，给定qurey生成相关文档id</li>
+<li>关键技术：<ol>
+<li>和DSI一样，是端到端的文档检索模型</li>
+<li>prefix-aware weight-adaptive (PAWA) 解码器生成文档id</li>
+<li>基于对比学习的一致性正则损失</li>
+</ol>
+</li>
+<li>Limitation：模型过大不利于部署；检索速度有待提高；model-based难以进行新文档更新</li>
+<li>参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Se411w7Sn/?spm_id_from=333.788&vd_source=486265fa677326a8f53894f05277bfb9">沐神论文精读</a></li>
+</ul>
+<div align="center">
+  <img src="22-12-21NCI.png">
+</div>
+<br>
+
+<h1 id="NLP-Audio"><a href="#NLP-Audio" class="headerlink" title="NLP - Audio"></a>NLP - Audio</h1><h3>Robust Speech Recognition via Large-ScaleWeak Supervision</h3>
+
+<ul>
+<li>OpenAI <a target="_blank" rel="noopener" href="https://cdn.openai.com/papers/whisper.pdf">Arxiv</a></li>
+<li>简介：基于Transformer通过大尺度弱监督学习自动语音识别（ASR，Automatic Speech Recognition）模型，模型可以不微调直接进行zero-shot迁移。</li>
+<li>关键技术：<ol>
+<li>数据预处理：从网络上收集了68万小时的多语言（98 种语言）和多任务（multitask）监督数据对Whisper进行了训练。预处理使用了三种自动过滤方法：检测并删除机器生成的转录；使用语音检测器确保语言和转录匹配；识别并删除低质量数据。</li>
+<li>模型：基于encoder-decoder的Transformer架构，其中解码器通过训练不同特殊的token识别单个任务，以此实现多任务统一训练。</li>
+</ol>
+</li>
+<li>Limitation：由于使用现成的Transfomer架构并没有进行过多改进，会出现错误结果。可以对现有模型的解码策略、微调、正则化、数据增强、数据多样性、增加预训练等进行改进。</li>
+<li>参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1VG4y1t74x/?spm_id_from=333.999.list.card_archive.click&vd_source=486265fa677326a8f53894f05277bfb9">沐神论文精读</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/568173245">知乎</a></li>
+</ul>
+<div align="center">
+  <img src="22-11-17Whisper.png">
+</div>
+<br>
+
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">贪钱算法还我头发</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2022/09/17/Papers-Reading-about-NLP/">https://xfliu1998.github.io/2022/09/17/Papers-Reading-about-NLP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><a class="post-meta__tags" href="/tags/Deep-Learning/">Deep Learning</a><a class="post-meta__tags" href="/tags/NLP/">NLP</a></div><div class="post_share"><div class="social-share" data-image="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/01/9-3D-Construction/"><img class="prev-cover" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">3D Construction</div></div></a></div><div class="next-post pull-right"><a href="/2022/09/17/Papers-Reading-about-CV/"><img class="next-cover" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Papers Reading about CV</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/09/17/Papers-Summary/" title="Papers Summary"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&h=201&c=7&r=0&o=5&dpr=1.88&pid=1.7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Papers Summary</div></div></a></div><div><a href="/2024/03/31/Causal-Inference/" title="Causal Inference"><img class="cover" src="http://img.shijue.me/10b92be98ffd40ceb11468fe27b5cb08_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-31</div><div class="title">Causal Inference</div></div></a></div><div><a href="/2023/06/05/Interview-Experience/" title="Interview Experience"><img class="cover" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">Interview Experience</div></div></a></div><div><a href="/2023/03/25/Papers-Ideas/" title="Papers Ideas"><img class="cover" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-25</div><div class="title">Papers Ideas</div></div></a></div><div><a href="/2023/01/11/SfM-SLAM/" title="SfM & SLAM"><img class="cover" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&rs=1" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-11</div><div class="title">SfM & SLAM</div></div></a></div><div><a href="/2022/10/01/9-3D-Construction/" title="3D Construction"><img class="cover" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-01</div><div class="title">3D Construction</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">贪钱算法还我头发</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/keiven_" target="_blank" title="CSDN"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">欢迎来这里掉头发</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NLP"><span class="toc-number">1.</span> <span class="toc-text">NLP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.0.1.</span> <span class="toc-text">Learning Deep Transformer Models for Machine Translation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.0.2.</span> <span class="toc-text">Adaptive Input Representations for Neural Language Modeling</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NLP-Language-Model"><span class="toc-number">2.</span> <span class="toc-text">NLP - Language Model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.0.1.</span> <span class="toc-text">Holistic Evaluation of Language Models</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.0.2.</span> <span class="toc-text">Training language models to follow instructions with human feedback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.0.3.</span> <span class="toc-text">Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">2.0.4.</span> <span class="toc-text">Visual ChatGPT: Talking, Drawing and Editing with Visual Foundation Models</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NLP-Retrieval"><span class="toc-number">3.</span> <span class="toc-text">NLP - Retrieval</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.0.1.</span> <span class="toc-text">A Neural Corpus Indexer for Document Retrieval</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NLP-Audio"><span class="toc-number">4.</span> <span class="toc-text">NLP - Audio</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">4.0.1.</span> <span class="toc-text">Robust Speech Recognition via Large-ScaleWeak Supervision</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 贪钱算法还我头发</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '1b0c10ce649501ea4a72',
+      clientSecret: '741b5e861137e3d5a482bba272c8201b78da6cb0',
+      repo: 'xfliu1998.github.io',
+      owner: 'xfliu1998',
+      admin: ['xfliu1998'],
+      id: '60237bccaf3b9fbc9ec40ee97ba27186',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Machine-Learning-and-Deep-Learning/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 机器学习与深度学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Structures-and-Algorithms/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">😼 数据结构与算法 (16)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Search-Advertisement-Recommendation-Causal/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🗂️ 搜索/广告/推荐/因果 (10)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Analysis-and-Processing/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 数据分析与处理 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Reading-Notes/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 阅读笔记 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Daily/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 日常随想 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://xfliu1998.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-NLP/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-NLP/" alt="">Papers Reading about NLP</a><div class="blog-slider__text">自然语言处理论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-NLP/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/10/01/9-3D-Construction/" alt=""><img width="48" height="48" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-01</span><a class="blog-slider__title" href="2022/10/01/9-3D-Construction/" alt="">3D Construction</a><div class="blog-slider__text">三维重建基础</div><a class="blog-slider__button" href="2022/10/01/9-3D-Construction/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/01/11/SfM-SLAM/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&amp;rs=1" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-01-11</span><a class="blog-slider__title" href="2023/01/11/SfM-SLAM/" alt="">SfM &amp; SLAM</a><div class="blog-slider__text">SfM和SLAM系统</div><a class="blog-slider__button" href="2023/01/11/SfM-SLAM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=2&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-CV/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-CV/" alt="">Papers Reading about CV</a><div class="blog-slider__text">计算机视觉论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-CV/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/06/05/Interview-Experience/" alt=""><img width="48" height="48" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-06-05</span><a class="blog-slider__title" href="2023/06/05/Interview-Experience/" alt="">Interview Experience</a><div class="blog-slider__text">面经八股</div><a class="blog-slider__button" href="2023/06/05/Interview-Experience/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="http://img.shijue.me/78ae8b05a73444cd9643a8312abc0d43.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">Learning Framework</a><div class="blog-slider__text">学习大纲</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<container><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></container>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gitcalendar.fomal.cc/api?xfliu1998",['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9'],'xfliu1998')
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

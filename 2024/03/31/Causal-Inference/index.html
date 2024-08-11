@@ -1,0 +1,549 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Causal Inference | 一直进步 做喜欢的</title><meta name="keywords" content="Machine Learning,Deep Learning"><meta name="author" content="贪钱算法还我头发"><meta name="copyright" content="贪钱算法还我头发"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="因果推断">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Causal Inference">
+<meta property="og:url" content="https://xfliu1998.github.io/2024/03/31/Causal-Inference/index.html">
+<meta property="og:site_name" content="一直进步 做喜欢的">
+<meta property="og:description" content="因果推断">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://img.shijue.me/10b92be98ffd40ceb11468fe27b5cb08_d.jpg!dp6">
+<meta property="article:published_time" content="2024-03-31T12:10:06.000Z">
+<meta property="article:modified_time" content="2024-07-01T11:13:23.955Z">
+<meta property="article:author" content="贪钱算法还我头发">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.shijue.me/10b92be98ffd40ceb11468fe27b5cb08_d.jpg!dp6"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2024/03/31/Causal-Inference/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Causal Inference',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-01 19:13:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://img.shijue.me/10b92be98ffd40ceb11468fe27b5cb08_d.jpg!dp6')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Causal Inference</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-03-31T12:10:06.000Z" title="Created 2024-03-31 20:10:06">2024-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-07-01T11:13:23.955Z" title="Updated 2024-07-01 19:13:23">2024-07-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Search-Advertisement-Recommendation-Causal/">Search / Advertisement / Recommendation / Causal</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">8.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>28min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Causal Inference"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2024/03/31/Causal-Inference/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="因果推断和增益模型"><a href="#因果推断和增益模型" class="headerlink" title="因果推断和增益模型"></a>因果推断和增益模型</h1><h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>在日常生活和数据分析中可以得到大量相关性的结论，我们通过各种统计模型、机器学习、深度学习模型，通过分析得到种种结论，但是这里面存在一个巨大的疑问就是，“相关性一定等于因果性吗？”图1.1为缅因州黄油消费量和离婚率的关系图，从图上可以看出这两个变量呈高度相关的关系，但是如果我们从因果的角度来阐释，说黄油消费导致了离婚，或者离婚导致了黄油出售，显然都非常荒谬。事实上，相关性通常是对称的，因果性通常是不对称的（单向箭头）。相关性不一定说明了因果性，但因果性一般都会在统计层面导致相关性。也即相关性$\neq$因果性。</p>
+<div align='center'>
+<img src='非因果关系.png' width=800></img>
+<p>图1.1 缅因州黄油消费量和离婚率的关系图</p>
+</div>
+
+<p>另外一个例子，在智能营销的发放优惠券场景下用户可分为如图1.2所示四类。建模时主要针对persuadables营销敏感人群，即给这部分人群发券可以增加人群购买欲望从而增加收益。要避免sleeping dogs人群，这类人群发放优惠券会产生发作用，即会降低人群的购买欲望。人群的区分需要明确是否因为发放优惠券才导致了购买行为，这是一个因果推断问题。预测发放优惠券带来的收益是一个增益模型。由此引出两个概念：</p>
+<ul>
+<li><strong>因果推断（causal inference）</strong>：即研究如何更加科学地识别变量间的因果关系，估算同一个体在干预和不干预（互斥情况下）不同输出的差异。</li>
+<li><strong>增益模型（uplift model）</strong>：需要预测某种干预增量（uplift）的模型，即干预动作（treatment）对用户响应行为（outcome）产生的效果。为了克服估算同一个体同时受到干预和不干预这一反事实的现状，增益模型强依赖于随机实验（将用户随机分配到实验组&amp;对照组）的结果数据。<div align='center'>
+<img src='营销人群分类.png' width=500></img>
+<p>图1.2 营销人群分类</p>
+</div></li>
+</ul>
+<h2 id="因果推断基础"><a href="#因果推断基础" class="headerlink" title="因果推断基础"></a>因果推断基础</h2><p>以发放优惠券问题为例，建立以下因果推断模型：</p>
+<ul>
+<li>输入变量$context \space x$：包含用户的多维度特征信息</li>
+<li>权益干预$treatment \space t$：一般考虑二值干预$t_i\in 0,1$，如是否给用户发优惠券，发优惠券定义为treatment组，不发优惠券定义为control组。</li>
+<li>输出变量$y$：包括潜在结果protential outcome $y$和观察结果oberved outcome $y_{obs}$<ul>
+<li>潜在结果$y_1(x), y_0(x)$分别为用户有没有给treatment</li>
+<li>用户受到干预时 $y_{obs}=y_{1}(x)$，用户未受到干预时$y_{obs}=y_0(x)$</li>
+</ul>
+</li>
+</ul>
+<p>以上三个变量之间的关系如图2.1所示。</p>
+<div align='center'>
+<img src='因果推断模型变量关系图.png' width=300></img>
+<p>图2.1 因果推断模型变量关系图</p> 
+</div>
+
+<ul>
+<li>对于单个用户，希望得到individual treatment effect(ite)，$ite=y_1(x)-y_0(x)$</li>
+<li>对于整体的效果，希望得到the average treatment effect(ate)，$ate=e(y_1(x)-y_0(x))$</li>
+</ul>
+<p>ite和ate即因果效应$\tau$（增益），增益模型目标是最大化增益。一般取所有用户的因果效应期望的估计值来衡量整个用户群的效果，称为条件平均因果效应（conditional average treatment effect, cate）。实际中对用户$i$不可能同时观察到使用策略（treatment）和未使用策略（control）的输出结果，用下式表示用户可以观察到的输出结果，如果使用干预，$w_i$为1否则为0：<br>$$y_i^{obs}=w_iy_i(1)+(1-w_i)y_i(0)$$</p>
+<p>当假设CIA(conditional independence assumption)成立时，即给定特征下用户被随机分配到实验组/对照组（与用户的干预敏感度无关）。可以通过计算下式来估算每个个体的增益：<br>$$\tau_i=E[y_i^{obs}|x_i=x, w_i=1]-E[y_i^{obs}|x_i=x, w_i=0]$$</p>
+<p>由于增益无法观测，造成不能得到监督学习的label，如果得到了监督学习的label，就可以对数据集进行训练集测试集的划分，定义目标函数和损失函数进行神经网络训练，达到优化目标的目的。所以需要使用增益模型对评估增益的方法描述。通过ab实验可以获得使用干预策略和不使用干预策略两组人群，如果两组人群的特征分布一致，可以通过模拟两组人群的$\tau(x_i)$得到个体用户的$\tau(x_i)$。因此增益模型依赖ab实验的数据。ab实验也可以称为随机化实验（randomized controlled trials），在ab实验中，数据的treatment和control组理论上同质，即除treatment外其余特征相同。这就导致ab实验往往耗费的成本较高，是最“贵”的因果推断方式，有时候无法控制“treatment”，只能拨一小波人进行实验，需要通过子人群（obs数据）的增益效果来推断个体（rct数据）的增益效果。</p>
+<p>基础的增益模型主要有以下三种：</p>
+<ol>
+<li>Meta Learning</li>
+<li>Tree-based Method（增量直接建模）</li>
+<li>Representation Learning</li>
+</ol>
+<h2 id="主要增益模型"><a href="#主要增益模型" class="headerlink" title="主要增益模型"></a>主要增益模型</h2><h3 id="Meta-Learning"><a href="#Meta-Learning" class="headerlink" title="Meta Learning"></a>Meta Learning</h3><p>这个方向使用基础的机器学习方法去首先估计条件平均输出$E<a href="cate">y|x = x</a>$，然后基于不同的结果获得cate estimator ，以下介绍几种经典的meta learning：</p>
+<h4 id="S-Learner（One-Model）"><a href="#S-Learner（One-Model）" class="headerlink" title="S-Learner（One Model）"></a>S-Learner（One Model）</h4><p>通过现有模型（LR，GBDT，NN等）对treatment / control的数据进行训练，在预测的时候分别对该用户被干预和不被干预时的p进行预测计算，相减后便是增益。其计算步骤如下：</p>
+<ol>
+<li>ATE:</li>
+</ol>
+<ul>
+<li>step1: 模型条件期望$\mu(t, w)=E(y|t,w)$</li>
+<li>step2: 每个样本的平均增益$\hat \tau =\frac{1}{n}\sum_i(\hat \mu(1, w_i)-\hat \mu(0, w_i))$</li>
+</ul>
+<ol start="2">
+<li>CATE<ul>
+<li>step1: $\mu(t, w, x)=E(y|t=t,w=w,x=x)$</li>
+<li>step2: 每个样本的平均增益$\hat \tau =\frac{1}{n}\sum_i(\hat \mu(1, w_i, x)-\hat \mu(0, w_i, x))$</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>优点：S-learner简单直观、直接使用既有预测算法；预测仅依赖一个模型，避免了多模型的误差累积；更多的数据和特征工程对预测准确率有利。</li>
+<li>缺点：该方法不直接建模uplift；且需要额外进行特征工程工作(由于模型拟合的是y，所以若t直接作为一个特征放进去，可能由于对y的预测能力不足而未充分利用)。</li>
+<li>应用：在因果推断未受关注之前，诸如优惠券发放的问题常用该方法，直接建模“对什么人，发放什么面额券，是否会下单”，预测阶段则对user和coupon交叉组合后进行预测，得到(user,coupon)组合的下单率，然后再依据预算、roi或其他约束进行mckp求解。</li>
+</ul>
+<h4 id="T-Learner（Two-Model）"><a href="#T-Learner（Two-Model）" class="headerlink" title="T-Learner（Two Model）"></a>T-Learner（Two Model）</h4><p>又称差分响应模型，通常作为baseline模型，模型分别在干预组和非干预组训练，即对 $\mu_1(w)=E[y_i(1)|x_i]$和$\mu_0(w)=E[y_i(0)|x_i]$分别建模，一个用户通过两个模型进行预测并对结果取差则得到预估的uplift值，模型图如3.1所示。</p>
+<div align='center'>
+  <img src='差分响应模型.png', width=200></img>
+  <p>图3.1 差分响应模型</p> 
+</div>
+
+<ul>
+<li>优点：较好区分干预组和非干预组</li>
+<li>缺点：容易出现两个模型的bias方向不一致，形成误差累积，当干预组和对照组之间的数据量差异较大，即不平衡时，对结果影响较大。使用时需要针对两个模型进行打分分布校准。</li>
+</ul>
+<p><strong>说明：</strong> 通常使用倾向性评分匹配法（propensity score matching， psm）计算个体对实验组和对照组的倾向性，倾向性评分匹配法可以利用倾向性评分值综合所有观测变量信息从而达到均衡变量、减少偏倚的目的。使用treatment变量的预测概率作为ps score，即给定$x_i$用户被干预的概率，定义为$p(x_i)=p(w_i=1|x_i)$，将倾向性评分相近的样本互相匹配（匹配方法：直接匹配、将倾向性评分取对数、选择阈值等）。</p>
+<h4 id="R-Learner"><a href="#R-Learner" class="headerlink" title="R-Learner"></a>R-Learner</h4><p>通过将问题转化为定义损失函数(r-loss)的形式进行学习训练，更关注“残差”。其实现步骤如下：</p>
+<ol>
+<li>通过交叉验证的方式，每次预测一组，得到整个数据集的预测结果$\hat m$和倾向得分$\hat e$：<br>$$e(x)=e[w=1|x=x]$$<br>$$m(x)=e[y=1|x=x]$$</li>
+<li>最小化损失函数，估计增量，其中$q(i)$表示样本$i$在第几组<br>$$\hat l_n{\tau(·)}=\frac{1}{n}\sum^n_{i=1}[{y_i-\hat m^{-q(i)}(x_i)}-{w_i-\hat e^{-q(i)}(x_i)}\tau (x_i)]^2$$</li>
+<li>注：具体实现时，参考causalml的实现方式，将损失函数改为：<br>$$\hat l_n{\tau(·)}=\frac{1}{n}\sum^n_{i=1}[\frac{y_i-\hat m^{-q(i)}(x_i)}{w_i-\hat e^{-q(i)}(x_i)}-\tau(x_i)]^2·{w_i-\hat e^{-q(i)}(x_i)}^2$$即为一个mse损失的预测任务，注意除了预测目标变换外，对每个样本要施加相应的权重。</li>
+</ol>
+<p>R-learner相对灵活，但模型效果依赖于$\hat m$和$\hat e$的估计精度，实现起来复杂度较高，不是特别实用。</p>
+<h4 id="X-Learner"><a href="#X-Learner" class="headerlink" title="X-Learner"></a>X-Learner</h4><p>通过交叉训练的方式，解决T-Learner中数据量差异问题。X-Learner充分利用数据估计每个group的estimator，对于数据倾斜很严重的估计有很好的弥补作用。X-Learner估计步骤如下：</p>
+<ol>
+<li>和t-learner一样先用treatment和control数据训练两个模型分别得到数据估计条件期望$\hat \mu_1=E[y_1∣x=x]$和$\hat \mu_0=E[y_0∣x=x]$ </li>
+<li>针对treatment组，$\hat \tau_{1, i}=y_i(1)-\hat \mu_0(x_i)$;针对control组，$\hat \tau_{0, i}=\hat \mu_1(x_i)-y_i(0)$。分别学习2个模型的$\hat \tau_1(x)$和$\hat \tau_0(x)$，其中$\hat \tau_1(x)$使用treatment组数据预测$\hat \tau_{1,i}$，$\hat \tau_0(x)$使用control组数据预测$\hat \tau_{0,i}$</li>
+<li>利用权重函数$g(x)\in [0,1]$组合2个模型的$\hat \tau_1(x)$和$\hat \tau_0(x)$进行预测:$\hat \tau(x)=g(x)\hat \tau_0(x)+(1-g(x))\hat \tau_1(x)$</li>
+</ol>
+<p>X-Learner在T-learner基础上，利用了全量的数据进行预测，主要解决treatment组间数据量差异较大的情况。但流程相对复杂、计算成本较高，有时还会由于多模型误差累积等问题效果不佳。另外，不论是分类问题还是回归问题，在 计算最终效应步骤时，都需要使用回归模型来拟合。</p>
+<h4 id="类别转换法（Calss-Transformation-Approch）"><a href="#类别转换法（Calss-Transformation-Approch）" class="headerlink" title="类别转换法（Calss Transformation Approch）"></a>类别转换法（Calss Transformation Approch）</h4><p>类别转换方法是一种特殊Meta Learning，是针对二分（$y_i^{obs}={0, 1}$）的情境提出，在个体被分到实验组和对照组概率一样的假设下，定义目标变量：<br>$$z_i=y_i^{obs}w_i+(1-y_i^{obs})(1-w_i)$$<br>$z_i$在两种情况下等于1（其他时候为0）：</p>
+<ul>
+<li>对象在实验组中且$y_i^{obs}=1$</li>
+<li>对象在对照组中且$y_i^{obs}=0$</li>
+</ul>
+<p>因此可以直接将实验组和对照组用户合并，使用一个模型建模，实现了数据层面和模型层面的打通。当满足条件$p(x_i)=p(w_i=1|x_i)=0.5$（个体被分到实验组和对照组的概率相同）的情况下，可以证明uplift的训练相当于训练$p(z_i=1|x_i)$：<br>$$\tau(x)=p^t(y=1|x)-p^c(y=1|x)=2p(z=1|x)-1$$</p>
+<p>此时只需要对$p(z_i=1|x_i)$建模即可。预测时，模型预测的结果就是uplift score，这点与差分响应模型不同。</p>
+<ul>
+<li>优点：较为简单，效果比two-model好</li>
+<li>缺点：需要基于2个假设<ul>
+<li>二分类情景</li>
+<li>个体对实验组和对照组的倾向性须一致    <div align='center'>
+<img src='类别转换方法.png' width=400></img>
+<p>图3.2 类别转换方法</p>
+</div></li>
+</ul>
+</li>
+</ul>
+<p>拓展到分布不均衡样本：不均衡样本的情况下，倾向分不为1/2。通过对转换后的输出，应用机器学习模型预测增益：<br>$$y_i^*=y_i(1)\frac{w_i}{\hat p(x_i)}-y_i(0)\frac{1-w_i}{1-\hat p(x_i)}$$</p>
+<p>其中$\hat p$是对$p(x_i)=p(w_i=1|x_i)$的一致估计，在满足cia的条件下，类别转换后变量在给定$x_i$下的期望等于增益，即：<br>  $$e[y_i^*|x_i]=\tau(x_i)$$</p>
+<h3 id="Tree-based-Method（增量直接建模）"><a href="#Tree-based-Method（增量直接建模）" class="headerlink" title="Tree-based Method（增量直接建模）"></a>Tree-based Method（增量直接建模）</h3><p>通过对现有机器学习算法（树、RF、SVM）的改造直接对增益效果建模，最流行的是树模型。传统机器学习模型中，树模型主要的思路就是通过对特征点进行分裂，将x划分到一个又一个子空间中，这与补贴场景下，希望找到某一小部分增量很高的用户的想法几乎是完美重合。因此，与Meta-Learner不同的是，uplift model下的树模型希望通过这样的分裂方式达到对增量直接建模的目的。决策树算法的分裂规则：<br>$$\delta_{gain}=i_{after}(d)-i_{before}(d)$$</p>
+<p>增益决策树算法的分裂规则：<br>$$\delta_{gian}=d_{after}(p^t,p^c)-d_{before}(p^t,p^c)$$</p>
+<p>传统分类树模型是希望通过信息理论(information theory)中的信息熵等思想，用计算信息增益的方法去解决分类问题。而在uplift tree model中，其本质也还是想要通过衡量分裂前后的变量差值去决策是否分裂节点，不过这里的这个决策差值的计算方法不再是信息增益(information gain)，而是不同的直接对增量uplift建模的计算方法，其中包括了</p>
+<ul>
+<li>利用分布散度对uplift建模</li>
+<li>直接对uplift建模的CTS</li>
+<li>Causal Forest</li>
+</ul>
+<h4 id="分布散度下的uplift-tree"><a href="#分布散度下的uplift-tree" class="headerlink" title="分布散度下的uplift-tree"></a>分布散度下的uplift-tree</h4><p>分布散度是用来度量两个概率分布之间差异性的值，当两个分布相同时，两个离散分布的散度为非负且等于零。可以把实验组和对照组理解为两个概率分布，利用分布散度作为非叶节点分裂标准，最大化实验组和对照组的样本类别分布之间的差异，减少样本不确定度。在uplift model中，常见的分布散度及计算方法如下：</p>
+<ul>
+<li>kl散度 (kullback-leibler divergence)：<br>$$kl(p^t(y):p^c(y))=\sum_y p^t(y)log\frac{p^t(y)}{p^c(y)}$$</li>
+<li>欧式距离 (squared euclidean distance) :<br>$$e(p^t(y):p^c(y))=\sum_y(p^t(y)-p^c(y))^2$$</li>
+<li>卡方散度(chi-squared divergence):<br>$$\chi^2(p^t(y):p^c(y))=\sum_y\frac{(p^t(y)-p^c(y))^2}{p^c(y)}$$</li>
+</ul>
+<p>其中$p^t(y)$表示实验组数据样本类别$y$的概率分布，$p^t(y)$表示$y=y$时的概率，$p^c(y)$和$p^c(y)$同理；kl散度、欧式距离和卡方散度有以下共同点：当两个概率分布相同时值为0；当两个概率分布差异越大时值越大。欧式距离有以下优点：对称性；值更稳定，当$p^c(y)$趋向于0时，$p^t(y)$非0时，kl散度和卡方散度趋于无穷。</p>
+<p>除此以外，分布散度还有个特点：通过公式可以推导，当结点中对照组数据为空时，kl散度会退化为决策树分裂准则中的信息增益；欧式距离和卡方散度将会退化为基尼指数。而当结点中实验组数据为空时，欧式距离将会化为基尼指数。这也是该类分裂准则的优点之一。</p>
+<h4 id="对uplift直接建模的CST-Tree"><a href="#对uplift直接建模的CST-Tree" class="headerlink" title="对uplift直接建模的CST Tree"></a>对uplift直接建模的CST Tree</h4><p>mit的zhao yan 等人在2017年提出了一种新的名为cts的分裂准则去构建uplift tree。cts algorithm是contextual treatment selection的缩写。不同于分布散度，在该标准下，会直接最大化每个节点上实验组和对照组之间label期望的差值（可以理解为该节点上样本的uplift值），并以此来分裂节点。<br>cts树具体构造流程为：</p>
+<ol>
+<li>计算分裂前实验组和对照组转化率最大值，记为指标：<br>$$\mu_{before}=max_{t=0,…,k}e[y|x\in \phi, t=t]$$<br>其中$t=0$表示对照组，$t=1,…,k$表示实验组。</li>
+<li>根据某特征值将数据分为左右分支，计算分裂后左分支实验组和对照组转化率最大值，右分支实验组和对照组转化率最大值，对左右分支最大值求和记为：<br>$$\mu_{after}=p(x\in \phi <em>t|x\in \phi)max</em>{t_t=0,…,k}e[y|x\in \phi_t,t=t_t]+p(x\in \phi <em>c|x\in \phi)max</em>{t_c=0,…,k}e[y|x\in \phi_c,t=t_c]$$</li>
+<li>利用树分裂前后的节点做差得到增益：<br>$$\delta \mu=\mu_{after}-\mu_{before}$$</li>
+<li>遍历所有特征值，重复2、3步骤，计算所有特征值对应的增益，取最大增益对应的特征值作为分裂节点。</li>
+<li>对左右分支数据重复以上步骤，构建增益决策树。</li>
+</ol>
+<p>CTS tree与uplift tree的主要区别在于分裂准则：CTS tree仍是分裂后与分裂前得分之差，区别在于uplift tree的得分用的是分布散度，而这里的目标是分裂能够最大化结点内各个treatment中最大的y值期望。</p>
+<h4 id="Causal-Forest"><a href="#Causal-Forest" class="headerlink" title="Causal Forest"></a>Causal Forest</h4><p>Causal Forest实际上是一类算法，这类算法的核心是把一个个建立好的causal tree (uplift tree)做集成，把每棵causal tree (uplift tree)计算出来的treatment effect取一个平均。而对于causalforest，可以是任意单tree-based方法。这类方法需要满足unconfoundedness(CIA)假设，即在叶子结点上控制住所有的confounder x后，treatment和outcome要独立。</p>
+<p>这类方法很简单，难点在于怎么建立causal tree才能满足。要建一棵”诚实树”（honest tree），即对于任意样本 $i$，他的 $y_i$ 一部分用于生成树结果，另一部分估算叶子节点的uplift值，只能二选一。</p>
+<ul>
+<li>对于标准的cart树，用叶子节点的 y 的均值表示其中样本的结果，这个策略的依据是认为叶子节点 l(x) 足够小，使得结果中 $y_i$ 近似同分布。</li>
+<li>对于因果树，类比认为叶子节点足够小，使得叶子节点 l(x) 内的 $(y_i,w_i)$ 对近似取自随机试验，则指定叶子节点的增益为：<br>$$<br>\hat \tau(x)=\frac{1} {|{i:w_i=1,x_i\in l}|} \sum^{y_i}<em>{ {i:w_i=1, x_i\in l} }- \frac{1}{|{i:w_i=0,x_i\in l}|} \sum^{y_i}</em>{ {i:w_i=0, x_i\in l} }$$</li>
+</ul>
+<p>基于不同的样本子集训练多个因果树，用均值作为最终的结果：</p>
+<p>$$\hat \tau(x)=b^{-1}\sum^b_{b=1}\hat \tau_b(x)$$</p>
+<p>该方法可以直接对uplift建模，理论上精度会很高，但实际应用上除了修改分裂规则外，还需修改loss函数、剪枝算法等，成本较高。</p>
+<h3 id="Representation-Learning"><a href="#Representation-Learning" class="headerlink" title="Representation Learning"></a>Representation Learning</h3><p>本身由于选择偏差的存在，导致treament组和control组的人群自带偏差，而类似S-Learner的方法又会使得treat的作用丢失。利用表示学习的方式可以将人群embedding中并尽可能消除bias和保存treat。</p>
+<h4 id="BNN-amp-BLR"><a href="#BNN-amp-BLR" class="headerlink" title="BNN &amp; BLR"></a>BNN &amp; BLR</h4><p>BNN是经常用作baseline的经典方法，模型通过优化损失函数来获得最终的增益，其损失函数包括了3个部分：</p>
+<ol>
+<li>事实数据的误差</li>
+<li>与i最近的j的反事实数据的误差</li>
+<li>事实数据+反事实数据的分布差异</li>
+</ol>
+<p>有两种学习增益$φ$的方式：</p>
+<ol>
+<li>对于特征进行选择BLR，在embedding层只有一层，进行特征筛选，只保留在treatment组和control组差距较小的特征，如果差别很大，则设置较小的权重。</li>
+<li>深度方法bnn，embedding后整体的loss加入分布的差异，如图3.3所示。<div align='center'>
+<img src='bnn结构.png' width=400></img>
+<p>图3.3 bnn结构</p>
+</div></li>
+</ol>
+<h4 id="Tarnet"><a href="#Tarnet" class="headerlink" title="Tarnet"></a>Tarnet</h4><p>BLR存在两个缺点：需要一个两步的优化（优化$φ$和优化$y$）<br>如果$φ$的维度很高的话，$t$的重要性会被忽略掉，tarnet通过增加$ω$的加权，解决了一下treat和control组的sample数量不均衡的问题，实际上效果比较好。</p>
+<h4 id="DragonNet-目标正则化"><a href="#DragonNet-目标正则化" class="headerlink" title="DragonNet + 目标正则化"></a>DragonNet + 目标正则化</h4><p>DragonNet 利用倾向评分的充分性进行评估调整。论文中将x中与预测结果y相关、与t无关的部分看作噪声，只从x中和t相关的变量中预测y，对特征的条件作用等效于对倾向评分本身的作用。dragonnet 模型图如下：</p>
+<div align='center'>
+<img src='dragonnet模型图.png' width=350></img>
+<p>图3.4 dragonnet模型图</p>
+</div>
+
+<p>网络结构为一个三头的端到端架构，通过变量x和t预测倾向性评分和y。</p>
+<ul>
+<li>使用一个深度网络得到一个表示层z，通过z预测treatment和输出</li>
+<li>使用2个隐藏层的神经网络分别预测t=1和t=0时的增益</li>
+<li>倾向性评分的输出使用了线性（sigmoid）映射</li>
+</ul>
+<p>dragonnet相当于tarnet+倾向性评分预测头，当数据量较大时，两个模型的效果一致。dragonnet在训练时使用了momentum优化器进行梯度下降<br>加入目标正则化类似于tmle（targeted  minimum loss estimation），可以减小具有非参数的最优渐近特性的模型偏差，即减轻有限样本的不稳定性。目标正则化基于两个条件：</p>
+<ul>
+<li>对条件输出和倾向性评分是连续估计</li>
+<li>模型简化为非参数的情况</li>
+</ul>
+<h4 id="DRnet-、VCnet-函数目标正则化"><a href="#DRnet-、VCnet-函数目标正则化" class="headerlink" title="DRnet 、VCnet + 函数目标正则化"></a>DRnet 、VCnet + 函数目标正则化</h4><p>DRnet和变系数神经网络（VCnet）均可以将二分的treatment转换为连续treatment，二者的模型结构如下：</p>
+<div align='center'>
+<img src='drnet、vcnet模型图.png' width=700></img>
+<p>图3.5 DRnet、VCnet模型图</p>
+</div>
+
+<ul>
+<li>DRnet相当于x经过一个深层神经网络后得到z，z是输入由条件密度估计器提取的特征，即为t的倾向性预测，然后将连续的t转换为多个块，即使用分散的多头预测输出变量，实际上t仍然不是连续的。为了进一步加强t的影响，可以在每一个隐藏层上添加了一个t，这种结构的一个问题是，通过对每个t块使用不同的预测头，破坏了μ的连续性。结果上表示drnet确实产生了不连续曲线。</li>
+<li>vcnet则在预测得到z之后，将μ的预测头重新定义：$\mu^{nn}(t, x)=f_{\theta (t)}(z)$，$f_{θ(t)}$是一个具有参数$θ(t)$而不是固定$θ$的（深度）神经网络。t的影响通过神经网络的参数$θ(t)$直接输入结果，这将t与其他协变量x区分开来，避免了t信息的丢失。在典型的样条基选择下，如b样条，一旦激活函数是连续的，vcnet将自动产生连续的adrf估计量。</li>
+</ul>
+<p>VCnet保持估计自抗扰函数连续性的同时提高了模型的表达能力，其优势主要表现在两点：</p>
+<ul>
+<li>保持平均剂量-反应曲线（adrf）连续性</li>
+<li>强调了t的影响，t在高维中不会丢失</li>
+</ul>
+<p>为了提高有限样本的性能，使用有针对性的正则化，以获得整个adrf曲线的双重鲁棒估计。论文中表示VCnet和函数目标正则化的表现是独立的，当二者同时使用时模型效果最佳。</p>
+<h4 id="ACE"><a href="#ACE" class="headerlink" title="ACE"></a>ACE</h4><p>ACE主要的思想希望在representation之后能够尽可能地保留局部相似性，如图3.6所示，样本在原始空间转换到表示空间后应该尽量可能保留局部相似性。整体希望表示之前用x计算出倾向性得分相近的个体，表示之后这些个体之间的距离还是相近。</p>
+<div align='center'>
+<img src='局部相似性举例.png' width=700></img>
+<p>图3.6 局部相似性举例</p>
+</div>
+
+<h4 id="SITE"><a href="#SITE" class="headerlink" title="SITE"></a>SITE</h4><p>普通的表示学习方法考虑了全局的分布信息，但是没有考虑用户间的局部相似性，knn的方法考虑了局部相似性，但是忽略了全局信息，SITE里使用了三元triplet pairs的方法根据倾向性得分选择三个对，倾向性得分在中间的一对，倾向性得分接近1的treat unit，倾向性得分接近0的control group。</p>
+<h2 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h2><p>模型评估的难点在于不存在ground truth——因为无法同时对一个样本干预和不干预。所以大部分衡量指标需要通过聚合指标（衡量群体）实现，例如uplift bins和uplift curves。</p>
+<h3 id="uplift-bins"><a href="#uplift-bins" class="headerlink" title="uplift bins"></a>uplift bins</h3><p>对所有的样本包括treatment和control数据同时预测uplift值，然后按照uplift值进行排序，分别计算每个十分位里treatment和control组的输出平均值，每个十分位两组平均值的差即为增益。图4.1为同一数据集下分别利用差分响应模型和类别转换方法得到的uplift bins图。</p>
+<div align='center'>
+<img src='uplift bins.png'></img>
+<p>图4.1 uplift bins图</p>
+</div>
+上图的评估方式无法比较不同模型的好坏，为了能跨模型比较，引入累计增益图，如图4.2所示。第一个bar代表前10%的uplift，第二个bar代表前20%的uplift。一个表现好的模型在前半段会有比较大的值，后半段下降。累计增益图对运营很有帮助：如果希望圈选一部分人进行干预，可以通过图找到增益效果的最大值，从而达到利益最大化（例：圈选前40%的用户可以达到最大值）。
+
+<div align='center'>
+<img src='累计增益图.png'></img>
+<p>图4.2 累计增益图</p>
+</div>
+
+
+<h3 id="uplift曲线"><a href="#uplift曲线" class="headerlink" title="uplift曲线"></a>uplift曲线</h3><p>以上都是通过可视化的形式展示模型好坏，引入数值指标可以用于直接比较。uplift曲线通过分别计算treatment和control的预测值按值排序计算分位值差异，不能保证相同高分位人群是相似的，但是这种方法在随机试验和实践中效果最好。可以通过以下公式计算数据集中每一个$t$的增益效果：<br>$$f(t)=(\frac{y_t^t}{n_t^t}-\frac{y^c_t}{n^c_t})(n_t^t+n_t^c)$$</p>
+<p>其中$t$表示按照预测uplift值进行排序的前$t$个观察值。图4.3为不同模型的uplift曲线，横坐标表示按照增益排序后的人群数量，纵坐标表示增益。从图中可以看出，two-model的效果最好。</p>
+<div align='center'>
+<img src='不同模型的uplift曲线.png' width=500></img>
+<p>图4.3 不同模型的uplift曲线</p>
+</div>
+
+<h3 id="qini曲线"><a href="#qini曲线" class="headerlink" title="qini曲线"></a>qini曲线</h3><p>也可以通过qini曲线来衡量模型好坏，如图4.4所示。和uplift曲线的定义类似，二者可以相互转换。其表示如下：<br>$$g(t)=y^t_t-\frac{y^c_tn^t_t}{n^c_t}$$</p>
+<p>定义qini系数，即qini曲线下的面积auuc（area under uplift curve）可以衡量模型好坏，qini系数越大模型越好。</p>
+<div align='center'>
+<img src='不同模型的qini曲线.png' width=500></img>
+<p>图4.4 不同模型的qini曲线</p>
+</div>
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文首先从一个实例出发阐述了因果性不等于相关性，进而引出因果推断和增益模型。然后简单介绍了因果推断的基础内容，并介绍了主要的三类增益模型：元学习、增益直接建模、表示学习，每一类模型都简要介绍了其经典模型。之后介绍了增益模型的评价指标，包括uplift bins、uplift curve和qini曲线。</p>
+<p>增益模型实际上是一大类模型框架，本质上可以用传统响应模型或其他机器学习模型嵌入增益模型的框架，但是预测结果并不是一个概率，模型评价方式也有变化。目前增益模型在以下两个方面仍然存在不足：</p>
+<ol>
+<li><strong>训练样本收集</strong><br> 增益模型建模强依赖于ab实验，数据要求很高。建模时要求实验组和对照组样本数量一样（实践中不一定有这个严格要求）。而且实验组和对照组的样本特征分布要一致，例如，训练数据不能是实验组预测后的结果、对照组随机选择的结果这样的组合，因为这样不满足干预策略与用户特征相互独立的假设$p(g∣x)=p(g)$。故实验组中还需要预留一部分随机选择的用户，与对照组中的用户作为模型迭代的数据，或者实验组与对照组都先经过某个策略或模型的筛选。</li>
+<li><strong>多维度建模</strong><br> 上述所有模型都是针对干预策略只有一种且为二分类的情况，而treatment可以用多种维度和连续变量表示。而treatment可以用多种维度，如不同渠道发放不同折扣的优惠券，不同场景推送不同内容的push。传统的响应模型以转化为多分类问题解决，但uplift modeling难以简单转化为多分类问题。此外，个性化广告推送也依赖长期和短期的用户行为特征构建。不同营销场景下的用户特征可以共用，可以构建统一的线上线下特征平台。</li>
+</ol>
+<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><p>针对进行课程汇报时老师提出的问题我在进行了相关的资料查阅后整理如下：</p>
+<p><strong>Q1: 如何确定变量之间的是否存在因果性？</strong></p>
+<p>事物之间的因果关系目前仍是计量经济学中研究的问题之一。经济分析中的因果关系识别就是指在分析中把影响某个经济结果的最重要决定因素提取出来，作为研究的关注焦点。从理论角度讲，我们需要在理论模型中解释为什么被忽略的其他因素不会系统性地改变理论所关注的主体规律；从实证角度看，需要尽可能全面收集这些其他因素对应的衡量指标，并在实证分析中考虑这些因素的影响。通过在实证分析中“控制”或者“剔除”这些其他因素的作用，我们便可以识别出理论模型中所关注的主体规律。<br>科学研究中识别因果可以说是非常困难的事情，尤其是对于社会科学而言。自然科学中可以通过实验控制的方法来识别因果。若想知道某个实验设计能否获得两个变量之间的因果关系，首先需要了解确定因果关系的条件有哪些。目前，普遍采用的是英国哲学家穆勒提出的三个条件：</p>
+<ol>
+<li>共变性，两个事件必须是共变或一起变化的；</li>
+<li>时间顺序：一个事件必须在另一个事件之前发生；</li>
+<li>排除其他可能的解释。<br>这三个条件必须同时满足才能确定因果关系。然而社会科学中这样的问题往往会变得很复杂，原因是一方面而言许多影响结果的变量无法被完美控制，另一方面许多变量也无法人为改变。</li>
+</ol>
+<p><strong>Q2: 目前因果森林面临的挑战？</strong></p>
+<p>在经济学中有个名词为“共时性”，即指两个变量的值可能是由其他一些变量同时决定的，因此不能推导这两个变量之间具有因果关系。“共时性”是“内生性”的一种，“内生性”的意思是说我们视为原因的变量本身也是被其他因素决定的结果，所以是模型中“内生”的，而不是单纯“外生”的原因。内生性有两种表现形式，一种是上面讨论的“共时性”，另一种表现形式则是反向因果，也即解释变量反而可能是结果，而被解释变量则是原因。涉及混杂因素时，需要解决的内生性问题是“共时性”。如何在不能直接观察到混杂变量取值的情况下，将它们的影响纳入实证分析中，进而恰当地排除它们的影响，从而正确地进行因果推断呢？去年诺贝尔经济学奖的几位学者，正是在这个研究领域做出了卓越的贡献。在去年诺贝尔奖中提到一类变量，这类变量是在理论模型中会对被解释变量起到关键影响作用，但却无法在实证研究中直接控制的变量，因为在现实中无法直接观察到它们对应的衡量指标，它们被称为“混杂因素”，也是因果关系识别中的核心挑战。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li>[1] Yao L ,  Chu Z ,  Li S , et al. A Survey on Causal Inference[J].  2020.</li>
+<li>[2] Gutierrez P , Jean-Yves Gérardy. Causal Inference and Uplift Modelling: A Review of the Literature[C]// International Conference on Predictive Applications and APIs. PMLR, 2017.</li>
+<li>[3] Athey S ,  Wager S . Estimating Treatment Effects with Causal Forests: An Application[J].  2019.</li>
+<li>[4] Wager S ,  Athey S . Estimation and Inference of Heterogeneous Treatment Effects using Random Forests[J]. Research Papers, 2017, 8(6):1831-45.</li>
+<li>[5] Athey S ,  Tibshirani J ,  Wager S . Generalized Random Forests[J]. Research Papers, 2018.</li>
+<li>[6] Johansson F D ,  Shalit U ,  Sontag D . Learning Representations for Counterfactual Inference[J].  2016.</li>
+<li>[7] Shalit U ,  Johansson F ,  Sontag D . Estimating individual treatment effect: generalization bounds and algorithms[C]// 2016.</li>
+<li>[8] Shi C ,  Blei D M ,  Veitch V . Adapting Neural Networks for the Estimation of Treatment Effects[C]// 2019.</li>
+<li>[9] Nie L ,  Ye M ,  Liu Q , et al. VCNet and Functional Targeted Regularization For Learning Causal Effects of Continuous Treatments[C]// 2021.</li>
+<li>[10] Hassanpour N ,  Greiner R . CounterFactual Regression with Importance Sampling Weights[C]// Twenty-Eighth International Joint Conference on Artificial Intelligence IJCAI-19. 2019.</li>
+<li>[11] Yao L ,  Li S ,  Li Y , et al. ACE: Adaptively Similarity-Preserved Representation Learning for Individual Treatment Effect Estimation[C]// 2019 IEEE International Conference on Data Mining (ICDM). IEEE, 2019.</li>
+<li>[12] Yao L ,  Li S ,  Li Y , et al. Representation Learning for Treatment Effect Estimation from Observational Data[C]// Neural Information Processing Systems. 2018.</li>
+<li>[13] Zhao Z ,  Zhang Y ,  Harinen T , et al. Feature Selection Methods for Uplift Modeling[J].  2020.</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">贪钱算法还我头发</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2024/03/31/Causal-Inference/">https://xfliu1998.github.io/2024/03/31/Causal-Inference/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><a class="post-meta__tags" href="/tags/Deep-Learning/">Deep Learning</a></div><div class="post_share"><div class="social-share" data-image="http://img.shijue.me/10b92be98ffd40ceb11468fe27b5cb08_d.jpg!dp6" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/07/Technical-Summary-Database/"><img class="prev-cover" src="http://img.shijue.me/078729117f75472bae4bbc684d2b714c_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Technical Summary —— Database Usage</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/24/Construction-Based-KinectV2/"><img class="next-cover" src="http://img.shijue.me/9674ddd951db47bfaf4ccfd1838a9f7c_d.png!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">3D Construction Based KinectV2</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/06/05/Interview-Experience/" title="Interview Experience"><img class="cover" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-05</div><div class="title">Interview Experience</div></div></a></div><div><a href="/2023/03/25/Papers-Ideas/" title="Papers Ideas"><img class="cover" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-25</div><div class="title">Papers Ideas</div></div></a></div><div><a href="/2023/01/11/SfM-SLAM/" title="SfM & SLAM"><img class="cover" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&rs=1" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-11</div><div class="title">SfM & SLAM</div></div></a></div><div><a href="/2022/10/01/9-3D-Construction/" title="3D Construction"><img class="cover" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-01</div><div class="title">3D Construction</div></div></a></div><div><a href="/2022/09/17/Papers-Reading-about-NLP/" title="Papers Reading about NLP"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&h=201&c=7&r=0&o=5&dpr=1.88&pid=1.7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Papers Reading about NLP</div></div></a></div><div><a href="/2022/09/17/Papers-Reading-about-CV/" title="Papers Reading about CV"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&h=201&c=7&r=0&o=5&dpr=1.88&pid=1.7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Papers Reading about CV</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">贪钱算法还我头发</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/keiven_" target="_blank" title="CSDN"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">欢迎来这里掉头发</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%92%8C%E5%A2%9E%E7%9B%8A%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">因果推断和增益模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%AA%E8%AE%BA"><span class="toc-number">1.1.</span> <span class="toc-text">绪论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A0%E6%9E%9C%E6%8E%A8%E6%96%AD%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.</span> <span class="toc-text">因果推断基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%A2%9E%E7%9B%8A%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">主要增益模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Meta-Learning"><span class="toc-number">1.3.1.</span> <span class="toc-text">Meta Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#S-Learner%EF%BC%88One-Model%EF%BC%89"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">S-Learner（One Model）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T-Learner%EF%BC%88Two-Model%EF%BC%89"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">T-Learner（Two Model）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#R-Learner"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">R-Learner</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#X-Learner"><span class="toc-number">1.3.1.4.</span> <span class="toc-text">X-Learner</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E5%88%AB%E8%BD%AC%E6%8D%A2%E6%B3%95%EF%BC%88Calss-Transformation-Approch%EF%BC%89"><span class="toc-number">1.3.1.5.</span> <span class="toc-text">类别转换法（Calss Transformation Approch）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tree-based-Method%EF%BC%88%E5%A2%9E%E9%87%8F%E7%9B%B4%E6%8E%A5%E5%BB%BA%E6%A8%A1%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">Tree-based Method（增量直接建模）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E6%95%A3%E5%BA%A6%E4%B8%8B%E7%9A%84uplift-tree"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">分布散度下的uplift-tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9uplift%E7%9B%B4%E6%8E%A5%E5%BB%BA%E6%A8%A1%E7%9A%84CST-Tree"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">对uplift直接建模的CST Tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Causal-Forest"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">Causal Forest</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Representation-Learning"><span class="toc-number">1.3.3.</span> <span class="toc-text">Representation Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BNN-amp-BLR"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">BNN &amp; BLR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tarnet"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">Tarnet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DragonNet-%E7%9B%AE%E6%A0%87%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">DragonNet + 目标正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DRnet-%E3%80%81VCnet-%E5%87%BD%E6%95%B0%E7%9B%AE%E6%A0%87%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-number">1.3.3.4.</span> <span class="toc-text">DRnet 、VCnet + 函数目标正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ACE"><span class="toc-number">1.3.3.5.</span> <span class="toc-text">ACE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SITE"><span class="toc-number">1.3.3.6.</span> <span class="toc-text">SITE</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="toc-number">1.4.</span> <span class="toc-text">模型评估</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#uplift-bins"><span class="toc-number">1.4.1.</span> <span class="toc-text">uplift bins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uplift%E6%9B%B2%E7%BA%BF"><span class="toc-number">1.4.2.</span> <span class="toc-text">uplift曲线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qini%E6%9B%B2%E7%BA%BF"><span class="toc-number">1.4.3.</span> <span class="toc-text">qini曲线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QA"><span class="toc-number">1.6.</span> <span class="toc-text">QA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">1.7.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('http://img.shijue.me/10b92be98ffd40ceb11468fe27b5cb08_d.jpg!dp6')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 贪钱算法还我头发</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '1b0c10ce649501ea4a72',
+      clientSecret: '741b5e861137e3d5a482bba272c8201b78da6cb0',
+      repo: 'xfliu1998.github.io',
+      owner: 'xfliu1998',
+      admin: ['xfliu1998'],
+      id: '5f2ce78856a13e5b9aba892a90597bb0',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Machine-Learning-and-Deep-Learning/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 机器学习与深度学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Structures-and-Algorithms/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">😼 数据结构与算法 (16)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Search-Advertisement-Recommendation-Causal/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🗂️ 搜索/广告/推荐/因果 (10)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Analysis-and-Processing/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 数据分析与处理 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Reading-Notes/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 阅读笔记 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Daily/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 日常随想 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://xfliu1998.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-NLP/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-NLP/" alt="">Papers Reading about NLP</a><div class="blog-slider__text">自然语言处理论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-NLP/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/10/01/9-3D-Construction/" alt=""><img width="48" height="48" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-01</span><a class="blog-slider__title" href="2022/10/01/9-3D-Construction/" alt="">3D Construction</a><div class="blog-slider__text">三维重建基础</div><a class="blog-slider__button" href="2022/10/01/9-3D-Construction/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/01/11/SfM-SLAM/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&amp;rs=1" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-01-11</span><a class="blog-slider__title" href="2023/01/11/SfM-SLAM/" alt="">SfM &amp; SLAM</a><div class="blog-slider__text">SfM和SLAM系统</div><a class="blog-slider__button" href="2023/01/11/SfM-SLAM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=2&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-CV/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-CV/" alt="">Papers Reading about CV</a><div class="blog-slider__text">计算机视觉论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-CV/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/06/05/Interview-Experience/" alt=""><img width="48" height="48" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-06-05</span><a class="blog-slider__title" href="2023/06/05/Interview-Experience/" alt="">Interview Experience</a><div class="blog-slider__text">面经八股</div><a class="blog-slider__button" href="2023/06/05/Interview-Experience/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="http://img.shijue.me/78ae8b05a73444cd9643a8312abc0d43.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">Learning Framework</a><div class="blog-slider__text">学习大纲</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<container><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></container>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gitcalendar.fomal.cc/api?xfliu1998",['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9'],'xfliu1998')
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

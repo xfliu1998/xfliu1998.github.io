@@ -1,0 +1,917 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Interview Experience | 一直进步 做喜欢的</title><meta name="keywords" content="Machine Learning,Deep Learning"><meta name="author" content="贪钱算法还我头发"><meta name="copyright" content="贪钱算法还我头发"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="面经八股">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview Experience">
+<meta property="og:url" content="https://xfliu1998.github.io/2023/06/05/Interview-Experience/index.html">
+<meta property="og:site_name" content="一直进步 做喜欢的">
+<meta property="og:description" content="面经八股">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6">
+<meta property="article:published_time" content="2023-06-05T06:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-02T13:56:03.138Z">
+<meta property="article:author" content="贪钱算法还我头发">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2023/06/05/Interview-Experience/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Interview Experience',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-02 21:56:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Interview Experience</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-06-05T06:00:00.000Z" title="Created 2023-06-05 14:00:00">2023-06-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-12-02T13:56:03.138Z" title="Updated 2023-12-02 21:56:03">2023-12-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Reading-Notes/">Reading Notes</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">22.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>70min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Interview Experience"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2023/06/05/Interview-Experience/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><h2 id="线性和逻辑回归模型"><a href="#线性和逻辑回归模型" class="headerlink" title="线性和逻辑回归模型"></a>线性和逻辑回归模型</h2><p>经典的机器学习模型，用于解决分类和回归问题。</p>
+<ul>
+<li>线性模型（Linear Models）：一种基本的统计模型，用于建立输入特征与输出之间的线性关系。基本形式是：<code>y = w₁x₁ + ... + wₙxₙ + b</code>，<code>y</code>表示输出变量，<code>x₁, ..., xₙ</code>表示输入特征，<code>w₁, ..., wₙ</code>表示特征的权重，<code>b</code>表示偏差或截距。模型通过学习特征的权重和偏差，以最小化预测值与真实值之间的差距。线性模型简单、可解释性强、计算效率高，适用于特征与输出之间存在线性关系的问题。</li>
+<li>逻辑回归模型（Logistic Regression）：一种用于二分类问题的线性模型，通过逻辑函数（sigmoid函数）将线性模型的输出转化为概率值，从而进行分类。逻辑回归模型的基本形式是：<code>p = 1 / (1 + exp(-(w₁x₁ + ... + wₙxₙ + b)))</code>其中，<code>p</code>表示样本属于某个类别的概率。模型通过学习特征的权重和偏差，以最大化似然函数或最小化对数损失函数来拟合训练数据，并进行分类预测。逻辑回归模型模型简单、可解释性强、计算效率高，广泛应用于二分类问题。逻辑回归模型还可以通过正则化技术来防止过拟合。</li>
+<li>区别：<ul>
+<li>输出类型：线性模型常用于回归问题，输出是连续值。逻辑回归模型用于二分类问题，输出是概率值或类别标签。</li>
+<li>输出转换：线性模型直接使用线性函数进行预测。逻辑回归模型通过逻辑函数（sigmoid函数）将线性模型的输出转化为概率值，从而进行分类。</li>
+<li>损失函数：线性模型通常使用均方误差MSE或平均绝对误差等回归损失函数。逻辑回归模型使用对数损失函数或交叉熵损失函数来最小化分类误差。</li>
+</ul>
+</li>
+<li>联系：<ul>
+<li>线性模型是逻辑回归模型的一种特例。当逻辑回归模型中只有一个二分类输出变量，并且特征与输出之间存在线性关系时，逻辑回归模型退化为线性模型。</li>
+<li>逻辑回归模型可以使用线性模型的方法进行参数估计。逻辑回归模型的参数估计可以通过最大似然估计或梯度下降等方法来获得，类似于线性模型的参数估计。</li>
+</ul>
+</li>
+</ul>
+<h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><p>逻辑回归假设数据服从伯努利分布，通过极大似然函数的方法，运用梯度下降来求解参数，来达到将数据二分类的目的。</p>
+<p>假设：</p>
+<ul>
+<li>假设数据服从伯努利分布(非正即反，概率和为1)。</li>
+<li>假设模型的输出值是样本为正例的概率。</li>
+</ul>
+<p>损失函数：<br>逻辑回归中用到sigmoid函数，若用均方误差则为非凸函数，有多个极小值，采用梯度下降法容易陷入局部最优解中。<br>逻辑回归其实是概率类模型，通过极大似然估计（MLE）推导逻辑回归损失函数。目的是将所得似然函数极大化，而损失函数是最小化。</p>
+<p>求解：<br>最小二乘法的误差符合正态分布，而逻辑回归的误差符合的是二项分布，所以不能用最小二乘法来作为损失函数，那么能够用最大似然预计来做。使用梯度下降法求解。</p>
+<ul>
+<li>如果用最小二乘法，目标函数就是 $E_{w,b}=\sum_{i=1}^{m}\left ( y_{i}-\frac{1}{1+e^{-\left ( w^{T}x_{i}+b \right )}}\right )^2$ ,是非凸的，不容易求解，会得到局部最优。</li>
+<li>如果用最大似然估计，目标函数就是对数似然函数： $l_{w,b}=\sum_{i=1}^{m}\left ( -y_{i}\left ( w^{T}x_{i}+b \right )+ln\left ( 1+e^{w^{T}x_{i}+b} \right ) \right )$ ,是关于 (w,b) 的高阶连续可导凸函数，可以方便通过一些凸优化算法求解，比如梯度下降法、牛顿法等。</li>
+</ul>
+<p>优点：</p>
+<ol>
+<li>直接对分类可能性进行建模，无需实现假设数据分布，这样就避免了假设分布不准确所带来的问题。</li>
+<li>形式简单，模型的可解释性非常好，特征的权重可以看到不同的特征对最后结果的影响。 </li>
+<li>除了类别，还能得到近似概率预测，这对许多需利用概率辅助决策的任务很有用。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>准确率不是很高，因为形势非常的简单，很难去拟合数据的真实分布。</li>
+<li>本身无法筛选特征。</li>
+</ol>
+<p>推导：</p>
+<div align="center">
+  <img src="logistic_regression.png" height=70% width=70%>
+</div>
+
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1373192#:~:text=%E5%85%B3%E4%BA%8E%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%94%A8%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9D%A5%E6%80%BB%E7%BB%93%EF%BC%9A,%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E5%81%87%E8%AE%BE%E6%95%B0%E6%8D%AE%E6%9C%8D%E4%BB%8E%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%88%86%E5%B8%83%EF%BC%8C%E9%80%9A%E8%BF%87%E6%9E%81%E5%A4%A7%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E8%BF%90%E7%94%A8%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%9D%A5%E6%B1%82%E8%A7%A3%E5%8F%82%E6%95%B0%EF%BC%8C%E6%9D%A5%E8%BE%BE%E5%88%B0%E5%B0%86%E6%95%B0%E6%8D%AE%E4%BA%8C%E5%88%86%E7%B1%BB%E7%9A%84%E7%9B%AE%E7%9A%84%E3%80%82">从零开始学会逻辑回归（一）</a></p>
+<h2 id="二分类和多分类的损失函数"><a href="#二分类和多分类的损失函数" class="headerlink" title="二分类和多分类的损失函数"></a>二分类和多分类的损失函数</h2><table>
+<thead>
+<tr>
+<th>分类问题</th>
+<th>输出层激活函数</th>
+<th>损失函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>二分类</td>
+<td>Sigmoid</td>
+<td>二分类交叉熵损失函数（binary_crossentropy）</td>
+<td>sigmoid作为最后一层输出，不能把最后一层的输出看作成一个分布，因为加起来不为1。应将最后一层的每个神经元看作一个分布</td>
+</tr>
+<tr>
+<td>多分类</td>
+<td>Softmax</td>
+<td>多类别交叉熵损失函数（categorical_crossentropy）</td>
+<td>Softmax后最后一层输出概率相加为1</td>
+</tr>
+<tr>
+<td>多标签分类</td>
+<td>Sigmoid</td>
+<td>二分类交叉熵损失函数（binary_crossentropy）</td>
+<td>计算一个样本各个标签的损失取平均值。把一个多标签问题转化为在每个标签上的二分类问题</td>
+</tr>
+</tbody></table>
+<ul>
+<li>BCE Loss: $L=\frac{1}{N}\sum_iL_i=\frac{1}{N}\sum_i[y_ilog(p_i)+(1-y_i)log(1-p_i)]$</li>
+<li>CE Loss: $L=\frac{1}{N}\sum_iL_i=-\frac{1}{N}\sum_i \sum^M_{c=1}y_{ic}log(p_{ic})$</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/617375968">二分类和多分类的激活函数和损失</a></p>
+<h2 id="二分类为什么用交叉熵损失而不用MSE损失？"><a href="#二分类为什么用交叉熵损失而不用MSE损失？" class="headerlink" title="二分类为什么用交叉熵损失而不用MSE损失？"></a>二分类为什么用交叉熵损失而不用MSE损失？</h2><ul>
+<li>对概率分布更敏感： 交叉熵损失更适用于概率分布的比较，而二分类问题通常涉及到概率的预测。交叉熵损失能够衡量实际概率分布与预测概率分布之间的差异，更加敏感和有效。</li>
+<li>梯度更新更好： 在分类问题中，交叉熵损失函数的梯度更为明确和稳定，相比之下，均方误差损失可能会导致训练过程中梯度消失或梯度爆炸的问题。</li>
+<li>更好地表达分类目标： 交叉熵损失更加关注正确类别的预测概率，而均方误差对所有类别的预测概率都进行了平方差的计算，可能会导致对错误类别的概率影响不够明显。</li>
+</ul>
+<h2 id="偏差与方差"><a href="#偏差与方差" class="headerlink" title="偏差与方差"></a>偏差与方差</h2><p>令y表示数据的label，f(x)表示测试数据的预测值，$\overline{f(x)}$表示学习算法对所有数据集的期望预测值。则偏差表示期望预测值$\overline{f(x)}$与标记y之间的差距，差距越大说明偏差越大；而方差是测试预测值f(x)与预测值的期望值$\overline{f(x)}$之间的差距，差距越大说明方差越大。偏差表征模型对数据的拟合能力；而方差表征数据集的变动导致的学习性能的变化，也就是泛化能力。</p>
+<h2 id="Layer-Normalization-和-Batch-Normalization"><a href="#Layer-Normalization-和-Batch-Normalization" class="headerlink" title="Layer Normalization 和 Batch Normalization"></a>Layer Normalization 和 Batch Normalization</h2><p>“独立同分布”的数据能让人很快地发觉数据之间的关系，因为不会出现像过拟合等问题。为了解决ICS（internal covarivate shift内部协变量漂移）问题，即数据分布会发生变化，对下一层网络的学习带来困难。一般在模型训练之前，需要对数据做归一化。</p>
+<p>LayerNorm，对单个样本的所有维度特征做归一化，对模型中每个子层的输入归一化处理，使得每个特征的均值为0，方差为1。有助于缓解内部协变量偏移的问题，提高模型的训练效率和鲁棒性。</p>
+<p>batch normalization是对一批样本的同一纬度特征做归一化。强行将数据转为均值为0，方差为1的正态分布，使得数据分布一致，并且避免梯度消失。而梯度变大意味着学习收敛速度快，能够提高训练速度。设batch_size为m，网络在向前传播时，网络 中每个神经元都有m个输出，BN就是将每个神经元的m个输出进行归一化处理。</p>
+<ul>
+<li>标准化：求得均值为0，方差为1的标准正态分布 $\bar{x}_{i}$</li>
+<li>尺度变换和偏移：获得新的分布 $y_i$。均值为 β，方差为 γ（其中偏移 β 和尺度变换 γ 为需要学习的参数）。该过程有利于数据分布和权重的互相协调。</li>
+</ul>
+<p>区别:</p>
+<ul>
+<li>从操作上看：BN是对同一个batch内的所有数据的同一个特征数据进行操作；而LN是对同一个样本进行操作。</li>
+<li>从特征维度上看：BN中，特征维度数=均值or方差的个数；LN中，一个batch中有batch_size个均值和方差。</li>
+</ul>
+<p>关系:</p>
+<ul>
+<li>BN 和 LN 都可以比较好的抑制梯度消失和梯度爆炸的情况。BN不适合RNN、transformer等序列网络，不适合文本长度不定和batchsize较小的情况，适合于CV中的CNN等网络；</li>
+<li>而LN适合用于NLP中的RNN、transformer等网络，因为sequence的长度可能是不一致的。</li>
+<li>如果把一批文本组成一个batch，BN就是对每句话的第一个词进行操作，BN针对每个位置进行缩放就不符合NLP的规律了。</li>
+</ul>
+<p>小结:</p>
+<ul>
+<li>经过BN的归一化再输入激活函数，得到的值大部分会落入非线性函数的线性区，导数远离导数饱和区，避免了梯度消失，这样来加速训练收敛过程。</li>
+<li>归一化技术就是让每一层的分布稳定下来，让后面的层能在前面层的基础上“安心学习”。BatchNorm就是通过对batch size这个维度归一化来让分布稳定下来（但是BN没有解决ISC问题）。LayerNorm则是通过对Hidden size这个维度归一。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35812205/article/details/122330669">【深度学习】batch normalization和layer normalization区别</a></p>
+<h2 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h2><p>为什么要从原问题转换为对偶问题求解？</p>
+<ul>
+<li>不等式约束方程需要写成min max的形式来得到最优解。而这种写成这种形式对x不能求导，这种形式只能对拉格朗日乘子$\alpha$求导，所以我们需要转换成max min的形式，这时候，x就在里面了，这样就能对x求导了。而为了满足这种对偶变换成立，就需要满足KKT条件（KKT条件是原问题与对偶问题等价的必要条件，当原问题是凸优化问题时，变为充要条件）。只用求解$\alpha$系数，而$\alpha$系数只有支持向里才非0，其它全部为0。</li>
+<li>对偶问题将原始问题中的约束转为了对偶问题中的等式约束</li>
+<li>方便核函数的引入，推广到非线性分类问题</li>
+<li>改变了问题的复杂度。由求特征向量w转化为求比例系数a，在原始问题下，求解的复杂度与样本的维度有关，即w的维度。在对偶问题下，只与样本数量有关。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaocong1990/article/details/83037848">SVM从原始问题到对偶问题的转换及原因</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/35602879">SVM中，高斯核为什么会把原始维度映射到无穷多维？</a></p>
+<h2 id="数据不均衡"><a href="#数据不均衡" class="headerlink" title="数据不均衡"></a>数据不均衡</h2><p>数据不均衡（如正例很少，负例很多）解决办法：</p>
+<ol>
+<li>欠采样：对负例进行欠采样。一种代表性算法是将负例分成很多份，每次用其中一份和正例一起训练，最后用集成学习综合结果。</li>
+<li>过采样：对正例进行过采样。一种代表性方法是对正例进行线性插值来获得更多的正例。</li>
+<li>调整损失函数：训练时正常训练，分类时将数据不均衡问题加入到决策过程中。例如在我做的文本检测项目中，正常训练，但是判断某个像素是否是文本时 $Loss=-\beta{Y}log\hat{Y}-(1-\beta)(1-Y)log(1-\hat{Y})$，其中Y是样本的标记，$\hat{Y}$是预测值，β是负样本和总体样本的比值。通过加入 β和1−β使得数量较少的正样本得到更多的关注，不至于被大量的负样本掩盖。</li>
+<li>组合/集成学习：例如正负样本比例1:100，则将负样本分成100份，正样本每次有放回采样至与负样本数相同，然后取100次结果进行平均。</li>
+<li>数据增强：单样本增强如几何变换、颜色变换、增加噪声；多样本组合增强如Smote类、SamplePairing、Mixup等方法在特征空间内构造已知样本的邻域值样本；基于深度学习数据增强</li>
+</ol>
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>目标是从原始特征集中选择最相关、最有用的特征，以提高模型性能和泛化能力。常用特征选择方法：</p>
+<ul>
+<li>过滤式：独立于学习算法，据特征的统计属性对特征评估和排序。包括相关系数、卡方检验、信息增益、互信息法等。过滤式方法计算快速、简单，适用于高维数据，但可能忽略特征之间的相互关系。<ul>
+<li>方差选择：计算特征在数据中的方差来判断是否保留。特征方差低于预先设定的阈值，这个特征可能没有足够的变化，对分类回归任务可能没有太大贡献，可以被移除。</li>
+<li>相关系数：用来衡量两个变量之间线性关系强度的指标。计算特征与目标变量之间的相关系数，选择与目标变量具有较高相关性的特征。</li>
+<li>卡方检验：适用于分类问题中的特征选择。计算特征与目标变量之间的卡方统计量，来衡量特征和目标之间的独立性。选择卡方值较大的特征，与目标变量更相关。</li>
+<li>互信息：衡量两个变量之间相关性的指标。计算特征与目标变量之间的互信息，选择与目标变量具有较高互信息的特征。</li>
+</ul>
+</li>
+<li>嵌入式（Embedded）：特征选择与学习算法的训练过程结合，特征选择作为学习算法的一部分。在学习算法中直接考虑特征的重要性，通过正则化、惩罚项或决策树剪枝等方式选择特征。嵌入式方法包括L1正则化（Lasso）、决策树的特征重要性、正则化的线性模型等。嵌入式方法可以在模型训练过程中自动选择特征，减少了特征选择的额外计算开销。</li>
+<li>包裹式（Wrapper）：使用机器学习模型评估特征的重要性。在特征子集上进行交叉验证，选择性能最好的特征子集进行特征选择。基于树模型的方法（如决策树和随机森林）可以评估特征的重要性。树模型通过计算特征在树中的分裂次数和平均分裂增益衡量特征对模型的贡献。它直接使用最终学习算法对每个特征子集进行评估，可以更好地捕捉特征之间的相互作用。包裹式方法包括递归特征消除和遗传算法等。包裹式方法计算开销大、耗时长，适用于小规模数据和特定问题。</li>
+</ul>
+<h2 id="排序模型"><a href="#排序模型" class="headerlink" title="排序模型"></a>排序模型</h2><p>旨在根据用户偏好和上下文信息，预测每个项目的相关性或排名，为用户提供最相关和个性化的结果。模型输入包括：</p>
+<ul>
+<li>特征：描述每个项目的属性和上下文信息，如项目标签、关键词、评分、发布时间、用户特征等。特征可以是离散的、连续的或文本类型的。</li>
+<li>用户信息：包括用户历史行为、兴趣偏好、地理位置等，用于个性化推荐和排序。</li>
+<li>上下文信息：指在排序过程中可能影响用户偏好的其他因素，如时间、设备类型、浏览环境等。</li>
+</ul>
+<p>常见排序模型包括：</p>
+<ul>
+<li>点击率预测模型：通过预测用户点击每个项目的概率进行排序。包括逻辑回归、梯度提升树、神经网络等。</li>
+<li>排序神经网络：使用神经网络来学习项目之间的相对排名关系。包括RankNet、LambdaRank和ListNet等。</li>
+<li>线性模型和特征工程：基于线性模型结合特征工程技术学习特征权重和组合。包括线性回归、排序SVM等。</li>
+<li>排序树模型：使用决策树排序，如LambdaMART和GBDT等。<br>模型训练中常用损失函数包括交叉熵损失函数、均方误差损失函数、排序损失函数（如NDCG）等。为提高排序模型性能，可以采用特征选择、特征组合、正则化等技术。</li>
+</ul>
+<h2 id="树模型进行特征工程的原因"><a href="#树模型进行特征工程的原因" class="headerlink" title="树模型进行特征工程的原因"></a>树模型进行特征工程的原因</h2><ul>
+<li>改善模型性能： 特征工程有助于提取更具预测性的特征，可以帮助模型更好地拟合数据，提升模型的预测性能。</li>
+<li>降低过拟合风险： 合适的特征工程可以帮助模型更好地泛化到新的数据集上，降低过拟合的风险，提高模型的稳定性和泛化能力。</li>
+<li>减少计算复杂度： 特征工程有助于减少特征空间的维度，从而减少计算复杂度，并加速模型的训练和预测过程。</li>
+<li>提高可解释性： 通过合理的特征工程，可以使得模型更易于解释和理解，有助于深入理解数据特征对模型预测的影响。</li>
+<li>解决特征相关性和噪音问题： 特征工程有助于发现和处理特征之间的相关性和噪音，使模型更加健壮。</li>
+</ul>
+<h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>一种基于boosting增强策略的加法模型，训练时采用前向分布算法进行贪婪学习，迭代地训练一系列弱学习器，并将它们组合成一个强大的集成模型。每次迭代都学习一棵CART树来拟合之前t-1棵树的预测结果与训练样本真实值的残差。</p>
+<h2 id="LR和GBDT"><a href="#LR和GBDT" class="headerlink" title="LR和GBDT"></a>LR和GBDT</h2><p>LR是线性模型，可解释性强，很容易并行化，但学习能力有限，需要大量的人工特征工程。GBDT是非线性模型，具有天然的特征组合优势，特征表达能力强，但是树与树之间无法并行训练，且树模型很容易过拟合；当在高维稀疏特征的场景下，LR的效果一般会比GBDT好。</p>
+<h2 id="RF和GBDT"><a href="#RF和GBDT" class="headerlink" title="RF和GBDT"></a>RF和GBDT</h2><p>相同点：都是由多棵树组成，最终的结果都是由多棵树一起决定。<br>不同点：</p>
+<ul>
+<li>集成学习：RF属于bagging思想，而GBDT是boosting思想</li>
+<li>偏差-方差权衡：RF不断的降低模型的方差，而GBDT不断的降低模型的偏差</li>
+<li>训练样本：RF每次迭代的样本是从全部训练集中有放回抽样形成的，而GBDT每次使用全部样本</li>
+<li>并行性：RF的树可以并行生成，而GBDT只能顺序生成(需要等上一棵树完全生成)</li>
+<li>最终结果：RF最终是多棵树进行多数表决（回归问题是取平均），而GBDT是加权融合</li>
+<li>数据敏感性：RF对异常值不敏感，而GBDT对异常值比较敏感</li>
+<li>泛化能力：RF不易过拟合，而GBDT容易过拟合</li>
+</ul>
+<h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>eXtreme Gradient Boosting用于解决分类和回归问题。基于梯度提升框架，集成多个弱学习器（决策树）逐步改善模型的预测能力。原理：</p>
+<ul>
+<li>损失函数：回归问题常用平方损失函数；分类问题常用对数损失函数。</li>
+<li>弱学习器：用决策树作弱学习器。决策树是一种基于特征的分层划分，每个节点对应一个特征及其划分条件。XGBoost中决策树通过贪婪算法生成，每次选择最大程度降低损失函数的特征和划分点。</li>
+<li>梯度提升：使用梯度提升法集成多个弱学习器。每轮迭代中根据当前模型的预测结果计算损失函数的梯度，并将其作为新目标训练。新弱学习器通过拟合当前目标逐步改进模型预测能力。为控制每个弱学习器的贡献，引入了学习率缩小每轮迭代的步长。</li>
+<li>正则化：防止模型过拟合。正则化项由两部分组成：L1正则化（Lasso）和L2正则化（Ridge）。L1正则化使部分特征权重变零，实现特征选择；L2正则化对权重惩罚，降低模型的复杂度。</li>
+<li>树剪枝：构建决策树采用自动树剪枝策略。计算每个叶节点的分数与正则化项比较，决定是否剪枝。剪枝过程从树的底部开始，逐步向上剪除对模型贡献较小的分支。</li>
+<li>特征重要性评估：提供一种度量特征重要性的方法，评估每个特征对模型预测的贡献程度。训练中会跟踪每个特征被用于划分的次数及划分后带来的增益。计算特征的重要性得分。</li>
+</ul>
+<h3 id="二阶泰勒展开优势"><a href="#二阶泰勒展开优势" class="headerlink" title="二阶泰勒展开优势"></a>二阶泰勒展开优势</h3><ul>
+<li>xgboost是以MSE为基础推导出来的，xgboost的目标函数展开就是一阶项（残差）+二阶项的形式，而其他类似logloss这样的目标函数不能表示成这种形式。为了后续推导的统一，将目标函数进行二阶泰勒展开，就可以直接自定义损失函数了，只要二阶可导即可，增强了模型的扩展性。</li>
+<li>二阶信息能够让梯度收敛的更快更准确，类似牛顿法比SGD收敛更快。一阶信息描述梯度变化方向，二阶信息可以描述梯度变化方向是如何变化的。<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/61374305">xgboost是用二阶泰勒展开的优势在哪？</a></li>
+</ul>
+<h3 id="为什么快"><a href="#为什么快" class="headerlink" title="为什么快"></a>为什么快</h3><ul>
+<li>分块并行：训练前每个特征按特征值进行排序并存储为Block结构，后面查找特征分割点时重复使用，并且支持并行查找每个特征的分割点</li>
+<li>候选分位点：每个特征采用常数个分位点作为候选分割点</li>
+<li>CPU cache 命中优化： 使用缓存预取的方法，对每个线程分配一个连续的buffer，读取每个block中样本的梯度信息并存入连续的Buffer中。</li>
+<li>Block 处理优化：Block预先放入内存；Block按列进行解压缩；将Block划分到不同硬盘来提高吞吐</li>
+</ul>
+<h3 id="防止过拟合"><a href="#防止过拟合" class="headerlink" title="防止过拟合"></a>防止过拟合</h3><ul>
+<li>目标函数添加正则项：叶子节点个数+叶子节点权重的L2正则化</li>
+<li>列抽样：训练的时候只用一部分特征（不考虑剩余的block块即可）</li>
+<li>子采样：每轮计算可以不使用全部样本，使算法更加保守</li>
+<li>shrinkage: 可以叫学习率或步长，为了给后面的训练留出更多的学习空间</li>
+</ul>
+<h3 id="处理缺失值"><a href="#处理缺失值" class="headerlink" title="处理缺失值"></a>处理缺失值</h3><ul>
+<li>XGBoost允许特征存在缺失值。在特征k上寻找最佳 split point 时，不会对该列特征 missing 的样本进行遍历，而只对该列特征值为 non-missing 的样本上对应的特征值进行遍历，通过这个技巧来减少了为稀疏离散特征寻找 split point 的时间开销。</li>
+<li>在逻辑实现上，为了保证完备性，会将该特征值missing的样本分别分配到左叶子结点和右叶子结点，两种情形都计算一遍后，选择分裂后增益最大的那个方向（左分支或是右分支），作为预测时特征值缺失样本的默认分支方向。</li>
+</ul>
+<h3 id="树停止生长条件"><a href="#树停止生长条件" class="headerlink" title="树停止生长条件"></a>树停止生长条件</h3><ul>
+<li>当新引入的一次分裂所带来的增益Gain&lt;0时，放弃当前的分裂。这是训练损失和模型结构复杂度的博弈过程。</li>
+<li>当树达到最大深度时，停止建树，树深度太深容易过拟合，需要设置一个超参数max_depth。</li>
+<li>引入一次分裂后，重新计算新生成的左、右两个叶子结点的样本权重和。如果任一个叶子结点的样本权重低于某一个阈值，也会放弃此次分裂。这涉及到一个超参数:最小样本权重和，是指如果一个叶子节点包含的样本数量太少也会放弃分裂，防止树分的太细。</li>
+</ul>
+<h3 id="处理不平衡数据"><a href="#处理不平衡数据" class="headerlink" title="处理不平衡数据"></a>处理不平衡数据</h3><ul>
+<li>如采用AUC评估模型性能，可以通过设置scale_pos_weight参数来平衡正样本和负样本的权重。如正负样本比例为1:10时，scale_pos_weight可以取10；</li>
+<li>如果在意预测概率(预测得分的合理性)，不能重新平衡数据集(会破坏数据的真实分布)，应该设置max_delta_step参数为一个有限数字（如1）来帮助收敛。max_delta_step参数通常不进行使用，二分类下的样本不均衡问题是这个参数唯一的用途。</li>
+</ul>
+<h3 id="树剪枝"><a href="#树剪枝" class="headerlink" title="树剪枝"></a>树剪枝</h3><ul>
+<li>在目标函数中增加了正则项：使用叶子结点的数目和叶子结点权重的L2模的平方，控制树的复杂度。</li>
+<li>在结点分裂时，定义了一个阈值，如果分裂后目标函数的增益小于该阈值，则不分裂。</li>
+<li>当引入一次分裂后，重新计算新生成的左、右两个叶子结点的样本权重和。如果任一个叶子结点的样本权重低于某一个阈值（最小样本权重和），也会放弃此次分裂。</li>
+<li>XGBoost 先从顶到底建立树直到最大深度，再从底到顶反向检查是否有不满足分裂条件的结点，进行剪枝。</li>
+</ul>
+<h3 id="选择最佳分裂点"><a href="#选择最佳分裂点" class="headerlink" title="选择最佳分裂点"></a>选择最佳分裂点</h3><p>XGBoost在训练前预先将特征按照特征值进行了排序，并存储为block结构，以后在结点分裂时可以重复使用该结构。因此，可以采用特征并行的方法利用多个线程分别计算每个特征的最佳分割点，根据每次分裂后产生的增益，最终选择增益最大的那个特征的特征值作为最佳分裂点。<br>如果在计算每个特征的最佳分割点时，对每个样本都进行遍历，计算复杂度会很大，这种全局扫描的方法并不适用大数据的场景。</p>
+<p>XGBoost提供了一种直方图近似算法，使用weighted quantile sketch算法近似地找到best split，对特征排序后仅选择常数个候选分裂位置作为候选分裂点。<br>按比例来选择，从n个样本中抽取k个样本来进行计算，取k个样本中的最优值作为split value，这样就大大减少了运算数量。按样本均分会导致loss分布不均匀，取到的分位点会有偏差。我们要均分的是loss，而不是样本的数量。将样本对应的残差二阶导h作为划分依据，将同范围h占比的特征值划分到同一范围内。残差二阶导差异越大的地方，样本分布越稀疏，反之则稠密。加权意义在于把候选节点选取的机会更多地让于二阶导更大的地方，同时忽略导数差异小的节点。</p>
+<h3 id="Scalable性"><a href="#Scalable性" class="headerlink" title="Scalable性"></a>Scalable性</h3><ul>
+<li>基分类器的scalability：弱分类器可以支持CART决策树，也可以支持LR和Linear。</li>
+<li>目标函数的scalability：支持自定义loss function，只需要其一阶、二阶可导。有这个特性是因为泰勒二阶展开，得到通用的目标函数形式。</li>
+<li>学习方法的scalability：Block结构支持并行化，支持Out-of-core计算。</li>
+</ul>
+<p>当数据量太大不能全部放入主内存的时候，为了使得out-of-core计算称为可能，将数据划分为多个Block并存放在磁盘上。计算时使用独立的线程预先将Block放入主内存，因此可以在计算的同时读取磁盘。但是由于磁盘IO速度太慢，通常更不上计算的速度。因此，需要提升磁盘IO的销量。Xgboost采用了2个策略：</p>
+<ul>
+<li>Block压缩（Block Compression）：将Block按列压缩，读取的时候用另外的线程解压。对于行索引，只保存第一个索引值，然后只保存该数据与第一个索引值之差(offset)，一共用16个bits来保存offset，因此，一个block一般有2的16次方个样本。</li>
+<li>Block拆分（Block Sharding）：将数据划分到不同磁盘上，为每个磁盘分配一个预取（pre-fetcher）线程，并将数据提取到内存缓冲区中。然后，训练线程交替地从每个缓冲区读取数据。这有助于在多个磁盘可用时增加磁盘读取的吞吐量。</li>
+</ul>
+<h3 id="特征重要性"><a href="#特征重要性" class="headerlink" title="特征重要性"></a>特征重要性</h3><ul>
+<li>weight ：该特征在所有树中被用作分割样本的特征的总次数。</li>
+<li>gain ：该特征在其出现过的所有树中产生的平均增益。</li>
+<li>cover ：该特征在其出现过的所有树中的平均覆盖范围。<br>注意：覆盖范围这里指的是一个特征用作分割点后，其影响的样本数量，即有多少样本经过该特征分割到两个子节点。</li>
+</ul>
+<h3 id="调参步骤"><a href="#调参步骤" class="headerlink" title="调参步骤"></a>调参步骤</h3><p>首先需初始化一些基本变量，如：<code>max_depth = 5, min_child_weight = 1, gamma = 0, subsample, colsample_bytree = 0.8, scale_pos_weight = 1</code>，确定learning rate和estimator的数量 lr可先用0.1，用<code>xgboost.cv()</code>来寻找最优的estimators。</p>
+<ul>
+<li><code>max_depth, min_child_weight</code>: 首先将这两个参数设置为较大的数，通过迭代方式不断修正，缩小范围。max_depth每棵子树的最大深度，check from range(3,10,2)。min_child_weight子节点的权重阈值，check from range(1,6,2)。 如果一个结点分裂后，它的所有子节点的权重之和都大于该阈值，该叶子节点才可以划分。</li>
+<li><code>gamma</code>: 最小划分损失min_split_loss，check from 0.1 to 0.5，对于一个叶子节点，当对它采取划分之后，损失函数的降低值的阈值。如果大于该阈值，则该叶子节点值得继续划分。如果小于该阈值，则该叶子节点不值得继续划分。</li>
+<li><code>subsample, colsample_bytree</code>: subsample是对训练的采样比例，colsample_bytree是对特征的采样比例，both check from 0.6 to 0.9</li>
+<li>正则化参数。alpha 是L1正则化系数，try 1e-5, 1e-2, 0.1, 1, 100。lambda 是L2正则化系数</li>
+<li>降低学习率：降低学习率的同时增加树的数量，通常最后设置学习率为0.01~0.1</li>
+</ul>
+<h3 id="过拟合解决方案"><a href="#过拟合解决方案" class="headerlink" title="过拟合解决方案"></a>过拟合解决方案</h3><p>有两类参数可以缓解：</p>
+<ol>
+<li>用于直接控制模型的复杂度。包括max_depth,min_child_weight,gamma 等参数</li>
+<li>用于增加随机性，从而使得模型在训练时对于噪音不敏感。包括subsample,colsample_bytree</li>
+</ol>
+<p>直接减小learning rate，但需要同时增加estimator参数。</p>
+<h3 id="对缺失值不敏感"><a href="#对缺失值不敏感" class="headerlink" title="对缺失值不敏感"></a>对缺失值不敏感</h3><p>对存在缺失值的特征，一般的解决方法是：</p>
+<ul>
+<li>离散型变量：用出现次数最多的特征值填充；</li>
+<li>连续型变量：用中位数或均值填充；</li>
+</ul>
+<p>一些模型如SVM和KNN，其模型原理中涉及到了对样本距离的度量，如果缺失值处理不当，最终会导致模型预测效果很差。而树模型对缺失值的敏感度低，大部分时候可以在数据缺失时时使用。原因是，一棵树中每个结点在分裂时，寻找的是某个特征的最佳分裂点（特征值），完全可以不考虑存在特征值缺失的样本，如果某些样本缺失的特征值缺失，对寻找最佳分割点的影响不是很大。</p>
+<p>XGBoost对缺失数据有特定的处理方法, 因此，对于有缺失值的数据在经过缺失处理后：</p>
+<ul>
+<li>当数据量很小时，优先用朴素贝叶斯</li>
+<li>数据量适中或者较大，用树模型，优先XGBoost</li>
+<li>数据量较大，也可以用神经网络</li>
+<li>避免使用距离度量相关的模型，如KNN和SVM</li>
+</ul>
+<h2 id="XGBoost和RF单棵树哪个更深？"><a href="#XGBoost和RF单棵树哪个更深？" class="headerlink" title="XGBoost和RF单棵树哪个更深？"></a>XGBoost和RF单棵树哪个更深？</h2><p>RF单颗树更深。Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成；Bagging主要关注降低方差，因此它在不剪枝的决策树、神经网络等学习器上效用更为明显。<br>Bagging算法会并行地训练很多不同的分类器来降低方差variance：$E[h−E(h)]$,因为采用了相互独立的基分类器多了以后，h的值自然就会靠近E(h)。所以对于每个基分类器来说，目标就是降低偏差bias,所以会采用深度很深甚至不剪枝的决策树。对于Boosting来说，每一步会在上一轮的基础上更加拟合原数据，所以可以保证偏差bias,所以对于每个基分类器来说，问题就在于如何选择variance更小的分类器，即更简单的分类器，所以我们选择了深度很浅的决策树。</p>
+<h2 id="XGBoost和GBDT"><a href="#XGBoost和GBDT" class="headerlink" title="XGBoost和GBDT"></a>XGBoost和GBDT</h2><ul>
+<li>梯度提升决策树：都属于梯度提升决策树算法。集成学习方法，组合多个决策树逐步减小预测误差，提高模型性能。</li>
+<li>目标函数：使用相同的目标函数，通过最小化残差的平方和优化模型。每一轮迭代中，都会构建一个新的决策树来拟合前面模型的残差，以纠正之前模型的预测误差。</li>
+<li>特征工程：都支持类别型特征和缺失值的处理。在构建决策树时能自动处理类别型特征，不需要独热编码等转换。</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>基分类器：XGBoost基分类器不仅支持CART决策树，还支持线性分类器，此时XGBoost相当于带L1和L2正则化项的Logistic回归(分类问题)或者线性回归(回归问题)。</li>
+<li>正则化策略：XGBoost引入正则化防止过拟合，包括L1和L2正则化控制模型的复杂度。</li>
+<li>算法优化：XGBoost使用近似贪心算法选择最佳分裂点，使用二阶导数信息更精准逼近真实的损失函数，来提高模型的拟合能力。支持自定义损失函数，只要损失函数一阶、二阶可导，可扩展性好。</li>
+<li>样本权重：XGBoost引入样本权重概念，对不同样本赋予不同权重，从而对模型训练产生不同影响。在处理不平衡数据集或处理样本噪声时非常有用。</li>
+<li>并行计算：XGBoost在多个线程上同时进行模型训练，使用并行计算和缓存优化加速训练过程。不是tree维度的并行，而是特征维度的并行。XGBoost预先将每个特征按特征值排好序，存储为块结构，分裂结点时可以采用多线程并行查找每个特征的最佳分割点，极大提升训练速度。GBDT通常是顺序训练的，无法直接进行并行化。</li>
+<li>列抽样：XGBoost支持列采样，与随机森林类似，用于防止过拟合。</li>
+</ul>
+<h2 id="XGBoost和LightGBM"><a href="#XGBoost和LightGBM" class="headerlink" title="XGBoost和LightGBM"></a>XGBoost和LightGBM</h2><ul>
+<li>梯度提升决策树：都属于梯度提升决策树算法。集成学习方法，组合多个决策树逐步减小预测误差，提高模型性能。</li>
+<li>特征工程：都支持类别型特征和缺失值的处理。在构建决策树时能自动处理类别型特征，不需要独热编码等转换。还能处理带缺失值的数据。</li>
+<li>分布式训练：都支持分布式训练，可在分布式计算框架（如Spark）上运行。</li>
+</ul>
+<p>区别：</p>
+<ul>
+<li>算法速度：LightGBM在训练和预测速度上更快。LightGBM采用基于梯度的直方图决策树算法来加速训练过程，减少内存使用和计算复杂度。</li>
+<li>内存占用：LightGBM具有更低的内存占用，适用于处理大规模数据集。使用了互斥特征捆绑算法和直方图算法来减少内存使用，提高了算法的扩展性。</li>
+<li>正则化策略：都支持正则化策略来防止过拟合。XGBoost采用基于树的正则化（如最大深度、最小子样本权重等），LightGBM采用基于叶子节点的正则化（如叶子数、最小叶子权重等）。</li>
+<li>数据并行和特征并行：XGBoost使用数据并行化，将数据划分为多个子集，每个子集在不同的计算节点上进行训练。LightGBM使用特征并行化，将特征划分为多个子集，每个子集在不同的计算节点上进行训练。</li>
+</ul>
+<ol>
+<li>树生长策略：XGB采用level-wise(按层生长)的分裂策略，LGB采用leaf-wise的分裂策略。XGB对每一层所有节点做无差别分裂，但是可能有些节点增益非常小，对结果影响不大，带来不必要的开销。Leaf-wise是在所有叶子节点中选取分裂收益最大的节点进行的，但是很容易出现过拟合问题，所以需要对最大深度做限制 。</li>
+<li>分割点查找算法：XGB使用特征预排序算法，LGB使用基于直方图的切分点算法，优势如下：<ul>
+<li>减少内存占用，比如离散为256个bin时，只需要用8位整形就可以保存一个样本被映射为哪个bin(这个bin可以说就是转换后的特征)，对比预排序的exact greedy算法来说（用int_32来存储索引+ 用float_32保存特征值），可以节省7/8的空间。</li>
+<li>计算效率提高，预排序的Exact greedy对每个特征都需要遍历一遍数据，并计算增益，复杂度为𝑂(#𝑓𝑒𝑎𝑡𝑢𝑟𝑒×#𝑑𝑎𝑡𝑎)。而直方图算法在建立完直方图后，只需要对每个特征遍历直方图即可，复杂度为𝑂(#𝑓𝑒𝑎𝑡𝑢𝑟𝑒×#𝑏𝑖𝑛𝑠)。</li>
+<li>LGB还可以使用直方图做差加速，一个节点的直方图可以通过父节点的直方图减去兄弟节点的直方图得到，从而加速计算。实际上xgboost的近似直方图算法也类似于LGB这里的直方图算法，但xgboost的近似算法比LGB慢很多。XGB在每一层都动态构建直方图，XGB的直方图算法不是针对某个特定的feature，而是所有feature共享一个直方图(每个样本的权重是二阶导)，所以每一层都要重新构建直方图，而LGB中对每个特征都有一个直方图，所以构建一次直方图就够</li>
+</ul>
+</li>
+<li>支持离散变量：XGB无法直接输入类别型变量，需要事先对类别型变量进行编码（如独热编码），而LightGBM可以直接处理类别型变量。</li>
+<li>缓存命中率：XGB使用Block结构的缺点是取梯度时，是通过索引来获取的，而这些梯度的获取顺序是按照特征的大小顺序，导致非连续的内存访问，使得CPU cache缓存命中率低，影响算法效率。而LGB是基于直方图分裂特征的，梯度信息都存储在一个个bin中，所以访问梯度是连续的，缓存命中率高。</li>
+<li>并行策略不同：<ul>
+<li>特征并行 ：LGB特征并行的前提是每个worker留有一份完整的数据集，但是每个worker仅在特征子集上进行最佳切分点的寻找；worker之间需要相互通信，通过比对损失来确定最佳切分点；然后将这个最佳切分点的位置进行全局广播，每个worker进行切分即可。XGB的特征并行与LGB的最大不同在于XGB每个worker节点中仅有部分的列数据，也就是垂直切分，每个worker寻找局部最佳切分点，worker之间相互通信，然后在具有最佳切分点的worker上进行节点分裂，再由这个节点广播一下被切分到左右节点的样本索引号，其他worker才能开始分裂。二者的区别就导致了LGB中worker间通信成本明显降低，只需通信一个特征分裂点即可，而XGB中要广播样本索引。</li>
+<li>数据并行 ：当数据量很大，特征相对较少时，可采用数据并行策略。LGB中先对数据水平切分，每个worker上的数据先建立起局部的直方图，然后合并成全局的直方图，采用直方图相减的方式，先计算样本量少的节点的样本索引，然后直接相减得到另一子节点的样本索引，这个直方图算法使得worker间的通信成本降低一倍，因为只用通信以此样本量少的节点。XGB中的数据并行也是水平切分，然后单个worker建立局部直方图，再合并为全局，不同在于根据全局直方图进行各个worker上的节点分裂时会单独计算子节点的样本索引，因此效率贼慢，每个worker间的通信量也就变得很大。</li>
+<li>投票并行（LGB）：当数据量和维度都很大时，选用投票并行，该方法是数据并行的一个改进。数据并行中的合并直方图的代价相对较大，尤其是当特征维度很大时。大致思想是：每个worker首先会找到本地的一些优秀的特征，然后进行全局投票，根据投票结果，选择top的特征进行直方图的合并，再寻求全局的最优分割点。</li>
+</ul>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44852067/article/details/126756120?spm=1001.2014.3001.5506">XGBoost面试题整理</a></p>
+<h2 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h2><ul>
+<li>定义：ROC曲线下的面积（横坐标为假阳性率FPR，纵坐标为真阳性率TPR/召回），ROC曲线对于模型预估的一个正例，如果真实标签是正例，就往上走，如果是负例，就往左走，遍历完所有样本形成的曲线就是ROC曲线。</li>
+<li>含义：随机抽出一对样本（一个正样本，一个负样本），然后用训练得到的分类器来对这两个样本进行预测，预测得到正样本的概率大于负样本概率的概率。</li>
+<li>计算方法：<ol>
+<li>$AUC=\frac{\sum I(P_{正样本}, P_{负样本})}{M*N}$。在$M*N$对样本里（$M$和$N$分别表示正负样本的数量），统计正样本的预测概率大于负样本的预测概率的个数。</li>
+<li>$AUC=\frac{\sum_{i\in 正样本}rank(i)-\frac{M(M+1)}{2}}{M*N}$。$rank(i)$表示按照预估概率升序排序后正样本$i$的排序编号。对预估概率得分相同，将其排序编号取平均作为新的排序编号。</li>
+</ol>
+</li>
+<li>参考：<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/558301363">【回归基础】深入理解AUC指标</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_22238533/article/details/78666436">AUC的计算方法</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>激活函数的主要作用是引入非线性变换，没有激活函数，神经网络层数再多，也只是简单的线性变换，无法处理复杂任务。</p>
+<ol>
+<li>阶跃函数：用于二分类，但导数始终为0，不能用于反向传播，理论意义大于实际意义。</li>
+<li>sigmoid函数：$f(x)=\frac{1}{1+e^{-x}}$，用于二分类，X靠近0的时候，一点小小的值变化也能引起Y很大变化，说明函数区域将数值推向极值，很适合二分类。X远离0时，X值变化对Y起作用很小，函数的导数变化也很小，在反向传播中几乎起不到更新梯度的作用；且sigmoid函数只能得到正值，在很多情况下不适用。</li>
+<li>tanh函数：$f(x)=\frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}$，对sigmoid函数的改进，函数值在(-1, 1)之间，改善了sigmoid函数只能得到正值的缺点，其他特点与sigmoid函数一模一样。</li>
+<li>ReLU函数：近年使用广泛，优点是当输入值是负值时，输出值为0，意味着一段时间内只有部分神经元被激活，神经网络的这种稀疏性使其变得高效且易于计算。但X小于0时函数梯度为0，意味着反向传播时权重得不到更新，那么正向传播过程中输出值为0的神经元永远得不到激活，变成了死神经元。</li>
+<li>Leaky ReLU函数：解决了死神经元的问题。</li>
+<li>Softmax函数：可以看作是用作多分类的激活函数，将神经网络的输出值变成概率。</li>
+<li>线性激活函数：效果等同于未激活，在Keras中不激活时就是用f(x)=x这一激活函数。二分类时用sigmoid函数和tanh函数，但存在梯度消失问题时应避免使用这两种函数。ReLU函数适用于绝大多数情况，如果存在梯度不更新的问题时可以用Leaky ReLU函数替代。</li>
+</ol>
+<h2 id="Softmax函数及求导"><a href="#Softmax函数及求导" class="headerlink" title="Softmax函数及求导"></a>Softmax函数及求导</h2><p>Softmax函数通常用于多分类问题中，它将一个包含任意实数的 K 维向量（K 是类别数量）映射为一个概率分布，每个类别的预测概率值都在 0 到 1 之间，所有类别的概率总和为 1。Softmax函数的作用是将原始得分转换为概率值，使得模型的输出更符合实际的概率分布。函数公式：$$S_i=\frac{e^{a_i}}{\sum ^K_{k=1} e^{a_k}}$$<br>其中，$a$ 是输入向量，上述公式表示第 $i$ 个类别的输出概率。函数求导分类讨论：</p>
+<ul>
+<li>当 $i=j$时：$$\frac{\partial S_i}{\partial a_j}=\frac{e^{a_i}\sum-e^{a_j}e^{a_i}}{\sum ^2}=S_i-S_iS_j$$</li>
+<li>当 $i\not =j$时：$$\frac{\partial S_i}{\partial a_j}=\frac{0-e^{a_j}e^{a_i}}{\sum ^2}=-S_iS_j$$</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cassiePython/article/details/80089760">Softmax函数及其导数</a></p>
+<h2 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h2><ul>
+<li>梯度下降法（Gradient Descent）：最基本最常用的优化算法。通过计算损失函数关于参数的梯度，以负梯度方向更新参数，使损失函数最小化。梯度下降法有多个变种，如批量梯度下降、随机梯度下降和小批量梯度下降。<ul>
+<li>$g_t=▽f(θ_{t−1}), △θ_t=−η∗g_t$</li>
+<li>批梯度下降：每次使用所有数据用于更新梯度，使得梯度总是朝着最小的方向更新，但数据量很大的时候更新速度太慢，容易陷入局部最优。</li>
+<li>随机梯度下降：每次使用一条数据来更新梯度，在梯度更新过程中梯度可能上升也可能下降，但总的来说梯度还是朝着最低的方向前进；最后梯度会在极小值附近徘徊。随机梯度下降的梯度更新速度快于批梯度下降，且由于每次梯度的更新方向不确定，陷入局部最优的时候有可能能跳出该局部极小值。</li>
+<li>mini-batch梯度下降：介于批梯度下降和随机梯度下降之间，每次用若干条数据更新梯度。mini-batch梯度下降可以使用矩阵的方式来计算梯度，因此速度快于随机梯度下降，且同样具有跳出局部最优的特点。</li>
+</ul>
+</li>
+<li>动量优化器（Momentum）：引入动量项加速收敛过程。在参数更新时考虑之前的更新方向，在梯度方向上积累速度。如果本次梯度衰减方向与上一次相同，则可以加速梯度下降；如果不一致，则抑制梯度的改变。有助于在平坦区域中加快学习速度并减少震荡。<ul>
+<li>$m_t=μ∗m_{t−1}+(1−μ)g_t$ </li>
+<li>$△θ_t=−η∗m_t$</li>
+</ul>
+</li>
+<li>自适应动量估计（Adaptive Moment Estimation，Adam）：基于一阶矩估计和二阶矩估计的自适应优化器。结合了动量和学习率衰减机制，并具有自适应学习率调整。在很多情况下能快速收敛。</li>
+<li>自适应学习率优化器（Adagrad、RMSProp）：Adagrad和RMSProp是常用的自适应学习率优化器。Adagrad适应性地调整参数的学习率，对于稀疏梯度的问题表现较好。RMSProp通过指数加权平均的方式动态调整学习率，适用于非平稳或具有较大梯度变化的问题。用初始学习率除以通过衰减系数控制的梯度平方和的平方根，相当于给每个参数赋予了各自的学习率。梯度相对平缓的地方，累积梯度小，学习率会增大；梯度相对陡峭的地方，累积梯度大，学习率会减小。从而加速训练。<ul>
+<li>RMSprop: $n_t=νn_{t−1}+(1−ν)g_t^2$</li>
+<li>$△θ_t=−\frac{η}{\sqrt{n_t+ϵ}}*g_t$</li>
+</ul>
+</li>
+<li>Adam：本质上是带有动量项的RMSprop，结合了两者的优点，可以为不同的参数计算不同的自适应学习率，实践中常用。<ul>
+<li>$m_t=μm_{t−1}+(1−μ)g_t$</li>
+<li>$n_t=νn_{t−1}+(1−ν)g_t^2$</li>
+<li>$\hat m_t=\frac{m_t}{1−μ^t}$</li>
+<li>$\hat n_t=\frac{n_t}{1−ν^t}$</li>
+<li>$△θ_t=-\frac{η}{\sqrt{\hat n_t+ϵ}}$ </li>
+</ul>
+</li>
+<li>AdamW：Adam的变种，主要用于解决权重衰减（weight decay）在Adam中的问题。在计算梯度更新时，将权重衰减的计算从梯度中分离出来，并将其应用于参数更新之前。使得权重衰减仅影响参数的更新方向，而不会降低参数的更新速度。优势在于更好地控制权重衰减的影响，减轻过度正则化的问题，使模型更易优化和训练。</li>
+</ul>
+<h2 id="残差连接"><a href="#残差连接" class="headerlink" title="残差连接"></a>残差连接</h2><p>Residual Connection跳跃连接技术，在模型中将输入信号与输出信号进行直接连接。作用：</p>
+<ul>
+<li>促进信息传递：使模型更容易传递信息和梯度，避免梯度消失或梯度爆炸，特别是在处理深层网络时。</li>
+<li>简化优化问题：可以简化优化问题，使模型更易于优化和训练。</li>
+<li>提高模型表达能力：允许模型保留更多的低层特征信息，使模型更好地捕捉输入序列中的细节和上下文信息。</li>
+</ul>
+<h2 id="DNN-CNN-RNN对比"><a href="#DNN-CNN-RNN对比" class="headerlink" title="DNN,CNN,RNN对比"></a>DNN,CNN,RNN对比</h2><div align="center">
+  <img src="DNN-CNN-RNN.png" height=45% width=45%>
+</div>
+
+
+<h2 id="池化层反向传播"><a href="#池化层反向传播" class="headerlink" title="池化层反向传播"></a>池化层反向传播</h2><p>反向传播在经过池化层的时候梯度的数量发生了变化。如2*2的池化操作，第L+1层梯度数量是L层的1/4，所以每个梯度要对应回4个梯度。</p>
+<ul>
+<li>mean_pooling：正向传播时取周围4个像素的均值，所以反向传播将梯度平均分成4分，再分给上一层。</li>
+<li>max_pooling：正向传播时取周围4个像素的最大值保留，其余的值丢弃，所以反向传播时将梯度对应回最大值的位置，其他位置取0。一般来说，为了知道最大值的位置，深度学习框架在正向传播时就用max_id来记录4个像素中最大值的位置。</li>
+</ul>
+<h2 id="浅层、深层神经网络差别"><a href="#浅层、深层神经网络差别" class="headerlink" title="浅层、深层神经网络差别"></a>浅层、深层神经网络差别</h2><p>神经网络中，权重参数是给数据做线性变换，而激活函数给数据带来的非线性变换。增加某一层神经元数量是在增加线性变换的复杂性，而增加网络层数是在增加非线性变换的复杂性。理论上，浅层神经网络就能模拟任何函数，但需要巨大的数据量，而深层神经网络可以用更少的数据量来学习到更好的拟合。</p>
+<h2 id="防止过拟合-1"><a href="#防止过拟合-1" class="headerlink" title="防止过拟合"></a>防止过拟合</h2><p>过拟合是模型学习能力太强大，把部分数据的不太一般的特性都学到了，并当成了整个样本空间的特性。防过拟合方法：</p>
+<ul>
+<li>L2正则化。原loss是$L_0$，加入L2正则化后loss是$L_0+\frac{\lambda}{2n}||W||^2$，L的梯度是$\frac{\partial{L}}{\partial{W}}=\frac{\partial{L_0}}{\partial{W}}+\frac{\lambda}{n}{W}$，$\frac{\partial{L}}{\partial{b}}=\frac{\partial{L_0}}{\partial{b}}$,可以看出，L2正则化只对W有影响，对b没有影响。而加入L2正则化后的梯度更新：$W=W-\alpha(\frac{\partial{L_0}}{\partial{W}}+\frac{\lambda}{n}{W})=(1-\frac{\alpha\lambda}{n})W-\alpha\frac{\partial{L_0}}{\partial{W}}$，相比于原梯度更新公式，改变的是$(1-2\alpha\lambda)W$这里，而由于$\alpha、\lambda、n$都是正数，所以$(1-\frac{\alpha\lambda}{n})&lt;1$。因此，L2正则化使得反向传播更新参数时W参数比不添加正则项更小。在过拟合中，由于对每个数据都拟合得很好，所以函数的变化在小范围内往往很剧烈，而要使函数在小范围内剧烈变化，就是要W参数值很大。L2正则化抑制了这种小范围剧烈变化，使得拟合程度“刚刚好”。</li>
+<li>L1正则化。原loss是$L_0$，加入L1正则化后loss是$L=L_0+\frac{\lambda}{n}|W|$, L的梯度是$\frac{\partial{L}}{\partial{W}}=\frac{\partial{L_0}}{\partial{W}}+\frac{\lambda}{n}|W|$,$\frac{\partial{L}}{\partial{b}}=\frac{\partial{L_0}}{\partial{b}}$, 可以看出，L1正则化只对W有影响，对b没有影响。而加入L1正则化后的梯度更新：$W=W-\alpha(\frac{\partial{L_0}}{\partial{W}}+\frac{\lambda}{n}{|W|})=W-\frac{\lambda}{n}|W|-\alpha\frac{\partial{L_0}}{\partial{W}}$, 如果W为正，相对于原梯度就减小；如W为负，相对于原梯度就增大。所以，L1正则化使得参数W在更新时向0靠近使得参数W具有稀疏性。而权重趋近0，也就相当于减小了网络复杂度，防止过拟合。</li>
+<li>Dropout。每次训练时，有一部分神经元不参与更新，而且每次不参与更新的神经元是随机的。随着训练的进行，每次用神经元就能拟合出较好的效果，少数拟合效果不好的也不会对结果造成太大的影响。</li>
+<li>增大数据量。过拟合是学习到了部分数据集的特有特征，那么增大数据集就能有效的防止这种情况出现。</li>
+<li>Early stop。数据分为训练集、验证集和测试集，每个epoch后都用验证集验证一下，如果随着训练的进行训练集loss持续下降，而验证集loss先下降后上升，说明出现了过拟合，应该立即停止训练。</li>
+<li>Batch Normalization。每次都用一个mini_batch的数据来计算均值和反差，这与整体的均值和方差存在一定偏差，从而带来了随机噪声，起到了与Dropout类似的效果，从而减轻过拟合。</li>
+<li>L1 / L2对比：<ul>
+<li>L1（拉格朗日Lasso）正则假设参数先验分布是Laplace分布，可以使权重稀疏，保证模型的稀疏性，某些参数等于0，产生稀疏权值矩阵，用于特征选择；</li>
+<li>L2（岭回归Ridge）正则假设参数先验分布是Gaussian分布，可以使权重平滑，保证模型的稳定性，也就是参数的值不会太大或太小。</li>
+<li>在实际使用中，如果特征是高维稀疏的，则使用L1正则；如果特征是低维稠密的，则使用L2正则</li>
+</ul>
+</li>
+</ul>
+<h2 id="BN层的计算"><a href="#BN层的计算" class="headerlink" title="BN层的计算"></a>BN层的计算</h2><p>神经网络反向传播后每一层的参数都会发生变化，在下一轮正向传播时第 $l$ 层的输出值 $Z^l=W\cdot{A}^{l-1}+b$ 也会发生变化，导致第 $l$ 层的 $A^l=relu(Z^l)$ 发生变化。而 $A^l$ 作为第 $l+1$ 层的输入， $l+1$ 就需要去适应适应这种数据分布的变化，这就是神经网络难以训练的原因之一。<br>为此，Batch Normalization的做法是调整数据的分布来改变这一现象，具体做法如下：</p>
+<ul>
+<li>训练: 一般每次训练数据都是一个batch，假设 $m=batch_size$，则：<ol>
+<li>计算各个特征均值 $\mu=\frac{1}{m}\sum_{i=1}^{m}z^i$，其中 $z^i$ 表示第 $i$ 条数据</li>
+<li>计算方差 $\sigma^2=\frac{1}{m}\sum_{i=1}^{m}(z^i-\mu)^2$</li>
+<li>归一化后的 $Z_{norm}^i=\frac{z^i-\mu}{\sqrt{\sigma^2+\epsilon}}$，$\epsilon$ 表示一个极小值，防止计算出现Nan</li>
+<li>这样调整分布后能加速训练，但之前层学习到的参数信息可能会丢失，所以加入参数 $\gamma$、$\beta$ 调整： $\widetilde{Z}^i=\gamma{Z_{norm}^i}+\beta$</li>
+</ol>
+</li>
+<li>反向传播:<br>$$\frac{\partial{L}}{\partial{Z_{norm}^i}}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}\lambda$$<br>$$\frac{\partial{L}}{\partial\lambda}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}Z_{norm}^i$$<br>$$\frac{\partial{L}}{\partial\beta}=\frac{\partial{L}}{\partial{\widetilde{Z}^i}}$$<br>$$\frac{\partial{L}}{\partial\sigma^2}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial\sigma^2}=\frac{\partial{L}}{\partial{Z_{norm}^i}}(-\frac{1}{2})(\sigma^2+\epsilon)^{\frac{-3}{2}}$$<br>$$\frac{\partial{L}}{\partial\mu}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial\mu}+\frac{\partial{L}}{\partial\sigma^2}\frac{\partial{\sigma^2}}{\partial{\mu}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{-1}{\sqrt{\sigma^2+\epsilon}}+\frac{\partial{L}}{\partial\sigma^2}\frac{-2\sum_{i=1}^{m}(z^i-\mu)}{m}$$<br>$$\frac{\partial{L}}{\partial{Z^i}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{\partial{Z_{norm}^i}}{\partial{Z^i}}+\frac{\partial{L}}{\partial\sigma^2}\frac{\partial{\sigma^2}}{\partial{Z^i}}+\frac{\partial{L}}{\partial\mu}\frac{\partial\mu}{\partial{Z^i}}=\frac{\partial{L}}{\partial{Z_{norm}^i}}\frac{1}{\sqrt{\sigma^2+\epsilon}}+\frac{\partial{L}}{\partial\sigma^2}\frac{2(Z^i-\mu)}{m}+\frac{\partial{L}}{\partial\mu}\frac{1}{m}$$</li>
+<li>测试: 测试时一般每次只送入一个数据，计算其均值和方差都是有偏估计，但训练过程中保存了每一组batch每一层的均值和方差，则对每一层都可以使用均值和方差的无偏估计：<br>$$\mu_{test}=E(\mu_{batch})$$<br>$$\sigma^2_{test}=\frac{m}{m-1}E(\sigma^2_{batch})$$<br>然后计算该层的输出：$\widetilde{Z}^i=\gamma{\frac{Z^i_{test}-\mu}{\sqrt{\sigma_{test}^2+\epsilon}}}+\beta$</li>
+<li>加在哪里: 原始论文中加在激活函数前面，但改论文部分作者主张加在激活函数后面，从实践上来说也是加在激活函数后面效果更好。</li>
+<li>局限: 实验表明，当batch_size小于8时，BN反而会带来负面作用；不适用于RNN</li>
+</ul>
+<h2 id="负梯度方向是函数局部值最快的方向"><a href="#负梯度方向是函数局部值最快的方向" class="headerlink" title="负梯度方向是函数局部值最快的方向"></a>负梯度方向是函数局部值最快的方向</h2><p>假设存在函数f(x)，l是任意方向的单位向量，要现在的目的就是要找到一个l使得f(x+l)−f(x)的变化值最大。根据公式有$f(x+l)-f(x)=&lt;grad_f, l&gt;$，所以原问题变为找到l使得$|grad_f|*|l|*cos(\theta)$最大，其中θ是 l与$grad_f$的夹角），很明显$\theta=0$时该值最大，也就是说l方向就是$grad_f$的方向，从而证明梯度方向是使得函数局布值变化最快的方向。</p>
+<h2 id="softmax-loss和cross-entropy"><a href="#softmax-loss和cross-entropy" class="headerlink" title="softmax loss和cross entropy"></a>softmax loss和cross entropy</h2><p>输入数据经过神经网络后得到的logits是一个[n, 1]向量（n表示进行n分类），此时向量中的数字可以是负无穷到正无穷的任意数字，经过softmax函数后才转换为概率。交叉熵函数形式与softmax loss函数几乎一样，当cross entropy的输入是softmax函数函数的输出时，二者就完全一样。将网络输出的预测值logit先用使用Softmax转换为预测概率值再传入 Cross Entropy Loss，就得到了最终的Softmax Loss。</p>
+<ul>
+<li>softmax: $P_i=\frac{e^i}{\sum_{k=1}^{n}e^k}$</li>
+<li>softmax loss:$L=-\sum_{i=1}^{n}y_ilogp_i$</li>
+<li>cross entropy:$L=-\sum_{i=1}^{n}y_ilogp_i$</li>
+<li>logistic regression: $L=-y_ilogp_i-(1-y_i)log(1-p_i)$</li>
+</ul>
+<h2 id="全连接层作用"><a href="#全连接层作用" class="headerlink" title="全连接层作用"></a>全连接层作用</h2><ol>
+<li>“分类”，将卷积层提取到的特征进行维数调整，同时融合各通道之间的信息。</li>
+<li>在迁移学习的过程中，有全连接层的模型比没有全连接层的表现更好。</li>
+</ol>
+<h2 id="RNN和LSTM"><a href="#RNN和LSTM" class="headerlink" title="RNN和LSTM"></a>RNN和LSTM</h2><p>RNN的优缺点：</p>
+<ul>
+<li>优点：<ul>
+<li>参数共享： RNN在每个时间步都使用相同的参数，因此在训练和预测时具有较小的计算负担。 </li>
+<li>灵活性： RNN可以处理各种长度的序列输入，并且可以用于不同的任务，如语言模型、时间序列预测等。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>梯度消失或爆炸： RNN在处理长期依赖关系时容易出现梯度消失或爆炸的问题，导致难以捕捉远距离的依赖关系。</li>
+<li>短期记忆限制： RNN的短期记忆相对较弱，难以有效地记住较长的历史信息。</li>
+</ul>
+</li>
+</ul>
+<p>LSTM的优缺点：</p>
+<ul>
+<li>优点：<ul>
+<li>长期依赖关系： LSTM通过门控机制（遗忘门、输入门、输出门）有效地解决了长期依赖问题，能够更好地捕捉长距离的序列依赖关系。</li>
+<li>记忆单元： LSTM引入了记忆单元，可以保留和更新信息，有助于记住长序列中的重要信息。</li>
+<li>防止梯度消失： LSTM通过门控机制可以更有效地控制梯度的流动，减少了梯度消失或爆炸的问题。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>计算复杂度高： LSTM相对于普通的RNN计算量更大，因为它包含更多的门控单元和参数。</li>
+<li>可能出现过拟合： LSTM模型相对复杂，可能在小样本数据上容易出现过拟合的情况。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Transformer相对LSTM的优势"><a href="#Transformer相对LSTM的优势" class="headerlink" title="Transformer相对LSTM的优势"></a>Transformer相对LSTM的优势</h2><ul>
+<li>Transformer更快，对较长的序列建模效果更好，减少了对顺序信息的依赖性，不需要前面的信息来更新后面的隐状态。Transformer能更好的处理长期依赖问题，使得它在生成式任务中的表现尤为突出。</li>
+<li>Transformer需要更多的数据来训练。但是transformer并行训练，速度更快；用更多的数据训练lstm，表现却不会再提升，上限低；很多efficient transformer减少了计算复杂度，或者加入一些先验信息来减少对预训练的依赖，都取得了很好的performance。</li>
+</ul>
+<h2 id="RNN不用Relu要用tanh函数？"><a href="#RNN不用Relu要用tanh函数？" class="headerlink" title="RNN不用Relu要用tanh函数？"></a>RNN不用Relu要用tanh函数？</h2><p>CNN中用ReLU函数能解决梯度消失的问题是因为Relu函数梯度为1，能解决梯度爆炸的问题是因为反向传播时W互不相同，它们连乘很大程度上能抵消梯度爆炸的效果；而RNN中用Relu是若干个W连乘，不能解决梯度爆炸的问题。所以想要解决RNN中的梯度消失问题，一般都是用LSTM。</p>
+<h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><p>一种基于自注意力机制的序列到序列（Sequence-to-Sequence）模型，用于处理NLP任务，解决长依赖问题和并行计算效率的平衡。相比于RNN模型Transformer使用全局的自注意力机制，使模型可以同时关注输入序列的所有位置，更好地捕捉长距离依赖关系。Transformer引入多头注意力机制提高了模型的表达能力。Transformer两个关键组件组成：Encoder和Decoder。编码器将输入序列编码为一系列上下文相关的表示，解码器用这些表示生成目标序列。</p>
+<ul>
+<li>编码器，输入序列经过多层自注意力层和前馈神经网络层处理。自注意力层中输入序列的每个位置都与其他位置进行注意力计算，以获取位置之间的相关性。使得模型能够在不同位置之间建立上下文关联，能够处理长距离的依赖关系。</li>
+<li>解码器，除自注意力层和前馈神经网络层，还包含一个编码器-解码器注意力层。交叉注意力层将编码器中的信息与解码器的当前位置关联，在生成目标序列时获得更好的上下文信息。</li>
+<li>Transformer端到端训练，最大化目标序列的条件概率来进行模型优化。训练中使用掩码注意力（Masked Attention）确保解码器只能看到当前位置之前输入，避免信息泄露。</li>
+</ul>
+<p>Transformer优点：</p>
+<ul>
+<li>能处理长距离依赖关系，适用于处理包含长序列的任务。</li>
+<li>并行计算效率高，使得模型在GPU上能够进行高效训练和推理。</li>
+<li>具有较好的表示能力和泛化能力，在多个NLP任务上取得了优异的性能。<br>Transformer对大规模数据和计算资源的需求较高，对某些任务可能需要更多的参数调优和数据预处理。</li>
+</ul>
+<h3 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h3><p>单词在句子中的位置以及排列顺序是非常重要的，引入词序信息有助于理解语义。循环神经网络本身就是一种顺序结构，天生就包含了词在序列中的位置信息。当抛弃循环神经网络结构，完全采用Attention取而代之，这些词序信息就会丢失，模型就没有办法知道每个词在句子中的相对和绝对的位置信息。因此有必要把词序信号加到词向量上帮助模型学习这些信息，位置编码（Positional Encoding）就是用来解决这种问题的方法。</p>
+<p>好的位置编码方案需满足：</p>
+<ol>
+<li>能为每个时间步输出一个独一无二的编码；</li>
+<li>不同长度的句子之间，任何两个时间步之间的距离应该保持一致；</li>
+<li>模型应该能毫不费力地泛化到更长的句子。它的值应该是有界的；</li>
+<li>必须是确定性的。</li>
+</ol>
+<p>Transformer位置编码不是单一的一个数值，而是包含句子中特定位置信息的d维向量（非常像词向量）。编码没有整合进模型，而是用这个向量让每个词具有它在句子中的位置的信息。换句话说，通过注入词的顺序信息来增强模型输入。<br>把512维的向量两两一组，每组都是一个sin和一个cos，这两个函数共享同一个频率 $w_i$，共256组，从0开始编号，最后一组编号是255。sin/cos函数的波长（由$w_i$决定）则从 2π 增长到 2π * 10000。位置编码性质：</p>
+<ul>
+<li>两个位置编码的点积(dot product)仅取决于偏移量 △t，也即两个位置编码的点积可以反应出两个位置编码间的距离。</li>
+<li>位置编码的点积是无向的，即$PE_t^T*PE_{t+△t}=PE_t^T*PE_{t-△t}$</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/454482273">Transformer学习笔记一：Positional Encoding（位置编码）</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/106644634">一文读懂Transformer模型的位置编码</a></p>
+<h3 id="head降维"><a href="#head降维" class="headerlink" title="head降维"></a>head降维</h3><p>Transformer的多头注意力看上去是借鉴了CNN中同一卷积层内使用多个卷积核的思想，原文中使用 8 个“scaled dot-product attention”，在同一“multi-head attention”层中，输入均为“KQV”，同时进行注意力的计算，彼此之前参数不共享，最终将结果拼接起来，这样可以允许模型在不同的表示子空间里学习到相关的信息。即希望每个注意力头只关注最终输出序列中一个子空间，互相独立。核心思想在于抽取到更加丰富的特征信息。如果只使用 one head 并且维度为 $d_{model}$ ，相较于 8 head 并且维度为 $d_{model} / 8$，存在高维空间下学习难度较大的问题，文中实验也证实了这一点，于是将原有的高维空间转化为多个低维子空间并再最后进行拼接，取得了更好的效果，十分巧妙。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/350369171">transformer中multi-head attention中每个head为什么要进行降维？</a></p>
+<h3 id="自注意力比例系数"><a href="#自注意力比例系数" class="headerlink" title="自注意力比例系数"></a>自注意力比例系数</h3><p>$d_k$是词向量/隐藏层的维度，Q<em>K的维度也是$d_k$，Q</em>K越大，相乘后的varience越大，除以$d_k$来平衡。</p>
+<ol>
+<li>除以根号$d_k$防止输入softmax的值过大，导致偏导数趋近于0</li>
+<li>选择根号$d_k$可以使得Q*K的结果满足期望为0，方差为1的分布，类似于归一化。</li>
+</ol>
+<h3 id="预测与推理阶段都使用mask原因"><a href="#预测与推理阶段都使用mask原因" class="headerlink" title="预测与推理阶段都使用mask原因"></a>预测与推理阶段都使用mask原因</h3><ul>
+<li>训练阶段：训练时计算loss，是用当前decoder输入所有单词对应位置的输出$y_1,y_2,…,y_t$与真实的翻译结果ground truth去分别算cross entropy loss，然后把t个loss加起来，如果使用self-attention，那么$y_1$这个输出里包含了$x_1$右侧单词信息（包含要预测下一个单词$x_2$的信息），用到了未来信息，属于信息泄露。</li>
+<li>预测阶段：预测阶段要保持重复单词预测结果是一样的，这样不仅合理，而且可以增量更新（预测时会选择性忽略重复的预测词，只摘取最新预测的单词拼接到输入序列中），如果关掉dropout，那么当预测序列是$x_1, x_2, x_3$时的输出结果，应该是和预测序列是$x_1, x_2, x_3, x_4$的前3个位置结果是一样的（增量更新）；同时与训练时的模型架构保持一致，前向传播的方式是一致的。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/419748171">从训练和预测角度来理解Transformer中Masked Self-Attention的原理</a></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/179959751">通过pytorch深入理解transformer中的自注意力(self attention)</a></p>
+<h2 id="BERT和GPT区别"><a href="#BERT和GPT区别" class="headerlink" title="BERT和GPT区别"></a>BERT和GPT区别</h2><p>二者都是采用「预训练+微调」的范式，</p>
+<ul>
+<li>BERT：几乎就是为「无监督预训练+下游任务微调」的范式量身定制的模型。BERT使用的掩码语言模型任务没有生成文本的能力，但换来的是双向编码的能力，这让模型拥有了更强的文本编码性能。主要用于解决语言理解相关的任务，如问答、语义关系抽取等。BERT更适用于在已有标注数据上微调的场景。</li>
+<li>GPT：基于生成式预训练的思想开发，为了保留生成文本的能力，只能采用单向编码。主要用于解决语言生成相关的任务，如文本生成、机器翻译等。GPT更适用于在大量未标注数据上预训练的场景。</li>
+</ul>
+<h2 id="深度学习模型和树模型的优缺点"><a href="#深度学习模型和树模型的优缺点" class="headerlink" title="深度学习模型和树模型的优缺点"></a>深度学习模型和树模型的优缺点</h2><p>深度学习模型的优缺点：</p>
+<ul>
+<li>优点：<ul>
+<li>擅长处理复杂数据： 对于大规模数据、高维数据和非线性关系，深度学习模型通常能够提供更好的拟合能力。</li>
+<li>特征学习能力强： 能够自动学习和提取数据的特征，减少对特征工程的需求。</li>
+<li>泛化能力强： 在大数据集上训练时，深度学习模型可能会产生更好的泛化效果，适用于更广泛的场景。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>需要大量数据和计算资源： 深度学习模型对于大规模数据集和复杂模型的训练需要大量的数据和高性能计算资源。</li>
+<li>需要调参和调优： 模型架构复杂，需要仔细调整超参数和优化模型结构。</li>
+<li>可解释性差</li>
+</ul>
+</li>
+</ul>
+<p>树模型的优缺点：</p>
+<ul>
+<li>优点：<ul>
+<li>易解释性强：能够直观地展示特征重要性和决策过程。</li>
+<li>对少量数据处理得当： 在数据较少或者数据质量较差的情况下，树模型表现通常较好。</li>
+<li>训练和预测速度快： 相对于深度学习模型，树模型的训练速度快，适合于处理中小规模的数据集。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>容易过拟合： 在某些情况下，树模型容易过拟合，尤其是当树的深度较大或没有采用适当的剪枝措施时。</li>
+<li>不擅长处理复杂关系： 对于复杂的非线性关系，树模型可能不如深度学习模型表现得好。</li>
+<li>需要人工特征工程： 对于传统的决策树模型，通常需要手动进行特征工程，挑选和构建合适的特征。</li>
+</ul>
+</li>
+</ul>
+<h1 id="计算机视觉"><a href="#计算机视觉" class="headerlink" title="计算机视觉"></a>计算机视觉</h1><h2 id="图像处理中一般用最大池化而不用平均池化"><a href="#图像处理中一般用最大池化而不用平均池化" class="headerlink" title="图像处理中一般用最大池化而不用平均池化"></a>图像处理中一般用最大池化而不用平均池化</h2><p>池化的主要目的：</p>
+<ol>
+<li>保持主要特征不变的同时减小了参数</li>
+<li>保持平移、旋转、尺度不变性，增强了神经网络的鲁棒性</li>
+</ol>
+<p>最大池化更能捕捉图像上的变化、梯度的变化，带来更大的局部信息差异化，从而更好地捕捉边缘、纹理等特征。</p>
+<h2 id="计算感受野"><a href="#计算感受野" class="headerlink" title="计算感受野"></a>计算感受野</h2><p>卷积层(conv)和池化层(pooling)都会影响感受野,激活函数层通常对于感受野没有影响,当前层的步长并不影响当前层的感受野,感受野和填补(padding)没有关系, 计算当层感受野的公式如下:<br>  $$RF_{i+1}=RF_i+(k-1) \times S_i$$<br>其中, $RF_{i+1}$ 表示当前层的感受野,  $RF_i$ 表示上一层的感受野, $k$ 表示卷积核的大小, $S_i$ 表示之前所有层的步长的乘积(不包括本层),公式如下:<br>  $$S_i=\prod^i_{i+1}Stride_i$$</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/113487374">感受野(Receptive Field)的理解与计算</a></p>
+<h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h2 id="径向基函数神经网络"><a href="#径向基函数神经网络" class="headerlink" title="径向基函数神经网络"></a>径向基函数神经网络</h2><p>Radial Basis Function NN一种基于人工神经网络的模型，使用径向基函数作为激活函数。通常由三层组成：输入层、隐藏层和输出层。隐藏层神经元的径向基函数将输入数据映射到高维特征空间。常用径向基函数包括高斯函数、多项式函数和超球函数等。RBFNN训练过程分为两步：中心点选择和权重计算。中心点选择通过一定的聚类方法确定隐藏层神经元的中心点，常见方法包括k-means聚类和高斯混合模型。权重计算通过解线性方程组来确定隐藏层神经元与输出层之间的连接权重，可使用最小二乘法或正则化方法进行求解。相比于传统前馈神经网络的优势：</p>
+<ul>
+<li>非线性逼近能力强：径向基函数的使用使RBFNN更好逼近非线性函数和复杂的数据分布。</li>
+<li>适应性好：对输入数据的分布没有要求，适用于各种类型的数据。</li>
+<li>快速训练：训练通常比传统神经网络更快，因为隐藏层神经元的权重可以通过解线性方程组来直接计算。</li>
+</ul>
+<p>挑战和注意事项：</p>
+<ul>
+<li>中心点选择的准确性对网络性能至关重要，不当的中心点选择可能导致网络性能下降。</li>
+<li>隐藏层神经元数量选择是一个关键问题，过多神经元可能过拟合，过少神经元无法充分表示数据复杂性。</li>
+<li>RBFNN的结构和训练过程相对复杂，需要合理的参数选择和调优，以及适当的数据预处理和特征选择。</li>
+</ul>
+<h2 id="因果森林"><a href="#因果森林" class="headerlink" title="因果森林"></a>因果森林</h2><p>Causal Forest一种用于因果推断的基于决策树的集成学习算法，旨在从观测数据中推断出因果关系。通过构建多个决策树（回归树）模型来估计因果效应，并将它们组合起来得到最终的因果估计结果。每个决策树模型都在不同的数据子集上训练，可以捕捉到不同的因果关系。算法步骤：</p>
+<ul>
+<li>数据准备：从观测数据中选出一个特征作为因果变量（Treatment），一个或多个特征作为响应变量（Outcome），以及其他可能的特征作为控制变量（Covariates）。</li>
+<li>决策树训练：对每棵决策树，用因果变量和控制变量作为输入特征，响应变量作为目标进行训练。决策树的切分规则和叶子节点的取值根据因果效应优化。</li>
+<li>因果效应估计：对于每个观测样本，通过在决策树中预测，得到不同因果变量取值下的响应变量预测值。计算因果效应作为不同因果变量取值下的响应变量预测值的差异。</li>
+<li>因果估计的组合：将多棵决策树的因果效应估计结果进行组合，通常采用简单或加权平均方式。最终得到的组合结果作为因果效应的估计。</li>
+</ul>
+<p>因果森林算法优势：可以处理高维、非线性和交互效应等复杂情况，对于处理隐藏的混淆变量也较为有效。能够在不倚赖任何预设模型前提下，从数据中自动推断因果效应。<br>限制：对于因果变量和响应变量之间的非线性关系可能存在一定的限制。此外，算法的性能和效果也受到数据质量、样本量和特征选择等因素的影响。</p>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><p>数据预处理：按照control数据量是treatment数据量10倍随机采样，并根据<code>0&lt;diff_cvr&lt;=0.4</code>对原数据（obs）进⾏筛选，<br>PSI公式： <code>psi = sum((实际占比-预期占比) * ln(实际占比/预期占比))</code>。psi小于0.1时变量稳定性很高。群体稳定性指标PSI(Population Stability Index)是衡量模型的预测值与实际值偏差大小的指标。<br>收益评估 <code>ROI = delta收益 / delta投资 = tau / cvr1</code></p>
+<h1 id="大数据处理"><a href="#大数据处理" class="headerlink" title="大数据处理"></a>大数据处理</h1><h2 id="Spark的核心构件"><a href="#Spark的核心构件" class="headerlink" title="Spark的核心构件"></a>Spark的核心构件</h2><p>Spark是一个通用的、分布式计算框架，用于大规模数据处理和分析。它提供了许多核心构件用于构建高性能、可扩展的分布式应用程序。核心构件：</p>
+<ul>
+<li>基础模块Spark Core，提供分布式任务调度、内存管理、错误恢复、存储管理和与底层资源管理系统的交互等功能。定义了RDD（弹性分布式数据集）抽象，支持数据的并行处理和分布式计算。</li>
+<li>Spark SQL，用于处理结构化数据。提供了对结构化数据的高级查询、SQL查询、数据集的操作和集成的机器学习功能。Spark SQL支持多种数据源，包括Hive、Avro、Parquet等，并提供了DataFrame和DataSet两种API。</li>
+<li>流处理模块Spark Streaming，用于实时数据的处理和分析。支持从各种数据源（如Kafka、Flume、HDFS等）读取实时数据流，并提供高级API来进行数据处理和转换。Spark Streaming使用微批处理的方式，将实时数据划分为小批量进行处理，实现低延迟的流处理。</li>
+<li>机器学习库MLlib，提供一组分布式的机器学习算法和工具。包括常见机器学习算法（如分类、回归、聚类、推荐等），特征提取、模型评估和调优等功能。MLlib支持使用DataFrame和DataSet进行数据操作和特征工程，并提供分布式计算能力。</li>
+<li>图处理库GraphX，用于处理大规模图数据。提供图的创建、转换、操作和算法等功能，支持基于顶点和边属性的图分析。GraphX提供高效的分布式图计算引擎，与Spark其他模块集成，使图计算和图分析更加高效和灵活。</li>
+<li>Spark还提供了一些其他扩展模块和工具，如SparkR（用于R语言的接口）、Spark on Kubernetes（在Kubernetes上运行Spark应用程序）等。</li>
+</ul>
+<h2 id="Spark数据倾斜"><a href="#Spark数据倾斜" class="headerlink" title="Spark数据倾斜"></a>Spark数据倾斜</h2><p>原理：在进行shuffle的时候，必须将各个节点上相同的key拉取到某个节点上的一个task来进行处理，如按照key聚合或join。如果某个key对应的数据量特别大的话，就会发生数据倾斜。整个Spark作业的运行进度是由运行时间最长的那个task决定的。</p>
+<p>原因：常用的且可能会触发shuffle操作的算子：distinct、groupByKey、reduceByKey、aggregateByKey、join、cogroup、repartition等。出现数据倾斜时，可能是代码中使用了这些算子中的某一个所导致的。</p>
+<p>解决方案：由于Spark都是基于RDD的特性，所以可以用纯RDD的方法，实现和Spark SQL一模一样的功能。在Spark Core中的数据倾斜的七种解决方案，全部都可以直接套用在Spark SQL上。</p>
+<ol>
+<li>聚合源数据：<ul>
+<li>原理：使用 Hive ETL 预处理数据，对数据按照key进行聚合，或预先和其他表进行join，然后在Spark作业中针对的数据源就不是原来的Hive表了，而是预处理后的Hive表。此时由于数据已经预先进行过聚合或join，在Spark作业中就不需要使用原先的shuffle类算子执行这类操作。</li>
+<li>优点：实现起来简单便捷，效果还非常好，完全规避掉了数据倾斜，Spark作业的性能会大幅度提升。</li>
+<li>缺点：治标不治本，Hive ETL中还是会发生数据倾斜。</li>
+</ul>
+</li>
+<li>过滤导致倾斜的key：在sql中用where条件<ul>
+<li>原理： 动态判定哪些key的数据量最多然后再进行过滤，可以使用sample算子对RDD进行采样，计算出每个key的数量，取数据量最多的key过滤掉即可。</li>
+<li>优点：实现简单，效果好，可以完全规避掉数据倾斜。</li>
+<li>缺点：适用场景不多，大多数情况下，导致倾斜的key还是很多的，并不是只有少数几个。s</li>
+</ul>
+</li>
+<li>提高shuffle并行度：groupByKey(1000)，spark.sql.shuffle.partitions（默认是200）<ul>
+<li>原理：该参数设置了shuffle算子执行时shuffle read task的数量。对于Spark SQL中的shuffle类语句，如group by、join需要设置一个参数，即spark.sql.shuffle.partitions，代表了shuffle read task的并行度。增加shuffle read task的数量，可以让原本分配给一个task的多个key分配给多个task，从而让每个task处理比原来更少的数据。</li>
+<li>优点：实现起来简单，可以有效缓解和减轻数据倾斜的影响。</li>
+<li>缺点：只是缓解了数据倾斜，没有彻底根除问题，效果有限。</li>
+</ul>
+</li>
+<li>两阶段聚合（局部聚合+全局聚合）：双重groupBy，改写SQL，两次groupBy<ul>
+<li>原理：将原本相同的key通过附加随机前缀的方式，变成多个不同的key，可以让原本被一个task处理的数据分散到多个task上去做局部聚合，解决单个task处理数据量过多的问题。接着去除掉随机前缀，再次进行全局聚合，得到最终的结果。</li>
+<li>优点：对于聚合类的shuffle操作导致的数据倾斜，效果不错。通常都可以解决掉数据倾斜，或者至少是大幅度缓解数据倾斜，将Spark作业的性能提升数倍以上。</li>
+<li>缺点：仅仅适用于聚合类的shuffle操作，适用范围较窄。如果是join类的shuffle操作，还得用其他的解决方案。</li>
+</ul>
+</li>
+<li>reduce join转换为map join：<ul>
+<li>原理：不使用join算子进行连接操作，而使用Broadcast变量与map类算子实现join操作，进而完全规避掉shuffle类的操作，彻底避免数据倾斜的发生和出现。将较小RDD中的数据直接通过collect算子拉取到Driver端的内存中来，然后对其创建一个Broadcast变量；接着对另外一个RDD执行map类算子，在算子函数内，从Broadcast变量中获取较小RDD的全量数据，与当前RDD的每一条数据按照连接key进行比对，如果连接key相同的话，那么就将两个RDD的数据用需要的方式连接起来。</li>
+<li>优点：对join操作导致的数据倾斜，效果非常好，因为根本就不会发生shuffle，也就根本不会发生数据倾斜。</li>
+<li>缺点：适用场景较少，因为这个方案只适用于一个大表和一个小表的情况。需要将小表进行广播会比较消耗内存资源，driver和每个Executor内存中都会驻留一份小RDD的全量数据。如果广播出去的RDD数据比较大，比如10G以上，那么就可能发生内存溢出了。因此并不适合两个都是大表的情况。</li>
+</ul>
+</li>
+<li>采样倾斜key并分拆join操作：纯Spark Core的一种方式，sample、filter等算子<ul>
+<li>原理：对于join导致的数据倾斜，如果只是某几个key导致了倾斜，可以将少数几个key分拆成独立RDD，并附加随机前缀打散成n份去进行join，此时这几个key对应的数据就不会集中在少数几个task上，而是分散到多个task进行join了。</li>
+<li>优点：对于join导致的数据倾斜，如果只是某几个key导致了倾斜，采用该方式可以用最有效的方式打散key进行join。而且只需要针对少数倾斜key对应的数据进行扩容n倍，不需要对全量数据进行扩容。避免了占用过多内存。</li>
+<li>缺点：如果导致倾斜的key特别多的话，比如成千上万个key都导致数据倾斜，这种方式也不适合。</li>
+</ul>
+</li>
+<li>使用随机前缀和扩容RDD进行join<ul>
+<li>原理：将原先一样的key通过附加随机前缀变成不一样的key，然后就可以将这些处理后的“不同key”分散到多个task中去处理，而不是让一个task处理大量的相同key。该方案与“解决方案六”的不同之处就在于，上一种方案是尽量只对少数倾斜key对应的数据进行特殊处理，由于处理过程需要扩容RDD，因此上一种方案扩容RDD后对内存的占用并不大；而这一种方案是针对有大量倾斜key的情况，没法将部分key拆分出来进行单独处理，因此只能对整个RDD进行数据扩容，对内存资源要求很高。</li>
+<li>优点：对join类型的数据倾斜基本都可以处理，而且效果也相对比较显著，性能提升效果非常不错。</li>
+<li>缺点：该方案更多的是缓解数据倾斜，而不是彻底避免数据倾斜。而且需要对整个RDD进行扩容，对内存资源要求很高。</li>
+</ul>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/441715583">万字详解 Spark 数据倾斜及解决方案</a></p>
+<h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>MapReduce是hadoop的核心组件之一，hadoop要分布式包括两部分，一是分布式文件系统hdfs,一是分布式计算框，就是MapReduce。MapReduce的思想就是“分而治之”。</p>
+<ul>
+<li>Mapper负责“分”，把复杂的任务分解为若干个“简单的任务”来处理。“简单的任务”包含三层含义：一是数据或计算的规模相对原任务要大大缩小；二是就近计算原则，即任务会分配到存放着所需数据的节点上进行计算；三是这些小任务可以并行计算，彼此间几乎没有依赖关系。</li>
+<li>Reducer负责对map阶段的结果进行汇总。用户可以根据具体问题设置Reducer数量，通过在mapred-site.xml配置文件里设置参数mapred.reduce.tasks的值，缺省值为1。</li>
+</ul>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="树结构在操作系统中的应用"><a href="#树结构在操作系统中的应用" class="headerlink" title="树结构在操作系统中的应用"></a>树结构在操作系统中的应用</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20176446">数据结构与算法中，树一般会应用在哪些方面？为什么？</a></p>
+<h2 id="TensorFlow和PyTorch区别及优缺点对比"><a href="#TensorFlow和PyTorch区别及优缺点对比" class="headerlink" title="TensorFlow和PyTorch区别及优缺点对比"></a>TensorFlow和PyTorch区别及优缺点对比</h2><p>两者之间最重要的区别是这些框架定义计算图的方式。Tensorflow1.0 创建的是静态图（2.0为动态图），PyTorch 是动态图。Tensorflow1.0 中，必须定义模型的整个计算图，然后运行 ML 模型。在 PyTorch 中，可以随时随地定义/操作图形。这在 RNN 中使用可变长度输入时比较有用。</p>
+<ul>
+<li>模型可用性：PyTorch 在研究领域占据主导地位。虽然 TensorFlow 2 解决了研究者使用该框架进行研究的一些痛点，但 PyTorch 却没有给研究者回头的理由。此外，TensorFlow 两大版本之间的向后兼容性问题只会让这种趋势愈演愈烈。</li>
+<li>部署便捷性：TensorFlow 胜出。TensorFlow 依然在部署方面占有优势。Serving 和 TFLite 比 PyTorch 的同类型工具要稳健一些。而且，将 TFLite 与谷歌的 Coral 设备一起用于本地 AI 的能力是许多行业的必备条件。PyTorch Live 只专注于移动平台，而 TorchServe 仍处于起步阶段。</li>
+<li>生态系统：TensorFlow 更胜一筹。尽管 PyTorch (Facebook) 和 TensorFlow (Google) 有很多相似和共享的资源，。谷歌投入巨资确保深度学习的每个相关领域都有完善的产品。与 Google Cloud 和 TFX 的紧密集成使端到端的开发过程变得轻而易举，而将模型移植到 Google Coral 设备的便利性让 TensorFlow 在某些行业取得了压倒性的胜利。</li>
+<li>参考：<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37102973">PyTorch VS TensorFlow：细数两者的不同之处</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/466991365">2022 年了，PyTorch 和 TensorFlow 你选哪个？</a></li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">贪钱算法还我头发</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2023/06/05/Interview-Experience/">https://xfliu1998.github.io/2023/06/05/Interview-Experience/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><a class="post-meta__tags" href="/tags/Deep-Learning/">Deep Learning</a></div><div class="post_share"><div class="social-share" data-image="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/06/13/Sort-Algorithm/"><img class="prev-cover" src="http://img.shijue.me/05adac4bd8b1447697e1053623e74d68_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Sort Algorithm</div></div></a></div><div class="next-post pull-right"><a href="/2023/06/04/Graph-Theory/"><img class="next-cover" src="http://img.shijue.me/845aa0476235409e9ef646afb7c05ab7_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Graph Theory</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/03/31/Causal-Inference/" title="Causal Inference"><img class="cover" src="http://img.shijue.me/10b92be98ffd40ceb11468fe27b5cb08_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-31</div><div class="title">Causal Inference</div></div></a></div><div><a href="/2023/03/25/Papers-Ideas/" title="Papers Ideas"><img class="cover" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&h=180&c=7&r=0&o=5&dpr=2&pid=1.7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-25</div><div class="title">Papers Ideas</div></div></a></div><div><a href="/2023/01/11/SfM-SLAM/" title="SfM & SLAM"><img class="cover" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&rs=1" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-11</div><div class="title">SfM & SLAM</div></div></a></div><div><a href="/2022/10/01/9-3D-Construction/" title="3D Construction"><img class="cover" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-01</div><div class="title">3D Construction</div></div></a></div><div><a href="/2022/09/17/Papers-Reading-about-NLP/" title="Papers Reading about NLP"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&h=201&c=7&r=0&o=5&dpr=1.88&pid=1.7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Papers Reading about NLP</div></div></a></div><div><a href="/2022/09/17/Papers-Reading-about-CV/" title="Papers Reading about CV"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&h=201&c=7&r=0&o=5&dpr=1.88&pid=1.7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Papers Reading about CV</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">贪钱算法还我头发</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/keiven_" target="_blank" title="CSDN"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">欢迎来这里掉头发</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text">机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%92%8C%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">线性和逻辑回归模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-number">1.2.</span> <span class="toc-text">逻辑回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E7%B1%BB%E5%92%8C%E5%A4%9A%E5%88%86%E7%B1%BB%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">二分类和多分类的损失函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E7%B1%BB%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E8%80%8C%E4%B8%8D%E7%94%A8MSE%E6%8D%9F%E5%A4%B1%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">二分类为什么用交叉熵损失而不用MSE损失？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%8F%E5%B7%AE%E4%B8%8E%E6%96%B9%E5%B7%AE"><span class="toc-number">1.5.</span> <span class="toc-text">偏差与方差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Layer-Normalization-%E5%92%8C-Batch-Normalization"><span class="toc-number">1.6.</span> <span class="toc-text">Layer Normalization 和 Batch Normalization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SVM"><span class="toc-number">1.7.</span> <span class="toc-text">SVM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%B8%8D%E5%9D%87%E8%A1%A1"><span class="toc-number">1.8.</span> <span class="toc-text">数据不均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="toc-number">1.9.</span> <span class="toc-text">特征选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.10.</span> <span class="toc-text">排序模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.11.</span> <span class="toc-text">树模型进行特征工程的原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GBDT"><span class="toc-number">1.12.</span> <span class="toc-text">GBDT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LR%E5%92%8CGBDT"><span class="toc-number">1.13.</span> <span class="toc-text">LR和GBDT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RF%E5%92%8CGBDT"><span class="toc-number">1.14.</span> <span class="toc-text">RF和GBDT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGBoost"><span class="toc-number">1.15.</span> <span class="toc-text">XGBoost</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E9%98%B6%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80%E4%BC%98%E5%8A%BF"><span class="toc-number">1.15.1.</span> <span class="toc-text">二阶泰勒展开优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BF%AB"><span class="toc-number">1.15.2.</span> <span class="toc-text">为什么快</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E6%AD%A2%E8%BF%87%E6%8B%9F%E5%90%88"><span class="toc-number">1.15.3.</span> <span class="toc-text">防止过拟合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="toc-number">1.15.4.</span> <span class="toc-text">处理缺失值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E5%81%9C%E6%AD%A2%E7%94%9F%E9%95%BF%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.15.5.</span> <span class="toc-text">树停止生长条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E4%B8%8D%E5%B9%B3%E8%A1%A1%E6%95%B0%E6%8D%AE"><span class="toc-number">1.15.6.</span> <span class="toc-text">处理不平衡数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E5%89%AA%E6%9E%9D"><span class="toc-number">1.15.7.</span> <span class="toc-text">树剪枝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E6%9C%80%E4%BD%B3%E5%88%86%E8%A3%82%E7%82%B9"><span class="toc-number">1.15.8.</span> <span class="toc-text">选择最佳分裂点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scalable%E6%80%A7"><span class="toc-number">1.15.9.</span> <span class="toc-text">Scalable性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%BE%81%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-number">1.15.10.</span> <span class="toc-text">特征重要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%8F%82%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.15.11.</span> <span class="toc-text">调参步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%8B%9F%E5%90%88%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.15.12.</span> <span class="toc-text">过拟合解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%BC%BA%E5%A4%B1%E5%80%BC%E4%B8%8D%E6%95%8F%E6%84%9F"><span class="toc-number">1.15.13.</span> <span class="toc-text">对缺失值不敏感</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGBoost%E5%92%8CRF%E5%8D%95%E6%A3%B5%E6%A0%91%E5%93%AA%E4%B8%AA%E6%9B%B4%E6%B7%B1%EF%BC%9F"><span class="toc-number">1.16.</span> <span class="toc-text">XGBoost和RF单棵树哪个更深？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGBoost%E5%92%8CGBDT"><span class="toc-number">1.17.</span> <span class="toc-text">XGBoost和GBDT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XGBoost%E5%92%8CLightGBM"><span class="toc-number">1.18.</span> <span class="toc-text">XGBoost和LightGBM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AUC"><span class="toc-number">1.19.</span> <span class="toc-text">AUC</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-number">2.</span> <span class="toc-text">深度学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">激活函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Softmax%E5%87%BD%E6%95%B0%E5%8F%8A%E6%B1%82%E5%AF%BC"><span class="toc-number">2.2.</span> <span class="toc-text">Softmax函数及求导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">2.3.</span> <span class="toc-text">优化器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AE%8B%E5%B7%AE%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.4.</span> <span class="toc-text">残差连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNN-CNN-RNN%E5%AF%B9%E6%AF%94"><span class="toc-number">2.5.</span> <span class="toc-text">DNN,CNN,RNN对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%A0%E5%8C%96%E5%B1%82%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-number">2.6.</span> <span class="toc-text">池化层反向传播</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%85%E5%B1%82%E3%80%81%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%B7%AE%E5%88%AB"><span class="toc-number">2.7.</span> <span class="toc-text">浅层、深层神经网络差别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E6%AD%A2%E8%BF%87%E6%8B%9F%E5%90%88-1"><span class="toc-number">2.8.</span> <span class="toc-text">防止过拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BN%E5%B1%82%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">2.9.</span> <span class="toc-text">BN层的计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E6%A2%AF%E5%BA%A6%E6%96%B9%E5%90%91%E6%98%AF%E5%87%BD%E6%95%B0%E5%B1%80%E9%83%A8%E5%80%BC%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E5%90%91"><span class="toc-number">2.10.</span> <span class="toc-text">负梯度方向是函数局部值最快的方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#softmax-loss%E5%92%8Ccross-entropy"><span class="toc-number">2.11.</span> <span class="toc-text">softmax loss和cross entropy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E4%BD%9C%E7%94%A8"><span class="toc-number">2.12.</span> <span class="toc-text">全连接层作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RNN%E5%92%8CLSTM"><span class="toc-number">2.13.</span> <span class="toc-text">RNN和LSTM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transformer%E7%9B%B8%E5%AF%B9LSTM%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">2.14.</span> <span class="toc-text">Transformer相对LSTM的优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RNN%E4%B8%8D%E7%94%A8Relu%E8%A6%81%E7%94%A8tanh%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="toc-number">2.15.</span> <span class="toc-text">RNN不用Relu要用tanh函数？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transformer"><span class="toc-number">2.16.</span> <span class="toc-text">Transformer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-number">2.16.1.</span> <span class="toc-text">位置编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head%E9%99%8D%E7%BB%B4"><span class="toc-number">2.16.2.</span> <span class="toc-text">head降维</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%AF%94%E4%BE%8B%E7%B3%BB%E6%95%B0"><span class="toc-number">2.16.3.</span> <span class="toc-text">自注意力比例系数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E6%B5%8B%E4%B8%8E%E6%8E%A8%E7%90%86%E9%98%B6%E6%AE%B5%E9%83%BD%E4%BD%BF%E7%94%A8mask%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.16.4.</span> <span class="toc-text">预测与推理阶段都使用mask原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.16.5.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BERT%E5%92%8CGPT%E5%8C%BA%E5%88%AB"><span class="toc-number">2.17.</span> <span class="toc-text">BERT和GPT区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%A0%91%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">2.18.</span> <span class="toc-text">深度学习模型和树模型的优缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89"><span class="toc-number">3.</span> <span class="toc-text">计算机视觉</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B8%AD%E4%B8%80%E8%88%AC%E7%94%A8%E6%9C%80%E5%A4%A7%E6%B1%A0%E5%8C%96%E8%80%8C%E4%B8%8D%E7%94%A8%E5%B9%B3%E5%9D%87%E6%B1%A0%E5%8C%96"><span class="toc-number">3.1.</span> <span class="toc-text">图像处理中一般用最大池化而不用平均池化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%84%9F%E5%8F%97%E9%87%8E"><span class="toc-number">3.2.</span> <span class="toc-text">计算感受野</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.</span> <span class="toc-text">项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%84%E5%90%91%E5%9F%BA%E5%87%BD%E6%95%B0%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">4.1.</span> <span class="toc-text">径向基函数神经网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A0%E6%9E%9C%E6%A3%AE%E6%9E%97"><span class="toc-number">4.2.</span> <span class="toc-text">因果森林</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%86%E8%8A%82"><span class="toc-number">4.3.</span> <span class="toc-text">细节</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">大数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spark%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9E%84%E4%BB%B6"><span class="toc-number">5.1.</span> <span class="toc-text">Spark的核心构件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spark%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C"><span class="toc-number">5.2.</span> <span class="toc-text">Spark数据倾斜</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce"><span class="toc-number">5.3.</span> <span class="toc-text">MapReduce</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">6.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%BB%93%E6%9E%84%E5%9C%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">6.1.</span> <span class="toc-text">树结构在操作系统中的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TensorFlow%E5%92%8CPyTorch%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9%E5%AF%B9%E6%AF%94"><span class="toc-number">6.2.</span> <span class="toc-text">TensorFlow和PyTorch区别及优缺点对比</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 贪钱算法还我头发</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '1b0c10ce649501ea4a72',
+      clientSecret: '741b5e861137e3d5a482bba272c8201b78da6cb0',
+      repo: 'xfliu1998.github.io',
+      owner: 'xfliu1998',
+      admin: ['xfliu1998'],
+      id: '26a27ea0d328ce3ea98e882b28dc4096',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Machine-Learning-and-Deep-Learning/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 机器学习与深度学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Structures-and-Algorithms/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">😼 数据结构与算法 (16)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Search-Advertisement-Recommendation-Causal/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🗂️ 搜索/广告/推荐/因果 (10)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Analysis-and-Processing/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 数据分析与处理 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Reading-Notes/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 阅读笔记 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Daily/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 日常随想 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://xfliu1998.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-NLP/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-NLP/" alt="">Papers Reading about NLP</a><div class="blog-slider__text">自然语言处理论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-NLP/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/10/01/9-3D-Construction/" alt=""><img width="48" height="48" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-01</span><a class="blog-slider__title" href="2022/10/01/9-3D-Construction/" alt="">3D Construction</a><div class="blog-slider__text">三维重建基础</div><a class="blog-slider__button" href="2022/10/01/9-3D-Construction/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/01/11/SfM-SLAM/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&amp;rs=1" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-01-11</span><a class="blog-slider__title" href="2023/01/11/SfM-SLAM/" alt="">SfM &amp; SLAM</a><div class="blog-slider__text">SfM和SLAM系统</div><a class="blog-slider__button" href="2023/01/11/SfM-SLAM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=2&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-CV/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-CV/" alt="">Papers Reading about CV</a><div class="blog-slider__text">计算机视觉论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-CV/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/06/05/Interview-Experience/" alt=""><img width="48" height="48" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-06-05</span><a class="blog-slider__title" href="2023/06/05/Interview-Experience/" alt="">Interview Experience</a><div class="blog-slider__text">面经八股</div><a class="blog-slider__button" href="2023/06/05/Interview-Experience/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="http://img.shijue.me/78ae8b05a73444cd9643a8312abc0d43.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">Learning Framework</a><div class="blog-slider__text">学习大纲</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<container><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></container>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gitcalendar.fomal.cc/api?xfliu1998",['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9'],'xfliu1998')
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

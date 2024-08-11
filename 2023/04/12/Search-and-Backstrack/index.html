@@ -1,0 +1,746 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Search and Backstrack | 一直进步 做喜欢的</title><meta name="keywords" content="Data Structures and Algorithms,LeetCode"><meta name="author" content="贪钱算法还我头发"><meta name="copyright" content="贪钱算法还我头发"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="算法——搜索(DFS&#x2F;BFS)和回溯">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Search and Backstrack">
+<meta property="og:url" content="https://xfliu1998.github.io/2023/04/12/Search-and-Backstrack/index.html">
+<meta property="og:site_name" content="一直进步 做喜欢的">
+<meta property="og:description" content="算法——搜索(DFS&#x2F;BFS)和回溯">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.omegaxyz.com/wp-content/uploads/2019/05/recall.jpeg">
+<meta property="article:published_time" content="2023-04-12T04:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-02T14:06:58.657Z">
+<meta property="article:author" content="贪钱算法还我头发">
+<meta property="article:tag" content="Data Structures and Algorithms">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.omegaxyz.com/wp-content/uploads/2019/05/recall.jpeg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2023/04/12/Search-and-Backstrack/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Search and Backstrack',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-02 22:06:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.omegaxyz.com/wp-content/uploads/2019/05/recall.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Search and Backstrack</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-04-12T04:00:00.000Z" title="Created 2023-04-12 12:00:00">2023-04-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-12-02T14:06:58.657Z" title="Updated 2023-12-02 22:06:58">2023-12-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Data-Structures-and-Algorithms/">Data Structures and Algorithms</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>12min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Search and Backstrack"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2023/04/12/Search-and-Backstrack/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><ul>
+<li>定义：是指一个问题可以被分解为更小的、相同或类似的问题，并且这些子问题可以通过递归调用算法本身来解决。</li>
+<li>基本情况：递归算法必须具有一个基本情况，这是递归的结束条件。当问题的规模足够小，可以直接解决时，递归算法就会停止递归。</li>
+<li>递归调用：递归算法通过递归调用自身来解决问题。每个递归调用都会将问题规模缩小到一个更小的子问题上，直到达到基本情况。</li>
+<li>栈空间：递归算法使用栈空间来存储每个递归调用的上下文信息。每次递归调用都会将当前的上下文信息推入栈空间，当递归结束时，栈空间会弹出上一个上下文信息。</li>
+<li>递归与迭代：递归算法与迭代算法是算法设计中的两种主要思想。递归算法通过递归调用自身来解决问题，而迭代算法则使用循环来解决问题。</li>
+<li>时间复杂度：粗略估算方法就是用递归函数调用次数（递归树的节点数） x 递归函数本身的复杂度。</li>
+</ul>
+<h1 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h1><h2 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h2><p>深度优先搜索（Depth-First Search，DFS）是一种图遍历算法，它从起始顶点开始，依次访问其所有相邻顶点，并递归地对每个相邻顶点进行深度优先搜索，直到遍历完整个图。知识点：</p>
+<ul>
+<li><strong>栈</strong>：DFS可以使用栈来实现。从起始顶点开始，将其压入栈中，然后循环执行以下操作：从栈中取出一个顶点，并访问其所有未访问的相邻顶点，将其压入栈中。直到栈为空，搜索结束。</li>
+<li><strong>递归</strong>：DFS也可以使用递归实现。从起始顶点开始，依次递归地访问其所有相邻顶点，直到遍历完整个图。递归实现的优点是代码简洁清晰，但也有可能导致栈溢出。</li>
+<li><strong>标记数组</strong>：为了避免重复访问已经访问过的顶点，DFS通常使用一个布尔类型的标记数组来记录每个顶点是否已经访问过。</li>
+<li><strong>拓扑排序</strong>：DFS可以用来实现拓扑排序。拓扑排序是对有向无环图的所有顶点进行排序的一种算法。通过DFS，可以将图中的所有顶点按照其依赖关系排序，从而实现拓扑排序。</li>
+<li><strong>时间复杂度</strong>：DFS的时间复杂度取决于搜索过程中访问每个顶点的次数。对于稠密图，每个顶点都会被访问一次，因此时间复杂度为 $O(V^2)$，其中 $V$ 是顶点数。对于稀疏图，时间复杂度可以达到 $O(V+E)$，其中 $E$ 是边数。</li>
+<li><strong>空间复杂度</strong>：DFS靠递归的堆栈记录⾛过的路径，要找到最短路径得把⼆叉树中所有树杈都探索完才能对⽐出最短的路径有多⻓，DFS 算法空间复杂度最坏情况下是树⾼度$O(logN)$ 。</li>
+<li><strong>应用</strong>：DFS通常用于解决一些搜索深度较小的问题，例如拓扑排序、连通性判断等。由于DFS搜索深度较大时容易出现堆栈溢出等问题，因此需要选择合适的算法实现。</li>
+</ul>
+<h3 id="力扣指南"><a href="#力扣指南" class="headerlink" title="力扣指南"></a>力扣指南</h3><table>
+    <tr>
+        <th align='center', colspan="3">深度优先搜索</th>
+    </tr>
+    <tr>
+        <th>题目</th>
+        <th>技巧</th>
+        <th>难度</th>
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/surrounded-regions/description>✅130. 被围绕的区域</td>
+        <td>从边界开始处理</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/number-of-islands/description>✅200. 岛屿数量</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/pacific-atlantic-water-flow/description>✅417. 太平洋大西洋水流问题</td>
+        <td>双边界逆流而上</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/minesweeper/description>✅529. 扫雷游戏</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/number-of-closed-islands>✅1254. 统计封闭岛屿的数目</td>
+        <td>去除边界</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/number-of-enclaves/description>✅1020. 飞地的数量
+</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/max-area-of-island/description>✅695. 岛屿的最大面积
+</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/count-sub-islands/description>✅1905. 统计子岛屿
+</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+</table>
+
+<h2 id="深度优先搜索——树专项"><a href="#深度优先搜索——树专项" class="headerlink" title="深度优先搜索——树专项"></a>深度优先搜索——树专项</h2><p>二叉树解题的思维模式分两类：</p>
+<ol>
+<li>遍历：通过遍历一遍二叉树得到答案，用一个 traverse 函数配合外部变量来实现</li>
+<li>分解：定义一个递归函数，通过子问题（子树）的答案推导出原问题的答案，写出这个递归函数的定义，并充分利用这个函数的返回值<br>思考：如果单独抽出一个二叉树节点，它需要做什么事情？需要在什么时候（前/中/后序位置）做？其他的节点不用你操心，递归函数会帮你在所有节点上执行相同的操作。</li>
+</ol>
+<h3 id="算法框架"><a href="#算法框架" class="headerlink" title="算法框架"></a>算法框架</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">traverse</span>(<span class="params">root: <span class="type">Optional</span>[TreeNode]</span>):</span></span><br><span class="line">    <span class="comment"># root 需要做什么？在这做。</span></span><br><span class="line">    <span class="comment"># 其他的不⽤ root 操⼼，抛给框架</span></span><br><span class="line">    traverse(root.left)</span><br><span class="line">    traverse(root.right)</span><br></pre></td></tr></table></figure>
+
+<h3 id="力扣指南-1"><a href="#力扣指南-1" class="headerlink" title="力扣指南"></a>力扣指南</h3><table>
+    <tr>
+        <th align='center', colspan="3">树</th>
+    </tr>
+    <tr>
+        <th>题目</th>
+        <th>技巧</th>
+        <th>难度</th>
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/binary-tree-inorder-traversal/description>✅94. 二叉树的中序遍历</td>
+        <td>框架递归</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description>✅105. 从前序与中序遍历序列构造二叉树</td>
+        <td>前序遍历递归</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description>✅106. 从中序与后序遍历序列构造二叉树</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/balanced-binary-tree/description>✅110. 平衡二叉树</td>
+        <td>递归</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/minimum-depth-of-binary-tree/description>✅111. 二叉树的最小深度</td>
+        <td>递归</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/path-sum/description>✅112. 路径总和</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/description>✅114. 二叉树展开为链表</td>
+        <td>分解法：通过子问题求解原问题</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/populating-next-right-pointers-in-each-node>✅116. 填充每个节点的下一个右侧节点指针</td>
+        <td>借助中间节点</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii>✅117. 填充每个节点的下一个右侧节点指针 II</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/binary-tree-maximum-path-sum/description>✅124. 二叉树中的最大路径和</td>
+        <td></td> 
+        <td>🌟🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/sum-root-to-leaf-numbers/description>✅129. 求根节点到叶节点数字之和</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/binary-tree-right-side-view/description>✅199. 二叉树的右视图</td>
+        <td>记录深度 跟右左遍历</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/count-complete-tree-nodes/description>✅222. 完全二叉树的节点个数</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/invert-binary-tree/description>✅226. 翻转二叉树</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description>✅236. 二叉树的最近公共祖先</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/binary-tree-paths/description>✅257. 二叉树的所有路径</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/description>✅297. 二叉树的序列化与反序列化</td>
+        <td></td> 
+        <td>🌟🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/sum-of-left-leaves/description>✅404. 左叶子之和</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/diameter-of-binary-tree/description>✅543. 二叉树的直径</td>
+        <td>最大路径为当前节点的左右子树最大高度和</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/find-duplicate-subtrees/description>✅652. 寻找重复的子树</td>
+        <td>中序遍历无法确定唯一的序列化字符串</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/maximum-binary-tree/description>✅654. 最大二叉树</td>
+        <td>分解法构造</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/description>✅889. 根据前序和后序遍历构造二叉树</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+</table>
+
+
+<h2 id="深度优先搜索——二叉搜索树专项"><a href="#深度优先搜索——二叉搜索树专项" class="headerlink" title="深度优先搜索——二叉搜索树专项"></a>深度优先搜索——二叉搜索树专项</h2><h3 id="算法框架-1"><a href="#算法框架-1" class="headerlink" title="算法框架"></a>算法框架</h3><p>二叉搜索树的题本质都是中序遍历或者利用其性质任意节点的值要⼤于等于左⼦树所有节点的值且要⼩于等于右边⼦树的所有节点的值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BST</span>(<span class="params">root: <span class="type">Optional</span>[TreeNode], target</span>):</span></span><br><span class="line">    <span class="keyword">if</span> root.val == target:</span><br><span class="line">        <span class="comment"># 到⽬标，做点什么</span></span><br><span class="line">    <span class="keyword">if</span> root.val &lt; target:</span><br><span class="line">        BST(root.right, target)</span><br><span class="line">    <span class="keyword">if</span> root.val &gt; target:</span><br><span class="line">        BST(root.left, target)</span><br></pre></td></tr></table></figure>
+
+<h3 id="力扣指南-2"><a href="#力扣指南-2" class="headerlink" title="力扣指南"></a>力扣指南</h3><table>
+    <tr>
+        <th align='center', colspan="3">二叉搜索树</th>
+    </tr>
+    <tr>
+        <th>题目</th>
+        <th>技巧</th>
+        <th>难度</th>
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/validate-binary-search-tree>✅98. 验证二叉搜索树</td>
+        <td>二叉搜索树中序遍历递增</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/recover-binary-search-tree/description>✅99. 恢复二叉搜索树</td>
+        <td>交换节点的值而不是交换地址</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/convert-sorted-array-to-binary-search-tree/description>✅108. 将有序数组转换为二叉搜索树</td>
+        <td>二分转换</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/convert-sorted-list-to-binary-search-tree/description>✅109. 有序链表转换二叉搜索树</td>
+        <td>左闭又开二分</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/description>✅235. 二叉搜索树的最近公共祖先</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/kth-smallest-element-in-a-bst/description>✅230. 二叉搜索树中第K小的元素</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/serialize-and-deserialize-bst/description>✅449. 序列化和反序列化二叉搜索树</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/delete-node-in-a-bst/description>✅450. 删除二叉搜索树中的节点</td>
+        <td>用右子树的最左节点替换跟节点</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/minimum-absolute-difference-in-bst/description>✅530. 二叉搜索树的最小绝对差</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/convert-bst-to-greater-tree/description>✅538/1038. 把二叉搜索树转换为累加树</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/search-in-a-binary-search-tree/description>✅700. 二叉搜索树中的搜索</td>
+        <td>利用递增性质二分</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/insert-into-a-binary-search-tree/description>✅701. 二叉搜索树中的插入操作</td>
+        <td>找到要插入的位置定义节点</td> 
+        <td>🌟🌟</td> 
+    </tr>
+</table>
+
+
+<h2 id="广度优先搜索BFS"><a href="#广度优先搜索BFS" class="headerlink" title="广度优先搜索BFS"></a>广度优先搜索BFS</h2><p>广度优先搜索（Breadth-First Search，BFS）是一种图遍历算法，它从起始顶点开始，逐层访问其相邻顶点，并记录每个顶点到起始顶点的距离。知识点：</p>
+<ul>
+<li><strong>队列</strong>：BFS可以使用队列来实现。从起始顶点开始，将其放入队列中，然后循环执行以下操作：从队列中取出一个顶点，并访问其所有未访问的相邻顶点，将其放入队列中。直到队列为空，搜索结束。</li>
+<li><strong>标记数组</strong>：为了避免重复访问已经访问过的顶点，BFS通常使用一个布尔类型的标记数组来记录每个顶点是否已经访问过。同时，为了记录每个顶点到起始顶点的距离，可以使用一个整型数组来存储每个顶点的距离。</li>
+<li><strong>最短路径</strong>：BFS可以用来寻找无权图中起始顶点到其他顶点的最短路径。由于BFS是按层遍历的，因此可以保证从起始顶点到其他顶点的路径是最短的。</li>
+<li><strong>连通性</strong>：BFS可以用来判断图的连通性。如果从起始顶点开始可以访问到所有其他顶点，则图是连通的；否则，图是不连通的。</li>
+<li><strong>时间复杂度</strong>：BFS的时间复杂度取决于搜索过程中访问每个顶点的次数。对于稠密图，时间复杂度可以达到 $O(V^2)$，其中 $V$ 是顶点数。对于稀疏图，时间复杂度可以达到 $O(V+E)$，其中 E 是边数。</li>
+<li><strong>空间复杂度</strong>：BFS 借助队列做到⼀次⼀步⻬头并进，是可以在不遍历完整棵树的条件下找到最短距离。BFS 算法队列中每次都会储存着⼆叉树⼀层的节点，最坏情况下空间复杂度是树的最底层节点的数量$O(N)$ 。</li>
+<li><strong>应用</strong>：BFS通常用于解决一些搜索深度较大的问题，例如最短路径、最小生成树等。由于BFS按层遍历，因此可以保证从起始顶点到其他顶点的路径是最短的。</li>
+<li><strong>变体</strong>：双向深度优先搜索（Bidirectional Depth-First Search，简称BDFS）可以在图或树中同时从起点和终点进行深度优先搜索，以期缩短搜索时间。<ul>
+<li><strong>原理</strong>：BDFS是双向搜索的一种变形，它通过同时从起点和终点进行深度优先搜索，以期在中间遇到一条路径，从而找到起点和终点之间的最短路径。在搜索过程中，需要记录起点和终点的已访问状态，直到两个搜索过程汇合，或者找到一条最短路径。</li>
+<li><strong>特点</strong>：BDFS与DFS的搜索方式类似，只是在搜索过程中从起点和终点同时进行搜索。相比于BFS，BDFS的空间复杂度较低，但是对于图中较长路径，可能会超时或者陷入死循环。</li>
+<li><strong>实现</strong>：BDFS的实现需要在搜索过程中记录起点和终点的已访问状态，并且需要判断是否有路径在中间汇合，或者找到一条最短路径。通常可以使用哈希表等数据结构来记录已访问状态，以及使用双向队列等数据结构来记录搜索过程中的路径。</li>
+<li><strong>应用</strong>：BDFS可以用于寻找起点和终点之间的最短路径，例如在网络中找到两个节点之间的最短路径，或者在迷宫中找到从起点到终点的最短路径。另外，BDFS还可以用于图的遍历，例如在社交网络中寻找特定人群之间的联系，或者在语言处理中寻找两个词语之间的关系。</li>
+</ul>
+</li>
+</ul>
+<h3 id="算法框架-2"><a href="#算法框架-2" class="headerlink" title="算法框架"></a>算法框架</h3><p>原地修改的问题可以不使用visited标记</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">List</span>, <span class="type">Set</span>, <span class="type">Tuple</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">adj</span>(<span class="params">self</span>) -&gt; <span class="type">List</span>[Node]:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">BFS</span>(<span class="params">start: Node, target: Node</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    q: <span class="type">List</span>[Node] = []  <span class="comment"># 核心数据结构</span></span><br><span class="line">    visited: <span class="type">Set</span>[Node] = <span class="built_in">set</span>()  <span class="comment"># 避免走回头路</span></span><br><span class="line"></span><br><span class="line">    q.append(start)  <span class="comment"># 将起点加入队列</span></span><br><span class="line">    <span class="comment"># visited.add(start)</span></span><br><span class="line">    step: <span class="built_in">int</span> = <span class="number">0</span>  <span class="comment"># 记录扩散的步数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> q:</span><br><span class="line">        sz: <span class="built_in">int</span> = <span class="built_in">len</span>(q)</span><br><span class="line">        <span class="comment"># 将当前队列中的所有节点向四周扩散</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(sz):</span><br><span class="line">            cur: Node = q.pop(<span class="number">0</span>)</span><br><span class="line">            <span class="comment"># 划重点：这里判断是否到达终点</span></span><br><span class="line">            <span class="keyword">if</span> cur <span class="keyword">is</span> target:</span><br><span class="line">                <span class="keyword">return</span> step</span><br><span class="line">            <span class="comment"># 将 cur 的相邻节点加入队列</span></span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> cur.adj():</span><br><span class="line">                <span class="keyword">if</span> x <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                    q.append(x)</span><br><span class="line">                    visited.add(x)</span><br><span class="line">        <span class="comment"># 划重点：更新步数在这里</span></span><br><span class="line">        step += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="力扣指南-3"><a href="#力扣指南-3" class="headerlink" title="力扣指南"></a>力扣指南</h3><table>
+    <tr>
+        <th align='center', colspan="3">广度优先搜索</th>
+    </tr>
+    <tr>
+        <th>题目</th>
+        <th>技巧</th>
+        <th>难度</th>
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/minimum-depth-of-binary-tree/description>✅111. 二叉树的最小深度</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/path-sum/description>✅112. 路径总和</td>
+        <td></td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/description>✅116. 填充每个节点的下一个右侧节点指针</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.c/problems/populating-next-right-pointers-in-each-node-ii/description>✅117. 填充每个节点的下一个右侧节点指针 II</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/surrounded-regions/description>✅130. 被围绕的区域</td>
+        <td>从边界开始处理</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/binary-tree-right-side-view/description>✅199. 二叉树的右视图</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/number-of-islands/description>✅200. 岛屿数量</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/sum-of-left-leaves/description>✅404. 左叶子之和</td>
+        <td>理解题意</td> 
+        <td>🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/pacific-atlantic-water-flow/description>✅417. 太平洋大西洋水流问题</td>
+        <td>双边界逆流而上</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/minesweeper/description>✅529. 扫雷游戏</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/open-the-lock/description>✅752. 打开转盘锁</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/sliding-puzzle/description>✅773. 滑动谜题</td>
+        <td></td> 
+        <td>🌟🌟🌟</td> 
+    </tr>
+</table>
+
+
+
+<h1 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h1><p>回溯算法（Backtracking）是一种基于深度优先搜索的算法，它常用于在一组可能的解中搜索最优解。知识点：</p>
+<ul>
+<li><strong>原理</strong>：回溯算法是通过试错的方式进行搜索，即从一个可能的解开始搜索，如果发现当前解不可行，则回溯到上一步进行尝试。在搜索过程中需要记录当前已尝试的路径，并在每一步进行判断，如果当前路径已经不能满足要求，则需要进行回溯。</li>
+<li><strong>实现</strong>：回溯算法通常采用递归实现，每次搜索的参数包括当前路径、已访问状态等。在搜索过程中需要进行剪枝，即在当前路径已经不能满足要求时，提前结束搜索。在实现过程中需要注意，回溯算法通常可以通过状态重置来进行回溯，也可以通过栈等数据结构来记录搜索过程。</li>
+<li><strong>应用</strong>：回溯算法常用于求解组合、排列、子集等问题，例如在数独游戏中求解解，在密码破解中找到密码、图的遍历、求解最优化问题等。</li>
+<li><strong>优化</strong>：回溯算法的时间复杂度往往较高，常用的优化方法包括剪枝、记忆化搜索等。剪枝可以在搜索过程中排除不必要的搜索路径，从而减少搜索时间。记忆化搜索可以将已经搜索过的结果记录下来，避免重复搜索。另外，在实际应用中可以根据问题的特点进行算法的优化，例如在图的遍历中，可以使用启发式搜索等算法加速搜索过程。</li>
+<li><strong>时间复杂度</strong>：$O(n!)$，不像动态规划存在重叠⼦问题可以优化，回溯算法是纯暴⼒穷举。</li>
+<li><strong>技巧</strong>：回溯的撤销选择取决于是否对原始选择列表修改，如果修改则需要撤销操作。</li>
+</ul>
+<h3 id="算法框架-3"><a href="#算法框架-3" class="headerlink" title="算法框架"></a>算法框架</h3><p>回溯问题实际上是⼀个决策树的遍历过程。需要思考 3 个问题：</p>
+<ol>
+<li>路径：已经做出的选择</li>
+<li>选择列表：当前可以做的选择</li>
+<li>结束条件：到达决策树底层，⽆法再做选择的条件</li>
+</ol>
+<p>排列题用used标记，组合题用start标记</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">backtrack</span>(<span class="params">path, choice_list</span>):</span></span><br><span class="line">    <span class="keyword">if</span> target:</span><br><span class="line">        result.add(path)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">for</span> choice <span class="keyword">in</span> choice_list:</span><br><span class="line">        <span class="comment"># 做选择</span></span><br><span class="line">        backtrack(path, choice_list)</span><br><span class="line">        <span class="comment"># 撤销选择</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="力扣指南-4"><a href="#力扣指南-4" class="headerlink" title="力扣指南"></a>力扣指南</h3><table>
+    <tr>
+        <th align='center', colspan="3">回溯</th>
+    </tr>
+    <tr>
+        <th>题目</th>
+        <th>技巧</th>
+        <th>难度</th>
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/sudoku-solver/description>✅37. 解数独</td>
+        <td>有数字的剪枝；有可行解返回避免撤销</td> 
+        <td>🌟🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/combination-sum/description>✅39. 组合总和</td>
+        <td>（元素无重可复选）每次复用start，使用整体剪纸避免无限递归</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/combination-sum-ii/description>✅40. 组合总和 II</td>
+        <td>剪枝掉超过target的</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/permutations/description>✅46. 全排列</td>
+        <td>时间复杂度为O(n×n!)</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/permutations-ii/description>✅47. 全排列 II</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/n-queens/description>✅51. N 皇后</td>
+        <td>python字符串为不可变类型，修改只能对字符串重新赋值</td> 
+        <td>🌟🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/n-queens-ii/description>✅52. N 皇后 II</td>
+        <td></td> 
+        <td>🌟🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/combinations/description>✅77. 组合</td>
+        <td>同78</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/subsets/description>✅78. 子集</td>
+        <td>（元素无重不可复选）用start标记起始点避免产生重复</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/subsets-ii/description>✅90. 子集 II</td>
+        <td>剪枝走过的路径</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/combination-sum-iii/description>✅216. 组合总和 III</td>
+        <td>秒了</td> 
+        <td>🌟🌟</td> 
+    </tr>
+    <tr>
+        <td><a href=https://leetcode.cn/problems/generate-parentheses/description>✅22. 括号生成</td>
+        <td></td> 
+        <td>🌟🌟</td> 
+    </tr>
+</table></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">贪钱算法还我头发</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2023/04/12/Search-and-Backstrack/">https://xfliu1998.github.io/2023/04/12/Search-and-Backstrack/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Data-Structures-and-Algorithms/">Data Structures and Algorithms</a><a class="post-meta__tags" href="/tags/LeetCode/">LeetCode</a></div><div class="post_share"><div class="social-share" data-image="https://www.omegaxyz.com/wp-content/uploads/2019/05/recall.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/04/19/Dynamic-Programming/"><img class="prev-cover" src="http://img.shijue.me/eb9640e472e540b4bce2f24b9f11237d_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Dynamic Programming</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/27/Bit-Arithmetic/"><img class="next-cover" src="http://img.shijue.me/cdd4d812f60c4cd486e8fa5e3508b0a4_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Bit Arithmetic</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/07/05/Number-Theory-and-Geometry/" title="Number Theory and Geometry"><img class="cover" src="http://img.shijue.me/d9a0b9ce22d44e6f9213e5ef8917385d_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-05</div><div class="title">Number Theory and Geometry</div></div></a></div><div><a href="/2023/06/13/Sort-Algorithm/" title="Sort Algorithm"><img class="cover" src="http://img.shijue.me/05adac4bd8b1447697e1053623e74d68_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-13</div><div class="title">Sort Algorithm</div></div></a></div><div><a href="/2023/06/04/Graph-Theory/" title="Graph Theory"><img class="cover" src="http://img.shijue.me/845aa0476235409e9ef646afb7c05ab7_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-04</div><div class="title">Graph Theory</div></div></a></div><div><a href="/2023/05/29/Divide-and-Conquer/" title="Divide and Conquer"><img class="cover" src="http://img.shijue.me/d5e5c8cc7dae431386f1d15c0006f217.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-29</div><div class="title">Divide and Conquer</div></div></a></div><div><a href="/2023/05/21/Greedy-Algorithm/" title="Greedy Algorithm"><img class="cover" src="http://img.shijue.me/73abae19e7ed4f279380e078361cafff_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-21</div><div class="title">Greedy Algorithm</div></div></a></div><div><a href="/2023/04/19/Dynamic-Programming/" title="Dynamic Programming"><img class="cover" src="http://img.shijue.me/eb9640e472e540b4bce2f24b9f11237d_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-19</div><div class="title">Dynamic Programming</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">贪钱算法还我头发</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/keiven_" target="_blank" title="CSDN"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">欢迎来这里掉头发</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-number">1.</span> <span class="toc-text">递归</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-number">2.</span> <span class="toc-text">搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="toc-number">2.1.</span> <span class="toc-text">深度优先搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E6%89%A3%E6%8C%87%E5%8D%97"><span class="toc-number">2.1.1.</span> <span class="toc-text">力扣指南</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E2%80%94%E2%80%94%E6%A0%91%E4%B8%93%E9%A1%B9"><span class="toc-number">2.2.</span> <span class="toc-text">深度优先搜索——树专项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6"><span class="toc-number">2.2.1.</span> <span class="toc-text">算法框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E6%89%A3%E6%8C%87%E5%8D%97-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">力扣指南</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E2%80%94%E2%80%94%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%93%E9%A1%B9"><span class="toc-number">2.3.</span> <span class="toc-text">深度优先搜索——二叉搜索树专项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">算法框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E6%89%A3%E6%8C%87%E5%8D%97-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">力扣指南</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2BFS"><span class="toc-number">2.4.</span> <span class="toc-text">广度优先搜索BFS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6-2"><span class="toc-number">2.4.1.</span> <span class="toc-text">算法框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E6%89%A3%E6%8C%87%E5%8D%97-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">力扣指南</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9E%E6%BA%AF"><span class="toc-number">3.</span> <span class="toc-text">回溯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6-3"><span class="toc-number">3.0.1.</span> <span class="toc-text">算法框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9B%E6%89%A3%E6%8C%87%E5%8D%97-4"><span class="toc-number">3.0.2.</span> <span class="toc-text">力扣指南</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://www.omegaxyz.com/wp-content/uploads/2019/05/recall.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 贪钱算法还我头发</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '1b0c10ce649501ea4a72',
+      clientSecret: '741b5e861137e3d5a482bba272c8201b78da6cb0',
+      repo: 'xfliu1998.github.io',
+      owner: 'xfliu1998',
+      admin: ['xfliu1998'],
+      id: 'e77b8dd1558a145115bd3f7cab63c331',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Machine-Learning-and-Deep-Learning/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 机器学习与深度学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Structures-and-Algorithms/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">😼 数据结构与算法 (16)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Search-Advertisement-Recommendation-Causal/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🗂️ 搜索/广告/推荐/因果 (10)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Analysis-and-Processing/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 数据分析与处理 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Reading-Notes/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 阅读笔记 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Daily/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 日常随想 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://xfliu1998.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-NLP/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-NLP/" alt="">Papers Reading about NLP</a><div class="blog-slider__text">自然语言处理论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-NLP/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/10/01/9-3D-Construction/" alt=""><img width="48" height="48" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-01</span><a class="blog-slider__title" href="2022/10/01/9-3D-Construction/" alt="">3D Construction</a><div class="blog-slider__text">三维重建基础</div><a class="blog-slider__button" href="2022/10/01/9-3D-Construction/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/01/11/SfM-SLAM/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&amp;rs=1" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-01-11</span><a class="blog-slider__title" href="2023/01/11/SfM-SLAM/" alt="">SfM &amp; SLAM</a><div class="blog-slider__text">SfM和SLAM系统</div><a class="blog-slider__button" href="2023/01/11/SfM-SLAM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=2&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-CV/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-CV/" alt="">Papers Reading about CV</a><div class="blog-slider__text">计算机视觉论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-CV/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/06/05/Interview-Experience/" alt=""><img width="48" height="48" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-06-05</span><a class="blog-slider__title" href="2023/06/05/Interview-Experience/" alt="">Interview Experience</a><div class="blog-slider__text">面经八股</div><a class="blog-slider__button" href="2023/06/05/Interview-Experience/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="http://img.shijue.me/78ae8b05a73444cd9643a8312abc0d43.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">Learning Framework</a><div class="blog-slider__text">学习大纲</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<container><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></container>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gitcalendar.fomal.cc/api?xfliu1998",['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9'],'xfliu1998')
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

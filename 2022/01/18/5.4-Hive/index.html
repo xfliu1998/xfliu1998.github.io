@@ -1,0 +1,1410 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hive &amp; HBase | 一直进步 做喜欢的</title><meta name="keywords" content="python"><meta name="author" content="贪钱算法还我头发"><meta name="copyright" content="贪钱算法还我头发"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="推荐系统学习笔记四——Hive &amp; Hbase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive &amp; HBase">
+<meta property="og:url" content="https://xfliu1998.github.io/2022/01/18/5.4-Hive/index.html">
+<meta property="og:site_name" content="一直进步 做喜欢的">
+<meta property="og:description" content="推荐系统学习笔记四——Hive &amp; Hbase">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://img.shijue.me/d667362f0f6b42bcb21d4a4fc167e93a_d.jpg!dp6">
+<meta property="article:published_time" content="2022-01-18T13:44:00.000Z">
+<meta property="article:modified_time" content="2024-03-31T12:12:48.753Z">
+<meta property="article:author" content="贪钱算法还我头发">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.shijue.me/d667362f0f6b42bcb21d4a4fc167e93a_d.jpg!dp6"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2022/01/18/5.4-Hive/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hive & HBase',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-31 20:12:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://img.shijue.me/d667362f0f6b42bcb21d4a4fc167e93a_d.jpg!dp6')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Hive &amp; HBase</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-18T13:44:00.000Z" title="Created 2022-01-18 21:44:00">2022-01-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-03-31T12:12:48.753Z" title="Updated 2024-03-31 20:12:48">2024-03-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Search-Advertisement-Recommendation-Causal/">Search / Advertisement / Recommendation / Causal</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">10.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>44min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Hive &amp; HBase"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2022/01/18/5.4-Hive/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>推荐系统学习笔记目录</strong></p>
+<ol>
+<li><a href="https://xfliu1998.github.io/2022/01/18/5.1-Recommendation-System-Introduction/">推荐系统介绍</a></li>
+<li><a href="https://xfliu1998.github.io/2022/01/18/5.2-RS-Algorithm/">推荐算法</a></li>
+<li><a href="https://xfliu1998.github.io/2022/01/18/5.3-Hadoop/">Hadoop</a></li>
+<li><a href="https://xfliu1998.github.io/2022/01/18/5.4-Hive/">Hive &amp; HBase</a></li>
+<li><a href="https://xfliu1998.github.io/2022/01/18/5.5-Spark-core/">Spark core</a></li>
+<li><a href="https://xfliu1998.github.io/2022/01/18/5.6-Spark-SQL/">Spark SQL &amp; Spark streaming</a></li>
+<li><a href="https://xfliu1998.github.io/2022/01/18/5.7-RS-case/">推荐系统案例</a></li>
+</ol>
+<h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h1><h2 id="Hive基本概念"><a href="#Hive基本概念" class="headerlink" title="Hive基本概念"></a>Hive基本概念</h2><h3 id="Hive简介"><a href="#Hive简介" class="headerlink" title="Hive简介"></a>Hive简介</h3><p><img src="hive.jpg"></p>
+<h4 id="什么是-Hive"><a href="#什么是-Hive" class="headerlink" title="什么是 Hive"></a>什么是 Hive</h4><ul>
+<li>Hive 由 Facebook 实现并开源，是基于 Hadoop 的一个数据仓库工具，可以将结构化的数据映射为一张数据库表，并提供 HQL(Hive SQL)查询功能，底层数据是存储在 HDFS 上。</li>
+<li>Hive 本质: 将 SQL 语句转换为 MapReduce 任务运行，使不熟悉 MapReduce 的用户很方便地利用 HQL 处理和计算 HDFS 上的结构化的数据,是一款基于 HDFS 的 MapReduce <strong>计算框架</strong></li>
+<li>主要用途：用来做离线数据分析，比直接用 MapReduce 开发效率更高。</li>
+</ul>
+<h4 id="为什么使用-Hive"><a href="#为什么使用-Hive" class="headerlink" title="为什么使用 Hive"></a>为什么使用 Hive</h4><ul>
+<li><p>直接使用 Hadoop MapReduce 处理数据所面临的问题：</p>
+<ul>
+<li>人员学习成本太高</li>
+<li>MapReduce 实现复杂查询逻辑开发难度太大</li>
+</ul>
+</li>
+<li><p>使用 Hive</p>
+<ul>
+<li><p>操作接口采用类 SQL 语法，提供快速开发的能力</p>
+</li>
+<li><p>避免了去写 MapReduce，减少开发人员的学习成本</p>
+</li>
+<li><p>功能扩展很方便</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Hive-架构"><a href="#Hive-架构" class="headerlink" title="Hive 架构"></a>Hive 架构</h3><h4 id="Hive-架构图"><a href="#Hive-架构图" class="headerlink" title="Hive 架构图"></a>Hive 架构图</h4><p><img src="hive2.jpg"></p>
+<h4 id="Hive-组件"><a href="#Hive-组件" class="headerlink" title="Hive 组件"></a>Hive 组件</h4><ul>
+<li>用户接口：包括 CLI、JDBC/ODBC、WebGUI。<ul>
+<li>CLI(command line interface)为 shell 命令行</li>
+<li>JDBC/ODBC 是 Hive 的 JAVA 实现，与传统数据库JDBC 类似</li>
+<li>WebGUI 是通过浏览器访问 Hive。</li>
+<li>HiveServer2基于Thrift, 允许远程客户端使用多种编程语言如Java、Python向Hive提交请求</li>
+</ul>
+</li>
+<li>元数据存储：通常是存储在关系数据库如 mysql/derby 中。<ul>
+<li>Hive 将元数据存储在数据库中。</li>
+<li>Hive 中的元数据包括<ul>
+<li>表的名字</li>
+<li>表的列</li>
+<li>分区及其属性</li>
+<li>表的属性（是否为外部表等）</li>
+<li>表的数据所在目录等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>解释器、编译器、优化器、执行器:完成 HQL 查询语句从词法分析、语法分析、编译、优化以及查询计划的生成。生成的查询计划存储在 HDFS 中，并在随后由 MapReduce 调用执行</li>
+</ul>
+<h4 id="Hive-与-Hadoop-的关系"><a href="#Hive-与-Hadoop-的关系" class="headerlink" title="Hive 与 Hadoop 的关系"></a>Hive 与 Hadoop 的关系</h4><p>Hive 利用 HDFS 存储数据，利用 MapReduce 查询分析数据。</p>
+<p>Hive是数据仓库工具，没有集群的概念，如果想提交Hive作业只需要在hadoop集群 Master节点上装Hive就可以了</p>
+<h3 id="Hive-与传统数据库对比"><a href="#Hive-与传统数据库对比" class="headerlink" title="Hive 与传统数据库对比"></a>Hive 与传统数据库对比</h3><ul>
+<li>hive 用于海量数据的离线数据分析。</li>
+</ul>
+<table>
+  <tr>
+    <th></th>
+    <th>Hive</th>
+    <th>关系型数据库</th>
+  </tr>
+  <tr>
+    <td> ANSI SQL </td>
+    <td> 不完全支持 </td>
+    <td> 支持 </td>
+  </tr>
+  <tr>
+    <td> 更新 </td>
+    <td> INSERT OVERWRITE\INTO TABLE(默认) </td>
+    <td> UPDATE\INSERT\DELETE </td>
+  </tr>
+  <tr>
+    <td> 事务 </td>
+    <td> 不支持(默认) </td>
+    <td> 支持 </td>
+  </tr>
+  <tr>
+    <td> 模式 </td>
+    <td> 读模式 </td>
+    <td> 写模式 </td>
+  </tr>
+  <tr>
+    <td> 查询语言 </td>
+    <td> HQL  </td>
+    <td> SQL</td>
+  </tr>
+  <tr>
+    <td> 数据存储 </td>
+    <td> HDFS </td>
+    <td> Raw Device or Local FS </td>
+  </tr>
+  <tr>
+    <td> 执行 </td>
+    <td> MapReduce </td>
+    <td> Executor</td>
+  </tr>
+  <tr>
+    <td> 执行延迟 </td>
+    <td> 高 </td>
+    <td> 低 </td>
+  </tr>
+  <tr>
+    <td> 子查询 </td>
+    <td> 只能用在From子句中 </td>
+    <td> 完全支持 </td>
+  </tr>
+  <tr>
+    <td> 处理数据规模 </td>
+    <td> 大 </td>
+    <td> 小 </td>
+  </tr>
+  <tr>
+    <td> 可扩展性 </td>
+    <td> 高 </td>
+    <td> 低 </td>
+  </tr>
+  <tr>
+    <td> 索引 </td>
+    <td> 0.8版本后加入位图索引 </td>
+    <td> 有复杂的索引 </td>
+  </tr>
+</table>
+
+<ul>
+<li>hive支持的数据类型<ul>
+<li>原子数据类型  <ul>
+<li>TINYINT SMALLINT INT BIGINT BOOLEAN FLOAT DOUBLE STRING BINARY TIMESTAMP DECIMAL CHAR VARCHAR DATE</li>
+</ul>
+</li>
+<li>复杂数据类型<ul>
+<li>ARRAY</li>
+<li>MAP</li>
+<li>STRUCT</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hive中表的类型<ul>
+<li>托管表 (managed table) (内部表)</li>
+<li>外部表</li>
+</ul>
+</li>
+</ul>
+<h3 id="Hive-数据模型"><a href="#Hive-数据模型" class="headerlink" title="Hive 数据模型"></a>Hive 数据模型</h3><ul>
+<li>Hive 中所有的数据都存储在 HDFS 中，没有专门的数据存储格式</li>
+<li>在创建表时指定数据中的分隔符，Hive 就可以映射成功，解析数据。</li>
+<li>Hive 中包含以下数据模型：<ul>
+<li>db：在 hdfs 中表现为 hive.metastore.warehouse.dir 目录下一个文件夹</li>
+<li>table：在 hdfs 中表现所属 db 目录下一个文件夹</li>
+<li>external table：数据存放位置可以在 HDFS 任意指定路径</li>
+<li>partition：在 hdfs 中表现为 table 目录下的子目录</li>
+<li>bucket：在 hdfs 中表现为同一个表目录下根据 hash 散列之后的多个文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="Hive-安装部署"><a href="#Hive-安装部署" class="headerlink" title="Hive 安装部署"></a>Hive 安装部署</h3><ul>
+<li><p>Hive 安装前需要安装好 JDK 和 Hadoop。配置好环境变量。</p>
+</li>
+<li><p>下载Hive的安装包 <a target="_blank" rel="noopener" href="http://archive.cloudera.com/cdh5/cdh/5/">http://archive.cloudera.com/cdh5/cdh/5/</a> 并解压</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf hive-1.1.0-cdh5.7.0.tar.gz  -C ~/app/</span><br></pre></td></tr></table></figure></li>
+<li><p>进入到 解压后的hive目录 找到 conf目录, 修改配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp hive-env.sh.template hive-env.sh</span><br><span class="line">vi hive-env.sh</span><br></pre></td></tr></table></figure>
+
+<p>在hive-env.sh中指定hadoop的路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HADOOP_HOME=/home/hadoop/app/hadoop-2.6.0-cdh5.7.0</span><br></pre></td></tr></table></figure></li>
+<li><p>配置环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HIVE_HOME=/home/hadoop/app/hive-1.1.0-cdh5.7.0</span><br><span class="line">export PATH=$HIVE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure></li>
+<li><p>根据元数据存储的介质不同，分为下面两个版本，其中 derby 属于内嵌模式。实际生产环境中则使用 mysql 来进行元数据的存储。</p>
+<ul>
+<li><p>内置 derby 版：<br>bin/hive 启动即可使用<br>缺点：不同路径启动 hive，每一个 hive 拥有一套自己的元数据，无法共享</p>
+</li>
+<li><p>mysql 版： </p>
+<ul>
+<li><p>上传 mysql驱动到 hive安装目录的lib目录下</p>
+<p>mysql-connector-java-5.*.jar</p>
+</li>
+<li><p>vi conf/hive-site.xml 配置 Mysql 元数据库信息(MySql安装见文档)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;</span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">&lt;!-- 插入以下代码 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;hive&lt;/value&gt;&lt;!-- 指定mysql用户名 --&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;hive&lt;/value&gt;&lt;!-- 指定mysql密码 --&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;mysql</span><br><span class="line">        &lt;value&gt;jdbc:mysql://127.0.0.1:3306/hive&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;&lt;!-- 指定mysql数据库地址 --&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;&lt;!-- 指定mysql驱动 --&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">        &lt;!-- 到此结束代码 --&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;hive.exec.script.wrapper&lt;/name&gt;</span><br><span class="line">    &lt;value/&gt;</span><br><span class="line">    &lt;description/&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>hive启动</p>
+<ul>
+<li><p>启动docker </p>
+<p><code>service docker start</code></p>
+</li>
+<li><p>通过docker 启动mysql</p>
+<p><code>docker start mysql</code></p>
+</li>
+<li><p>启动 hive的metastore元数据服务</p>
+<p><code>hive --service metastore</code></p>
+</li>
+<li><p>启动hive</p>
+<p><code>hive</code></p>
+</li>
+<li><p>MySQL root 密码 password         hive用户 密码 hive</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hive-基本操作"><a href="#Hive-基本操作" class="headerlink" title="Hive 基本操作"></a>Hive 基本操作</h2><h3 id="Hive-HQL操作初体验"><a href="#Hive-HQL操作初体验" class="headerlink" title="Hive HQL操作初体验"></a>Hive HQL操作初体验</h3><ul>
+<li><p>创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE test;</span><br></pre></td></tr></table></figure></li>
+<li><p>显示所有数据库</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br></pre></td></tr></table></figure></li>
+<li><p>创建表</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student(classNo string, stuNo string, score <span class="type">int</span>) <span class="type">row</span> format delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>row format delimited fields terminated by ‘,’  指定了字段的分隔符为逗号，所以load数据的时候，load的文本也要为逗号，否则加载后为NULL。hive只支持单个字符的分隔符，hive默认的分隔符是\001</li>
+</ul>
+</li>
+<li><p>将数据load到表中</p>
+<ul>
+<li><p>在本地文件系统创建一个如下的文本文件：/home/hadoop/tmp/student.txt</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">C01,N0101,82</span><br><span class="line">C01,N0102,59</span><br><span class="line">C01,N0103,65</span><br><span class="line">C02,N0201,81</span><br><span class="line">C02,N0202,82</span><br><span class="line">C02,N0203,79</span><br><span class="line">C03,N0301,56</span><br><span class="line">C03,N0302,92</span><br><span class="line">C03,N0306,72</span><br></pre></td></tr></table></figure></li>
+</ul>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data <span class="keyword">local</span> inpath <span class="string">&#x27;/home/hadoop/tmp/student.txt&#x27;</span>overwrite <span class="keyword">into</span> <span class="keyword">table</span> student;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个命令将student.txt文件复制到hive的warehouse目录中，这个目录由hive.metastore.warehouse.dir配置项设置，默认值为/user/hive/warehouse。Overwrite选项将导致Hive事先删除student目录下所有的文件, 并将文件内容映射到表中。<br> Hive不会对student.txt做任何格式处理，因为Hive本身并不强调数据的存储格式。</li>
+</ul>
+</li>
+<li><p>查询表中的数据 跟SQL类似</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive<span class="operator">&gt;</span><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student;</span><br></pre></td></tr></table></figure></li>
+<li><p>分组查询group by和统计 count</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive<span class="operator">&gt;</span><span class="keyword">select</span> classNo,<span class="built_in">count</span>(score) <span class="keyword">from</span> student <span class="keyword">where</span> score<span class="operator">&gt;=</span><span class="number">60</span> <span class="keyword">group</span> <span class="keyword">by</span> classNo;</span><br></pre></td></tr></table></figure>
+
+<p>从执行结果可以看出 hive把查询的结果变成了MapReduce作业通过hadoop执行</p>
+</li>
+</ul>
+<h3 id="Hive的内部表和外部表"><a href="#Hive的内部表和外部表" class="headerlink" title="Hive的内部表和外部表"></a>Hive的内部表和外部表</h3><table>
+  <tr>
+    <th></th>
+    <th>内部表(managed table)</th>
+    <th>外部表(external table)</th>
+  </tr>
+  <tr>
+    <td> 概念 </td>
+    <td> 创建表时无external修饰 </td>
+    <td> 创建表时被external修饰 </td>
+  </tr>
+  <tr>
+    <td> 数据管理 </td>
+    <td> 由Hive自身管理 </td>
+    <td> 由HDFS管理 </td>
+  </tr>
+  <tr>
+    <td> 数据保存位置 </td>
+    <td> hive.metastore.warehouse.dir  （默认：/user/hive/warehouse） </td>
+    <td> hdfs中任意位置 </td>
+  </tr>
+  <tr>
+    <td> 删除时影响 </td>
+    <td> 直接删除元数据（metadata）及存储数据 </td>
+    <td> 仅会删除元数据，HDFS上的文件并不会被删除 </td>
+  </tr>
+  <tr>
+    <td> 表结构修改时影响 </td>
+    <td> 修改会将修改直接同步给元数据  </td>
+    <td> 表结构和分区进行修改，则需要修复（MSCK REPAIR TABLE table_name;）</td>
+  </tr>
+</table>
+
+<ul>
+<li><p>案例</p>
+<ul>
+<li>创建一个外部表student2<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> student2 (classNo string, stuNo string, score <span class="type">int</span>) <span class="type">row</span> format delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span> location <span class="string">&#x27;/tmp/student&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+<li>装载数据   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data <span class="keyword">local</span> inpath <span class="string">&#x27;/home/hadoop/tmp/student.txt&#x27;</span> overwrite <span class="keyword">into</span> <span class="keyword">table</span> student2;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>显示表信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">desc</span> formatted table_name;</span><br></pre></td></tr></table></figure></li>
+<li><p>删除表查看结果</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> student;</span><br></pre></td></tr></table></figure></li>
+<li><p>再次创建外部表 student2</p>
+</li>
+<li><p>不插入数据直接查询查看结果</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student2;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="分区表"><a href="#分区表" class="headerlink" title="分区表"></a>分区表</h3><ul>
+<li><p>什么是分区表</p>
+<ul>
+<li>随着表的不断增大，对于新纪录的增加，查找，删除等(DML)的维护也更加困难。对于数据库中的超大型表，可以通过把它的数据分成若干个小表，从而简化数据库的管理活动，对于每一个简化后的小表，我们称为一个单个的分区。</li>
+<li>hive中分区表实际就是对应hdfs文件系统上独立的文件夹，该文件夹内的文件是该分区所有数据文件。</li>
+<li>分区可以理解为分类，通过分类把不同类型的数据放到不同的目录下。</li>
+<li>分类的标准就是分区字段，可以一个，也可以多个。</li>
+<li>分区表的意义在于优化查询。查询时尽量利用分区字段。如果不使用分区字段，就会全部扫描。</li>
+</ul>
+</li>
+<li><p>创建分区表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tom,4300</span><br><span class="line">jerry,12000</span><br><span class="line">mike,13000</span><br><span class="line">jake,11000</span><br><span class="line">rob,10000</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> employee (name string,salary <span class="type">bigint</span>) partitioned <span class="keyword">by</span> (date1 string) <span class="type">row</span> format delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span> lines terminated <span class="keyword">by</span> <span class="string">&#x27;\n&#x27;</span> stored <span class="keyword">as</span> textfile;</span><br></pre></td></tr></table></figure></li>
+<li><p>查看表的分区</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> partitions employee;</span><br></pre></td></tr></table></figure></li>
+<li><p>添加分区</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table employee add if not exists partition(date1=&#x27;2018-12-01&#x27;);</span><br></pre></td></tr></table></figure></li>
+<li><p>加载数据到分区</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data local inpath &#x27;/home/hadoop/tmp/employee.txt&#x27; into table employee partition(date1=&#x27;2018-12-01&#x27;);</span><br></pre></td></tr></table></figure></li>
+<li><p>如果重复加载同名文件，不会报错，会自动创建一个*_copy_1.txt</p>
+</li>
+<li><p>外部分区表即使有分区的目录结构, 也必须要通过hql添加分区, 才能看到相应的数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir /user/hive/warehouse/emp/dt=2018-12-04</span><br><span class="line">hadoop fs -copyFromLocal /tmp/employee.txt /user/hive/warehouse/test.db/emp/dt=2018-12-04/employee.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>此时查看表中数据发现数据并没有变化, 需要通过hql添加分区</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table emp add if not exists partition(dt=&#x27;2018-12-04&#x27;);</span><br></pre></td></tr></table></figure></li>
+<li><p>此时再次查看才能看到新加入的数据</p>
+</li>
+</ul>
+</li>
+<li><p>总结</p>
+<ul>
+<li>利用分区表方式减少查询时需要扫描的数据量<ul>
+<li>分区字段不是表中的列, 数据文件中没有对应的列</li>
+<li>分区仅仅是一个目录名</li>
+<li>查看数据时, hive会自动添加分区列</li>
+<li>支持多级分区, 多级子目录</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-4-动态分区"><a href="#2-4-动态分区" class="headerlink" title="2.4 动态分区"></a>2.4 动态分区</h3><ul>
+<li><p>在写入数据时自动创建分区(包括目录结构)</p>
+</li>
+<li><p>创建表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table employee2 (name string,salary bigint) partitioned by (date1 string) row format delimited fields terminated by &#x27;,&#x27; lines terminated by &#x27;\n&#x27; stored as textfile;</span><br></pre></td></tr></table></figure></li>
+<li><p>导入数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> employee2 <span class="keyword">partition</span>(date1) <span class="keyword">select</span> name,salary,date1 <span class="keyword">from</span> employee;</span><br></pre></td></tr></table></figure></li>
+<li><p>使用动态分区需要设置参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set hive.exec.dynamic.partition.mode=nonstrict;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Hive-函数"><a href="#Hive-函数" class="headerlink" title="Hive 函数"></a>Hive 函数</h2><h3 id="内置运算符"><a href="#内置运算符" class="headerlink" title="内置运算符"></a>内置运算符</h3><p>在 Hive 有四种类型的运算符：</p>
+<ul>
+<li><p>关系运算符</p>
+</li>
+<li><p>算术运算符</p>
+</li>
+<li><p>逻辑运算符</p>
+</li>
+<li><p>复杂运算</p>
+<p>(内容较多，见《Hive 官方文档》》)</p>
+</li>
+</ul>
+<h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h3><p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF">https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF</a></p>
+<ul>
+<li>简单函数: 日期函数 字符串函数 类型转换 </li>
+<li>统计函数: sum avg distinct</li>
+<li>集合函数</li>
+<li>分析函数</li>
+<li>show functions;  显示所有函数</li>
+<li>desc function 函数名;</li>
+<li>desc function extended 函数名;</li>
+</ul>
+<h3 id="Hive-自定义函数和-Transform"><a href="#Hive-自定义函数和-Transform" class="headerlink" title="Hive 自定义函数和 Transform"></a>Hive 自定义函数和 Transform</h3><ul>
+<li><p>UDF</p>
+<ul>
+<li><p>当 Hive 提供的内置函数无法满足你的业务处理需要时，此时就可以考虑使用用户自定义函数（UDF：user-defined function）。</p>
+</li>
+<li><p>TRANSFORM,and UDF and UDAF</p>
+<p>it is possible to plug in your own custom mappers and reducers<br> A UDF is basically only a transformation done by a mapper meaning that each row should be mapped to exactly one row. A UDAF on the other hand allows us to transform a group of rows into one or more rows, meaning that we can reduce the number of input rows to a single output row by some custom aggregation.</p>
+<p><strong>UDF</strong>：就是做一个mapper，对每一条输入数据，映射为一条输出数据。</p>
+<p><strong>UDAF</strong>:就是一个reducer，把一组输入数据映射为一条(或多条)输出数据。</p>
+<p>一个脚本至于是做mapper还是做reducer，又或者是做udf还是做udaf，取决于我们把它放在什么样的hive操作符中。放在select中的基本就是udf，放在distribute by和cluster by中的就是reducer。<br>We can control if the script is run in a mapper or reducer step by the way we formulate our HiveQL query.<br>The statements DISTRIBUTE BY and CLUSTER BY allow us to indicate that we want to actually perform an aggregation.<br>User-Defined Functions (UDFs) for transformations and even aggregations which are therefore called User-Defined Aggregation Functions (UDAFs)</p>
+</li>
+</ul>
+</li>
+<li><p>UDF示例(运行java已经编写好的UDF)</p>
+<ul>
+<li><p>在hdfs中创建 /user/hive/lib目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir /user/hive/lib</span><br></pre></td></tr></table></figure></li>
+<li><p>把 hive目录下 lib/hive-contrib-hive-contrib-1.1.0-cdh5.7.0.jar 放到hdfs中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -put hive-contrib-1.1.0-cdh5.7.0.jar /user/hive/lib/</span><br></pre></td></tr></table></figure></li>
+<li><p>把集群中jar包的位置添加到hive中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">hive&gt;</span><span class="bash"> add jar hdfs:///user/hive/lib/hive-contrib-1.1.0-cdh5.7.0.jar;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>在hive中创建<strong>临时</strong>UDF</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive<span class="operator">&gt;</span> <span class="keyword">CREATE</span> TEMPORARY <span class="keyword">FUNCTION</span> row_sequence <span class="keyword">as</span> <span class="string">&#x27;org.apache.hadoop.hive.contrib.udf.UDFRowSequence&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>在之前的案例中使用<strong>临时</strong>自定义函数(函数功能: 添加自增长的行号)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> row_sequence(),<span class="operator">*</span> <span class="keyword">from</span> employee;</span><br></pre></td></tr></table></figure></li>
+<li><p>创建<strong>非临时</strong>自定义函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE FUNCTION row_sequence as &#x27;org.apache.hadoop.hive.contrib.udf.UDFRowSequence&#x27; using jar &#x27;hdfs:///user/hive/lib/hive-contrib-1.1.0-cdh5.7.0.jar&#x27;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Python UDF</p>
+<ul>
+<li><p>准备案例环境</p>
+<ul>
+<li>创建表<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> u(fname STRING,lname STRING);</span><br></pre></td></tr></table></figure></li>
+<li>向表中插入数据<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> u2 <span class="keyword">values</span>(<span class="string">&#x27;George&#x27;</span>,<span class="string">&#x27;washington&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> u2 <span class="keyword">values</span>(<span class="string">&#x27;George&#x27;</span>,<span class="string">&#x27;bush&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> u2 <span class="keyword">values</span>(<span class="string">&#x27;Bill&#x27;</span>,<span class="string">&#x27;clinton&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">table</span> u2 <span class="keyword">values</span>(<span class="string">&#x27;Bill&#x27;</span>,<span class="string">&#x27;gates&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>编写map风格脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    line = line.strip()</span><br><span class="line">    fname , lname = line.split(<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">    l_name = lname.upper()</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;\t&#x27;</span>.join([fname, <span class="built_in">str</span>(l_name)])</span><br></pre></td></tr></table></figure></li>
+<li><p>通过hdfs向hive中ADD file</p>
+<ul>
+<li><p>加载文件到hdfs</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -put udf.py /user/hive/lib/</span><br></pre></td></tr></table></figure></li>
+<li><p>hive从hdfs中加载python脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD FILE hdfs:///user/hive/lib/udf.py;</span><br><span class="line">ADD FILE /root/tmp/udf1.py;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Transform</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TRANSFORM(fname, lname) <span class="keyword">USING</span> <span class="string">&#x27;python udf1.py&#x27;</span> <span class="keyword">AS</span> (fname, l_name) <span class="keyword">FROM</span> u;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Python UDAF</p>
+</li>
+</ul>
+<h2 id="hive综合案例"><a href="#hive综合案例" class="headerlink" title="hive综合案例"></a>hive综合案例</h2><ul>
+<li><p>内容推荐数据处理</p>
+<p><img src="hive3.png"></p>
+<ul>
+<li>需求<ul>
+<li>根据用户行为以及文章标签筛选出用户最感兴趣(阅读最多)的标签</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>相关数据</p>
+<p>​    user_id article_id event_time</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">11,101,2018-12-01 06:01:10</span><br><span class="line">22,102,2018-12-01 07:28:12</span><br><span class="line">33,103,2018-12-01 07:50:14</span><br><span class="line">11,104,2018-12-01 09:08:12</span><br><span class="line">22,103,2018-12-01 13:37:12</span><br><span class="line">33,102,2018-12-02 07:09:12</span><br><span class="line">11,101,2018-12-02 18:42:12</span><br><span class="line">35,105,2018-12-03 09:21:12</span><br><span class="line">22,104,2018-12-03 16:42:12</span><br><span class="line">77,103,2018-12-03 18:31:12</span><br><span class="line">99,102,2018-12-04 00:04:12</span><br><span class="line">33,101,2018-12-04 19:10:12</span><br><span class="line">11,101,2018-12-05 09:07:12</span><br><span class="line">35,102,2018-12-05 11:00:12</span><br><span class="line">22,103,2018-12-05 12:11:12</span><br><span class="line">77,104,2018-12-05 18:02:02</span><br><span class="line">99,105,2018-12-05 20:09:11</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>文章数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">artical_id,artical_url,artical_keywords</span><br><span class="line">101,http://www.itcast.cn/1.html,kw8|kw1</span><br><span class="line">102,http://www.itcast.cn/2.html,kw6|kw3</span><br><span class="line">103,http://www.itcast.cn/3.html,kw7</span><br><span class="line">104,http://www.itcast.cn/4.html,kw5|kw1|kw4|kw9</span><br><span class="line">105,http://www.itcast.cn/5.html,</span><br></pre></td></tr></table></figure></li>
+<li><p>数据上传hdfs</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir /tmp/demo</span><br><span class="line">hadoop fs -mkdir /tmp/demo/user_action</span><br></pre></td></tr></table></figure></li>
+<li><p>创建外部表</p>
+<ul>
+<li>用户行为表</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">exists</span> user_actions;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> user_actions(</span><br><span class="line">    user_id STRING,</span><br><span class="line">    article_id STRING,</span><br><span class="line">    time_stamp STRING</span><br><span class="line">)</span><br><span class="line"><span class="type">ROW</span> FORMAT delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span></span><br><span class="line">LOCATION <span class="string">&#x27;/tmp/demo/user_action&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>文章表</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">exists</span> articles;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">EXTERNAL</span> <span class="keyword">TABLE</span> articles(</span><br><span class="line">    article_id STRING,</span><br><span class="line">    url STRING,</span><br><span class="line">    key_words <span class="keyword">array</span><span class="operator">&lt;</span>STRING<span class="operator">&gt;</span></span><br><span class="line">)</span><br><span class="line"><span class="type">ROW</span> FORMAT delimited fields terminated <span class="keyword">by</span> <span class="string">&#x27;,&#x27;</span> </span><br><span class="line">COLLECTION ITEMS terminated <span class="keyword">BY</span> <span class="string">&#x27;|&#x27;</span> </span><br><span class="line">LOCATION <span class="string">&#x27;/tmp/demo/article_keywords&#x27;</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">key_words array&lt;STRING&gt;  数组的数据类型</span></span><br><span class="line"><span class="comment">COLLECTION ITEMS terminated BY &#x27;|&#x27;  数组的元素之间用&#x27;|&#x27;分割</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看数据</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> user_actions;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> articles;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>分组查询每个用户的浏览记录</p>
+<ul>
+<li>collect_set/collect_list作用:<ul>
+<li>将group by中的某列转为一个数组返回</li>
+<li>collect_list<strong>不去重</strong>而collect_set<strong>去重</strong></li>
+</ul>
+</li>
+<li>collect_set</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> user_id,collect_set(article_id) </span><br><span class="line"><span class="keyword">from</span> user_actions <span class="keyword">group</span> <span class="keyword">by</span> user_id;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">11      [&quot;101&quot;,&quot;104&quot;]</span><br><span class="line">22      [&quot;102&quot;,&quot;103&quot;,&quot;104&quot;]</span><br><span class="line">33      [&quot;103&quot;,&quot;102&quot;,&quot;101&quot;]</span><br><span class="line">35      [&quot;105&quot;,&quot;102&quot;]</span><br><span class="line">77      [&quot;103&quot;,&quot;104&quot;]</span><br><span class="line">99      [&quot;102&quot;,&quot;105&quot;]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>collect_list</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> user_id,collect_list(article_id) </span><br><span class="line"><span class="keyword">from</span> user_actions <span class="keyword">group</span> <span class="keyword">by</span> user_id;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">11      [&quot;101&quot;,&quot;104&quot;,&quot;101&quot;,&quot;101&quot;]</span><br><span class="line">22      [&quot;102&quot;,&quot;103&quot;,&quot;104&quot;,&quot;103&quot;]</span><br><span class="line">33      [&quot;103&quot;,&quot;102&quot;,&quot;101&quot;]</span><br><span class="line">35      [&quot;105&quot;,&quot;102&quot;]</span><br><span class="line">77      [&quot;103&quot;,&quot;104&quot;]</span><br><span class="line">99      [&quot;102&quot;,&quot;105&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sort_array: 对数组排序</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> user_id,sort_array(collect_list(article_id)) <span class="keyword">as</span> contents </span><br><span class="line"><span class="keyword">from</span> user_actions <span class="keyword">group</span> <span class="keyword">by</span> user_id;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">11      [&quot;101&quot;,&quot;101&quot;,&quot;101&quot;,&quot;104&quot;]</span><br><span class="line">22      [&quot;102&quot;,&quot;103&quot;,&quot;103&quot;,&quot;104&quot;]</span><br><span class="line">33      [&quot;101&quot;,&quot;102&quot;,&quot;103&quot;]</span><br><span class="line">35      [&quot;102&quot;,&quot;105&quot;]</span><br><span class="line">77      [&quot;103&quot;,&quot;104&quot;]</span><br><span class="line">99      [&quot;102&quot;,&quot;105&quot;]</span><br></pre></td></tr></table></figure></li>
+<li><p>查看每一篇文章的关键字 lateral view explode</p>
+<ul>
+<li>explode函数 将array 拆分</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> explode(key_words) <span class="keyword">from</span> articles;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>lateral view 和 explode 配合使用,将一行数据拆分成多行数据，在此基础上可以对拆分的数据进行聚合</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> article_id,kw <span class="keyword">from</span> articles <span class="keyword">lateral</span> <span class="keyword">view</span> explode(key_words) t <span class="keyword">as</span> kw;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">101     kw8</span><br><span class="line">101     kw1</span><br><span class="line">102     kw6</span><br><span class="line">102     kw3</span><br><span class="line">103     kw7</span><br><span class="line">104     kw5</span><br><span class="line">104     kw1</span><br><span class="line">104     kw4</span><br><span class="line">104     kw9</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> article_id,kw <span class="keyword">from</span> articles <span class="keyword">lateral</span> <span class="keyword">view</span> <span class="keyword">outer</span> explode(key_words) t <span class="keyword">as</span> kw;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">101     kw8</span><br><span class="line">101     kw1</span><br><span class="line">102     kw6</span><br><span class="line">102     kw3</span><br><span class="line">103     kw7</span><br><span class="line">104     kw5</span><br><span class="line">104     kw1</span><br><span class="line">104     kw4</span><br><span class="line">104     kw9</span><br><span class="line">105     NULL</span><br><span class="line"><span class="meta">#</span><span class="bash">含有outer</span></span><br></pre></td></tr></table></figure></li>
+<li><p>根据文章id找到用户查看文章的关键字</p>
+<ul>
+<li>原始数据</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">101     http://www.itcast.cn/1.html     [&quot;kw8&quot;,&quot;kw1&quot;]</span><br><span class="line">102     http://www.itcast.cn/2.html     [&quot;kw6&quot;,&quot;kw3&quot;]</span><br><span class="line">103     http://www.itcast.cn/3.html     [&quot;kw7&quot;]</span><br><span class="line">104     http://www.itcast.cn/4.html     [&quot;kw5&quot;,&quot;kw1&quot;,&quot;kw4&quot;,&quot;kw9&quot;]</span><br><span class="line">105     http://www.itcast.cn/5.html     []</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.user_id, b.kw <span class="keyword">from</span> user_actions </span><br><span class="line"><span class="keyword">as</span> a <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">JOIN</span> (<span class="keyword">select</span> article_id,kw <span class="keyword">from</span> articles</span><br><span class="line"><span class="keyword">lateral</span> <span class="keyword">view</span> <span class="keyword">outer</span> explode(key_words) t <span class="keyword">as</span> kw) b</span><br><span class="line"><span class="keyword">on</span> (a.article_id <span class="operator">=</span> b.article_id)</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> a.user_id;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">11      kw1</span><br><span class="line">11      kw8</span><br><span class="line">11      kw5</span><br><span class="line">11      kw1</span><br><span class="line">11      kw4</span><br><span class="line">11      kw1</span><br><span class="line">11      kw9</span><br><span class="line">11      kw8</span><br><span class="line">11      kw1</span><br><span class="line">11      kw8</span><br><span class="line">22      kw1</span><br><span class="line">22      kw7</span><br><span class="line">22      kw9</span><br><span class="line">22      kw4</span><br><span class="line">22      kw5</span><br><span class="line">22      kw7</span><br><span class="line">22      kw3</span><br><span class="line">22      kw6</span><br><span class="line">33      kw8</span><br><span class="line">33      kw1</span><br><span class="line">33      kw3</span><br><span class="line">33      kw6</span><br><span class="line">33      kw7</span><br><span class="line">35      NULL</span><br><span class="line">35      kw6</span><br><span class="line">35      kw3</span><br><span class="line">77      kw9</span><br><span class="line">77      kw1</span><br><span class="line">77      kw7</span><br><span class="line">77      kw4</span><br><span class="line">77      kw5</span><br><span class="line">99      kw3</span><br><span class="line">99      kw6</span><br><span class="line">99      NULL</span><br></pre></td></tr></table></figure></li>
+<li><p>根据文章id找到用户查看文章的关键字并统计频率</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.user_id, b.kw,<span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> weight </span><br><span class="line"><span class="keyword">from</span> user_actions <span class="keyword">as</span> a </span><br><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">JOIN</span> (<span class="keyword">select</span> article_id,kw <span class="keyword">from</span> articles</span><br><span class="line"><span class="keyword">lateral</span> <span class="keyword">view</span> <span class="keyword">outer</span> explode(key_words) t <span class="keyword">as</span> kw) b</span><br><span class="line"><span class="keyword">on</span> (a.article_id <span class="operator">=</span> b.article_id)</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> a.user_id,b.kw </span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> a.user_id,weight <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">11      kw1     4</span><br><span class="line">11      kw8     3</span><br><span class="line">11      kw5     1</span><br><span class="line">11      kw9     1</span><br><span class="line">11      kw4     1</span><br><span class="line">22      kw7     2</span><br><span class="line">22      kw9     1</span><br><span class="line">22      kw1     1</span><br><span class="line">22      kw3     1</span><br><span class="line">22      kw4     1</span><br><span class="line">22      kw5     1</span><br><span class="line">22      kw6     1</span><br><span class="line">33      kw3     1</span><br><span class="line">33      kw8     1</span><br><span class="line">33      kw7     1</span><br><span class="line">33      kw6     1</span><br><span class="line">33      kw1     1</span><br><span class="line">35      NULL    1</span><br><span class="line">35      kw3     1</span><br><span class="line">35      kw6     1</span><br><span class="line">77      kw1     1</span><br><span class="line">77      kw4     1</span><br><span class="line">77      kw5     1</span><br><span class="line">77      kw7     1</span><br><span class="line">77      kw9     1</span><br><span class="line">99      NULL    1</span><br><span class="line">99      kw3     1</span><br><span class="line">99      kw6     1</span><br></pre></td></tr></table></figure></li>
+<li><p>CONCAT：<br>CONCAT(str1,str2,…)  </p>
+<p>返回结果为连接参数产生的字符串。如有任何一个参数为NULL ，则返回值为 NULL。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> concat(user_id,article_id) <span class="keyword">from</span> user_actions;</span><br></pre></td></tr></table></figure>
+
+<p>CONCAT_WS:</p>
+<p>使用语法为：CONCAT_WS(separator,str1,str2,…)</p>
+<p>CONCAT_WS() 代表 CONCAT With Separator ，是CONCAT()的特殊形式。第一个参数是其它参数的分隔符。分隔符的位置放在要连接的两个字符串之间。分隔符可以是一个字符串，也可以是其它参数。如果分隔符为 NULL，则结果为 NULL。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> concat_ws(<span class="string">&#x27;:&#x27;</span>,user_id,article_id) <span class="keyword">from</span> user_actions;</span><br></pre></td></tr></table></figure></li>
+<li><p>将用户查看的关键字和频率合并成 key:value形式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.user_id, concat_ws(<span class="string">&#x27;:&#x27;</span>,b.kw,<span class="built_in">cast</span> (<span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> string)) <span class="keyword">as</span> kw_w </span><br><span class="line"><span class="keyword">from</span> user_actions <span class="keyword">as</span> a </span><br><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">JOIN</span> (<span class="keyword">select</span> article_id,kw <span class="keyword">from</span> articles</span><br><span class="line"><span class="keyword">lateral</span> <span class="keyword">view</span> <span class="keyword">outer</span> explode(key_words) t <span class="keyword">as</span> kw) b</span><br><span class="line"><span class="keyword">on</span> (a.article_id <span class="operator">=</span> b.article_id)</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> a.user_id,b.kw;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">11      kw1:4</span><br><span class="line">11      kw4:1</span><br><span class="line">11      kw5:1</span><br><span class="line">11      kw8:3</span><br><span class="line">11      kw9:1</span><br><span class="line">22      kw1:1</span><br><span class="line">22      kw3:1</span><br><span class="line">22      kw4:1</span><br><span class="line">22      kw5:1</span><br><span class="line">22      kw6:1</span><br><span class="line">22      kw7:2</span><br><span class="line">22      kw9:1</span><br><span class="line">33      kw1:1</span><br><span class="line">33      kw3:1</span><br><span class="line">33      kw6:1</span><br><span class="line">33      kw7:1</span><br><span class="line">33      kw8:1</span><br><span class="line">35      1</span><br><span class="line">35      kw3:1</span><br><span class="line">35      kw6:1</span><br><span class="line">77      kw1:1</span><br><span class="line">77      kw4:1</span><br><span class="line">77      kw5:1</span><br><span class="line">77      kw7:1</span><br><span class="line">77      kw9:1</span><br><span class="line">99      1</span><br><span class="line">99      kw3:1</span><br><span class="line">99      kw6:1</span><br></pre></td></tr></table></figure></li>
+<li><p>将用户查看的关键字和频率合并成 key:value形式并按用户聚合</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> cc.user_id,concat_ws(<span class="string">&#x27;,&#x27;</span>,collect_set(cc.kw_w))</span><br><span class="line"><span class="keyword">from</span>(</span><br><span class="line"><span class="keyword">select</span> a.user_id, concat_ws(<span class="string">&#x27;:&#x27;</span>,b.kw,<span class="built_in">cast</span> (<span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> string)) <span class="keyword">as</span> kw_w </span><br><span class="line"><span class="keyword">from</span> user_actions <span class="keyword">as</span> a </span><br><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">JOIN</span> (<span class="keyword">select</span> article_id,kw <span class="keyword">from</span> articles</span><br><span class="line"><span class="keyword">lateral</span> <span class="keyword">view</span> <span class="keyword">outer</span> explode(key_words) t <span class="keyword">as</span> kw) b</span><br><span class="line"><span class="keyword">on</span> (a.article_id <span class="operator">=</span> b.article_id)</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> a.user_id,b.kw</span><br><span class="line">) <span class="keyword">as</span> cc </span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> cc.user_id;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">11      kw1:4,kw4:1,kw5:1,kw8:3,kw9:1</span><br><span class="line">22      kw1:1,kw3:1,kw4:1,kw5:1,kw6:1,kw7:2,kw9:1</span><br><span class="line">33      kw1:1,kw3:1,kw6:1,kw7:1,kw8:1</span><br><span class="line">35      1,kw3:1,kw6:1</span><br><span class="line">77      kw1:1,kw4:1,kw5:1,kw7:1,kw9:1</span><br><span class="line">99      1,kw3:1,kw6:1</span><br></pre></td></tr></table></figure></li>
+<li><p>将上面聚合结果转换成map</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> cc.user_id,str_to_map(concat_ws(<span class="string">&#x27;,&#x27;</span>,collect_set(cc.kw_w))) <span class="keyword">as</span> wm</span><br><span class="line"><span class="keyword">from</span>(</span><br><span class="line"><span class="keyword">select</span> a.user_id, concat_ws(<span class="string">&#x27;:&#x27;</span>,b.kw,<span class="built_in">cast</span> (<span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> string)) <span class="keyword">as</span> kw_w </span><br><span class="line"><span class="keyword">from</span> user_actions <span class="keyword">as</span> a </span><br><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">JOIN</span> (<span class="keyword">select</span> article_id,kw <span class="keyword">from</span> articles</span><br><span class="line"><span class="keyword">lateral</span> <span class="keyword">view</span> <span class="keyword">outer</span> explode(key_words) t <span class="keyword">as</span> kw) b</span><br><span class="line"><span class="keyword">on</span> (a.article_id <span class="operator">=</span> b.article_id)</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> a.user_id,b.kw</span><br><span class="line">) <span class="keyword">as</span> cc </span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> cc.user_id;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">11      &#123;&quot;kw1&quot;:&quot;4&quot;,&quot;kw4&quot;:&quot;1&quot;,&quot;kw5&quot;:&quot;1&quot;,&quot;kw8&quot;:&quot;3&quot;,&quot;kw9&quot;:&quot;1&quot;&#125;</span><br><span class="line">22      &#123;&quot;kw1&quot;:&quot;1&quot;,&quot;kw3&quot;:&quot;1&quot;,&quot;kw4&quot;:&quot;1&quot;,&quot;kw5&quot;:&quot;1&quot;,&quot;kw6&quot;:&quot;1&quot;,&quot;kw7&quot;:&quot;2&quot;,&quot;kw9&quot;:&quot;1&quot;&#125;</span><br><span class="line">33      &#123;&quot;kw1&quot;:&quot;1&quot;,&quot;kw3&quot;:&quot;1&quot;,&quot;kw6&quot;:&quot;1&quot;,&quot;kw7&quot;:&quot;1&quot;,&quot;kw8&quot;:&quot;1&quot;&#125;</span><br><span class="line">35      &#123;&quot;1&quot;:null,&quot;kw3&quot;:&quot;1&quot;,&quot;kw6&quot;:&quot;1&quot;&#125;</span><br><span class="line">77      &#123;&quot;kw1&quot;:&quot;1&quot;,&quot;kw4&quot;:&quot;1&quot;,&quot;kw5&quot;:&quot;1&quot;,&quot;kw7&quot;:&quot;1&quot;,&quot;kw9&quot;:&quot;1&quot;&#125;</span><br><span class="line">99      &#123;&quot;1&quot;:null,&quot;kw3&quot;:&quot;1&quot;,&quot;kw6&quot;:&quot;1&quot;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>将用户的阅读偏好结果保存到表中</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> user_kws <span class="keyword">as</span> </span><br><span class="line"><span class="keyword">select</span> cc.user_id,str_to_map(concat_ws(<span class="string">&#x27;,&#x27;</span>,collect_set(cc.kw_w))) <span class="keyword">as</span> wm</span><br><span class="line"><span class="keyword">from</span>(</span><br><span class="line"><span class="keyword">select</span> a.user_id, concat_ws(<span class="string">&#x27;:&#x27;</span>,b.kw,<span class="built_in">cast</span> (<span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">as</span> string)) <span class="keyword">as</span> kw_w </span><br><span class="line"><span class="keyword">from</span> user_actions <span class="keyword">as</span> a </span><br><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">JOIN</span> (<span class="keyword">select</span> article_id,kw <span class="keyword">from</span> articles</span><br><span class="line"><span class="keyword">lateral</span> <span class="keyword">view</span> <span class="keyword">outer</span> explode(key_words) t <span class="keyword">as</span> kw) b</span><br><span class="line"><span class="keyword">on</span> (a.article_id <span class="operator">=</span> b.article_id)</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> a.user_id,b.kw</span><br><span class="line">) <span class="keyword">as</span> cc </span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> cc.user_id;</span><br></pre></td></tr></table></figure></li>
+<li><p>从表中通过key查询map中的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> user_id, wm[<span class="string">&#x27;kw1&#x27;</span>] <span class="keyword">from</span> user_kws;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">11      4</span><br><span class="line">22      1</span><br><span class="line">33      1</span><br><span class="line">35      NULL</span><br><span class="line">77      1</span><br><span class="line">99      NULL</span><br></pre></td></tr></table></figure></li>
+<li><p>从表中获取map中所有的key 和 所有的value</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> user_id,map_keys(wm),map_values(wm) <span class="keyword">from</span> user_kws;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">11      [&quot;kw1&quot;,&quot;kw4&quot;,&quot;kw5&quot;,&quot;kw8&quot;,&quot;kw9&quot;] [&quot;4&quot;,&quot;1&quot;,&quot;1&quot;,&quot;3&quot;,&quot;1&quot;]</span><br><span class="line">22      [&quot;kw1&quot;,&quot;kw3&quot;,&quot;kw4&quot;,&quot;kw5&quot;,&quot;kw6&quot;,&quot;kw7&quot;,&quot;kw9&quot;]     [&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;2&quot;,&quot;1&quot;]</span><br><span class="line">33      [&quot;kw1&quot;,&quot;kw3&quot;,&quot;kw6&quot;,&quot;kw7&quot;,&quot;kw8&quot;] [&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;]</span><br><span class="line">35      [&quot;1&quot;,&quot;kw3&quot;,&quot;kw6&quot;]       [null,&quot;1&quot;,&quot;1&quot;]</span><br><span class="line">77      [&quot;kw1&quot;,&quot;kw4&quot;,&quot;kw5&quot;,&quot;kw7&quot;,&quot;kw9&quot;] [&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;]</span><br><span class="line">99      [&quot;1&quot;,&quot;kw3&quot;,&quot;kw6&quot;]       [null,&quot;1&quot;,&quot;1&quot;]</span><br></pre></td></tr></table></figure></li>
+<li><p>用lateral view explode把map中的数据转换成多列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> user_id,keyword,weight <span class="keyword">from</span> user_kws <span class="keyword">lateral</span> <span class="keyword">view</span> explode(wm) t <span class="keyword">as</span> keyword,weight;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">11      kw1     4</span><br><span class="line">11      kw4     1</span><br><span class="line">11      kw5     1</span><br><span class="line">11      kw8     3</span><br><span class="line">11      kw9     1</span><br><span class="line">22      kw1     1</span><br><span class="line">22      kw3     1</span><br><span class="line">22      kw4     1</span><br><span class="line">22      kw5     1</span><br><span class="line">22      kw6     1</span><br><span class="line">22      kw7     2</span><br><span class="line">22      kw9     1</span><br><span class="line">33      kw1     1</span><br><span class="line">33      kw3     1</span><br><span class="line">33      kw6     1</span><br><span class="line">33      kw7     1</span><br><span class="line">33      kw8     1</span><br><span class="line">35      1       NULL</span><br><span class="line">35      kw3     1</span><br><span class="line">35      kw6     1</span><br><span class="line">77      kw1     1</span><br><span class="line">77      kw4     1</span><br><span class="line">77      kw5     1</span><br><span class="line">77      kw7     1</span><br><span class="line">77      kw9     1</span><br><span class="line">99      1       NULL</span><br><span class="line">99      kw3     1</span><br><span class="line">99      kw6     1</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="HBase简介与环境部署"><a href="#HBase简介与环境部署" class="headerlink" title="HBase简介与环境部署"></a>HBase简介与环境部署</h2><h3 id="HBase简介-amp-在Hadoop生态中的地位"><a href="#HBase简介-amp-在Hadoop生态中的地位" class="headerlink" title="HBase简介&amp;在Hadoop生态中的地位"></a>HBase简介&amp;在Hadoop生态中的地位</h3><h4 id="什么是HBase"><a href="#什么是HBase" class="headerlink" title="什么是HBase"></a>什么是HBase</h4><ul>
+<li>HBase是一个分布式的、面向列的开源数据库</li>
+<li>HBase是Google BigTable的开源实现</li>
+<li>HBase不同于一般的关系数据库, 适合非结构化数据存储</li>
+</ul>
+<h4 id="BigTable"><a href="#BigTable" class="headerlink" title="BigTable"></a>BigTable</h4><ul>
+<li>BigTable是Google设计的分布式数据存储系统，用来处理海量的数据的一种非关系型的数据库。<ul>
+<li>适合大规模海量数据，PB级数据；</li>
+<li>分布式、并发数据处理，效率极高；</li>
+<li>易于扩展，支持动态伸缩</li>
+<li>适用于廉价设备；</li>
+<li>不适用于传统关系型数据的存储；</li>
+</ul>
+</li>
+</ul>
+<h4 id="面向列的数据库"><a href="#面向列的数据库" class="headerlink" title="面向列的数据库"></a>面向列的数据库</h4><p><strong>HBase 与 传统关系数据库的区别</strong></p>
+<table>
+  <tr>
+    <th></th>
+    <th>HBase</th>
+    <th>关系型数据库</th>
+  </tr>
+  <tr>
+    <td> 数据库大小 </td>
+    <td> PB级别  </td>
+    <td>GB TB</td>
+  </tr>
+  <tr>
+    <td> 数据类型 </td>
+    <td> Bytes </td>
+    <td> 丰富的数据类型 </td>
+  </tr>
+    <tr>
+    <td> 事务支持 </td>
+    <td> ACID只支持单个Row级别 </td>
+    <td> 全面的ACID支持, 对Row和表</td>
+  </tr>
+  <tr>
+    <td> 索引 </td>
+    <td> 只支持Row-key </td>
+    <td> 支持 </td>
+  </tr>
+    <tr>
+    <td> 吞吐量 </td>
+    <td> 百万写入/秒 </td>
+    <td> 数千写入/秒</td>
+  </tr>
+</table>
+
+<ul>
+<li>关系型数据库中数据示例</li>
+</ul>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>FILE NAME</th>
+    <th>FILE PATH</th>
+    <th>FILE TYPE</th>
+    <th>FILE SIZE</th>
+    <th>CREATOR</th>
+  </tr>
+  <tr>
+    <td> 1 </td>
+    <td> file1.txt  </td>
+    <td>/home</td>
+    <td> txt </td>
+    <td> 1024 </td>
+    <td> tom </td>
+  </tr>
+  <tr>
+    <td> 2 </td>
+    <td> file2.txt  </td>
+    <td>/home/pics</td>
+    <td> jpg </td>
+    <td> 5032 </td>
+    <td> jerry </td>
+  </tr>
+</table>
+
+<ul>
+<li>同样数据保存到列式数据库中</li>
+</ul>
+<table>
+<tr>
+<th>RowKey</th>
+<th>FILE INFO</th>
+<th>SAVE INFO</th>
+</tr>
+<tr>
+<td> 1 </td>
+<td> name:file1.txt
+type:txt
+size:1024</td>
+<td>path:/home/pics
+creator:Jerry
+</td>
+</tr>
+<tr>
+<td> 2 </td>
+<td>name:file2.jpg
+type:jpg
+size:5032</td>
+<td> path:/home
+creator:Tom</td>
+</tr>
+</table>
+
+
+
+<ul>
+<li>行数据库&amp;列数据库存储方式比较<br><img src="hbase4.png"></li>
+</ul>
+<h4 id="什么是非结构化数据存储"><a href="#什么是非结构化数据存储" class="headerlink" title="什么是非结构化数据存储"></a>什么是非结构化数据存储</h4><ul>
+<li>结构化数据<ul>
+<li>适合用二维表来展示的数据</li>
+</ul>
+</li>
+<li>非结构化数据<ul>
+<li>非结构化数据是数据结构不规则或不完整</li>
+<li>没有预定义的数据模型</li>
+<li>不方便用数据库二维逻辑表来表现</li>
+<li>办公文档、文本、图片、XML, HTML、各类报表、图像和音频/视频信息等</li>
+</ul>
+</li>
+</ul>
+<h4 id="HBase在Hadoop生态中的地位"><a href="#HBase在Hadoop生态中的地位" class="headerlink" title="HBase在Hadoop生态中的地位"></a>HBase在Hadoop生态中的地位</h4><ul>
+<li><p>HBase是Apache基金会顶级项目</p>
+</li>
+<li><p>HBase基于HDFS进行数据存储</p>
+</li>
+<li><p>HBase可以存储超大数据并适合用来进行大数据的实时查询</p>
+<p><img src="hbase&hive.png"></p>
+</li>
+</ul>
+<h4 id="HBase与HDFS"><a href="#HBase与HDFS" class="headerlink" title="HBase与HDFS"></a>HBase与HDFS</h4><ul>
+<li>HBase建立在Hadoop文件系统上, 利用了HDFS的容错能力</li>
+<li>HBase提供对数据的随机实时读/写访问功能</li>
+<li>HBase内部使用哈希表, 并存储索引, 可以快速查找HDFS中数据</li>
+</ul>
+<h4 id="HBase使用场景"><a href="#HBase使用场景" class="headerlink" title="HBase使用场景"></a>HBase使用场景</h4><ul>
+<li>瞬间写入量很大</li>
+<li>大量数据需要长期保存, 且数量会持续增长</li>
+<li>HBase不适合有join, 多级索引, 表关系复杂的数据模型</li>
+</ul>
+<h2 id="HBase的数据模型"><a href="#HBase的数据模型" class="headerlink" title="HBase的数据模型"></a>HBase的数据模型</h2><ul>
+<li><p>NameSpace: 关系型数据库的”数据库”(database)</p>
+</li>
+<li><p>表(table)：用于存储管理数据，具有稀疏的、面向列的特点。HBase中的每一张表，就是所谓的大表(Bigtable)，可以有上亿行，上百万列。对于为值为空的列，并不占用存储空间，因此表可以设计的非常稀疏。</p>
+</li>
+<li><p>行(Row)：在表里面,每一行代表着一个数据对象,每一行都是以一个行键(Row Key)来进行唯一标识的, 行键并没有什么特定的数据类型, 以二进制的字节来存储</p>
+</li>
+<li><p>列(Column): HBase的列由 Column family 和 Column qualifier 组成, 由冒号: 进行行间隔, 如 family: qualifier</p>
+</li>
+<li><p>行键(RowKey)：类似于MySQL中的主键，HBase根据行键来快速检索数据，一个行键对应一条记录。与MySQL主键不同的是，HBase的行键是天然固有的，每一行数据都存在行键。</p>
+</li>
+<li><p>列族(ColumnFamily)：是列的集合。列族在表定义时需要指定，而列在插入数据时动态指定。列中的数据都是以二进制形式存在，没有数据类型。在物理存储结构上，每个表中的每个列族单独以一个文件存储。一个表可以有多个列簇。</p>
+</li>
+<li><p>列修饰符(<em>Column</em> <em>Qualifier</em>) : 列族中的数据通过列标识来进行映射, 可以理解为一个键值对(key-value), 列修饰符(<em>Column</em> <em>Qualifier</em>) 就是key 对应关系型数据库的列</p>
+</li>
+<li><p>时间戳(TimeStamp)：是列的一个属性，是一个64位整数。由行键和列确定的单元格，可以存储多个数据，每个数据含有时间戳属性，数据具有版本特性。可根据版本(VERSIONS)或时间戳来指定查询历史版本数据，如果都不指定，则默认返回最新版本的数据。</p>
+</li>
+<li><p>区域(Region)：HBase自动把表水平划分成的多个区域，划分的区域随着数据的增大而增多。</p>
+</li>
+<li><p>HBase 支持特定场景下的 ACID，即对行级别的 操作保证完全的 ACID</p>
+</li>
+<li><h4 id="cap定理"><a href="#cap定理" class="headerlink" title="cap定理"></a>cap定理</h4><ul>
+<li><p>分布式系统的最大难点，就是各个节点的状态如何同步。CAP 定理是这方面的基本定理，也是理解分布式系统的起点。</p>
+<ul>
+<li><p>一致性(所有节点在同一时间具有相同的数据)</p>
+<p><img src="Consistency.png" alt="img"></p>
+</li>
+<li><p>可用性(保证每个请求不管成功或失败都有响应,但不保证获取的数据的正确性)</p>
+</li>
+<li><p>分区容错性(系统中任意信息的丢失或失败不会影响系统的运行,系统如果不能在某个时限内达成数据一致性,就必须在上面两个操作之间做出选择)</p>
+</li>
+</ul>
+<p><img src="cap.jpg" alt="img"></p>
+<p><strong>hbase是CAP中的CP系统,即hbase是强一致性的</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="HBase-的安装与实战"><a href="#HBase-的安装与实战" class="headerlink" title="HBase 的安装与实战"></a>HBase 的安装与实战</h2><h3 id="HBase的安装"><a href="#HBase的安装" class="headerlink" title="HBase的安装"></a>HBase的安装</h3><ul>
+<li><p>下载安装包 <a target="_blank" rel="noopener" href="http://archive.cloudera.com/cdh5/cdh/5/hbase-1.2.0-cdh5.7.0.tar.gz">http://archive.cloudera.com/cdh5/cdh/5/hbase-1.2.0-cdh5.7.0.tar.gz</a></p>
+</li>
+<li><p>配置伪分布式环境</p>
+<ul>
+<li><p>环境变量配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HBASE_HOME=/usr/local/development/hbase-1.2.4</span><br><span class="line">export PATH=$HBASE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></li>
+<li><p>配置hbase-env.sh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/local/development/jdk1.7.0_15</span><br><span class="line">export HBASE_MANAGES_ZK=false  --如果你是使用hbase自带的zk就是true，如果使用自己的zk就是false</span><br></pre></td></tr></table></figure></li>
+<li><p>配置hbase-site.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span>　　--hbase持久保存的目录</span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://hadoop001:8020/opt/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  --是否是分布式</span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span>     </span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.property.clientPort<span class="tag">&lt;/<span class="name">name</span>&gt;</span>    --指定要连接zk的端口</span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>2181<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.property.dataDir<span class="tag">&lt;/<span class="name">name</span>&gt;</span>            <span class="tag">&lt;<span class="name">value</span>&gt;</span>/home/hadoop/app/hbase/zkData<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span>          </span><br></pre></td></tr></table></figure></li>
+<li><p>启动hbase（启动的hbase的时候要保证hadoop集群已经启动）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/hbase/bin/start-hbase.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>输入hbase shell（进入shell命令行）</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="HBase-shell"><a href="#HBase-shell" class="headerlink" title="HBase shell"></a>HBase shell</h3><ul>
+<li>HBase DDL 和 DML 命令</li>
+</ul>
+<table>
+  <tr>
+    <th>名称</th>
+    <th>命令表达式</th>
+  </tr>
+  <tr>
+    <td> 创建表 </td>
+   <td> create '表名', '列族名1','列族名2','列族名n' </td>
+  </tr>
+  <tr>
+    <td> 添加记录 </td>
+    <td> put '表名','行名','列名:','值 </td>
+  </tr>
+    <tr>
+    <td> 查看记录 </td>
+    <td> get '表名','行名' </td>
+  </tr>
+  <tr>
+    <td> 查看表中的记录总数 </td>
+    <td> count '表名' </td>
+  </tr>
+    <tr>
+    <td> 删除记录 </td>
+    <td> delete '表名', '行名','列名' </td>
+  </tr>
+  <tr>
+    <td> 删除一张表 </td>
+    <td> 第一步 disable '表名' 第二步 drop '表名' </td>
+  </tr>
+  <tr>
+    <td> 查看所有记录 </td>
+    <td> scan "表名称" </td>
+  </tr>
+  <tr>
+    <td> 查看指定表指定列所有数据 </td>
+    <td> scan '表名' ,{COLUMNS=>'列族名:列名'} </td>
+  </tr>
+   <tr>
+    <td> 更新记录 </td>
+    <td> 重写覆盖 </td>
+  </tr>
+</table>
+
+<ul>
+<li>连接集群</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbase shell</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建表</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="string">&#x27;user&#x27;</span>,<span class="string">&#x27;base_info&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除表</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">disable <span class="string">&#x27;user&#x27;</span></span><br><span class="line"><span class="keyword">drop</span> <span class="string">&#x27;user&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建名称空间</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create_namespace <span class="string">&#x27;test&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>展示现有名称空间</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_namespace</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建表的时候添加namespace</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="string">&#x27;test:user&#x27;</span>,<span class="string">&#x27;base_info&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>显示某个名称空间下有哪些表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list_namespace_tables &#x27;test&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>插入数据</p>
+<p>put  ‘表名’，‘rowkey的值’，’列族：列标识符‘，’值‘</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">put &#x27;user&#x27;,&#x27;rowkey_10&#x27;,&#x27;base_info:username&#x27;,&#x27;Tom&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_10&#x27;,&#x27;base_info:birthday&#x27;,&#x27;2014-07-10&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_10&#x27;,&#x27;base_info:sex&#x27;,&#x27;1&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_10&#x27;,&#x27;base_info:address&#x27;,&#x27;Tokyo&#x27;</span><br><span class="line"></span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_16&#x27;,&#x27;base_info:username&#x27;,&#x27;Mike&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_16&#x27;,&#x27;base_info:birthday&#x27;,&#x27;2014-07-10&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_16&#x27;,&#x27;base_info:sex&#x27;,&#x27;1&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_16&#x27;,&#x27;base_info:address&#x27;,&#x27;beijing&#x27;</span><br><span class="line"></span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_22&#x27;,&#x27;base_info:username&#x27;,&#x27;Jerry&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_22&#x27;,&#x27;base_info:birthday&#x27;,&#x27;2014-07-10&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_22&#x27;,&#x27;base_info:sex&#x27;,&#x27;1&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_22&#x27;,&#x27;base_info:address&#x27;,&#x27;Newyork&#x27;</span><br><span class="line"></span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_24&#x27;,&#x27;base_info:username&#x27;,&#x27;Nico&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_24&#x27;,&#x27;base_info:birthday&#x27;,&#x27;2014-07-10&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_24&#x27;,&#x27;base_info:sex&#x27;,&#x27;1&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_24&#x27;,&#x27;base_info:address&#x27;,&#x27;shanghai&#x27;</span><br><span class="line"></span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_25&#x27;,&#x27;base_info:username&#x27;,&#x27;Rose&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_25&#x27;,&#x27;base_info:birthday&#x27;,&#x27;2014-07-10&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_25&#x27;,&#x27;base_info:sex&#x27;,&#x27;1&#x27;</span><br><span class="line">put &#x27;user&#x27;,&#x27;rowkey_25&#x27;,&#x27;base_info:address&#x27;,&#x27;Soul&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查询表中的所有数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan &#x27;user&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查询某个rowkey的数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get &#x27;user&#x27;,&#x27;rowkey_16&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查询某个列簇的数据</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">get &#x27;user&#x27;,&#x27;rowkey_16&#x27;,&#x27;base_info&#x27;</span><br><span class="line">get &#x27;user&#x27;,&#x27;rowkey_16&#x27;,&#x27;base_info:username&#x27;</span><br><span class="line">get &#x27;user&#x27;, &#x27;rowkey_16&#x27;, &#123;COLUMN =&gt; [&#x27;base_info:username&#x27;,&#x27;base_info:sex&#x27;]&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除表中的数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete &#x27;user&#x27;, &#x27;rowkey_16&#x27;, &#x27;base_info:username&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清空数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truncate &#x27;user&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>操作列簇</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter &#x27;user&#x27;, NAME =&gt; &#x27;f2&#x27;</span><br><span class="line">alter &#x27;user&#x27;, &#x27;delete&#x27; =&gt; &#x27;f2&#x27;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>HBase 追加型数据库 会保留多个版本数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">desc</span> <span class="string">&#x27;user&#x27;</span></span><br><span class="line"><span class="keyword">Table</span> <span class="keyword">user</span> <span class="keyword">is</span> ENABLED</span><br><span class="line"><span class="keyword">user</span></span><br><span class="line"><span class="keyword">COLUMN</span> FAMILIES DESCRIPTION</span><br><span class="line">&#123;NAME <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;base_info&#x27;</span>, VERSIONS <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;1&#x27;</span>, EVICT_BLOCKS_ON_CLOSE <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;false&#x27;</span>, NEW_VERSION_B</span><br><span class="line">HE_DATA_ON_WRITE <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;false&#x27;</span>, DATA_BLOCK_ENCODING <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;NONE&#x27;</span>, TTL <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;FOREVER&#x27;</span>, MI</span><br><span class="line">ER <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;NONE&#x27;</span>, CACHE_INDEX_ON_WRITE <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;false&#x27;</span>, IN_MEMORY <span class="operator">=</span><span class="operator">&gt;</span> <span class="string">&#x27;false&#x27;</span>, CACHE_BLOOM</span><br><span class="line">se<span class="string">&#x27;, COMPRESSION =&gt; &#x27;</span><span class="keyword">NONE</span><span class="string">&#x27;, BLOCKCACHE =&gt; &#x27;</span><span class="literal">false</span><span class="string">&#x27;, BLOCKSIZE =&gt; &#x27;</span><span class="number">65536</span><span class="string">&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>VERSIONS=&gt;’1’说明最多可以显示一个版本 修改数据</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">put <span class="string">&#x27;user&#x27;</span>,<span class="string">&#x27;rowkey_10&#x27;</span>,<span class="string">&#x27;base_info:username&#x27;</span>,<span class="string">&#x27;Tom&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指定显示多个版本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get &#x27;user&#x27;,&#x27;rowkey_10&#x27;,&#123;COLUMN=&gt;&#x27;base_info:username&#x27;,VERSIONS=&gt;2&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改可以显示的版本数量</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter &#x27;user&#x27;,NAME=&gt;&#x27;base_info&#x27;,VERSIONS=&gt;10</span><br></pre></td></tr></table></figure></li>
+<li><p>命令表</p>
+</li>
+</ul>
+<p><img src="2017-12-27_230420.jpg"></p>
+<p>可以通过HbaseUi界面查看表的信息</p>
+<p>端口60010打不开的情况，是因为hbase 1.0 以后的版本，需要自己手动配置，在文件 hbase-site</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;  </span><br><span class="line">&lt;name&gt;hbase.master.info.port&lt;/name&gt;  </span><br><span class="line">&lt;value&gt;60010&lt;/value&gt;  </span><br><span class="line">&lt;/property&gt; </span><br></pre></td></tr></table></figure>
+
+<h3 id="HappyBase操作Hbase"><a href="#HappyBase操作Hbase" class="headerlink" title="HappyBase操作Hbase"></a>HappyBase操作Hbase</h3><ul>
+<li><p>什么是HappyBase</p>
+<ul>
+<li><strong>HappyBase</strong> is a developer-friendly <a target="_blank" rel="noopener" href="http://python.org/">Python</a> library to interact with <a target="_blank" rel="noopener" href="http://hbase.apache.org/">Apache HBase</a>. HappyBase is designed for use in standard HBase setups, and offers application developers a Pythonic API to interact with HBase. Below the surface, HappyBase uses the <a target="_blank" rel="noopener" href="http://pypi.python.org/pypi/thrift">Python Thrift library</a> to connect to HBase using its <a target="_blank" rel="noopener" href="http://thrift.apache.org/">Thrift</a> gateway, which is included in the standard HBase 0.9x releases.</li>
+</ul>
+</li>
+<li><p>HappyBase 是FaceBook员工开发的操作HBase的python库, 其基于Python Thrift, 但使用方式比Thrift简单, 已被广泛应用</p>
+</li>
+<li><p>启动hbase thrift server : hbase-daemon.sh start thrift</p>
+</li>
+<li><p>安装happy base</p>
+<ul>
+<li>pip install happybase</li>
+</ul>
+</li>
+<li><p>使用happy base时可能出现的问题(windows系统)</p>
+<ul>
+<li>happybase1.0在win下不支持绝对路径</li>
+<li>解决方案：将488行的url_scheme == ”改为url_scheme in (‘代码盘符’, ”)</li>
+</ul>
+</li>
+<li><p>如何使用HappyBase</p>
+<ul>
+<li>建立连接</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> happybase</span><br><span class="line">connection = happybase.Connection(<span class="string">&#x27;somehost&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当连接建立时, 会自动创建一个与 HBase Thrift server的socket链接. 可以通过参数禁止自动链接, 然后再需要连接是调用 <a target="_blank" rel="noopener" href="https://happybase.readthedocs.io/en/latest/api.html#happybase.Connection.open"><code>Connection.open()</code></a>:</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connection = happybase.Connection(<span class="string">&#x27;somehost&#x27;</span>, autoconnect=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># before first use:</span></span><br><span class="line">connection.<span class="built_in">open</span>()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://happybase.readthedocs.io/en/latest/api.html#happybase.Connection"><code>Connection</code></a>  这个类提供了一个与HBase交互的入口, 比如获取HBase中所有的表:  <a target="_blank" rel="noopener" href="https://happybase.readthedocs.io/en/latest/api.html#happybase.Connection.tables"><code>Connection.tables()</code></a>:</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(connection.tables())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>操作表<ul>
+<li>Table类提供了大量API, 这些API用于检索和操作HBase中的数据。 在上面的示例中，我们已经使用Connection.tables（）方法查询HBase中的表。 如果还没有任何表，可使用Connection.create_table（）创建一个新表：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connection.create_table(<span class="string">&#x27;users&#x27;</span>,&#123;<span class="string">&#x27;cf1&#x27;</span>: <span class="built_in">dict</span>()&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>创建表之后可以传入表名获取到Table类的实例:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table = connection.table(&#x27;mytable&#x27;)</span><br></pre></td></tr></table></figure></li>
+<li><p>查询操作</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># api</span></span><br><span class="line">table.scan() <span class="comment">#全表查询</span></span><br><span class="line">table.row(row_keys[<span class="number">0</span>]) <span class="comment"># 查询一行</span></span><br><span class="line">table.rows(row_keys) <span class="comment"># 查询多行</span></span><br><span class="line"><span class="comment">#封装函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_rows</span>(<span class="params">table, row_keys=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> row_keys:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;show value of row named %s&#x27;</span> % row_keys)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(row_keys) == <span class="number">1</span>:</span><br><span class="line">            <span class="built_in">print</span>(table.row(row_keys[<span class="number">0</span>]))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(table.rows(row_keys))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;show all row values of table named %s&#x27;</span> % table.name)</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> table.scan():</span><br><span class="line">            <span class="built_in">print</span>(key, value)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>插入数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#api</span></span><br><span class="line">table.put(row_key, &#123;cf:cq:value&#125;)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">put_row</span>(<span class="params">table, column_family, row_key, value</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;insert one row to hbase&#x27;</span>)</span><br><span class="line">    <span class="comment">#put &#x27;user&#x27;,&#x27;rowkey_10&#x27;,&#x27;base_info:username&#x27;,&#x27;Tom&#x27;</span></span><br><span class="line">    <span class="comment">#&#123;&#x27;cf:cq&#x27;:’数据‘&#125;</span></span><br><span class="line">    table.put(row_key, &#123;<span class="string">&#x27;%s:name&#x27;</span> % column_family:<span class="string">&#x27;name_%s&#x27;</span> % value&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">put_rows</span>(<span class="params">table, column_family, row_lines=<span class="number">30</span></span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;insert rows to hbase now&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(row_lines):</span><br><span class="line">        put_row(table, column_family, <span class="string">&#x27;row_%s&#x27;</span> % i, i)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#api</span></span><br><span class="line">table.delete(row_key, cf_list)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#函数封装    </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_row</span>(<span class="params">table, row_key, column_family=<span class="literal">None</span>, keys=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> keys:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;delete keys:%s from row_key:%s&#x27;</span> % (keys, row_key))</span><br><span class="line">        key_list = [<span class="string">&#x27;%s:%s&#x27;</span> % (column_family, key) <span class="keyword">for</span> key <span class="keyword">in</span> keys]</span><br><span class="line">        table.delete(row_key, key_list)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;delete row(column_family:) from hbase&#x27;</span>)</span><br><span class="line">        table.delete(row_key)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除表</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#api</span></span><br><span class="line">conn.delete_table(table_name, <span class="literal">True</span>)</span><br><span class="line"><span class="comment">#函数封装</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_table</span>(<span class="params">table_name</span>):</span></span><br><span class="line">    pretty_print(<span class="string">&#x27;delete table %s now.&#x27;</span> % table_name)</span><br><span class="line">    conn.delete_table(table_name, <span class="literal">True</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li>完整代码</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> happybase</span><br><span class="line"></span><br><span class="line">hostname = <span class="string">&#x27;192.168.199.188&#x27;</span></span><br><span class="line">table_name = <span class="string">&#x27;users&#x27;</span></span><br><span class="line">column_family = <span class="string">&#x27;cf&#x27;</span></span><br><span class="line">row_key = <span class="string">&#x27;row_1&#x27;</span></span><br><span class="line"></span><br><span class="line">conn = happybase.Connection(hostname)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_tables</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;show all tables now&#x27;</span>)</span><br><span class="line">    tables =  conn.tables()</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> tables:</span><br><span class="line">        <span class="built_in">print</span> t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_table</span>(<span class="params">table_name, column_family</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;create table %s&#x27;</span> % table_name)</span><br><span class="line">    conn.create_table(table_name, &#123;column_family:<span class="built_in">dict</span>()&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_rows</span>(<span class="params">table, row_keys=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> row_keys:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;show value of row named %s&#x27;</span> % row_keys)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(row_keys) == <span class="number">1</span>:</span><br><span class="line">            <span class="built_in">print</span> table.row(row_keys[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span> table.rows(row_keys)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;show all row values of table named %s&#x27;</span> % table.name)</span><br><span class="line">        <span class="keyword">for</span> key, value <span class="keyword">in</span> table.scan():</span><br><span class="line">            <span class="built_in">print</span> key, value</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">put_row</span>(<span class="params">table, column_family, row_key, value</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;insert one row to hbase&#x27;</span>)</span><br><span class="line">    table.put(row_key, &#123;<span class="string">&#x27;%s:name&#x27;</span> % column_family:<span class="string">&#x27;name_%s&#x27;</span> % value&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">put_rows</span>(<span class="params">table, column_family, row_lines=<span class="number">30</span></span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;insert rows to hbase now&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(row_lines):</span><br><span class="line">        put_row(table, column_family, <span class="string">&#x27;row_%s&#x27;</span> % i, i)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_row</span>(<span class="params">table, row_key, column_family=<span class="literal">None</span>, keys=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> keys:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;delete keys:%s from row_key:%s&#x27;</span> % (keys, row_key))</span><br><span class="line">        key_list = [<span class="string">&#x27;%s:%s&#x27;</span> % (column_family, key) <span class="keyword">for</span> key <span class="keyword">in</span> keys]</span><br><span class="line">        table.delete(row_key, key_list)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;delete row(column_family:) from hbase&#x27;</span>)</span><br><span class="line">        table.delete(row_key)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_table</span>(<span class="params">table_name</span>):</span></span><br><span class="line">    pretty_print(<span class="string">&#x27;delete table %s now.&#x27;</span> % table_name)</span><br><span class="line">    conn.delete_table(table_name, <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pool</span>():</span></span><br><span class="line">    pretty_print(<span class="string">&#x27;test pool connection now.&#x27;</span>)</span><br><span class="line">    pool = happybase.ConnectionPool(size=<span class="number">3</span>, host=hostname)</span><br><span class="line">    <span class="keyword">with</span> pool.connection() <span class="keyword">as</span> connection:</span><br><span class="line">        <span class="built_in">print</span> connection.tables()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="comment"># show_tables()</span></span><br><span class="line">    <span class="comment"># create_table(table_name, column_family)</span></span><br><span class="line">    <span class="comment"># show_tables()</span></span><br><span class="line"></span><br><span class="line">    table = conn.table(table_name)</span><br><span class="line">    show_rows(table)</span><br><span class="line">    put_rows(table, column_family)</span><br><span class="line">    show_rows(table)</span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># # 更新操作</span></span><br><span class="line">    <span class="comment"># put_row(table, column_family, row_key, &#x27;xiaoh.me&#x27;)</span></span><br><span class="line">    <span class="comment"># show_rows(table, [row_key])</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># # 删除数据</span></span><br><span class="line">    <span class="comment"># delete_row(table, row_key)</span></span><br><span class="line">    <span class="comment"># show_rows(table, [row_key])</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># delete_row(table, row_key, column_family, [&#x27;name&#x27;])</span></span><br><span class="line">    <span class="comment"># show_rows(table, [row_key])</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># counter(table, row_key, column_family)</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment"># delete_table(table_name)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<h2 id="HBase表设计"><a href="#HBase表设计" class="headerlink" title="HBase表设计"></a>HBase表设计</h2><ul>
+<li>设计HBase表时需要注意的特点<ul>
+<li>HBase中表的索引是通过rowkey实现的</li>
+<li>在表中是通过Row key的字典顺序来对数据进行排序的, 表中Region的划分通过起始Rowkey和结束Rowkey来决定的</li>
+<li>所有存储在HBase中的数据都是二进制字节, 没有数据类型</li>
+<li>原子性只在行内保证, HBase表中没有多行事务</li>
+<li>列族(Column Family)在表创建之前就要定义好</li>
+<li>列族中的列标识(Column Qualifier)可以在表创建后动态插入数据的时候添加</li>
+<li>不同的column family保存在不同的文件中。</li>
+</ul>
+</li>
+<li>如何设计HBase表<ul>
+<li>Row key的结构该如何设置, Row key中又该包含什么样的信息</li>
+<li>表中应该有多少的列族</li>
+<li>列族中应该存储什么样的数据</li>
+<li>每个列族中存储多少列数据</li>
+<li>列的名字分别是什么</li>
+<li>cell中应该存储什么样的信息</li>
+<li>每个cell中存储多少个版本信息</li>
+</ul>
+</li>
+<li>DDI  目的是为了克服HBase架构上的缺陷(join繁琐 只有row key索引等)<ul>
+<li>Denormalization (反规范化, 解决join麻烦的问题)</li>
+<li>Duplication (数据冗余)</li>
+<li>Intelligent keys(通过row key设计实现 索引 排序对读写优化) </li>
+</ul>
+</li>
+</ul>
+<h3 id="HBase表设计案例-社交应用互粉信息表"><a href="#HBase表设计案例-社交应用互粉信息表" class="headerlink" title="HBase表设计案例: 社交应用互粉信息表"></a>HBase表设计案例: 社交应用互粉信息表</h3><ul>
+<li><p>设计表保存应用中用户互粉的信息</p>
+<ul>
+<li>读场景:<ul>
+<li>某用户都关注了哪些用户</li>
+<li>用户A有没有关注用户B</li>
+<li>谁关注了用户A</li>
+</ul>
+</li>
+<li>写场景<ul>
+<li>用户关注了某个用户</li>
+<li>用户取消关注了某个用户</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>设计1:</p>
+<ul>
+<li>colunm qulifier(列名)  1:  2:</li>
+</ul>
+<p><img src="table1.png"></p>
+</li>
+<li><p>设计2</p>
+<ul>
+<li>添加了一个 count 记录当前的最后一个记录的列名</li>
+</ul>
+<p><img src="table2.png"></p>
+</li>
+<li><p>设计3</p>
+<ul>
+<li>列名 user_id</li>
+</ul>
+<p><img src="table3.png"></p>
+</li>
+<li><p>最终设计(DDI)</p>
+<ul>
+<li>解决谁关注了用户A问题<ul>
+<li>① 设计一张新表, 里面保存某个用户和他的粉丝</li>
+<li>② 在同一张表中同时记录粉丝列表的和用户关注的列表, 并通过Rowkey来区分<ul>
+<li>01_userid: 用户关注列表</li>
+<li>02_userid: 粉丝列表</li>
+</ul>
+</li>
+<li>上两种设计方案的问题(事务)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>案例总结</p>
+<ul>
+<li>Rowkey是HBase表结构设计中很重要的环节, 直接影响到HBase的效率和性能</li>
+<li>HBase的表结构比传统关系型数据库更灵活, 能存储任何二进制数据,无需考虑数据类型</li>
+<li>利用列标识(Column Qualifier)来存储数据</li>
+<li>衡量设计好坏的简单标准 是否会全表查询 </li>
+</ul>
+</li>
+</ul>
+<h2 id="HBase组件"><a href="#HBase组件" class="headerlink" title="HBase组件"></a>HBase组件</h2><h3 id="HBase-基础架构"><a href="#HBase-基础架构" class="headerlink" title="HBase 基础架构"></a>HBase 基础架构</h3><p><img src="structure.jpg"></p>
+<p><strong>Client</strong></p>
+<ul>
+<li>①与zookeeper通信, 找到数据入口地址</li>
+<li>②使用HBase RPC机制与HMaster和HRegionServer进行通信；</li>
+<li>③Client与HMaster进行通信进行管理类操作；</li>
+<li>④Client与HRegionServer进行数据读写类操作。</li>
+</ul>
+<p><strong>Zookeeper</strong></p>
+<ul>
+<li>①保证任何时候，集群中只有一个running master，避免单点问题；</li>
+<li>②存贮所有Region的寻址入口，包括-ROOT-表地址、HMaster地址；</li>
+<li>③实时监控Region Server的状态，将Region server的上线和下线信息，实时通知给Master；</li>
+<li>④存储Hbase的schema，包括有哪些table，每个table有哪些column family。</li>
+</ul>
+<p><strong>HMaster</strong></p>
+<p>可以启动多个HMaster，通过Zookeeper的Master Election机制保证总有一个Master运行。</p>
+<p>角色功能：</p>
+<ul>
+<li>①为Region server分配region；</li>
+<li>②负责region server的负载均衡；</li>
+<li>③发现失效的region serve并重新分配其上的region；</li>
+<li>④HDFS上的垃圾文件回收；</li>
+<li>⑤处理用户对表的增删改查操作。</li>
+</ul>
+<p><strong>HRegionServer</strong></p>
+<p>HBase中最核心的模块，主要负责响应用户I/O请求，向HDFS文件系统中读写数据。</p>
+<p>作用：</p>
+<ul>
+<li>①维护Master分配给它的region，处理对这些region的IO请求；</li>
+<li>②负责切分在运行过程中变得过大的region。</li>
+<li>此外，HRegionServer管理一系列HRegion对象，每个HRegion对应Table中一个Region，HRegion由多个HStore组成，每个HStore对应Table中一个Column Family的存储，Column Family就是一个集中的存储单元，故将具有相同IO特性的Column放在一个Column Family会更高效。</li>
+</ul>
+<p><strong>HStore</strong></p>
+<ul>
+<li>HBase存储的核心，由MemStore和StoreFile组成。</li>
+</ul>
+<p><img src="2.png"></p>
+<ul>
+<li>用户写入数据的流程为：client访问ZK, ZK返回RegionServer地址-&gt; client访问RegionServer写入数据 -&gt; 数据存入MemStore，一直到MemStore满 -&gt; Flush成StoreFile</li>
+</ul>
+<p><strong>HRegion</strong></p>
+<ul>
+<li>一个表最开始存储的时候，是一个region。</li>
+<li>一个Region中会有个多个store，每个store用来存储一个列簇。如果只有一个column family，就只有一个store。</li>
+<li>region会随着插入的数据越来越多，会进行拆分。默认大小是10G一个。</li>
+</ul>
+<p><strong>HLog</strong></p>
+<ul>
+<li>在分布式系统环境中，无法避免系统出错或者宕机，一旦HRegionServer意外退出，MemStore中的内存数据就会丢失，引入HLog就是防止这种情况。</li>
+</ul>
+<h3 id="HBase模块协作"><a href="#HBase模块协作" class="headerlink" title="HBase模块协作"></a>HBase模块协作</h3><ul>
+<li>HBase启动<ul>
+<li>HMaster启动, 注册到Zookeeper, 等待RegionServer汇报</li>
+<li>RegionServer注册到Zookeeper, 并向HMaster汇报</li>
+<li>对各个RegionServer(包括失效的)的数据进行整理, 分配Region和meta信息</li>
+</ul>
+</li>
+<li>RegionServer失效<ul>
+<li>HMaster将失效RegionServer上的Region分配到其他节点</li>
+<li>HMaster更新hbase: meta 表以保证数据正常访问</li>
+</ul>
+</li>
+<li>HMaster失效<ul>
+<li>处于Backup状态的其他HMaster节点推选出一个转为Active状态</li>
+<li>数据能正常读写, 但是不能创建删除表, 也不能更改表结构</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">贪钱算法还我头发</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2022/01/18/5.4-Hive/">https://xfliu1998.github.io/2022/01/18/5.4-Hive/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"><div class="social-share" data-image="http://img.shijue.me/d667362f0f6b42bcb21d4a4fc167e93a_d.jpg!dp6" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/18/5.5-Spark-core/"><img class="prev-cover" src="http://img.shijue.me/d667362f0f6b42bcb21d4a4fc167e93a_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Spark core</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/18/5.3-Hadoop/"><img class="next-cover" src="http://img.shijue.me/d667362f0f6b42bcb21d4a4fc167e93a_d.jpg!dp6" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Hadoop</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2024/07/09/Technical-Summary-Deep-Learning/" title="Technical Summary —— Pytorch & Numpy"><img class="cover" src="http://img.shijue.me/21cdab996c944862bac3947c8c7197f1_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-09</div><div class="title">Technical Summary —— Pytorch & Numpy</div></div></a></div><div><a href="/2024/07/02/Technical-Summary-Necessary/" title="Technical Summary —— Common Command"><img class="cover" src="http://img.shijue.me/82cad50b40214d388d246ae4847e8bec_d.jpeg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-02</div><div class="title">Technical Summary —— Common Command</div></div></a></div><div><a href="/2024/04/15/Technical-Summary-BigData/" title="Technical Summary —— Big Data Processing"><img class="cover" src="http://img.shijue.me/886e06c4e9b04b8a836a1b6ec00a0b17_d.jpeg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-15</div><div class="title">Technical Summary —— Big Data Processing</div></div></a></div><div><a href="/2024/04/07/Technical-Summary-Database/" title="Technical Summary —— Database Usage"><img class="cover" src="http://img.shijue.me/078729117f75472bae4bbc684d2b714c_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-07</div><div class="title">Technical Summary —— Database Usage</div></div></a></div><div><a href="/2023/05/19/Summary-NG/" title="Summary NG"><img class="cover" src="http://img.shijue.me/0a336cc060e74ca29f9cf862eb2ee8cf_d.png!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">Summary NG</div></div></a></div><div><a href="/2023/05/19/Experimental-Technique/" title="Experimental Technique"><img class="cover" src="http://img.shijue.me/c94bd493552d441ab4c647296a6913b5_d.jpg!dp6" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">Experimental Technique</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">贪钱算法还我头发</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">51</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/keiven_" target="_blank" title="CSDN"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">欢迎来这里掉头发</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hive"><span class="toc-number">1.</span> <span class="toc-text">Hive</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hive%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">Hive基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">Hive简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Hive"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">什么是 Hive</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-Hive"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">为什么使用 Hive</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive-%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">Hive 架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hive-%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">Hive 架构图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hive-%E7%BB%84%E4%BB%B6"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">Hive 组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hive-%E4%B8%8E-Hadoop-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">Hive 与 Hadoop 的关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive-%E4%B8%8E%E4%BC%A0%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%B9%E6%AF%94"><span class="toc-number">1.1.3.</span> <span class="toc-text">Hive 与传统数据库对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive-%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.4.</span> <span class="toc-text">Hive 数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive-%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">1.1.5.</span> <span class="toc-text">Hive 安装部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hive-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">Hive 基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive-HQL%E6%93%8D%E4%BD%9C%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-number">1.2.1.</span> <span class="toc-text">Hive HQL操作初体验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive%E7%9A%84%E5%86%85%E9%83%A8%E8%A1%A8%E5%92%8C%E5%A4%96%E9%83%A8%E8%A1%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">Hive的内部表和外部表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">分区表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 动态分区</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hive-%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">Hive 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.3.1.</span> <span class="toc-text">内置运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">内置函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hive-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%92%8C-Transform"><span class="toc-number">1.3.3.</span> <span class="toc-text">Hive 自定义函数和 Transform</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hive%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B"><span class="toc-number">1.4.</span> <span class="toc-text">hive综合案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HBase%E7%AE%80%E4%BB%8B%E4%B8%8E%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2"><span class="toc-number">1.5.</span> <span class="toc-text">HBase简介与环境部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase%E7%AE%80%E4%BB%8B-amp-%E5%9C%A8Hadoop%E7%94%9F%E6%80%81%E4%B8%AD%E7%9A%84%E5%9C%B0%E4%BD%8D"><span class="toc-number">1.5.1.</span> <span class="toc-text">HBase简介&amp;在Hadoop生态中的地位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHBase"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">什么是HBase</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BigTable"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">BigTable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%88%97%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">面向列的数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%9E%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="toc-number">1.5.1.4.</span> <span class="toc-text">什么是非结构化数据存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HBase%E5%9C%A8Hadoop%E7%94%9F%E6%80%81%E4%B8%AD%E7%9A%84%E5%9C%B0%E4%BD%8D"><span class="toc-number">1.5.1.5.</span> <span class="toc-text">HBase在Hadoop生态中的地位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HBase%E4%B8%8EHDFS"><span class="toc-number">1.5.1.6.</span> <span class="toc-text">HBase与HDFS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HBase%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.5.1.7.</span> <span class="toc-text">HBase使用场景</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HBase%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">HBase的数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cap%E5%AE%9A%E7%90%86"><span class="toc-number">1.6.0.1.</span> <span class="toc-text">cap定理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HBase-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AE%9E%E6%88%98"><span class="toc-number">1.7.</span> <span class="toc-text">HBase 的安装与实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.7.1.</span> <span class="toc-text">HBase的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase-shell"><span class="toc-number">1.7.2.</span> <span class="toc-text">HBase shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HappyBase%E6%93%8D%E4%BD%9CHbase"><span class="toc-number">1.7.3.</span> <span class="toc-text">HappyBase操作Hbase</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HBase%E8%A1%A8%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.8.</span> <span class="toc-text">HBase表设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase%E8%A1%A8%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B-%E7%A4%BE%E4%BA%A4%E5%BA%94%E7%94%A8%E4%BA%92%E7%B2%89%E4%BF%A1%E6%81%AF%E8%A1%A8"><span class="toc-number">1.8.1.</span> <span class="toc-text">HBase表设计案例: 社交应用互粉信息表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HBase%E7%BB%84%E4%BB%B6"><span class="toc-number">1.9.</span> <span class="toc-text">HBase组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase-%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84"><span class="toc-number">1.9.1.</span> <span class="toc-text">HBase 基础架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HBase%E6%A8%A1%E5%9D%97%E5%8D%8F%E4%BD%9C"><span class="toc-number">1.9.2.</span> <span class="toc-text">HBase模块协作</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('http://img.shijue.me/d667362f0f6b42bcb21d4a4fc167e93a_d.jpg!dp6')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 贪钱算法还我头发</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '1b0c10ce649501ea4a72',
+      clientSecret: '741b5e861137e3d5a482bba272c8201b78da6cb0',
+      repo: 'xfliu1998.github.io',
+      owner: 'xfliu1998',
+      admin: ['xfliu1998'],
+      id: '9bb0f1fdc29b7a6aeefb0a9bac1a11a4',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Machine-Learning-and-Deep-Learning/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 机器学习与深度学习 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Structures-and-Algorithms/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">😼 数据结构与算法 (16)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Search-Advertisement-Recommendation-Causal/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🗂️ 搜索/广告/推荐/因果 (10)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Analysis-and-Processing/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 数据分析与处理 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Reading-Notes/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 阅读笔记 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Daily/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 日常随想 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://xfliu1998.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-NLP/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-NLP/" alt="">Papers Reading about NLP</a><div class="blog-slider__text">自然语言处理论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-NLP/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/10/01/9-3D-Construction/" alt=""><img width="48" height="48" src="https://img.zcool.cn/community/017d495d0e6a9ea801205e4b7fa13c.png@1280w_1l_2o_100sh.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-01</span><a class="blog-slider__title" href="2022/10/01/9-3D-Construction/" alt="">3D Construction</a><div class="blog-slider__text">三维重建基础</div><a class="blog-slider__button" href="2022/10/01/9-3D-Construction/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/01/11/SfM-SLAM/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&amp;rs=1" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-01-11</span><a class="blog-slider__title" href="2023/01/11/SfM-SLAM/" alt="">SfM &amp; SLAM</a><div class="blog-slider__text">SfM和SLAM系统</div><a class="blog-slider__button" href="2023/01/11/SfM-SLAM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=2&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-CV/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-CV/" alt="">Papers Reading about CV</a><div class="blog-slider__text">计算机视觉论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-CV/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/06/05/Interview-Experience/" alt=""><img width="48" height="48" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-06-05</span><a class="blog-slider__title" href="2023/06/05/Interview-Experience/" alt="">Interview Experience</a><div class="blog-slider__text">面经八股</div><a class="blog-slider__button" href="2023/06/05/Interview-Experience/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="http://img.shijue.me/78ae8b05a73444cd9643a8312abc0d43.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">Learning Framework</a><div class="blog-slider__text">学习大纲</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<container><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></container>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gitcalendar.fomal.cc/api?xfliu1998",['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9'],'xfliu1998')
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
