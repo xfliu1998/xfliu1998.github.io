@@ -156,14 +156,14 @@
 <li><strong>输入嵌入层</strong>：参数矩阵 $E \in \mathbb{R}^{V \times H} → VH$ 参数。  </li>
 <li><strong>多头注意力层</strong>：  <ul>
 <li>查询 $W^Q$、键 $W^K$、值 $W^V$ 矩阵：各 $H^2$ 参数 → $3H^2$。  </li>
-<li>输出投影矩阵 $W^O \in \mathbb{R}^{H \times H}$ → $H^2$ 参数。<br><strong>总计</strong>：$4H^2$ 参数。  </li>
+<li>输出投影矩阵 $W^O \in \mathbb{R}^{H \times H}$ → $H^2$ 参数。  </li>
 </ul>
-</li>
+<strong>总计</strong>：$4H^2$ 参数。  </li>
 <li><strong>前馈网络层</strong>：  <ul>
 <li>上投影 $W^U, W^G \in \mathbb{R}^{H \times H’}$ → $2HH’$。  </li>
-<li>下投影 $W^D \in \mathbb{R}^{H’ \times H}$ → $HH’$。<br><strong>总计</strong>：$3HH’$ 参数。  </li>
+<li>下投影 $W^D \in \mathbb{R}^{H’ \times H}$ → $HH’$。  </li>
 </ul>
-</li>
+<strong>总计</strong>：$3HH’$ 参数。  </li>
 <li><strong>归一化层</strong>：  <ul>
 <li>每层 2 个 RMSNorm → $2H \times L$。  </li>
 <li>末层额外归一化 → $H$。  </li>
@@ -171,9 +171,8 @@
 </li>
 <li><strong>输出层</strong>：线性变换 $W^L \in \mathbb{R}^{H \times V}$ → $VH$ 参数。  </li>
 </ol>
-<p><strong>总参数量公式</strong>：  </p>
-<script type="math/tex; mode=display">
-\text{参数量} = 2VH + H + L \cdot (4H^2 + 3HH' + 2H)</script><p><strong>示例（LLaMA-7B）</strong>：<br>$V=32000, L=32, H=4096, H’=11008$ → 计算得 $6,738,415,616$（与实际一致）。</p>
+<p><strong>总参数量公式</strong>：<br>$$<br>\text{参数量} = 2VH + H + L \cdot (4H^2 + 3HH’ + 2H)<br>$$</p>
+<p><strong>示例（LLaMA-7B）</strong>：<br>$V=32000, L=32, H=4096, H’=11008$ → 计算得 $6,738,415,616$（与实际一致）。</p>
 <hr>
 <h2 id="训练运算量估计"><a href="#训练运算量估计" class="headerlink" title="训练运算量估计"></a>训练运算量估计</h2><p>训练运算量以浮点操作数（FLOP）衡量，浮点运算包括浮点数的加减乘除、指数、对数、三角函数等运算。Transformer 架构训练运算量主要在多头注意力和线性变换计算。归一化、输出映射和旋转位置编码计算所需的运算量较少。设定以下参数：模型总参数量为𝑃，批处理大小为𝐵，输入序列长度为𝑇，训练词元总数为𝐶 = 𝐵𝑇；多头注意力机制包含𝑁 个头，每个头的维度为𝐷，𝐻 = 𝑁𝐷。</p>
 <blockquote>
@@ -183,30 +182,24 @@
 <li>前向传播：  <ul>
 <li>$Q,K,V \in \mathbb{R}^{B \times T \times H} $, 拆分和转置后 $Q’,K’,V’ \in \mathbb{R}^{B \times N \times T \times D} $，$Q’K’^\top$ 计算：$2BT^2ND$  </li>
 <li>Softmax（含标准化$\sqrt D$放缩、指数、加和、归一化）：$4BT^2N$  </li>
-<li>结果与 $V’$ 乘：$2BT^2ND$<br><strong>总计</strong>：$4BT^2ND + 4BT^2N$。  </li>
+<li>结果与 $V’$ 乘：$2BT^2ND$  </li>
 </ul>
-</li>
-<li>反向传播约为前向的 2 倍 → <strong>总 FLOP</strong>：  <script type="math/tex; mode=display">
-12 \cdot (BT^2ND + BT^2N) \cdot L = 12CTL \cdot (H + N)</script></li>
+<strong>总计</strong>：$4BT^2ND + 4BT^2N$。  </li>
+<li>反向传播约为前向的 2 倍 → <strong>总 FLOP</strong>：<br>$$<br>12 \cdot (BT^2ND + BT^2N) \cdot L = 12CTL \cdot (H + N)<br>$$</li>
 </ul>
 <h4 id="线性变换运算量"><a href="#线性变换运算量" class="headerlink" title="线性变换运算量"></a><strong>线性变换运算量</strong></h4><ul>
 <li>前向传播 FLOP = $2BTHH’$。  </li>
-<li>反向传播需 2 倍前向 FLOP → <strong>总 FLOP</strong>：  <script type="math/tex; mode=display">
-\text{运算量} = 6C \cdot (\text{线性变换参数量})</script></li>
-<li><strong>激活重计算时</strong>（额外进行一次前向传播）：  <script type="math/tex; mode=display">
-\text{运算量} = 8C \cdot (\text{线性变换参数量})</script></li>
+<li>反向传播需 2 倍前向 FLOP → <strong>总 FLOP</strong>：<br>$$<br>\text{运算量} = 6C \cdot (\text{线性变换参数量})<br>$$</li>
+<li><strong>激活重计算时</strong>（额外进行一次前向传播）：<br>$$<br>\text{运算量} = 8C \cdot (\text{线性变换参数量})<br>$$</li>
 </ul>
-<p><strong>简化估算</strong>（线性变换参数量占比总参数量 &gt;95%）：  </p>
-<script type="math/tex; mode=display">
-\text{总运算量} \approx 6CP \quad \text{或} \quad 8CP</script><p><strong>示例</strong>：LLaMA-7B（$P=6.74 \times 10^9, C=10^9$）→ $6 \times 6.74 \times 10^9 \times 10^9 = 4.04 \times 10^{19}$ FLOP。</p>
+<p><strong>简化估算</strong>（线性变换参数量占比总参数量 &gt;95%）：<br>$$<br>\text{总运算量} \approx 6CP \quad \text{或} \quad 8CP<br>$$  </p>
+<p><strong>示例</strong>：LLaMA-7B（$P=6.74 \times 10^9, C=10^9$）→ $6 \times 6.74 \times 10^9 \times 10^9 = 4.04 \times 10^{19}$ FLOP。</p>
 <hr>
-<h2 id="训练时间估计"><a href="#训练时间估计" class="headerlink" title="训练时间估计"></a>训练时间估计</h2><p>训练时间的计算主要包括浮点数运算、数据读写以及多进程同步等。其中浮点数运算的耗时是训练过程中最主要的部分。实际每秒浮点运算数 FLOPS 通常为理论值的 30%-70%。</p>
-<script type="math/tex; mode=display">
-\text{训练时间} = \frac{\text{运算量}}{\text{GPU 数量} \times \text{实际FLOPS}}</script><p><strong>示例（LLaMA-65B）</strong>：  </p>
+<h2 id="训练时间估计"><a href="#训练时间估计" class="headerlink" title="训练时间估计"></a>训练时间估计</h2><p>训练时间的计算主要包括浮点数运算、数据读写以及多进程同步等。其中浮点数运算的耗时是训练过程中最主要的部分。实际每秒浮点运算数 FLOPS 通常为理论值的 30%-70%。<br>$$<br>\text{训练时间} = \frac{\text{运算量}}{\text{GPU 数量} \times \text{实际FLOPS}}<br>$$ </p>
+<p><strong>示例（LLaMA-65B）</strong>：  </p>
 <ul>
 <li>参数量 $P=6.5 \times 10^{10}$，词元数 $C=1.4 \times 10^{12}$（激活重计算 → $8CP = 7.28 \times 10^{23}$ FLOP）。  </li>
-<li>使用 2048 张 A100（假设单卡实际算力 $2 \times 10^{14}$次BF16的FLOPS），论文公布训练时间为 21 天。<script type="math/tex; mode=display">
-\text{时间} = \frac{7.28 \times 10^{23}}{2048 \times 2 \times 10^{14}} \approx 1.78 \times 10^6 \text{ 秒} \approx 20.6 \text{ 天}。</script></li>
+<li>使用 2048 张 A100（假设单卡实际算力 $2 \times 10^{14}$次BF16的FLOPS），论文公布训练时间为 21 天。<br>$$<br>\text{时间} = \frac{7.28 \times 10^{23}}{2048 \times 2 \times 10^{14}} \approx 1.78 \times 10^6 \text{ 秒} \approx 20.6 \text{ 天}。<br>$$ </li>
 </ul>
 <hr>
 <h2 id="训练显存估计"><a href="#训练显存估计" class="headerlink" title="训练显存估计"></a>训练显存估计</h2><p>显存占用分三部分：<strong>模型参数与优化器</strong>、<strong>激活值</strong>、<strong>其他开销</strong>。  </p>
@@ -245,19 +238,16 @@
 
 <p>（$N_D$：数据并行 GPU 数；张量/流水线并行时需额外除以 $N_T \times N_P$）。  </p>
 <h4 id="2-激活值显存"><a href="#2-激活值显存" class="headerlink" title="2. 激活值显存"></a><strong>2. 激活值显存</strong></h4><p>存储前向传播的中间结果用于反向传播梯度计算</p>
-<p><strong>1. 多头自注意力层</strong><br>输入矩阵$X$ + $QKV$ + $QK^T$ + concat</p>
-<script type="math/tex; mode=display">3×2BTH + 3×2BTH + 2BT²N + 2BTH = 16BTH + 2BT²N</script><!-- $$
+<p><strong>1. 多头自注意力层</strong><br>输入矩阵$X$ + $QKV$ + $QK^T$ + concat<br>$$ 3×2BTH + 3×2BTH + 2BT²N + 2BTH = 16BTH + 2BT²N $$</p>
+<!-- $$
 \underbrace{3\times 2BTH}_{输入矩阵X} + \underbrace{3\times 2BTH}_{QKV} + \underbrace{2BT^2N}_{QK^\top} + \underbrace{2BTH}_{\text{Concat}} = 16BTH + 2BT^2N
 $$ -->
-<p><strong>2. 前馈网络层（SwiGLU 结构）</strong><br>网络输入$X$ + 门控线性变换$W^GX$和$W^UX$ + 激活输出$\sigma$</p>
-<script type="math/tex; mode=display">
-2BTH + 2\times 2BTH' + 2BTH' = 2BTH + 6BTH'</script><p><strong>3. 归一化层</strong><br>注意力层前 RMSNorm + 前馈网络层前 RMSNorm： </p>
-<script type="math/tex; mode=display">
-2BTH + 2BTH = 4BTH</script><p><strong>4. 输出层</strong><br>最终层归一化 + 末层解码器输出 $Y_L$ + Softmax：</p>
-<script type="math/tex; mode=display">
-2BTH + 2BTH + 4BTV = 4BTH + 4BTV</script><p><strong>总激活值显存公式</strong></p>
-<script type="math/tex; mode=display">
-\text{激活值} = (16BTH + 6BTH' + 2BT^2N) \times L + 4BTH + 4BTV</script><p><strong>优化技术对激活值的影响</strong></p>
+
+<p><strong>2. 前馈网络层（SwiGLU 结构）</strong><br>网络输入$X$ + 门控线性变换$W^GX$和$W^UX$ + 激活输出$\sigma$<br>$$<br>2BTH + 2\times 2BTH’ + 2BTH’ = 2BTH + 6BTH’<br>$$</p>
+<p><strong>3. 归一化层</strong><br>注意力层前 RMSNorm + 前馈网络层前 RMSNorm：<br>$$<br>2BTH + 2BTH = 4BTH<br>$$</p>
+<p><strong>4. 输出层</strong><br>最终层归一化 + 末层解码器输出 $Y_L$ + Softmax：<br>$$<br>2BTH + 2BTH + 4BTV = 4BTH + 4BTV<br>$$</p>
+<p><strong>总激活值显存公式</strong><br>$$<br>\text{激活值} = (16BTH + 6BTH’ + 2BT^2N) \times L + 4BTH + 4BTV<br>$$</p>
+<p><strong>优化技术对激活值的影响</strong></p>
 <table>
   <thead>
     <tr>
@@ -308,15 +298,12 @@ $$ -->
 </ul>
 <p><strong>显存分解计算</strong></p>
 <ol>
-<li><p><strong>参数与优化器</strong>（ZeRO-3）：  </p>
-<script type="math/tex; mode=display">
-\frac{16 \times 6.74 \times 10^9}{2} = 5.39 \times 10^{10} \text{ 字节} \approx 50.20 \text{ GB}</script></li>
-<li><p><strong>激活值</strong>（FlashAttention）：  </p>
-<script type="math/tex; mode=display">
-(4 + 2 \times 32) \times 8 \times 2048 \times 4096 + 4 \times 8 \times 2048 \times 32000 = 6.66 \times 10^9 \text{ 字节} \approx 6.20 \text{ GB}</script></li>
-<li><p><strong>Softmax中间结果</strong>：  </p>
-<script type="math/tex; mode=display">
-8 \times 8 \times 2048 \times 32000 = 4.19 \times 10^9 \text{ 字节} \approx 3.91 \text{ GB}</script></li>
+<li><p><strong>参数与优化器</strong>（ZeRO-3）：<br>$$<br>\frac{16 \times 6.74 \times 10^9}{2} = 5.39 \times 10^{10} \text{ 字节} \approx 50.20 \text{ GB}<br>$$</p>
+</li>
+<li><p><strong>激活值</strong>（FlashAttention）：<br>$$<br>(4 + 2 \times 32) \times 8 \times 2048 \times 4096 + 4 \times 8 \times 2048 \times 32000 = 6.66 \times 10^9 \text{ 字节} \approx 6.20 \text{ GB}<br>$$</p>
+</li>
+<li><p><strong>Softmax中间结果</strong>：<br>$$<br>8 \times 8 \times 2048 \times 32000 = 4.19 \times 10^9 \text{ 字节} \approx 3.91 \text{ GB}<br>$$</p>
+</li>
 <li><p><strong>其他开销</strong>：  </p>
 <ul>
 <li>框架 1 GB + ZeRO 2 GB + 碎片 1 GB + 预留 2 GB ≈ <strong>6 GB</strong></li>
@@ -462,7 +449,7 @@ if ('Gitalk' === 'Gitalk' || !false) {
   function loadOtherComment () {
     loadGitalk()
   }
-}</script></div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+}</script></div><div class="custom-intro">!= partial('includes/custom_intro') </div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
 POWERMODE.shake = true;
 POWERMODE.mobile = false;
 document.body.addEventListener('input', POWERMODE);
@@ -475,7 +462,7 @@ document.body.addEventListener('input', POWERMODE);
     <style></style><script data-pjax>
   function butterfly_swiper_injector_config(){
     var parent_div_git = document.getElementById('recent-posts');
-    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-NLP/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-NLP/" alt="">Papers Reading about NLP</a><div class="blog-slider__text">自然语言处理论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-NLP/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/10/01/9-3D-Construction/" alt=""><img width="48" height="48" src="http://img.shijue.me/2354043620ae4b5896f833d80bb312c4_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-01</span><a class="blog-slider__title" href="2022/10/01/9-3D-Construction/" alt="">3D Construction</a><div class="blog-slider__text">三维重建基础</div><a class="blog-slider__button" href="2022/10/01/9-3D-Construction/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/01/11/SfM-SLAM/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&amp;rs=1" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-01-11</span><a class="blog-slider__title" href="2023/01/11/SfM-SLAM/" alt="">SfM &amp; SLAM</a><div class="blog-slider__text">SfM和SLAM系统</div><a class="blog-slider__button" href="2023/01/11/SfM-SLAM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=2&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-CV/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-CV/" alt="">Papers Reading about CV</a><div class="blog-slider__text">计算机视觉论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-CV/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/06/05/Interview-Experience/" alt=""><img width="48" height="48" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-06-05</span><a class="blog-slider__title" href="2023/06/05/Interview-Experience/" alt="">Interview Experience</a><div class="blog-slider__text">面经八股</div><a class="blog-slider__button" href="2023/06/05/Interview-Experience/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2024/08/16/Papers-Reading-about-LLM/" alt=""><img width="48" height="48" src="http://img.shijue.me/9ce88483789847cebe8d38fd7a77f7c7_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-08-16</span><a class="blog-slider__title" href="2024/08/16/Papers-Reading-about-LLM/" alt="">Papers Reading about LLM</a><div class="blog-slider__text">LLM论文阅读笔记</div><a class="blog-slider__button" href="2024/08/16/Papers-Reading-about-LLM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="http://img.shijue.me/78ae8b05a73444cd9643a8312abc0d43.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">Learning Framework</a><div class="blog-slider__text">学习大纲</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-NLP/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-NLP/" alt="">Papers Reading about NLP</a><div class="blog-slider__text">自然语言处理论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-NLP/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/10/01/9-3D-Construction/" alt=""><img width="48" height="48" src="http://img.shijue.me/2354043620ae4b5896f833d80bb312c4_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-01</span><a class="blog-slider__title" href="2022/10/01/9-3D-Construction/" alt="">3D Construction</a><div class="blog-slider__text">三维重建基础</div><a class="blog-slider__button" href="2022/10/01/9-3D-Construction/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/01/11/SfM-SLAM/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.V5uTTQ6LTBHc42xoBPG8hAHaEm?pid=ImgDet&amp;rs=1" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-01-11</span><a class="blog-slider__title" href="2023/01/11/SfM-SLAM/" alt="">SfM &amp; SLAM</a><div class="blog-slider__text">SfM和SLAM系统</div><a class="blog-slider__button" href="2023/01/11/SfM-SLAM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Mmv8iGEVFxSQII6QH0BG9QHaEJ?w=302&amp;h=180&amp;c=7&amp;r=0&amp;o=5&amp;dpr=2&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-CV/" alt=""><img width="48" height="48" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.KNjcp6IetyzFaIaSc8-eKAHaE8?w=303&amp;h=201&amp;c=7&amp;r=0&amp;o=5&amp;dpr=1.88&amp;pid=1.7" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-CV/" alt="">Papers Reading about CV</a><div class="blog-slider__text">计算机视觉论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-CV/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/06/05/Interview-Experience/" alt=""><img width="48" height="48" src="http://img.shijue.me/00964c481ad34d78acbf148d2b391c9e_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-06-05</span><a class="blog-slider__title" href="2023/06/05/Interview-Experience/" alt="">Interview Experience</a><div class="blog-slider__text">面经八股</div><a class="blog-slider__button" href="2023/06/05/Interview-Experience/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2024/08/16/Papers-Reading-about-LLM/" alt=""><img width="48" height="48" src="http://img.shijue.me/9ce88483789847cebe8d38fd7a77f7c7_d.jpg!dp6" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-08-16</span><a class="blog-slider__title" href="2024/08/16/Papers-Reading-about-LLM/" alt="">Papers Reading about LLM</a><div class="blog-slider__text">LLM论文阅读笔记</div><a class="blog-slider__button" href="2024/08/16/Papers-Reading-about-LLM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="2022/01/21/Learning-Framework/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">Learning Framework</a><div class="blog-slider__text">学习大纲</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
     console.log('已挂载butterfly_swiper')
     parent_div_git.insertAdjacentHTML("afterbegin",item_html)
     }

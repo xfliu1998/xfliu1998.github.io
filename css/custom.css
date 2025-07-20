@@ -23,7 +23,7 @@
     padding: 1rem;
     position: relative;
     border-radius: 12px;
-    background-image: url(http://img.shijue.me/0f54a31e5d6042fb810579772d02ce96.png!dp6);
+    background-image: url(/images/newyear.png);
     background-size: cover;
     background-position: center;
 }
@@ -161,4 +161,20 @@ web_bg {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* 主页介绍样式 */
+.custom-intro-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.intro-content h2 {
+  color: #49B1F5;
+  border-bottom: 2px dashed #eee;
+  padding-bottom: 10px;
 }
