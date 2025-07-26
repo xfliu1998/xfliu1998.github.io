@@ -1,0 +1,447 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LLM —— Position Embedding | 一直进步 做喜欢的</title><meta name="keywords" content="Machine Learning,Deep Learning,LLM"><meta name="author" content="贪钱算法还我头发"><meta name="copyright" content="贪钱算法还我头发"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="为什么LLM的位置编码都使用RoPE？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLM —— Position Embedding">
+<meta property="og:url" content="https://xfliu1998.github.io/2025/07/26/LLM-Position-Embedding/index.html">
+<meta property="og:site_name" content="一直进步 做喜欢的">
+<meta property="og:description" content="为什么LLM的位置编码都使用RoPE？">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xfliu1998.github.io/2025/07/26/LLM-Position-Embedding/cover.jpeg">
+<meta property="article:published_time" content="2025-07-26T06:50:59.000Z">
+<meta property="article:modified_time" content="2025-07-26T07:26:31.966Z">
+<meta property="article:author" content="贪钱算法还我头发">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xfliu1998.github.io/2025/07/26/LLM-Position-Embedding/cover.jpeg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2025/07/26/LLM-Position-Embedding/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LLM —— Position Embedding',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-26 15:26:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2025/07/26/LLM-Position-Embedding/cover.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LLM —— Position Embedding</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-07-26T06:50:59.000Z" title="Created 2025-07-26 14:50:59">2025-07-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-26T07:26:31.966Z" title="Updated 2025-07-26 15:26:31">2025-07-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Machine-Learning-and-Deep-Learning/">Machine Learning and Deep Learning</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>11min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LLM —— Position Embedding"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2025/07/26/LLM-Position-Embedding/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>👋 RoPE已成为当前LLM中最主流的位置编码方案，从 LLaMA、PaLM、GPT-NeoX 到 Baichuan、Qwen 等主流开源模型，以及许多商用LLM的核心架构，都广泛采用了 RoPE。要了解为什么RoPE能成为LLM中主流的位置编码，我们需要先了解为什么要有位置编码以及目前主流的位置编码原理。</p>
+<p>Transformer 的自注意力机制本质上是<strong>置换不变 (Permutation Invariant)</strong> 的，无法区分序列中元素的顺序关系，导致模型退化为“词袋模型”。位置编码即将<strong>绝对或相对位置信息</strong>编码并整合到模型中，使模型能够理解序列的顺序结构。</p>
+<h2 id="位置编码的主要类型"><a href="#位置编码的主要类型" class="headerlink" title="位置编码的主要类型"></a>位置编码的主要类型</h2><h3 id="绝对位置编码-Absolute-Position-Embedding"><a href="#绝对位置编码-Absolute-Position-Embedding" class="headerlink" title="绝对位置编码 (Absolute Position Embedding)"></a>绝对位置编码 (Absolute Position Embedding)</h3><p>绝对位置编码为序列中每个位置的词元分配一个<strong>唯一的、基于其绝对位置</strong>的embedding向量。使用词元embedding融合，位置 $t$ （从 0 到 $T_{max}$）的绝对位置编码公式为：$x_t = v_t + p_t$ ($v_t$: 词元embedding, $p_t$: 位置embedding)。经典的绝对位置编码有：</p>
+<ul>
+<li><strong>正余弦编码 (Sinusoidal PE - 原始 Transformer)：</strong> 这种编码方式的优点是确定性，无需学习，理论上可外推到训练时未见过的序列长度，但效果通常不佳，固定的函数形式可能无法最优捕获位置信息。维度 $i$ ($H$ 为embedding维度) 的值计算：  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p_&#123;t, i&#125; = &#123;</span><br><span class="line">    sin(t / 10000^&#123;(i-1)/H&#125;)  if i is even</span><br><span class="line">    cos(t / 10000^&#123;(i-2)/H&#125;)  if i is odd</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>可学习embedding (Learnable Embeddings - 如 BERT)：</strong> $p_t$ 作为模型参数随机初始化并通过训练学习。这种编码方式的优点是灵活性高，可能捕获任务特定的位置模式。但是难以外推到显著长于训练序列的长度；增加参数量。</li>
+</ul>
+<h3 id="相对位置编码-Relative-Position-Embedding"><a href="#相对位置编码-Relative-Position-Embedding" class="headerlink" title="相对位置编码 (Relative Position Embedding)"></a>相对位置编码 (Relative Position Embedding)</h3><p>建模 $Q$ 和 $K$ 之间的<strong>相对位置偏移</strong> $(i - j)$，而非各自的绝对位置。通常用于<strong>修改注意力分数</strong> $A_{ij}$ 的计算，而非直接加到词元embedding上。相对位置编码比绝对位置编码更好的<strong>外推 (Extrapolation)</strong> 能力，即处理显著长于训练序列的能力。代表方法有：  </p>
+<ul>
+<li><strong>Transformer-XL：</strong> 对原始注意力计算 $A_{ij} = x_i W^Q W^{K^T} x_j^T$ 进行分解，引入相对位置embedding $r_{i-j}$ 和全局可学习参数 $u$, $v$，用 $r_{i-j}$ 替换与绝对位置 $j$ ($p_j$) 相关的项，用 $u$, $v$ 替换与绝对位置 $i$ ($p_i$) 相关的项。<br>  $$<br>  A_{ij} = x_i W^Q W^{K^T} x_j^T + x_i W^Q W^{K^T} r_{i-j}^T + u W^{K^T} x_j^T + v W^{K^T} r_{i-j}^T<br>  $$</li>
+<li><strong>T5 (简化形式)：</strong> 引入基于偏移 $(i - j)$ 的可学习标量$r_{i-j}$ 直接加到注意力分数上：<br>  $$<br>  A_{ij} = x_i W^Q W^{K^T} x_j^T + r_{i-j}<br>  $$</li>
+</ul>
+<h3 id="旋转位置编码-Rotary-Position-Embedding-RoPE"><a href="#旋转位置编码-Rotary-Position-Embedding-RoPE" class="headerlink" title="旋转位置编码 (Rotary Position Embedding, RoPE)"></a>旋转位置编码 (Rotary Position Embedding, RoPE)</h3><p>利用<strong>基于绝对位置 $t$ 的旋转矩阵 $R_{\theta, t}$</strong> 来编码位置信息，其巧妙之处在于 $R_{\theta, i} R_{\theta, j}^T = R_{\theta, i-j}$，从而在计算 $A_{ij}$ 时自然融入相对位置 $(i-j)$ 信息。具体实现：</p>
+<ul>
+<li><strong>旋转矩阵定义：</strong> 将 $H$ 维向量视为 $H/2$ 个 2D 子空间。对位置 $t$，子空间 $k$ 的旋转矩阵如下，整个 $R_{\theta, t}$ 是这些 2x2 块组成的块对角矩阵。$$[cos(tθ_k), -sin(tθ_k)]$$$$[sin(tθ_k), \space \space cos(tθ_k)]$$<ul>
+<li><strong>基：</strong> $θ_k = b^{-2(k-1)/H}$ (通常 $b = 10000$)。</li>
+<li><strong>波长：</strong> $λ_k = 2π / θ_k = 2π b^{2(k-1)/H}$，表示在该子空间完成完整旋转 $2π$ 所需的距离。</li>
+</ul>
+</li>
+<li><strong>计算过程：</strong><ol>
+<li>计算 $Q$ 向量 $q_i = x_i W^Q$ 和 $K$ 向量 $k_j = x_j W^K$</li>
+<li>应用旋转：$q_i’ = q_i R_{\theta, i}$, $k_j’ = k_j R_{\theta, j}$</li>
+<li>计算注意力分数：$A_{ij} = (q_i’)(k_j’)^T = (x_i W^Q R_{\theta, i})(x_j W^K R_{\theta, j})^T = x_i W^Q R_{\theta, i-j} W^{K^T} x_j^T$</li>
+</ol>
+</li>
+<li><strong>代码实现 (LLaMA 风格)：</strong>  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate_half</span>(<span class="params">x</span>):</span>  <span class="comment"># 将向量后半部分取负并与前半部分交换</span></span><br><span class="line">    x1, x2 = x[..., :x.shape[-<span class="number">1</span>]//<span class="number">2</span>], x[..., x.shape[-<span class="number">1</span>]//<span class="number">2</span>:]</span><br><span class="line">    <span class="keyword">return</span> torch.cat((-x2, x1), dim=-<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apply_rotary_pos_emb</span>(<span class="params">q, k, cos, sin, position_ids</span>):</span></span><br><span class="line">    cos = cos[position_ids].unsqueeze(<span class="number">1</span>)  <span class="comment"># 按位置取 cos 值</span></span><br><span class="line">    sin = sin[position_ids].unsqueeze(<span class="number">1</span>)  <span class="comment"># 按位置取 sin 值</span></span><br><span class="line">    q_embed = q * cos + rotate_half(q) * sin  <span class="comment"># 应用旋转 (q)</span></span><br><span class="line">    k_embed = k * cos + rotate_half(k) * sin  <span class="comment"># 应用旋转 (k)</span></span><br><span class="line">    <span class="keyword">return</span> q_embed, k_embed</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="ALiBi-Attention-with-Linear-Biases"><a href="#ALiBi-Attention-with-Linear-Biases" class="headerlink" title="ALiBi (Attention with Linear Biases)"></a>ALiBi (Attention with Linear Biases)</h3><p>一种特殊的、<strong>无参数</strong>的相对位置编码，通过添加一个与相对距离 $(i-j)$ 成比例的<strong>线性惩罚项</strong>到注意力分数上，增强模型外推能力。ALiBi没有引入额外可训练参数，且能有效建模远超训练上下文窗口的序列，简单高效。计算公式如下：<br>    $$<br>    A_{ij} = x_i W^Q W^{K^T} x_j^T - m |i - j|<br>    $$</p>
+<ul>
+<li>$m$ 是每个注意力头<strong>独有</strong>的、<strong>预先设定</strong>的惩罚系数。</li>
+<li>$|i - j|$ 是 $Q$ 位置 $i$ 和 $K$ 位置 $j$ 的绝对距离。</li>
+</ul>
+<h2 id="为什么LLM中常用的位置编码是RoPE？"><a href="#为什么LLM中常用的位置编码是RoPE？" class="headerlink" title="为什么LLM中常用的位置编码是RoPE？"></a>为什么LLM中常用的位置编码是RoPE？</h2><p>RoPE能成为LLM主流位置编码，源于以下4个优点可以契合LLM的需求：</p>
+<p><strong>1. 显式编码相对位置信息，且具备数学完备性</strong></p>
+<ul>
+<li>RoPE 通过旋转矩阵将绝对位置信息编码到 Q 和 K 中。其精妙之处在于旋转操作的数学性质：$R_i * R_j^T = R_{i-j}$。</li>
+<li><strong>优势</strong>：<ul>
+<li>注意力分数 $A_{ij}$ 的计算显式依赖于相对位置偏移 $(i-j)$ ($R_{i-j}$)。模型无需间接学习相对位置关系，效率更高。</li>
+<li>旋转操作是<strong>线性变换</strong>且<strong>保持向量范数不变</strong> $||R_i * v|| = ||v||$，不会破坏原始语义信息的分布特性，保证了数值稳定性。</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 长期衰减性，契合语言建模的局部性</strong></p>
+<ul>
+<li>RoPE 将向量划分为 $H/2$ 个 2D 子空间。每个子空间 $k$ 有一个<strong>波长</strong> $λ_k = 2π * b^{2(k-1)/H}$。通过频率差异让模型自动学习不同距离的依赖模式。<ul>
+<li>  低频子空间 ($k$ 小)：$λ_k$ 极大（如数万/百万词元），旋转角度变化缓慢，需要极长距离才能完成一周旋转，负责捕捉<strong>长程依赖</strong>。</li>
+<li>  高频子空间 ($k$ 大)：$λ_k$ 极小（如几十/几百词元），旋转角度变化快，微小距离即导致角度剧变，负责捕捉<strong>局部依赖</strong>。</li>
+</ul>
+</li>
+<li><strong>优势：</strong><ul>
+<li>  <strong>模拟注意力偏好：</strong> 高频子空间在距离增大时，旋转角度快速变化导致 $Q_i$ 和 $K_j$ 的点积值指数级衰减。这完美契合了语言建模中“<strong>邻近词元更重要</strong>”的归纳偏好（Inductive Bias）。</li>
+<li>  <strong>避免人为强加限制：</strong> 不同于 ALiBi 的线性惩罚或窗口限制，RoPE 的衰减是<strong>数据驱动、自适应的</strong>，不同子空间/头自动学习不同的衰减模式。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. 计算高效，零额外开销</strong></p>
+<ul>
+<li>  RoPE 的实现本质是<strong>对 Q/K 向量进行线性变换</strong>（逐元素乘 cos 和 sin 并重组）。关键代码仅需数行。</li>
+<li><strong>优势：</strong><ul>
+<li>  <strong>无额外参数：</strong> 仅需预计算 $cos/sin$ 表，不引入任何可训练参数，节省显存。</li>
+<li>  <strong>融合计算：</strong> 旋转操作可与 $Q/K$ 的线性投影 $(W^Q, W^K)$ 融合计算，或在 Attention 计算前轻量级注入，几乎不增加计算量。</li>
+<li>  <strong>硬件友好：</strong> 纯向量化操作（乘加），在 GPU/NPU 上高效并行。</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. 外推潜力与可扩展性</strong></p>
+<ul>
+<li>未经修改的 RoPE 在超出预训练长度时，高频子空间的旋转角度会远超 $2π$，导致未训练过的三角函数值出现，性能崩溃。因为 RoPE 的数学基础清晰，衍生出了多种高效且轻量的扩展技术（详细介绍见下节）。</li>
+<li>  <strong>优势：</strong> 这些扩展方法通常只需修改前向计算，不改变模型结构或参数量，易于集成到现有LLM系统中。</li>
+</ul>
+<p><strong>为何其他编码方案未成为主流？</strong></p>
+<ul>
+<li>  <strong>绝对位置embedding (Sinusoidal/Learnable)：</strong> 外推能力差，难以建模相对位置。</li>
+<li>  <strong>T5-style 相对位置偏置：</strong> 引入大量参数 $r_{i-j}$，且外推能力有限。</li>
+<li>  <strong>ALiBi：</strong> 无需训练的外推之王，但线性惩罚过于强硬，可能损害模型在中短距离上的表现精度，尤其需要精细位置感的任务如代码生成。更适合纯解码/极端长文本场景。</li>
+</ul>
+<p><strong>总结</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>RoPE</strong></th>
+<th><strong>绝对PE</strong></th>
+<th><strong>T5相对</strong></th>
+<th><strong>ALiBi</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>显式相对位置编码</strong></td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>长期衰减性</strong></td>
+<td>✅ (自适应)</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ (线性)</td>
+</tr>
+<tr>
+<td><strong>计算/参数量开销</strong></td>
+<td>≈0</td>
+<td>低</td>
+<td>高</td>
+<td>≈0</td>
+</tr>
+<tr>
+<td><strong>短上下文精度</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>长上下文外推能力</strong></td>
+<td>✅ (需扩展)</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>扩展便利性</strong></td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<h2 id="扩展位置编码-针对-RoPE-以适用长上下文建模"><a href="#扩展位置编码-针对-RoPE-以适用长上下文建模" class="headerlink" title="扩展位置编码 (针对 RoPE)以适用长上下文建模"></a>扩展位置编码 (针对 RoPE)以适用长上下文建模</h2><p>当需要将预训练模型原始上下文窗口 $T_{max}$ 扩展到更长窗口 $T^*_{max}$ 时，通常有两种方法：扩展位置编码和调整上下文窗口。在扩展位置编码中， RoPE 的核心是将位置 $t$ 映射为旋转角度 $t * θ_i$ (其中 $θ_i$ 由底数 $b$ 和维度 $i$ 决定)。但是 RoPE 由于<strong>高频子空间(关键子空间)问题</strong>外推能力弱：</p>
+<ul>
+<li>在 $H$ 维向量的 $H/2$ 个子空间中，低频子空间（对应小的 $i$）的波长 $λ_k$ 很长，例如 $λ_1$ 可能远大于预训练长度 $T_{max}$。这意味着模型在预训练时从未见过这些子空间完成一个完整周期 $2π$ 的旋转，只见过非常小的角度片段（如 $0-0.1π$）。当处理远超 $T_{max}$ 的序列时，对于这些高频子空间，旋转角度 $t * θ_i$ 会变得非常大，远超 $2π$ 或训练时见过的最大角度，导致注意力分数 $A_{ij}$ 计算出现分布外（OOD）问题，模型性能崩溃。</li>
+</ul>
+<p>一种策略是不修改RoPE，直接在相应的长文本数据$T^*_{max}$上对模型微调，保持 $f(t, i) = t * θ_i$。然而超长位置 $t$ 的旋转角度 $t * θ_i$ 远超训练所见 $T_{max} * θ_i$，导致注意力值异常，收敛慢，需要大量数据。改进RoPE方法可统一形式化为修改旋转角度 $f(t, i) = t * θ_i \space =&gt; \space f’(t, i) = g(t) * h(i)$，其中 $g(t)$ 修改距离 $t$，$h(i)$ 修改基 $θ_i$。</p>
+<h3 id="位置索引修改-Modifying-Position-Index-g-t"><a href="#位置索引修改-Modifying-Position-Index-g-t" class="headerlink" title="位置索引修改 (Modifying Position Index $g(t)$)"></a>位置索引修改 (Modifying Position Index $g(t)$)</h3><p>修改位置索引来限制旋转角度不超过原始最大训练值 $T_{max} * θ_i$。位置索引的修改方法包括：</p>
+<ul>
+<li><strong>位置内插 (Position Interpolation - PI)：</strong> 对所有位置索引进行缩放 $g(t) = (T_{max} / T^*_{max}) * t$。这种方法进行微调的训练代价较小，但是较短文本场景时会对模型产生负面影响。</li>
+<li><strong>位置截断 (Positional Truncation)：</strong> 这种方法无需微调即可应用于更长上下文，保持短文本能力，但是需要二次计算注意力矩阵，增加计算开销。设定一个窗口 $w$ ($w &lt;= T_{max}$)。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">g(t) = &#123;</span><br><span class="line">    t,                        if |t| &lt;= w,                   // 近距离保留</span><br><span class="line">    sign(t) * w,              if |t| &gt; w (ReRoPE),          // 远距离截断到 w</span><br><span class="line">    sign(t) * (w + (T_max - w) * (|t| - w) / (T&#x27;_max - w)), if |t| &gt; w (LeakyReRoPE) // 远距离线性插值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="基修改-Modifying-Base-h-i"><a href="#基修改-Modifying-Base-h-i" class="headerlink" title="基修改 (Modifying Base $h(i)$)"></a>基修改 (Modifying Base $h(i)$)</h3><p>针对高频子空间波长 $λ_i &gt; T_{max}$ 未见过完整旋转的问题，通过增大底数 $b$ 或直接修改 $θ_i$ 来减小其基 $θ_i$，从而增大波长 $λ_i$，使得在目标长度 $T^*_{max}$ 上旋转角度 $T^*_{max} * h(i)$ 不超过 $2π$ 或接近预训练见过的角度范围。即调整波长 $λ_i &gt; T_{max}$ 的子空间（未经历完整旋转周期训练）的旋转角度分布。主要方法包括：</p>
+<ul>
+<li><strong>底数调整 (Base Scaling / NTK-aware Scaling)：</strong> 增大底数 $b$ 来缩小基 $θ_i$ (因为 $θ_i ∝ b^{-2(i-1)/H}$)。新基 $h(i) = (α * b)^{-2(i-1)/H}$。可无需微调 ($α$ 足够大) 或结合少量微调提升长文本能力。使用极大 $b$ (如 $1e8$) 微调效果更好。缩放因子 $α$ 选择：<ul>
+<li><strong>静态 NTK-RoPE：</strong> $α = (T^*_{max} / T_{max})^{(H/(H-2))}$ (近似)。</li>
+<li><strong>动态 NTK-RoPE：</strong> $α = max(1, T / T_{max})$ (根据当前输入序列长度 $T$ 动态调整)。</li>
+</ul>
+</li>
+<li><strong>基截断 (Base Truncation)：</strong> 设定阈值 $a$, $c$ ($a &lt; c$)，防止远距离位置产生异常大的、未训练过的旋转角度。这种方法可能提升外推性能，但削弱了部分子空间对不同距离的区分能力，可能损害模型性能。  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">h(i) = &#123;</span><br><span class="line">    θ_i,          if θ_i &gt;= c,  // 高频子空间保持</span><br><span class="line">    β (固定小值), if a &lt; θ_i &lt; c, // 中频子空间截断</span><br><span class="line">    0,            if θ_i &lt;= a   // 低频子空间置零</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>本文主要参考<a target="_blank" rel="noopener" href="https://llmbook-zh.github.io/">中国人民大学《大语言模型》</a>一书第5.2和5.4章节。关于RoPE更详细介绍可以看：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1F1421B7iv/?spm_id_from=333.337.search-card.all.click&vd_source=486265fa677326a8f53894f05277bfb9">b站【RethinkFun】你还不懂旋转位置编码吗？</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/647109286">知乎【绝密伏击】十分钟读懂旋转编码（RoPE）</a>。</li>
+</ul>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">贪钱算法还我头发</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2025/07/26/LLM-Position-Embedding/">https://xfliu1998.github.io/2025/07/26/LLM-Position-Embedding/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><a class="post-meta__tags" href="/tags/Deep-Learning/">Deep Learning</a><a class="post-meta__tags" href="/tags/LLM/">LLM</a></div><div class="post_share"><div class="social-share" data-image="/2025/07/26/LLM-Position-Embedding/cover.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/06/21/LLM-Parameter-Calculation/"><img class="next-cover" src="/2025/06/21/LLM-Parameter-Calculation/cover.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">LLM —— Parameter Calculation</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/06/21/LLM-Parameter-Calculation/" title="LLM —— Parameter Calculation"><img class="cover" src="/2025/06/21/LLM-Parameter-Calculation/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-21</div><div class="title">LLM —— Parameter Calculation</div></div></a></div><div><a href="/2025/05/05/LLM-MoE/" title="LLM —— MoE"><img class="cover" src="/2025/05/05/LLM-MoE/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-05</div><div class="title">LLM —— MoE</div></div></a></div><div><a href="/2025/04/06/LLM-KV-Cache/" title="LLM —— KV Cache"><img class="cover" src="/2025/04/06/LLM-KV-Cache/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-06</div><div class="title">LLM —— KV Cache</div></div></a></div><div><a href="/2025/03/23/LLM-Efficient-Training/" title="LLM —— Efficient Training"><img class="cover" src="/2025/03/23/LLM-Efficient-Training/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-23</div><div class="title">LLM —— Efficient Training</div></div></a></div><div><a href="/2025/03/16/LLM-Mixed-Precision-Training/" title="LLM —— Mixed Precision Training"><img class="cover" src="/2025/03/16/LLM-Mixed-Precision-Training/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-16</div><div class="title">LLM —— Mixed Precision Training</div></div></a></div><div><a href="/2025/02/27/LLM-Norm/" title="LLM —— Norm"><img class="cover" src="/2025/02/27/LLM-Norm/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-27</div><div class="title">LLM —— Norm</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">贪钱算法还我头发</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.zhihu.com/people/fan-xu-15-35/posts" target="_blank" title="Zhihu"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">👋你好呀，欢迎围观～搭建这个小站源于一个朴素的愿望：对抗遗忘，沉淀思考。期待在代码与逻辑的世界里探索技术的深度与广度，永远保持热情与好奇。</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%E7%9A%84%E4%B8%BB%E8%A6%81%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">位置编码的主要类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81-Absolute-Position-Embedding"><span class="toc-number">1.1.</span> <span class="toc-text">绝对位置编码 (Absolute Position Embedding)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81-Relative-Position-Embedding"><span class="toc-number">1.2.</span> <span class="toc-text">相对位置编码 (Relative Position Embedding)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81-Rotary-Position-Embedding-RoPE"><span class="toc-number">1.3.</span> <span class="toc-text">旋转位置编码 (Rotary Position Embedding, RoPE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALiBi-Attention-with-Linear-Biases"><span class="toc-number">1.4.</span> <span class="toc-text">ALiBi (Attention with Linear Biases)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88LLM%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81%E6%98%AFRoPE%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么LLM中常用的位置编码是RoPE？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81-%E9%92%88%E5%AF%B9-RoPE-%E4%BB%A5%E9%80%82%E7%94%A8%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87%E5%BB%BA%E6%A8%A1"><span class="toc-number">3.</span> <span class="toc-text">扩展位置编码 (针对 RoPE)以适用长上下文建模</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E7%B4%A2%E5%BC%95%E4%BF%AE%E6%94%B9-Modifying-Position-Index-g-t"><span class="toc-number">3.1.</span> <span class="toc-text">位置索引修改 (Modifying Position Index $g(t)$)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BF%AE%E6%94%B9-Modifying-Base-h-i"><span class="toc-number">3.2.</span> <span class="toc-text">基修改 (Modifying Base $h(i)$)</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/2025/07/26/LLM-Position-Embedding/cover.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 贪钱算法还我头发</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '1b0c10ce649501ea4a72',
+      clientSecret: '741b5e861137e3d5a482bba272c8201b78da6cb0',
+      repo: 'xfliu1998.github.io',
+      owner: 'xfliu1998',
+      admin: ['xfliu1998'],
+      id: '752c02cd2d7863152b586440371f9154',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Machine-Learning-and-Deep-Learning/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 机器学习与深度学习 (15)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Structures-and-Algorithms/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">😼 数据结构与算法 (16)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Search-Advertisement-Recommendation-Causal/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🗂️ 搜索/广告/推荐/因果 (10)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Analysis-and-Processing/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 数据分析与处理 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Reading-Notes/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 阅读笔记 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Daily/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 日常随笔 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://xfliu1998.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-NLP/" alt=""><img width="48" height="48" src="2022/09/17/Papers-Reading-about-NLP/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-NLP/" alt="">Papers Reading about NLP</a><div class="blog-slider__text">自然语言处理论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-NLP/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/10/01/9-3D-Construction/" alt=""><img width="48" height="48" src="2022/10/01/9-3D-Construction/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-01</span><a class="blog-slider__title" href="2022/10/01/9-3D-Construction/" alt="">3D Construction</a><div class="blog-slider__text">三维重建基础</div><a class="blog-slider__button" href="2022/10/01/9-3D-Construction/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/01/11/SfM-SLAM/" alt=""><img width="48" height="48" src="2023/01/11/SfM-SLAM/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-01-11</span><a class="blog-slider__title" href="2023/01/11/SfM-SLAM/" alt="">SfM &amp; SLAM</a><div class="blog-slider__text">SfM和SLAM系统</div><a class="blog-slider__button" href="2023/01/11/SfM-SLAM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="2023/03/25/Papers-Ideas/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="2022/09/17/Papers-Summary/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Reading-about-CV/" alt=""><img width="48" height="48" src="2022/09/17/Papers-Reading-about-CV/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Reading-about-CV/" alt="">Papers Reading about CV</a><div class="blog-slider__text">计算机视觉论文阅读笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Reading-about-CV/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/06/05/Interview-Experience/" alt=""><img width="48" height="48" src="2023/06/05/Interview-Experience/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-06-05</span><a class="blog-slider__title" href="2023/06/05/Interview-Experience/" alt="">Interview Experience</a><div class="blog-slider__text">面经八股</div><a class="blog-slider__button" href="2023/06/05/Interview-Experience/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2024/08/16/Papers-Reading-about-LLM/" alt=""><img width="48" height="48" src="2024/08/16/Papers-Reading-about-LLM/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-08-16</span><a class="blog-slider__title" href="2024/08/16/Papers-Reading-about-LLM/" alt="">Papers Reading about LLM</a><div class="blog-slider__text">LLM论文阅读笔记</div><a class="blog-slider__button" href="2024/08/16/Papers-Reading-about-LLM/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="2022/01/21/Learning-Framework/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">学习大纲</a><div class="blog-slider__text">目录</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<container><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></container>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gitcalendar.fomal.cc/api?xfliu1998",['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9'],'xfliu1998')
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
