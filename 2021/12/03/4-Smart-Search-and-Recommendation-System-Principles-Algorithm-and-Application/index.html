@@ -151,14 +151,15 @@
     detectApple()
     })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2021/12/03/4-Smart-Search-and-Recommendation-System-Principles-Algorithm-and-Application/cover.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Smart Search and Recommendation System Principles, Algorithm and Application</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-12-03T01:10:06.000Z" title="Created 2021-12-03 09:10:06">2021-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-20T07:26:15.464Z" title="Updated 2025-07-20 15:26:15">2025-07-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Search-Advertisement-Recommendation-Causal/">Search / Advertisement / Recommendation / Causal</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>8min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Smart Search and Recommendation System Principles, Algorithm and Application"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2021/12/03/4-Smart-Search-and-Recommendation-System-Principles-Algorithm-and-Application/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>《智能搜索和推荐系统原理、算法和应用》读书笔记，主要记录了搜索推荐中常用的算法，具体的算法流程需要单独记录笔记。书中代码<a target="_blank" rel="noopener" href="https://github.com/michaelliu03/Search-Recommend-InAction">https://github.com/michaelliu03/Search-Recommend-InAction</a>。</p>
 <h1 id="搜索和推荐系统的基础"><a href="#搜索和推荐系统的基础" class="headerlink" title="搜索和推荐系统的基础"></a>搜索和推荐系统的基础</h1><h2 id="概率论统计与应用数学基础知识"><a href="#概率论统计与应用数学基础知识" class="headerlink" title="概率论统计与应用数学基础知识"></a>概率论统计与应用数学基础知识</h2><h3 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h3><ol>
-<li><p><strong>古典概率</strong>：可重复的实验次数N趋于无穷时，事件A发生的频率Q无限接近概率P。<script type="math/tex">lim_{N\rightarrow \infty}Q(A)=P(A)</script></p>
+<li><p><strong>古典概率</strong>：可重复的实验次数N趋于无穷时，事件A发生的频率Q无限接近概率P。$$lim_{N\rightarrow \infty}Q(A)=P(A)$$</p>
 </li>
-<li><p><strong>条件概率</strong>：已知事件B发生的情况下事件A发生的概率。<script type="math/tex">P(A|B)=\frac{P(AB)}{P(B)}</script></p>
+<li><p><strong>条件概率</strong>：已知事件B发生的情况下事件A发生的概率。$$P(A|B)=\frac{P(AB)}{P(B)}$$</p>
 </li>
-<li><p><strong>全概率公式</strong>：将事件A分割成小事件，先求小事件的概率，相加求得事件A的概率<script type="math/tex">P(A)=P\left(A\bigcap(\bigcup^n_{i=1}B_i)\right)=\sum^n_{i=1}P(AB_i)=\sum^n_{i=1}P(B_i)P(A|B_i)</script></p>
+<li><p><strong>全概率公式</strong>：将事件A分割成小事件，先求小事件的概率，相加求得事件A的概率$$P(A)=P\left(A\bigcap(\bigcup^n_{i=1}B_i)\right)=\sum^n_{i=1}P(AB_i)=\sum^n_{i=1}P(B_i)P(A|B_i)$$</p>
 </li>
-<li><p><strong>贝叶斯公式</strong>：在大事件A发生的条件下求分割的小事件$B<em>i$发生的概率。$$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{P(A)}=\frac{P(B_i)P(A|B_i)}{\sum^n</em>{i=1}P(B_i)P(A|B_i)}$$</p>
-<script type="math/tex; mode=display">后验=\frac{先验·似然}{P(A)}</script></li>
+<li><p><strong>贝叶斯公式</strong>：在大事件A发生的条件下求分割的小事件$B_i$发生的概率。$$P(B_i|A)=\frac{P(B_i)P(A|B_i)}{P(A)}=\frac{P(B_i)P(A|B_i)}{\sum^n_{i=1}P(B_i)P(A|B_i)}$$</p>
+<p>$$后验=\frac{先验·似然}{P(A)}$$</p>
+</li>
 <li><p><strong>基础的概率分布</strong>：</p>
 <ul>
 <li>0-1分布：$P(X=k)=p^k(1-p)^{1-k},k=0,1$</li>
@@ -173,6 +174,7 @@
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binom_pmf_test</span>():</span></span><br><span class="line">  <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">  离散分布</span></span><br><span class="line"><span class="string">  二项分布的例子：抛掷100次硬币，恰好两次正面朝上的概率是多少？</span></span><br><span class="line"><span class="string">  &#x27;&#x27;&#x27;</span></span><br><span class="line">  n = <span class="number">100</span>   <span class="comment"># 独立实验次数</span></span><br><span class="line">  p = <span class="number">0.5</span>   <span class="comment"># 每次正面朝上概率</span></span><br><span class="line">  k = np.arange(<span class="number">0</span>, <span class="number">100</span>)  <span class="comment"># 0-100次正面朝上概率</span></span><br><span class="line">  binomial = stats.binom.pmf(k, n, p)</span><br><span class="line">  <span class="built_in">print</span>(<span class="built_in">sum</span>(binomial))  <span class="comment"># 概率和为1</span></span><br><span class="line">  plt.plot(k, binomial, <span class="string">&#x27;o-&#x27;</span>)</span><br><span class="line">  plt.title(<span class="string">&#x27;Binomial: n=%i , p=%.2f&#x27;</span> % (n, p), fontsize=<span class="number">15</span>)</span><br><span class="line">  plt.xlabel(<span class="string">&#x27;Number of successes&#x27;</span>)</span><br><span class="line">  plt.ylabel(<span class="string">&#x27;Probability of success&#x27;</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">  plt.show()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normal_distribution</span>():</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    正态分布是一种连续分布，其函数可以在实线上的任何地方取值。</span></span><br><span class="line"><span class="string">    正态分布由两个参数描述：分布的平均值μ和方差σ2 。</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    mu = <span class="number">0</span>  <span class="comment"># mean</span></span><br><span class="line">    sigma = <span class="number">1</span>  <span class="comment"># standard deviation</span></span><br><span class="line">    x = np.arange(-<span class="number">10</span>, <span class="number">10</span>, <span class="number">0.1</span>)</span><br><span class="line">    y = stats.norm.pdf(x, <span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    plt.plot(x, y)</span><br><span class="line">    plt.title(<span class="string">&#x27;Normal: $\mu$=%.1f, $\sigma^2$=%.1f&#x27;</span> % (mu, sigma))</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;Probability density&#x27;</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ ==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    binom_pmf_test()        <span class="comment"># 二项分布</span></span><br><span class="line">    normal_distribution()   <span class="comment"># 正态分布</span></span><br></pre></td></tr></table></figure>
+
 <center>
   <img align='center' src='binom.png' alt='二项分布'>
   <div>二项分布</div>
@@ -187,28 +189,35 @@
 <li>协方差$Cov(X,Y)=E[(X-E(X))(Y-E(Y))]$</li>
 </ul>
 <h3 id="线性代数基础"><a href="#线性代数基础" class="headerlink" title="线性代数基础"></a>线性代数基础</h3><ol>
-<li>矩阵</li>
-<li>向量</li>
-<li>张量</li>
-<li><p><strong>特征向量和特征值</strong>：矩阵A的特征向量指与A相乘后相当于对该向量进行缩放的非0向量x，$\lambda$是相应的特征值。<script type="math/tex">Ax=\lambda x</script></p>
-<script type="math/tex; mode=display">x^TA=\lambda x^T</script><p> 假设A有n个线性无关的特征向量${v^{(1)},…,v^{(n)}}$，V是每一列是一个特征向量的矩阵，将A特征值分解：<script type="math/tex">A=Vdiag(\lambda)V^{-1}</script></p>
-<p> 不是每一个矩阵都能分解为特征值和特征向量，特征分解可能会涉及复数和非实数。每一个实对称矩阵都能分解为实特征向量和实特征值。<script type="math/tex">A=Q\Lambda Q^{-1}</script></p>
+<li><p>矩阵</p>
+</li>
+<li><p>向量</p>
+</li>
+<li><p>张量</p>
+</li>
+<li><p><strong>特征向量和特征值</strong>：矩阵A的特征向量指与A相乘后相当于对该向量进行缩放的非0向量x，$\lambda$是相应的特征值。$$Ax=\lambda x$$</p>
+<p> $$x^TA=\lambda x^T$$</p>
+<p> 假设A有n个线性无关的特征向量${v^{(1)},…,v^{(n)}}$，V是每一列是一个特征向量的矩阵，将A特征值分解：$$A=Vdiag(\lambda)V^{-1}$$</p>
+<p> 不是每一个矩阵都能分解为特征值和特征向量，特征分解可能会涉及复数和非实数。每一个实对称矩阵都能分解为实特征向量和实特征值。$$A=Q\Lambda Q^{-1}$$</p>
 <p> 其中Q是A的特征向量组成的正交矩阵（若 $AA^T=E$，n阶实矩阵A是正交矩阵），$\Lambda$是对角矩阵。</p>
 </li>
-<li><p><strong>奇异值分解</strong>：可以将非方阵分解为奇异向量和奇异值。<script type="math/tex">A_{m\times n}=U_{m\times m}D_{m\times n}V^T_{n\times n}</script></p>
+<li><p><strong>奇异值分解</strong>：可以将非方阵分解为奇异向量和奇异值。$$A_{m\times n}=U_{m\times m}D_{m\times n}V^T_{n\times n}$$</p>
 <p> U和V是正交阵，D是对角阵，对角阵上的元素称为矩阵A的奇异值，U的列向量为左奇异向量，V的列向量为右奇异向量。</p>
 </li>
 </ol>
 <h3 id="机器学习基础"><a href="#机器学习基础" class="headerlink" title="机器学习基础"></a>机器学习基础</h3><ol>
-<li>导数</li>
-<li>梯度（矢量）</li>
-<li><strong>最大似然估计</strong>：已知某个总体下的随机样本满足某种概率分布，概率分布的参数是未知的，经过反复试验，若某个参数使得样本出现概率最大，则这个参数值当作最大似然估计值。</li>
+<li><p>导数</p>
+</li>
+<li><p>梯度（矢量）</p>
+</li>
+<li><p><strong>最大似然估计</strong>：已知某个总体下的随机样本满足某种概率分布，概率分布的参数是未知的，经过反复试验，若某个参数使得样本出现概率最大，则这个参数值当作最大似然估计值。</p>
+</li>
 <li><p>随机过程与隐马尔可夫模型</p>
 </li>
 <li><p><strong>信息熵</strong>：熵是对不确定性和无序程度的预测。熵越大信息越混乱越不确定。</p>
 <ul>
 <li>熵：$H(X)=-\sum_{x\in R}p(x)log_2p(x)$，均匀概率分布时熵最大</li>
-<li>联合熵：一对离散随机变量的不确定性$H(X,Y)=\sum<em>{x\in \Omega}\sum</em>{y\in \Psi}p(x,y)log_2p(x,y)$</li>
+<li>联合熵：一对离散随机变量的不确定性$H(X,Y)=\sum_{x\in \Omega}\sum_{y\in \Psi}p(x,y)log_2p(x,y)$</li>
 <li>条件熵：给定随机变量X条件下Y的条件熵$H(Y|x)=\sum_{y\in \Phi}p(y|x)log_2p(y|x)$</li>
 <li>自信息：事件X发生的不确定性或事件包含的信息量$I(X)=-log_2P(x)$</li>
 <li>互信息：$I(X;Y)=H(X)-H(X|Y)=log_2\frac{P(X,Y)}{P(X)P(Y)}$</li>
@@ -293,11 +302,11 @@
 <li>查询处理<ul>
 <li>分词方法：基于字符串、基于理解、基于统计的分词方法</li>
 <li>查询建议 </li>
-<li>查询更正（若样本类别不均衡，可采用上下采样）<ul>
-<li>意图理解</li>
-<li>其他方法</li>
+<li>查询更正（若样本类别不均衡，可采用上下采样）</li>
 </ul>
 </li>
+<li>意图理解</li>
+<li>其他方法<ul>
 <li>层次聚类<ul>
 <li>分类：凝聚式（自底向上）、分裂式（自顶向下）</li>
 <li>求距离/相似度方法：闵可夫斯基距离（P范数）、马氏距离、相关系数、夹角余弦</li>
@@ -403,10 +412,8 @@
 <h2 id="推荐系统的主要算法"><a href="#推荐系统的主要算法" class="headerlink" title="推荐系统的主要算法"></a>推荐系统的主要算法</h2><ol>
 <li>矩阵分解<ul>
 <li>奇异值分解 SVD</li>
-<li>交替最小二乘 ACS，Alterating LeastSquares<ul>
+<li>交替最小二乘 ACS，Alterating LeastSquares</li>
 <li>贝叶斯个性化排序</li>
-</ul>
-</li>
 </ul>
 </li>
 <li>线性模型<ul>

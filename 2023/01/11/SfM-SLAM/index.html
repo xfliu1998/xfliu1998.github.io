@@ -152,14 +152,15 @@
     })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">59</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">15</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2023/01/11/SfM-SLAM/cover.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SfM &amp; SLAM</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-01-11T09:55:43.000Z" title="Created 2023-01-11 17:55:43">2023-01-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-07-20T08:34:57.723Z" title="Updated 2025-07-20 16:34:57">2025-07-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Data-Structures-and-Algorithms/">Data Structures and Algorithms</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>10min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SfM &amp; SLAM"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2023/01/11/SfM-SLAM/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>根据北京邮电大学人工智能学院鲁鹏老师讲授的《计算机视觉之三维重建篇——深入浅出SfM系统与SLAM系统的核心算法》整理的笔记。</p>
 <blockquote>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1mT4y1o7Q2/?spm_id_from=333.999.0.0&amp;vd_source=486265fa677326a8f53894f05277bfb9">b站视频链接</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1mT4y1o7Q2/?spm_id_from=333.999.0.0&vd_source=486265fa677326a8f53894f05277bfb9">b站视频链接</a></li>
 <li><a target="_blank" rel="noopener" href="https://cv-xueba.club/pages/courses/cv_sfm.html">课件链接</a></li>
 </ul>
 </blockquote>
 <h1 id="摄像机几何"><a href="#摄像机几何" class="headerlink" title="摄像机几何"></a>摄像机几何</h1><h2 id="针孔模型-amp-透镜"><a href="#针孔模型-amp-透镜" class="headerlink" title="针孔模型&amp;透镜"></a>针孔模型&amp;透镜</h2><ol>
-<li><strong>针孔摄像机</strong><br><div align="center">
+<li><strong>针孔摄像机</strong><div align="center">
  <img src="1_针孔摄像机.png" width=70%>
-</div><br>根据相似三角形，三维点 $P=[x, y, z]^T$ 到二维平面 $p’=[x’, y’]^T$ 的映射：<script type="math/tex">x'=f\frac{x}{z}; y'=f\frac{y}{z}</script></li>
+</div>
+根据相似三角形，三维点 $P=[x, y, z]^T$ 到二维平面 $p'=[x', y']^T$ 的映射：$$x'=f\frac{x}{z}; y'=f\frac{y}{z}$$</li>
 <li><strong>透镜</strong><br>光圈减小，图像越清晰，但是越暗。透镜将多条光线汇聚到胶片上，可以增加照片亮度。所有平行于光轴的光线都会汇聚到焦点，焦点到透镜中心的距离为焦距。<br>透镜问题：<ul>
 <li>失焦：物体聚焦有特定距离；景深</li>
 <li>径向畸变：图像像素点以畸变中心为中心点，沿着径向产生位置偏差，导致图像成像发生形变</li>
@@ -167,12 +168,15 @@
 </li>
 </ol>
 <h2 id="摄像机几何-1"><a href="#摄像机几何-1" class="headerlink" title="摄像机几何"></a>摄像机几何</h2><ol>
-<li><strong>像素坐标系</strong><br><div align="center">
+<li><strong>像素坐标系</strong><div align="center">
  <img src="1_像素坐标系.png" width=70%>
-</div><br>单位：$k, l: pixel/m; f:m \space$  非方形像素 $\alpha, \beta: pixel$</li>
-<li><strong>摄像机模型</strong><br>转换到齐次坐标，并加入摄像机偏斜 $\theta$ 、像机内外参数得到完整的摄像机模型：<br><div align="center">
+</div>
+单位：$k, l: pixel/m; f:m \space$  非方形像素 $\alpha, \beta: pixel$</li>
+<li><strong>摄像机模型</strong><br>转换到齐次坐标，并加入摄像机偏斜 $\theta$ 、像机内外参数得到完整的摄像机模型：<div align="center">
  <img src="1_摄像机模型.png" width=70%>
-</div><br>当 $K$ 为单位矩阵时为规范化摄像机，摄像机模型包括$5$个内参数+$6$个外参数=$11$个自由度。<br>平面点转换成欧式坐标写法：<script type="math/tex">P'=MP_w=[m_1, m_2, m_3]^TP_w \rightarrow (\frac{m_1P_w}{m_3P_w}, \frac{m_2P_w}{m_3P_w})</script></li>
+</div>
+当 $K$ 为单位矩阵时为规范化摄像机，摄像机模型包括$5$个内参数+$6$个外参数=$11$个自由度。
+平面点转换成欧式坐标写法：$$P'=MP_w=[m_1, m_2, m_3]^TP_w \rightarrow (\frac{m_1P_w}{m_3P_w}, \frac{m_2P_w}{m_3P_w})$$</li>
 <li><strong>Faugeras1993定理</strong>：<div align="center">
  <img src="1_定理.png" width=60%>
 </div></li>
@@ -186,9 +190,10 @@
 <div align="center">
  <img src="1_透视与弱透视投影摄像机.png" width=60%>
 </div></li>
-<li><strong>正交投影摄像机</strong><br><div align="center">
+<li><strong>正交投影摄像机</strong><div align="center">
  <img src="1_正交投影摄像机.png" width=60%>
-</div><br>正交投影更多应用在建筑设计或工业设计行业</li>
+</div>
+正交投影更多应用在建筑设计或工业设计行业</li>
 </ol>
 <h2 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h2><ol>
 <li><strong>线性方程组的解</strong><div align="center">
@@ -205,9 +210,7 @@
 </div></li>
 <li><strong>非线性方程组的最小二乘解</strong><div align="center">
  <img src="1_非线性方程组的最小二乘解.png" width=70%>
-</div>
-
-</li>
+</div></li>
 </ol>
 <h1 id="摄像机标定"><a href="#摄像机标定" class="headerlink" title="摄像机标定"></a>摄像机标定</h1><h2 id="针孔模型-amp-透镜摄像机标定问题"><a href="#针孔模型-amp-透镜摄像机标定问题" class="headerlink" title="针孔模型 &amp; 透镜摄像机标定问题"></a>针孔模型 &amp; 透镜摄像机标定问题</h2><ol>
 <li><strong>摄像机标定问题</strong><br>摄像机标定即求解摄像机内、外参数矩阵，其内外参数矩阵描述了三维世界到二维像素的映射关系。<div align="center">
@@ -222,9 +225,10 @@
 <div align="center">
  <img src="2_投影矩阵解法.png" width=70%>
 </div></li>
-<li><strong>提取摄像机参数</strong><br><div align="center">
+<li><strong>提取摄像机参数</strong><div align="center">
  <img src="2_提取摄像机参数.png" width=70%>
-</div><br>注意： 世界坐标系的三维点不能位于同一平面！</li>
+</div>
+注意： 世界坐标系的三维点不能位于同一平面！</li>
 </ol>
 <h2 id="径向畸变的摄像机标定"><a href="#径向畸变的摄像机标定" class="headerlink" title="径向畸变的摄像机标定"></a>径向畸变的摄像机标定</h2><ol>
 <li><strong>问题建模</strong><div align="center">
@@ -235,52 +239,50 @@
 </div></li>
 <li><strong>标定求解</strong><div align="center">
  <img src="2_径向畸变相机标定求解.png" width=90%>
-</div>
-
-</li>
+</div></li>
 </ol>
 <h2 id="补充知识-1"><a href="#补充知识-1" class="headerlink" title="补充知识"></a>补充知识</h2><ol>
-<li><strong>2D平面上的变换</strong><ul>
+<li><strong>2D平面上的变换</strong></li>
+</ol>
+<ul>
 <li>欧式变换<div align="center">
-<img src="2_2D欧式变换.png" width=70%>
+ <img src="2_2D欧式变换.png" width=70%>
 </div></li>
 <li>相似变换<div align="center">
-<img src="2_2D相似变换.png" width=70%>
+ <img src="2_2D相似变换.png" width=70%>
 </div></li>
 <li>透视变换<div align="center">
-<img src="2_2D透视变换.png" width=70%>
+ <img src="2_2D透视变换.png" width=70%>
 </div></li>
 <li>仿射变换<div align="center">
-<img src="2_2D仿射变换.png" width=70%>
+ <img src="2_2D仿射变换.png" width=70%>
 </div></li>
 </ul>
-</li>
-<li><strong>3D空间中的变换</strong><ul>
-<li>欧式变换<div align="center">
-<img src="2_3D欧式变换.png" width=70%>
-</div></li>
-<li>透视变换<div align="center">
-<img src="2_3D透视变换.png" width=60%>
-</div></li>
-<li>仿射变换<div align="center">
-<img src="2_3D仿射变换.png" width=70%>
-</div>
-
-</li>
-</ul>
-</li>
+<ol start="2">
+<li><strong>3D空间中的变换</strong></li>
 </ol>
+<ul>
+<li>欧式变换<div align="center">
+ <img src="2_3D欧式变换.png" width=70%>
+</div></li>
+<li>透视变换<div align="center">
+ <img src="2_3D透视变换.png" width=60%>
+</div></li>
+<li>仿射变换<div align="center">
+ <img src="2_3D仿射变换.png" width=70%>
+</div></li>
+</ul>
 <h1 id="单视图重建"><a href="#单视图重建" class="headerlink" title="单视图重建"></a>单视图重建</h1><p>相机标定后，内外参数已知，也不能根据单视图测量值 $p$ 估算 $P$, 三维点可以位于视线中心和二维点定义的直线上的任何位置。</p>
 <h2 id="无穷远点、线与平面"><a href="#无穷远点、线与平面" class="headerlink" title="无穷远点、线与平面"></a>无穷远点、线与平面</h2><ol>
-<li><strong>2D平面上的直线</strong><br>二维点 $x=[x_1, x_2, 1]^T$ 在直线 $l=[a, b, c]^T$上可表示为 <script type="math/tex">l^Tx=0 或 x^Tl=0 或 ax_1+bx_2+c=0</script> </li>
-<li><strong>两直线的交点</strong><script type="math/tex; mode=display">x=l \times l'</script></li>
+<li><strong>2D平面上的直线</strong><br>二维点 $x=[x_1, x_2, 1]^T$ 在直线 $l=[a, b, c]^T$上可表示为 $$l^Tx=0 或 x^Tl=0 或 ax_1+bx_2+c=0$$ </li>
+<li><strong>两直线的交点</strong><br>$$x=l \times l’$$</li>
 <li><strong>2D平面上的无穷远点</strong><div align="center">
  <img src="3_2D无穷远点.png" width=70%>
 </div></li>
 <li><strong>2D平面上的无穷远直线</strong><div align="center">
  <img src="3_2D无穷远直线.png" width=50%>
 </div></li>
-<li><strong>3D平面上的直线</strong><br>三维点 $x=[x_1, x_2, x_3, 1]^T$ 在面 $\Pi=[a, b, c, d]^T$上可表示为 <script type="math/tex">\Pi^Tx=0 或 x^T\Pi=0</script> </li>
+<li><strong>3D平面上的直线</strong><br>三维点 $x=[x_1, x_2, x_3, 1]^T$ 在面 $\Pi=[a, b, c, d]^T$上可表示为 $$\Pi^Tx=0 或 x^T\Pi=0$$ </li>
 <li><strong>3D空间中的无穷远点</strong><br>空间中平行线的交点为无穷远点 $x_\infty=[a, b, c, 0]^T$</li>
 <li><strong>3D空间中的无穷远平面</strong><br>平行平面在无穷远处交于一条公共线，即无穷远直线；<br>两条或多条无穷远直线的集合定义为无穷远平面 $\Pi_\infty=[0, 0, 0, 1]^T$</li>
 </ol>
@@ -288,9 +290,7 @@
 <li><strong>变换公式</strong><br>$H$ 为变换矩阵，点到点的变换公式：$p’=Hp$，直线到直线的变换公式：$l’=H^{-T}l$</li>
 <li><strong>影消点与影消线</strong><br>影消点：三维空间中的无穷远点在图像平面上的投影点<br>影消线（视平线）：空间汇中的无穷远线<br>图像中两条直线的交点如果在影消线上；则这两条线是3D空间中的平行线<div align="center">
  <img src="3_影消点与影消线.png" width=50%>
-</div>
-
-</li>
+</div></li>
 </ol>
 <h2 id="单视重构"><a href="#单视重构" class="headerlink" title="单视重构"></a>单视重构</h2><ol>
 <li><strong>两组平行线的夹角与影消点</strong><div align="center">
@@ -305,16 +305,24 @@
 <li><strong>单视图重构</strong><br>$K$ 已知，相机参考系中的场景平面方向 $n=K^Tl_h$<br>注意：场景的实际比例无法恢复<br>单视图重构弊端：需要手动选择影消点和影消线，需要知道场景先验信息（点对应关系，线、面几何信息等）</li>
 </ol>
 <h1 id="三维重建基础与极几何"><a href="#三维重建基础与极几何" class="headerlink" title="三维重建基础与极几何"></a>三维重建基础与极几何</h1><h2 id="三维重建基础"><a href="#三维重建基础" class="headerlink" title="三维重建基础"></a>三维重建基础</h2><ol>
-<li><strong>摄像机标定与单视图重构</strong><div align="center">
+<li><p><strong>摄像机标定与单视图重构</strong></p>
+<div align="center">
  <img src="4_摄像机标定与单视图重构.png" width=70%>
 </div></li>
-<li><p><strong>三角化</strong><br><div align="center">
+<li><p><strong>三角化</strong></p>
+<div align="center">
  <img src="4_三角化.png" width=70%>
-</div><br>线性解法：<br><div align="center">
+</div>
+线性解法：
+<div align="center">
  <img src="4_三角化线性解法.png" width=70%>
-</div><br>非线性解法：<br><div align="center">
+</div>
+非线性解法：
+<div align="center">
  <img src="4_三角化非线性解法.png" width=60%>
-</div><br>然而实际应用中，两条直线通常不相交。而线性和非线性解法都需要知道 $K、R、T$。多视图几何的关键问题包括：</p>
+</div>
+然而实际应用中，两条直线通常不相交。而线性和非线性解法都需要知道 $K、R、T$。多视图几何的关键问题包括：
+
 <ul>
 <li>摄像机几何：从一张或多张图像中求解摄像机内外参数</li>
 <li>场景几何：通过2-多幅图寻找3D场景坐标</li>
@@ -323,24 +331,31 @@
 </li>
 </ol>
 <h2 id="极几何及基础矩阵"><a href="#极几何及基础矩阵" class="headerlink" title="极几何及基础矩阵"></a>极几何及基础矩阵</h2><ol>
-<li><p><strong>极几何</strong><br>极几何描述了同一场景或物体的两个视点图像间的几何关系<br><div align="center">
+<li><p><strong>极几何</strong><br>极几何描述了同一场景或物体的两个视点图像间的几何关系</p>
+<div align="center">
  <img src="4_极几何.png" width=70%>
-</div><br>特例：</p>
+</div>
+特例：
+
 <ul>
 <li>平行视图<div align="center">
  <img src="4_平行视图.png" width=70%>
 </div></li>
-<li>前向平移（无旋转）<br><div align="center">
+<li>前向平移（无旋转）<div align="center">
  <img src="4_前向平移.png" width=70%>
-</div><br>极几何约束：可以将搜索范围缩小到对应的极线上</li>
+</div>
+极几何约束：可以将搜索范围缩小到对应的极线上</li>
 </ul>
 </li>
-<li><strong>本质矩阵</strong><br>本质矩阵对<strong>规范化摄像机</strong>拍摄的两个视点图像间的极几何关系进行代数描述<div align="center">
+<li><p><strong>本质矩阵</strong><br>本质矩阵对<strong>规范化摄像机</strong>拍摄的两个视点图像间的极几何关系进行代数描述</p>
+<div align="center">
  <img src="4_本质矩阵.png" width=70%>
 </div></li>
-<li><strong>基础矩阵</strong><br>基础矩阵对一般的<strong>透视摄像机</strong>拍摄的两个视点的图像间的极几何关系进行代数描述，刻画了两个相同场景图像在不同视图中的对应关系<br><div align="center">
+<li><p><strong>基础矩阵</strong><br>基础矩阵对一般的<strong>透视摄像机</strong>拍摄的两个视点的图像间的极几何关系进行代数描述，刻画了两个相同场景图像在不同视图中的对应关系</p>
+<div align="center">
  <img src="4_基础矩阵.png" width=60%>
-</div><br>基础矩阵作用：已知 $F$，无需场景信息及摄像机内外参数即可建立两图像的对应关系；$F$ 包含摄像机内外参数信息，可应用于三维重构和多视图匹配</li>
+</div>
+基础矩阵作用：已知 $F$，无需场景信息及摄像机内外参数即可建立两图像的对应关系；$F$ 包含摄像机内外参数信息，可应用于三维重构和多视图匹配</li>
 </ol>
 <h2 id="基础矩阵估计"><a href="#基础矩阵估计" class="headerlink" title="基础矩阵估计"></a>基础矩阵估计</h2><p>基础矩阵有$7$个自由度，理论上7个点即可求解，但估计方法较复杂</p>
 <div align="center">
@@ -348,17 +363,22 @@
 </div>
 
 <ol>
-<li><p><strong>八点算法</strong><br><div align="center">
+<li><p><strong>八点算法</strong></p>
+<div align="center">
  <img src="4_八点算法.png" width=60%>
-</div><br><div align="center">
+</div>
+<div align="center">
  <img src="4_八点算法存在问题.png" width=60%>
-</div><br>存在问题：</p>
+</div>
+存在问题：
+
 <ul>
 <li>$W$ 中各个元素的数值差异过大</li>
 <li>SVD分解有数值计算问题</li>
 </ul>
 </li>
-<li><strong>归一化八点法</strong><br>归一化八点算法可以提高计算精度。对图像进行变换 $T$ (平移与缩放)，使得：原点 = 图像上点的重心;各个像点到坐标原点的均方根距离等于 $\sqrt{2}$ 。计算步骤：<ul>
+<li><p><strong>归一化八点法</strong><br>归一化八点算法可以提高计算精度。对图像进行变换 $T$ (平移与缩放)，使得：原点 = 图像上点的重心;各个像点到坐标原点的均方根距离等于 $\sqrt{2}$ 。计算步骤：</p>
+<ul>
 <li>分别计算左图和右图的 $T$ 和 $T’$</li>
 <li>坐标归一化：$q_i=Tp_i; q’_i=T’p’_i$</li>
 <li>通过八点法计算矩阵 $F_q$</li>
@@ -368,10 +388,12 @@
 </ol>
 <h2 id="单应矩阵"><a href="#单应矩阵" class="headerlink" title="单应矩阵"></a>单应矩阵</h2><p>单应矩阵指空间平面在两个摄像机下的投影几何</p>
 <ol>
-<li><strong>单应矩阵推导</strong><div align="center">
+<li><p><strong>单应矩阵推导</strong></p>
+<div align="center">
  <img src="4_单应矩阵推导.png" width=70%>
 </div></li>
-<li><strong>单应矩阵估计</strong><div align="center">
+<li><p><strong>单应矩阵估计</strong></p>
+<div align="center">
  <img src="4_单应矩阵估计.png" width=70%>
 </div></li>
 <li><p><strong>单应矩阵性质</strong><br>场景结构：</p>
@@ -386,21 +408,25 @@
 </ul>
 </li>
 </ol>
-<h1 id="双目立体视觉重建"><a href="#双目立体视觉重建" class="headerlink" title="双目立体视觉重建"></a>双目立体视觉重建</h1><h2 id="基于平行视图的双目立体视觉"><a href="#基于平行视图的双目立体视觉" class="headerlink" title="基于平行视图的双目立体视觉"></a>基于平行视图的双目立体视觉</h2><p>平行视图的三角测量：视差 $p<em>u-p_u’=\frac{B·f}{z}$，视差与深度$z$成反比<br>  <div align="center"><br>    &lt;img src=”5</em>平行视图的三角测量.png” width=70%&gt;<br>  &lt;/div&gt;</p>
-<h2 id="图像校正"><a href="#图像校正" class="headerlink" title="图像校正"></a>图像校正</h2><p>图像校正步骤：<br>  <div align="center">
-    <img src="5_图像校正.png" width=70%>
-  </div></p>
+<h1 id="双目立体视觉重建"><a href="#双目立体视觉重建" class="headerlink" title="双目立体视觉重建"></a>双目立体视觉重建</h1><h2 id="基于平行视图的双目立体视觉"><a href="#基于平行视图的双目立体视觉" class="headerlink" title="基于平行视图的双目立体视觉"></a>基于平行视图的双目立体视觉</h2><p>平行视图的三角测量：视差 $p_u-p_u’=\frac{B·f}{z}$，视差与深度$z$成反比<br>  <div align="center"><br>    <img src="5_平行视图的三角测量.png" width=70%><br>  </div></p>
+<h2 id="图像校正"><a href="#图像校正" class="headerlink" title="图像校正"></a>图像校正</h2><p>图像校正步骤：<br>  <div align="center"><br>    <img src="5_图像校正.png" width=70%><br>  </div></p>
 <h2 id="对应点搜索"><a href="#对应点搜索" class="headerlink" title="对应点搜索"></a>对应点搜索</h2><ol>
-<li>相关匹配算法<div align="center">
+<li><p>相关匹配算法</p>
+<div align="center">
  <img src="5_相关匹配算法.png" width=70%>
 </div></li>
-<li>归一化相关匹配算法<div align="center">
+<li><p>归一化相关匹配算法</p>
+<div align="center">
  <img src="5_归一化相关匹配算法.png" width=80%>
 </div></li>
-<li>窗口大小的影响<br>窗口小：细节丰富但噪声多；窗口大视差图平滑噪声少但细节丢失</li>
-<li><p>相关法存在问题<br>透视缩短：遮挡；基线选择；同质区域；重复性模式<br><div align="center">
+<li><p>窗口大小的影响<br>窗口小：细节丰富但噪声多；窗口大视差图平滑噪声少但细节丢失</p>
+</li>
+<li><p>相关法存在问题<br>透视缩短：遮挡；基线选择；同质区域；重复性模式</p>
+<div align="center">
  <img src="5_透视缩短和遮挡问题.png" width=70%>
-</div><br>以上需要引入更多约束解决对应点问题：</p>
+</div>
+以上需要引入更多约束解决对应点问题：
+
 <ul>
 <li>唯一性约束：一张图像的任何点在另一张图像中最多只有一个匹配点</li>
 <li>顺序约束（单调性约束）：左右视图中的对应点次序一致</li>
@@ -408,16 +434,8 @@
 </ul>
 </li>
 </ol>
-<h1 id="多视图重建"><a href="#多视图重建" class="headerlink" title="多视图重建"></a>多视图重建</h1><h2 id="运动恢复结构问题"><a href="#运动恢复结构问题" class="headerlink" title="运动恢复结构问题"></a>运动恢复结构问题</h2><p>Structure from Motion(SfM)：通过三维场景的多张图像恢复出该场景的三维结构信息（如3D点云）以及每张图片对应的摄像机参数<br>  <div align="center">
-    <img src="6_运动恢复结构问题.png" width=80%>
-  </div></p>
-<h2 id="三种典型的运动恢复结构任务"><a href="#三种典型的运动恢复结构任务" class="headerlink" title="三种典型的运动恢复结构任务"></a>三种典型的运动恢复结构任务</h2><h3 id="欧式结构恢复（摄像机内参已知，外参未知）"><a href="#欧式结构恢复（摄像机内参已知，外参未知）" class="headerlink" title="欧式结构恢复（摄像机内参已知，外参未知）"></a><strong>欧式结构恢复</strong>（摄像机内参已知，外参未知）</h3><p>  问题建模：<br>  <div align="center">
-    <img src="6_欧式结构恢复问题建模.png" width=70%>
-  </div><br>  2视图求解方法：<br>  <div align="center">
-    <img src="6_2视图欧式结构恢复求解方法.png" width=70%>
-  </div><br>  其中本质矩阵分解方法如下：<br>  <div align="center">
-    <img src="6_本质矩阵分解.png" width=60%>
-  </div><br>  欧式结构恢复歧义：恢复的机构与真实场景之间相差一个相似变换（旋转，平移，缩放）——度量重构（恢复的场景与真实场景之间存在相似变换的重构）</p>
+<h1 id="多视图重建"><a href="#多视图重建" class="headerlink" title="多视图重建"></a>多视图重建</h1><h2 id="运动恢复结构问题"><a href="#运动恢复结构问题" class="headerlink" title="运动恢复结构问题"></a>运动恢复结构问题</h2><p>Structure from Motion(SfM)：通过三维场景的多张图像恢复出该场景的三维结构信息（如3D点云）以及每张图片对应的摄像机参数<br>  <div align="center"><br>    <img src="6_运动恢复结构问题.png" width=80%><br>  </div></p>
+<h2 id="三种典型的运动恢复结构任务"><a href="#三种典型的运动恢复结构任务" class="headerlink" title="三种典型的运动恢复结构任务"></a>三种典型的运动恢复结构任务</h2><h3 id="欧式结构恢复（摄像机内参已知，外参未知）"><a href="#欧式结构恢复（摄像机内参已知，外参未知）" class="headerlink" title="欧式结构恢复（摄像机内参已知，外参未知）"></a><strong>欧式结构恢复</strong>（摄像机内参已知，外参未知）</h3><p>  问题建模：<br>  <div align="center"><br>    <img src="6_欧式结构恢复问题建模.png" width=70%><br>  </div><br>  2视图求解方法：<br>  <div align="center"><br>    <img src="6_2视图欧式结构恢复求解方法.png" width=70%><br>  </div><br>  其中本质矩阵分解方法如下：<br>  <div align="center"><br>    <img src="6_本质矩阵分解.png" width=60%><br>  </div><br>  欧式结构恢复歧义：恢复的机构与真实场景之间相差一个相似变换（旋转，平移，缩放）——度量重构（恢复的场景与真实场景之间存在相似变换的重构）</p>
 <h3 id="仿射结构恢复（摄像机为仿射相机，内外参数均未知）"><a href="#仿射结构恢复（摄像机为仿射相机，内外参数均未知）" class="headerlink" title="仿射结构恢复（摄像机为仿射相机，内外参数均未知）"></a><strong>仿射结构恢复</strong>（摄像机为仿射相机，内外参数均未知）</h3><p>问题建模：</p>
 <div align="center">
   <img src="6_仿射结构恢复问题建模.png" width=70%>
@@ -433,16 +451,10 @@
 </div></li>
 <li>因式分解获得运动与结构<div align="center">
  <img src="6_因式分解获得运动与结构.png" width=70%>
-</div>
-
-</li>
+</div></li>
 </ol>
-<p>总结<br>  <div align="center">
-  <img src="6_仿射结构恢复问题总结.png" width=70%>
-  </div></p>
-<p>仿射结构恢复歧义<br>  <div align="center">
-  <img src="6_仿射结构恢复歧义.png" width=70%>
-  </div><br>给定 $m$ 个相机，$n$ 个三维点，有 $2mn$ 个等式，$8m+3n-8$ 个未知量 </p>
+<p>总结<br>  <div align="center"><br>  <img src="6_仿射结构恢复问题总结.png" width=70%><br>  </div></p>
+<p>仿射结构恢复歧义<br>  <div align="center"><br>  <img src="6_仿射结构恢复歧义.png" width=70%><br>  </div><br>给定 $m$ 个相机，$n$ 个三维点，有 $2mn$ 个等式，$8m+3n-8$ 个未知量 </p>
 <h3 id="透视结构恢复（摄像机为透视相机，内外参数均未知）"><a href="#透视结构恢复（摄像机为透视相机，内外参数均未知）" class="headerlink" title="透视结构恢复（摄像机为透视相机，内外参数均未知）"></a><strong>透视结构恢复</strong>（摄像机为透视相机，内外参数均未知）</h3><p>问题建模：</p>
 <div align="center">
   <img src="6_透视结构恢复问题建模.png" width=70%>
@@ -453,30 +465,32 @@
 </div>
   给定 $m$ 个相机，$n$ 个三维点，有 $2mn$ 个等式，$11m+3n-15$ 个未知量 
 
-在相差一个 $4\times4$ 的可逆变换的情况下恢复摄像机运动与场景结构
-- **代数方法**（通过基础矩阵）
-  - 2视图代数方法
-    <div align="center">
-      <img src="6_2视图代数方法.png" width=70%>
-    </div> 
-  - 利用F估计摄像机矩阵
-    <div align="center">
-      <img src="6_利用F估计摄像机矩阵.png" width=70%>
-    </div> 
-  - n视图代数方法
-    <div align="center">
-      <img src="6_n视图代数方法.png" width=70%>
-    </div> 
-- **捆绑调整**（Bundle Adjustment, BA）
-  因式分解法假定所有点均可见，存在遮挡和建立对应点关系失败时不可用；代数法应用于2视图重建，易出现误差累积。捆绑调整为非线性最小化问题，使用牛顿法与列文伯格——马夸尔特法（L-M）求解：
-    <div align="center">
-      <img src="6_捆绑调整.png" width=60%>
-    </div> 
+<p>在相差一个 $4\times4$ 的可逆变换的情况下恢复摄像机运动与场景结构</p>
+<ul>
+<li><p><strong>代数方法</strong>（通过基础矩阵）</p>
+<ul>
+<li>2视图代数方法<div align="center">
+  <img src="6_2视图代数方法.png" width=70%>
+</div> </li>
+<li>利用F估计摄像机矩阵<div align="center">
+  <img src="6_利用F估计摄像机矩阵.png" width=70%>
+</div> </li>
+<li>n视图代数方法<div align="center">
+  <img src="6_n视图代数方法.png" width=70%>
+</div> </li>
+</ul>
+</li>
+<li><p><strong>捆绑调整</strong>（Bundle Adjustment, BA）<br>因式分解法假定所有点均可见，存在遮挡和建立对应点关系失败时不可用；代数法应用于2视图重建，易出现误差累积。捆绑调整为非线性最小化问题，使用牛顿法与列文伯格——马夸尔特法（L-M）求解：</p>
+  <div align="center">
+    <img src="6_捆绑调整.png" width=60%>
+  </div> 
 
 <ul>
 <li>捆绑调整法优势：可以同时处理大量视图，也可以处理丢失的数据</li>
 <li>捆绑调整法局限性：大量参数的最小化问题，需要良好的初始条件</li>
 <li>捆绑调整法实际操作：常用作SfM的最后一步，分解或代数方法可作为优化问题的初始解</li>
+</ul>
+</li>
 </ul>
 <h1 id="运动恢复结构-SfM-系统设计"><a href="#运动恢复结构-SfM-系统设计" class="headerlink" title="运动恢复结构(SfM)系统设计"></a>运动恢复结构(SfM)系统设计</h1><h2 id="PnP问题"><a href="#PnP问题" class="headerlink" title="PnP问题"></a>PnP问题</h2><ol>
 <li>PnP问题描述<div align="center">
@@ -484,9 +498,7 @@
 </div> </li>
 <li>P3P求解摄像机位姿<div align="center">
  <img src="7_P3P求解摄像机位姿.png" width=70%>
-</div> 
-
-</li>
+</div> </li>
 </ol>
 <h2 id="两视图重构"><a href="#两视图重构" class="headerlink" title="两视图重构"></a>两视图重构</h2><p>2视图欧式结构恢复求解第一步为求解基础矩阵 $F$，一般在进行此步之前先进行特征提取+特征匹配，再进行基础矩阵估计</p>
 <ol>
@@ -498,19 +510,21 @@
 </div> </li>
 <li>RANSAC估计基础矩阵<div align="center">
  <img src="7_RANSAC估计基础矩阵.png" width=70%>
-</div> 
-
-</li>
+</div> </li>
 </ol>
 <h2 id="SfM系统：基于增量法的多视图欧式重构（以OpenMVG为例）"><a href="#SfM系统：基于增量法的多视图欧式重构（以OpenMVG为例）" class="headerlink" title="SfM系统：基于增量法的多视图欧式重构（以OpenMVG为例）"></a>SfM系统：基于增量法的多视图欧式重构（以OpenMVG为例）</h2><ol>
-<li>预处理<br>图像特征点提取与匹配：输入图像集，输出几何校验后的特征点匹配结果<ol>
+<li><p>预处理<br>图像特征点提取与匹配：输入图像集，输出几何校验后的特征点匹配结果</p>
+<ol>
 <li>计算潜在匹配对：提取特征点并计算特征描述符，利用近邻的特征点匹配方法进行特征点匹配</li>
 <li>利用几何一致性过滤误匹配：估计基础矩阵 $F$ 和单应矩阵 $H$</li>
 </ol>
 </li>
-<li><p>增量法求解SfM<br><div align="center">
+<li><p>增量法求解SfM</p>
+<div align="center">
  <img src="7_增量法求解SfM.png" width=80%>
-</div><br>注意：</p>
+</div> 
+注意：
+
 <ul>
 <li>第1步 OpenMVG里只包含两张图的track会被剔除</li>
 <li>第3步 选取的边 $e$ 要求射线夹角中位数最大，且夹角不大于60不小于3</li>
@@ -524,9 +538,7 @@
 </div> </li>
 <li>基于词袋模型的图像检索<div align="center">
  <img src="8_基于词袋模型的图像检索.png" width=70%>
-</div> 
-
-</li>
+</div> </li>
 </ol>
 <h2 id="SLAM"><a href="#SLAM" class="headerlink" title="SLAM"></a>SLAM</h2><ol>
 <li>SLAM介绍<br>同时定位和建图（Simultaneous Localization and Mapping, SLAM）中的定位指传感器的位置和姿态，SLAM应用于定位、导航、避障、重建、交互</li>
@@ -534,9 +546,7 @@
 <li>地图<br>地图指所有路标点的集合，地图是对环境的描述，但描述不固定，需要视SLAM的应用而定。</li>
 <li>SLAM开源方案<div align="center">
  <img src="8_SLAM开源方案.png" width=80%>
-</div> 
-
-</li>
+</div> </li>
 </ol>
 <h2 id="ORB-SLAM系统"><a href="#ORB-SLAM系统" class="headerlink" title="ORB-SLAM系统"></a>ORB-SLAM系统</h2><ol>
 <li>系统组成<div align="center">
