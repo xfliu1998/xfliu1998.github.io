@@ -152,7 +152,7 @@
     })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">66</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2025/08/03/LLM-Tokenize/cover.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LLM —— Tokenize</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-08-03T11:50:59.000Z" title="Created 2025-08-03 19:50:59">2025-08-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-08-03T14:42:11.514Z" title="Updated 2025-08-03 22:42:11">2025-08-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Machine-Learning-and-Deep-Learning/">Machine Learning and Deep Learning</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>8min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LLM —— Tokenize"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2025/08/03/LLM-Tokenize/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="词元化技术简介"><a href="#词元化技术简介" class="headerlink" title="词元化技术简介"></a>词元化技术简介</h2><p>词元化（Tokenization）设计的目的是将原始文本分割为模型可识别的词元序列作为大语言模型的输入。传统基于词汇的分词（如中文分词）存在结果不一致性，比如某些中文分词中相同的输入可能产生不同的分词结果，导致词表庞大且含大量低频词，还可能面临<strong>未登录词（OOV）</strong>问题。分词器的设计需要注意以下几点：</p>
 <ul>
 <li><strong>具备无损重构特性</strong>：分词结果必须能准确还原原始文本。  </li>
-<li><strong>高压缩率（Compression Ratio）</strong>：分词处理后词元数越少越好。压缩比计算公式为<script type="math/tex">\text{压缩率} = \frac{\text{原始文本UTF-8字节数}}{\text{分词后的词元数}}</script></li>
+<li><strong>高压缩率（Compression Ratio）</strong>：分词处理后词元数越少越好。压缩比计算公式为$$\text{压缩率} = \frac{\text{原始文本UTF-8字节数}}{\text{分词后的词元数}}$$</li>
 <li><strong>领域适配性</strong>：需要适实际需求。比如通用分词器（如GPT-2）对多语言/多领域语料效果差（如LLaMA处理中文效率低）；通用BPE可能错误分割数字（如 <code>7,481 → [7, 481]</code>），需设计数字专用分词规则。 </li>
 </ul>
 <p>现有分词方法如<strong>字符级分词</strong>（如ELMo）以单个字符为最小单位。主流的LLM分词方法<strong>子词分词</strong>（Subword Tokenization）平衡了词表大小与OOV问题。具体实现时可以使用分词工具库SentencePiece（支持 BPE/ULM 算法），无需预分词直接处理原始文本，且可以统一处理多语言数据。下面介绍三种主流的子词分词方法。</p>
@@ -163,7 +163,7 @@
 <li><code>merge_vocab()</code>：合并词元对并更新词表。  </li>
 </ul>
 <p>一种BPE的拓展是<strong>字节级BPE（Byte-level BPE）</strong>，基础单位为字节（基本词表大小=256）。这种方法解决了OOV问题，支持细粒度分割（如GPT-2、BART、LLaMA采用）。注意需要用<strong>Unicode标准化</strong>（如NFKC）预处理语料，避免特殊字符重复编码。</p>
-<h3 id="WordPiece分词"><a href="#WordPiece分词" class="headerlink" title="WordPiece分词"></a>WordPiece分词</h3><p>WordPiece是谷歌内部算法，2018年被BERT采用。与BPE的区别是 1采用了不同的合并标准，训练一个language model对词元评分，然后选择使训练数据似然性最大化的词元对；2采用了不同的评分公式，不是选择最频繁的词对，WordPiece评分公式为： <script type="math/tex">\text{得分} = \frac{\text{词对频率}}{\text{第一个词频率} \times \text{第二个词频率}}</script></p>
+<h3 id="WordPiece分词"><a href="#WordPiece分词" class="headerlink" title="WordPiece分词"></a>WordPiece分词</h3><p>WordPiece是谷歌内部算法，2018年被BERT采用。与BPE的区别是 1采用了不同的合并标准，训练一个language model对词元评分，然后选择使训练数据似然性最大化的词元对；2采用了不同的评分公式，不是选择最频繁的词对，WordPiece评分公式为： $$\text{得分} = \frac{\text{词对频率}}{\text{第一个词频率} \times \text{第二个词频率}}$$</p>
 <h3 id="Unigram分词"><a href="#Unigram分词" class="headerlink" title="Unigram分词"></a>Unigram分词</h3><p>Unigram整体流程是相反的，从大初始词表开始迭代删除词元直至目标大小。基于<strong>一元语言模型</strong>评估删除词元对语料似然的影响。采用<strong>期望最大化（EM）算法</strong>：<strong>E步</strong>用动态规划算法维特比算法找最优分词，<strong>M步</strong>更新一元词概率，重复直至词表收敛。T5、mBART、ALBERT都使用了这种分词方式。</p>
 <h2 id="VLLM分词技术简介"><a href="#VLLM分词技术简介" class="headerlink" title="VLLM分词技术简介"></a>VLLM分词技术简介</h2><p>在视觉大语言模型（Vision-Language Large Models, VLLMs）中，Tokenization 需同时处理文本和视觉输入，VLLM 的分词流程分为三部分：</p>
 <ol>
@@ -171,8 +171,7 @@
 <li><strong>图像分词</strong>（Image Tokenization）：将连续像素转换为离散Token序列，分为<strong>基于神经网络的特征提取器</strong>（如ViT patch embedding）和<strong>离散化表示学习</strong>（如VQ-VAE）两种类型。</li>
 <li><strong>跨模态对齐</strong>（Cross-modal Alignment）：将文本Token与图像Token融合为统一表示。</li>
 </ol>
-<h3 id="图像分词方法"><a href="#图像分词方法" class="headerlink" title="图像分词方法"></a>图像分词方法</h3><h4 id="基于神经网络的特征提取器"><a href="#基于神经网络的特征提取器" class="headerlink" title="基于神经网络的特征提取器"></a>基于神经网络的特征提取器</h4><div class="table-container">
-<table>
+<h3 id="图像分词方法"><a href="#图像分词方法" class="headerlink" title="图像分词方法"></a>图像分词方法</h3><h4 id="基于神经网络的特征提取器"><a href="#基于神经网络的特征提取器" class="headerlink" title="基于神经网络的特征提取器"></a>基于神经网络的特征提取器</h4><table>
 <thead>
 <tr>
 <th>方法</th>
@@ -180,8 +179,7 @@
 <th>特点与模型示例</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>ViT Patch embedding</strong></td>
 <td>将图像分割为固定大小patch线性投影为Token</td>
 <td>• 序列长度：$H/16 \times W/16$ <br>• 代表模型：Flamingo patch为<code>16×16</code>, LLaVA patch为<code>14×14</code>, <strong>BLIP-2</strong></td>
@@ -196,9 +194,7 @@
 <td>融合不同层级的CNN特征（如Faster R-CNN），生成区域级Token</td>
 <td>• 适合目标检测任务 <br>• 代表模型：<strong>VL-T5</strong>, <strong>OFA</strong></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>目前主流的VLLM的视觉Tokenize方法是<strong>ViT patch embedding</strong>。这里介绍3篇经典VLLM论文：</p>
 <ul>
 <li><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2301.12597">BLIP-2: Bootstrapping Language-Image Pre-training (ICML 2023)</a> BLIP-2两阶段预训练框架：使用预训练的Image Encoder（CLIP训练的ViT-L/14和EVA-CLIP训练的ViT-g/14）提取图像视觉特征，Q-Former（Querying Transformer）通过Learnable Queries 跨注意力机制从冻结的ViT中提取文本最相关的视觉表示，最后使用冻结的LLM（Decoder-based和Encoder-Decoder-based）生成文本。</p>
@@ -207,23 +203,17 @@
   </div>
   <div align="center">
   <img src="BLIP2-2.png" height="100%" width="100%">
-  </div>
-</li>
+  </div></li>
 <li><p><a target="_blank" rel="noopener" href="https://www.adept.ai/blog/fuyu-8b">Fuyu-8B: A Multimodal Architecture for AI Agents(Adept AI, 2023)</a> Fuyu8B极简架构：取消视觉Encoder，直接线性投影图像patch，图像Token与文本Token并行输入标准的仅Decoder Transformer架构。</p>
   <div align="center">
   <img src="Fuyu8B.png" height="100%" width="100%">
-  </div>
-</li>
+  </div></li>
 <li><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.08485">LLaVA: Large Language and Vision Assistant (NeurIPS 2023)</a> 使用一个简单的线性层将预训练CLIP视觉Encoder ViT-L/14特征映射为embedding，与语言指令的embedding共同输入LLM（Vicuna）得到最终的输出。关于LLaVA系列模型解读可以看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/692398098">【知乎】LLaVA系列多模态大模型总结</a></p>
   <div align="center">
   <img src="LLaVA.png" height="100%" width="100%">
-  </div>
-
-
-</li>
+  </div></li>
 </ul>
-<h4 id="离散化表示学习"><a href="#离散化表示学习" class="headerlink" title="离散化表示学习"></a>离散化表示学习</h4><div class="table-container">
-<table>
+<h4 id="离散化表示学习"><a href="#离散化表示学习" class="headerlink" title="离散化表示学习"></a>离散化表示学习</h4><table>
 <thead>
 <tr>
 <th>方法</th>
@@ -231,8 +221,7 @@
 <th>特点与模型示例</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>VQ-VAE</strong></td>
 <td>学习一个离散码本（Codebook），将图像块映射到最近邻的离散码向量</td>
 <td>• 生成压缩Token（如8×8→1 Token） <br>• 代表模型：DALL-E码本大小为<code>8192</code>, Parti码本大小为<code>16384</code></td>
@@ -247,12 +236,10 @@
 <td>随机掩盖部分图像Token，训练模型重建（类似BERT的MLM）</td>
 <td>• 提升表征鲁棒性 <br>• 代表模型：<strong>BEiT</strong>, <strong>PeCo</strong></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>图像的Tokenize基础框架从VQ-VAE开始，发展出一系列提升重建质量和分辨率的扩展架构包括VQ-VAE2、RQ-VAE和FSQ等，同时也发展出生成式对抗化的形式。</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1312.6114"><strong>VAE</strong>（Variational Autoencoder）</a>：学习连续潜空间 $z \sim \mathcal{N}(\mu, \sigma^2)$，编码器 $q<em>\phi(z|x)$ 与解码器 $p</em>\theta(x|z)$，但是连续向量不适配Transformer的离散自回归生成。</li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1312.6114"><strong>VAE</strong>（Variational Autoencoder）</a>：学习连续潜空间 $z \sim \mathcal{N}(\mu, \sigma^2)$，编码器 $q_\phi(z|x)$ 与解码器 $p_\theta(x|z)$，但是连续向量不适配Transformer的离散自回归生成。</li>
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1711.00937"><strong>VQ-VAE</strong>（Vector Quantized VAE）</a>：将隐变量$z$量化为可学习的码本 $\mathcal{C} = {e_1, e_2, …, e_K} \in \mathbb{R}^{K \times D}$，离散索引 $k = \text{argmin}_i | z_e - e_i |_2$。训练目标为$\mathcal{L} = |x - \hat{x}|^2 + | \text{sg}[z_e] - e_k |_2^2 + \beta | z_e - \text{sg}[e_k] |_2^2$（sg：梯度停止操作，$\beta$ 通常取0.25）。VQ-VAE生成 <strong>256x256</strong> 图像仅需 <strong>32x32=1024 Token</strong>（压缩率64倍），可适配Transformer自回归生成。  <div align="center">
   <img src="VQ-VAE.png" height="100%" width="100%">
   </div></li>
@@ -262,14 +249,12 @@
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.01941"><strong>RQ-VAE</strong>（Recurrent Quantized VAE）</a>：使用递归量化，即将单次VQ迭代扩展为多步残差量化$<br>z^{(0)} = E(x), \quad r^{(t)} = z^{(t-1)} - q(z^{(t-1)}), \quad z^{(t)} = E_r(r^{(t)})$。这样设计后码本利用率提升 <strong>3倍</strong>（相同重建质量下码本减小）    <div align="center">
   <img src="RQ-VAE.png" height="100%" width="100%">
   </div></li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.15505"><strong>FSQ</strong>（Finite Scalar Quantization）</a>：直接量化潜向量为整数：$z<em>q = \text{round}(z_e / \Delta) \cdot \Delta$，码本隐含在量化步长 $\Delta$ 中。无需码本搜索，训练速度 <strong>快2.5倍</strong>，且支持任意维度离散化。$ \mathcal{L}</em>{FSQ} = | x - G(z_q) |^2 + \lambda | z_e - z_q |^2 $    <div align="center">
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.15505"><strong>FSQ</strong>（Finite Scalar Quantization）</a>：直接量化潜向量为整数：$z_q = \text{round}(z_e / \Delta) \cdot \Delta$，码本隐含在量化步长 $\Delta$ 中。无需码本搜索，训练速度 <strong>快2.5倍</strong>，且支持任意维度离散化。$ \mathcal{L}_{FSQ} = | x - G(z_q) |^2 + \lambda | z_e - z_q |^2 $    <div align="center">
   <img src="FSQ.png" height="100%" width="100%">
   </div></li>
-<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.09841"><strong>VQ-GAN</strong></a>：将VQ-VAE解码器升级为GAN，实现了重建的高频细节保留。相对VQ-VAE的像素级MSE损失，VQ-GAN引入Patch判别器 $D$ 和感知损失，目标函数为$ L<em>{VQGAN} = L</em>{VQ}+\lambda<em>{GAN} L</em>{GAN}+\lambda<em>{Percep} L</em>{Percep}$。VQ-VAE的码本更新仅使用了L2损失，VQ-GAN使用对抗梯度驱动。  <div align="center">
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.09841"><strong>VQ-GAN</strong></a>：将VQ-VAE解码器升级为GAN，实现了重建的高频细节保留。相对VQ-VAE的像素级MSE损失，VQ-GAN引入Patch判别器 $D$ 和感知损失，目标函数为$ L_{VQGAN} = L_{VQ}+\lambda_{GAN} L_{GAN}+\lambda_{Percep} L_{Percep}$。VQ-VAE的码本更新仅使用了L2损失，VQ-GAN使用对抗梯度驱动。  <div align="center">
   <img src="VQ-GAN.png" height="100%" width="100%">
-  </div>
-
-</li>
+  </div></li>
 </ul>
 <blockquote>
 <p>关于离散化表示学习的相关知识可以看：</p>
@@ -278,8 +263,7 @@
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/699508908">【知乎】离散视觉tokenizer</a></li>
 </ul>
 </blockquote>
-<h4 id="两种方法对比"><a href="#两种方法对比" class="headerlink" title="两种方法对比"></a>两种方法对比</h4><div class="table-container">
-<table>
+<h4 id="两种方法对比"><a href="#两种方法对比" class="headerlink" title="两种方法对比"></a>两种方法对比</h4><table>
 <thead>
 <tr>
 <th><strong>维度</strong></th>
@@ -287,8 +271,7 @@
 <th><strong>离散化表示学习</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>核心思想</strong></td>
 <td>通过神经网络提取连续特征向量，输出高维浮点数向量（连续空间）</td>
 <td>将图像映射到离散码本的索引，输出整数索引序列（离散空间）</td>
@@ -318,9 +301,7 @@
 <td>连续向量保留丰富语义信息，适用于图像描述生成、VQA等语义理解任务</td>
 <td>因离散Token天然适配语言模型架构，适用自回归生成式预测和文生图、图像编辑等图像生成任务。VQ-VAE的序列压缩技术可用于将推荐广告领域中广告离散化为一串索引表示。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="跨模态对齐策略"><a href="#跨模态对齐策略" class="headerlink" title="跨模态对齐策略"></a>跨模态对齐策略</h3><p>在进入LLM时代之前，<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2102.03334#">ViLT</a>的paper中总结了多模态的框架如下（多模态论文总结详见之前的笔记<a href="https://xfliu1998.github.io/2022/09/17/Papers-Summary/">Papers Summary</a>）。关于VLLM中的跨模态对齐策略后续会详细学习。</p>
 <div align="center">
   <img src="MultiModel.png" height="100%" width="100%">
