@@ -158,32 +158,33 @@
 <h3 id="LR-Logistic-Regression"><a href="#LR-Logistic-Regression" class="headerlink" title="LR (Logistic Regression)"></a>LR (Logistic Regression)</h3><p>广告数据具有高维稀疏性，特征维度可达数十亿，每个样本仅有少量特征非零，数据也是不平衡的，CTR通常很低（0.1%-5%）。用户特征、广告特征、上下文特征的交叉组合具有强预测性。</p>
 <p>传统线性模型如LR只能学习线性关系：$P(y=1|\mathbf{x}) = \sigma(\mathbf{w}^T\mathbf{x} + b)$，无法自动学习特征交互，依赖人工特征工程，但是人工交叉特征会导致维度爆炸和泛化能力差。我们简单回顾下LR建模。</p>
 <ul>
-<li>LR模型形式化：给定特征向量 $\mathbf{x} = (x_1, x_2, …, x_n)^T$，LR模型如下，其中 $\mathbf{w} \in \mathbb{R}^n$ 为权重向量，$b \in \mathbb{R}$ 为偏置项。<br>  $$P(y=1|\mathbf{x}) = \frac{1}{1 + \exp(-(\mathbf{w}^T\mathbf{x} + b))}$$</li>
-<li>参数估计与损失函数：使用最大似然估计，对数似然函数如下，其中 $p_i = \sigma(\mathbf{w}^T\mathbf{x}_i + b), \sigma(z) = 1/(1+e^{-z})$  $$\mathcal{L}(\mathbf{w}) = \sum_{i=1}^N \left[ y_i \log p_i + (1-y_i) \log(1-p_i) \right]$$</li>
+<li>LR模型形式化：给定特征向量 $\mathbf{x} = (x_1, x_2, …, x_n)^T$，LR模型如下，其中 $\mathbf{w} \in \mathbb{R}^n$ 为权重向量，$b \in \mathbb{R}$ 为偏置项。<script type="math/tex; mode=display">P(y=1|\mathbf{x}) = \frac{1}{1 + \exp(-(\mathbf{w}^T\mathbf{x} + b))}</script></li>
+<li><p>参数估计与损失函数：使用最大似然估计，对数似然函数如下，其中 $p_i = \sigma(\mathbf{w}^T\mathbf{x}_i + b), \sigma(z) = 1/(1+e^{-z})$</p>
+<script type="math/tex; mode=display">\mathcal{L}(\mathbf{w}) = \sum_{i=1}^N \left[ y_i \log p_i + (1-y_i) \log(1-p_i) \right]</script></li>
 </ul>
 <p>在广告推荐场景中，特征交叉非常重要。例如，用户的性别和商品类别的交叉特征（如女性用户和化妆品）可能对点击率有显著影响。包括一阶特征 $x_i$（原始特征）；二阶交叉特征 $x_i x_j$（特征乘积）；高阶交叉特征 $x_i x_j x_k$（三阶及以上）。为了解决特征交叉问题，早期做法是进行人工特征工程，将交叉特征作为新特征加入模型。但是这样做会导致维度灾难，n个特征的k阶组合数为 $C_n^k$，特征维度指数增长，在数据稀疏的情况下，很多交叉特征出现次数极少，难以有效学习其权重。泛化能力也很差，无法学习未见过的特征组合。</p>
-<h3 id="POLY2-Polynomial-2"><a href="#POLY2-Polynomial-2" class="headerlink" title="POLY2 (Polynomial-2)"></a>POLY2 (Polynomial-2)</h3><p>为了自动化特征交叉，二阶多项式POLY2模型直接对所有的二阶交叉特征进行建模，并为每个交叉特征赋予一个权重。模型形式为：<br>$$<br>\phi_{\text{POLY2}}(\mathbf{x}) = b + \sum_{i=1}^n w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} w_{ij} x_i x_j<br>$$</p>
-<p>POLY2的问题是总参数量为$O(n^2)$，训练复杂度高。对于交叉特征 $x_i x_j$，其参数 $w_{ij}$ 的梯度如下，在数据稀疏时，交叉特征权重难以训练，因为需要同时满足 $x_i$ 和 $x_j$ 都非零，这在稀疏数据中很难。<br>$$<br>\frac{\partial \mathcal{L}}{\partial w_{ij}} = (y - \hat{y}) x_i x_j<br>$$</p>
-<h3 id="FM-Factorization-Machines"><a href="#FM-Factorization-Machines" class="headerlink" title="FM (Factorization Machines)"></a>FM (Factorization Machines)</h3><p>FM模型发表在SIGIR2011上。FM模型通过引入隐向量的思想，将交叉特征的权重矩阵进行矩阵分解，从而解决稀疏数据下的特征交叉学习问题。FM模型不仅考虑一阶特征，还考虑二阶特征交叉，但使用两个隐向量的内积来建模交叉特征的权重。模型公式如下，其中 $\mathbf{v}_i \in \mathbb{R}^k$ 是特征i的隐向量，$\langle \cdot, \cdot \rangle$ 表示向量内积：</p>
-<p>$$\phi_{\text{FM}}(\mathbf{x}) = b + \sum_{i=1}^n w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j$$</p>
-<p>$$\langle v_i, v_j \rangle = \sum_{f=1}^k v_{i, f} v_{j, f}$$</p>
-<p>对于每一个特征 $i$，我们学习一个一阶权重 $w_i$ 和一个隐向量 $\mathbf{v}_i$（维度为 $k$）。因此总参数量为 $O(nk)$，其中 $k \ll n$，远小于POLY2的 $O(n^2)$。</p>
-<p><strong>为什么FM能解决稀疏数据问题？</strong> 在POLY2中，交叉特征 $x_i x_j$ 的权重 $w_{ij}$ 只由这两个特征同时出现的数据学习。但在FM中，$w_{ij}$ 被分解为 $\langle \mathbf{v}_i, \mathbf{v}j \rangle$，也就是说，学习 $w{ij}$ 变成了学习特征 $i$ 和 $j$ 的隐向量。这样，对于特征 $i$，我们可以从所有包含 $i$ 的交叉特征中学习它的隐向量。例如，对于交叉特征 $x_i x_j$ 和 $x_i x_l$，它们都会更新特征 $i$ 的隐向量 $\mathbf{v}_i$。因此，即使某个交叉特征 $x_i x_j$ 在训练数据中很少出现，但只要特征 $i$ 和其他特征交叉出现过多次，那么 $\mathbf{v}_i$ 就能学习到较好的表示，从而可以泛化到未见过的交叉特征。</p>
+<h3 id="POLY2-Polynomial-2"><a href="#POLY2-Polynomial-2" class="headerlink" title="POLY2 (Polynomial-2)"></a>POLY2 (Polynomial-2)</h3><p>为了自动化特征交叉，二阶多项式POLY2模型直接对所有的二阶交叉特征进行建模，并为每个交叉特征赋予一个权重。模型形式为：</p>
+<script type="math/tex; mode=display">
+\phi_{\text{POLY2}}(\mathbf{x}) = b + \sum_{i=1}^n w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} w_{ij} x_i x_j</script><p>POLY2的问题是总参数量为$O(n^2)$，训练复杂度高。对于交叉特征 $x<em>i x_j$，其参数 $w</em>{ij}$ 的梯度如下，在数据稀疏时，交叉特征权重难以训练，因为需要同时满足 $x_i$ 和 $x_j$ 都非零，这在稀疏数据中很难。</p>
+<script type="math/tex; mode=display">
+\frac{\partial \mathcal{L}}{\partial w_{ij}} = (y - \hat{y}) x_i x_j</script><h3 id="FM-Factorization-Machines"><a href="#FM-Factorization-Machines" class="headerlink" title="FM (Factorization Machines)"></a>FM (Factorization Machines)</h3><p>FM模型发表在SIGIR2011上。FM模型通过引入隐向量的思想，将交叉特征的权重矩阵进行矩阵分解，从而解决稀疏数据下的特征交叉学习问题。FM模型不仅考虑一阶特征，还考虑二阶特征交叉，但使用两个隐向量的内积来建模交叉特征的权重。模型公式如下，其中 $\mathbf{v}_i \in \mathbb{R}^k$ 是特征i的隐向量，$\langle \cdot, \cdot \rangle$ 表示向量内积：</p>
+<script type="math/tex; mode=display">\phi_{\text{FM}}(\mathbf{x}) = b + \sum_{i=1}^n w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} \langle \mathbf{v}_i, \mathbf{v}_j \rangle x_i x_j</script><script type="math/tex; mode=display">\langle v_i, v_j \rangle = \sum_{f=1}^k v_{i, f} v_{j, f}</script><p>对于每一个特征 $i$，我们学习一个一阶权重 $w_i$ 和一个隐向量 $\mathbf{v}_i$（维度为 $k$）。因此总参数量为 $O(nk)$，其中 $k \ll n$，远小于POLY2的 $O(n^2)$。</p>
+<p><strong>为什么FM能解决稀疏数据问题？</strong> 在POLY2中，交叉特征 $x<em>i x_j$ 的权重 $w</em>{ij}$ 只由这两个特征同时出现的数据学习。但在FM中，$w_{ij}$ 被分解为 $\langle \mathbf{v}_i, \mathbf{v}j \rangle$，也就是说，学习 $w{ij}$ 变成了学习特征 $i$ 和 $j$ 的隐向量。这样，对于特征 $i$，我们可以从所有包含 $i$ 的交叉特征中学习它的隐向量。例如，对于交叉特征 $x_i x_j$ 和 $x_i x_l$，它们都会更新特征 $i$ 的隐向量 $\mathbf{v}_i$。因此，即使某个交叉特征 $x_i x_j$ 在训练数据中很少出现，但只要特征 $i$ 和其他特征交叉出现过多次，那么 $\mathbf{v}_i$ 就能学习到较好的表示，从而可以泛化到未见过的交叉特征。</p>
 <h3 id="GBDT-LR"><a href="#GBDT-LR" class="headerlink" title="GBDT+LR"></a>GBDT+LR</h3><p>GBDT+LR是Facebook在ADKDD2014提出的模型，利用GBDT（Gradient Boosting Decision Tree）强大的非线性特征组合能力进行自动特征组合，GBDT对原始特征进行训练，得到一系列决策树。每棵决策树将输入样本映射到某个叶子节点，将该叶子节点视为一个离散特征one-hot编码。然后GBDT的输出作为特征输入到LR模型中的方法。</p>
 <div align="center">
   <img src="GBDT+LR.png" height=70% width=70%>
 </div>
 
 <ul>
-<li><strong>GBDT模型</strong>：GBDT是一种加法模型，由多棵决策树组成，每棵树拟合的是之前所有树的残差，也就是梯度方向。对于输入特征向量x，GBDT的输出如下，其中，$h_t(x)$是第t棵决策树的输出，$γ_t$是学习率。在GBDT+LR中，我们并不直接使用F(x)的数值，而是使用每棵树的叶子节点编号作为新的特征。<br>  $$F(x) = Σ_{t=1}^{T} γ_t * h_t(x)$$</li>
-<li><strong>特征转换</strong>：假设我们有 $T$ 棵树，每棵树有 $J_t$ 个叶子节点。对于第 $t$ 棵树，定义函数 $q_t(x)$为：输入x，输出该样本落在第t棵树的哪个叶子节点上，即 $q_t(x) ∈ {1, 2, …, J_t}$。然后，我们构造一个新的向量：$φ(x) = [I(q_1(x)=1), …, I(q_1(x)=J_1), …, I(q_T(x)=1), …, I(q_T(x)=J_T)]$。其中，$I(·)$ 是指示函数，当条件成立时取1，否则取0。这个向量 $φ(x)$ 就是GBDT提取出的新特征，它是一个one-hot向量，维度为 $Σ_{t=1}^{T} J_t$。</li>
+<li><strong>GBDT模型</strong>：GBDT是一种加法模型，由多棵决策树组成，每棵树拟合的是之前所有树的残差，也就是梯度方向。对于输入特征向量x，GBDT的输出如下，其中，$h_t(x)$是第t棵决策树的输出，$γ_t$是学习率。在GBDT+LR中，我们并不直接使用F(x)的数值，而是使用每棵树的叶子节点编号作为新的特征。<script type="math/tex; mode=display">F(x) = Σ_{t=1}^{T} γ_t * h_t(x)</script></li>
+<li><strong>特征转换</strong>：假设我们有 $T$ 棵树，每棵树有 $J<em>t$ 个叶子节点。对于第 $t$ 棵树，定义函数 $q_t(x)$为：输入x，输出该样本落在第t棵树的哪个叶子节点上，即 $q_t(x) ∈ {1, 2, …, J_t}$。然后，我们构造一个新的向量：$φ(x) = [I(q_1(x)=1), …, I(q_1(x)=J_1), …, I(q_T(x)=1), …, I(q_T(x)=J_T)]$。其中，$I(·)$ 是指示函数，当条件成立时取1，否则取0。这个向量 $φ(x)$ 就是GBDT提取出的新特征，它是一个one-hot向量，维度为 $Σ</em>{t=1}^{T} J_t$。</li>
 <li><strong>LR模型</strong>：将 $φ(x)$ 作为输入，LR模型为 $p(y=1|x) = 1 / (1 + exp(-w^T φ(x) - b))$.</li>
 </ul>
 <p>使用GBDR+LR模型可以实现自动化特征组合，GBDT还能同时处理连续值和离散值并分析特征重要性但是，这种两阶段训练，不易进行端到端优化。而且GBDT模型训练时间长，且生成的特征维度高，可能过亿维，需要仔细处理稀疏性。</p>
 <h3 id="FFM-Field-aware-FM"><a href="#FFM-Field-aware-FM" class="headerlink" title="FFM (Field-aware FM)"></a>FFM (Field-aware FM)</h3><p>FFM发表在RecSys2016上，在FM基础上引入了Field的概念。在广告推荐系统中，特征通常可以按照不同的领域进行分组。例如，我们可以将特征分为用户相关特征（如用户ID、年龄、性别）、广告相关特征（如广告ID、广告类别）和上下文特征（如时间、位置）等。在FM中，每个特征只有一个隐向量，用来与其他特征交互。但实际上，一个特征在与不同Field的特征交互时，其重要性或影响可能是不同的。例如，用户特征“性别”在与广告特征“类别”交互时和在与上下文特征“时间”交互时，其隐向量应该有所不同。在FFM中，每个特征针对其他每一个Field都会学习一个隐向量。这样，当两个特征交互时，会根据对方所属的Field选择对应的隐向量。</p>
 <p><strong>FFM建模</strong>：给定一个样本，假设有n个特征，这些特征属于f个不同的Field。那么，FFM模型的公式如下，其中$\mathbf{v}_{i, F(j)}$ 是第i个特征针对第j个特征所属的Field（即$F(j)$）所学习的隐向量。</p>
-<p>$$<br>\phi_{\text{FFM}}(x) = w_0 + \sum_{i=1}^n w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} \langle v_{i,F(j)}, v_{j,F(i)} \rangle x_i x_j<br>$$</p>
-<p><strong>参数分析</strong>：FM每个特征有1个隐向量，参数量 $O(nk)$；FFM每个特征针对每个field有1个隐向量，每个隐向量是k维，参数量 $O(n \cdot f \cdot k)$，其中f是field数，由于f通常远小于n，所以FFM的参数量比FM大很多。</p>
+<script type="math/tex; mode=display">
+\phi_{\text{FFM}}(x) = w_0 + \sum_{i=1}^n w_i x_i + \sum_{i=1}^{n} \sum_{j=i+1}^{n} \langle v_{i,F(j)}, v_{j,F(i)} \rangle x_i x_j</script><p><strong>参数分析</strong>：FM每个特征有1个隐向量，参数量 $O(nk)$；FFM每个特征针对每个field有1个隐向量，每个隐向量是k维，参数量 $O(n \cdot f \cdot k)$，其中f是field数，由于f通常远小于n，所以FFM的参数量比FM大很多。</p>
 <h3 id="WDL-Wide-amp-Deep-Learning"><a href="#WDL-Wide-amp-Deep-Learning" class="headerlink" title="WDL (Wide &amp; Deep Learning)"></a>WDL (Wide &amp; Deep Learning)</h3><p>Google在2016年提出Wide &amp; Deep Learning模型，WDL将传统特征工程结合深度学习模型，落地在Google Play推荐场景。Wide部分学习特征间的交互，尤其是稀疏特征的组合，便于记忆历史数据中的模式。Deep部分学习特征的深层表示，可以泛化到未见过的特征组合。</p>
 <div align="center">
   <img src="WDL1.png" height=100% width=100%>
@@ -197,7 +198,7 @@
 <li><strong>Wide部分</strong>：一个线性模型LR，输入包括原始特征和交叉特征。</li>
 <li><strong>Deep部分</strong>：一个前馈神经网络，输入是稠密特征，可以是连续特征，也可以是embedding后的稀疏特征。</li>
 </ul>
-<p>将Wide部分和Deep部分的输出相加，然后通过一个sigmoid函数得到最终的预测概率。$P(Y=1|x) = σ( W_{wide}^T [x, φ(x)] + W_{deep}^T a^{(l_f)} + b )$。其中，$φ(x)$ 是特征交叉变换，$a^{(l_f)}$ 是Deep部分最后一层激活值。训练时同时训练Wide和Deep部分，使用联合损失函数logistic损失$\text{Loss} = -\frac{1}{N} \sum_{i=1}^N \left[ y_i \log(P(y_i|x_i)) + (1-y_i) \log(1 - P(y_i|x_i)) \right]$进行梯度下降。</p>
+<p>将Wide部分和Deep部分的输出相加，然后通过一个sigmoid函数得到最终的预测概率。$P(Y=1|x) = σ( W<em>{wide}^T [x, φ(x)] + W</em>{deep}^T a^{(l<em>f)} + b )$。其中，$φ(x)$ 是特征交叉变换，$a^{(l_f)}$ 是Deep部分最后一层激活值。训练时同时训练Wide和Deep部分，使用联合损失函数logistic损失$\text{Loss} = -\frac{1}{N} \sum</em>{i=1}^N \left[ y_i \log(P(y_i|x_i)) + (1-y_i) \log(1 - P(y_i|x_i)) \right]$进行梯度下降。</p>
 <p>训练时Wide与Deep联合训练。Wide部分使用FTRL（Follow-the-Regularized-Leader）优化器，适合稀疏特征，具有更好的收敛性。Deep部分使用自适应学习率的AdaGrad优化器，适合稠密特征。</p>
 <p>Wide&amp;Deep 的“Wide” 部分仍依赖人工设计或搜索交叉特征，效率低且难以扩展。DNN的特征交叉能自动学习特征交互，但交互是<strong>隐式、高度非线性</strong>的，不易解释，可能无法高效学习某些有界阶数的特征交叉。后续出现了很多分别关于Wide和Deep部分改进的迭代。</p>
 <h3 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h3><p>DeepFM于2017年由哈尔滨工业大学和华为诺亚方舟实验室联合提出，用FM组件替代Wide &amp; Deep中的Wide部分，不用人工特征工程，FM自动学习所有特征间的二阶交互，Deep网络自动学习高阶非线性交互。FM和DNN共享输入特征embedding，联合训练，端到端优化。</p>
@@ -247,7 +248,7 @@
 </ul>
 <p>尽管效果很好，但包含 $d \times d$ 矩阵的交叉层在输入维度 $d$ 很大时，计算和存储成本依然较高，是线上服务的潜在瓶颈。为了解决全矩阵 $W$ 可能带来的计算和存储开销，论文观察到学习到的 $W$ 矩阵通常具有<strong>低秩特性</strong>。</p>
 <ul>
-<li><p><strong>低秩交叉层</strong>：将 $W_l$ 分解为两个“高瘦”矩阵 $U_l, V_l \in \mathbb{R}^{d \times r}, (r \ll d)$：$\mathbf{x}_{l+1} = \mathbf{x}_0 \odot (U_l (V_l^\top \mathbf{x}_l) + \mathbf{b}_l) + \mathbf{x}_l$，参数量从 $d^2$ 降至 $2dr$。</p>
+<li><p><strong>低秩交叉层</strong>：将 $W<em>l$ 分解为两个“高瘦”矩阵 $U_l, V_l \in \mathbb{R}^{d \times r}, (r \ll d)$：$\mathbf{x}</em>{l+1} = \mathbf{x}_0 \odot (U_l (V_l^\top \mathbf{x}_l) + \mathbf{b}_l) + \mathbf{x}_l$，参数量从 $d^2$ 降至 $2dr$。</p>
 </li>
 <li><p><strong>混合专家低秩交叉层</strong>：受 MoE 启发，使用多个低秩“专家”，每个专家在不同子空间学习特征交互，并通过一个门控网络根据输入动态聚合。</p>
 </li>
@@ -257,10 +258,10 @@
   <img src="CAN.png" height=100% width=100%>
 </div>
 
-<p>CAN通过<strong>Co-Action Unit</strong>模块显式建模特征对之间的交互，原理是对于一对特征（$P_{induction}$, $P_{feed}$），使用 $P_{feed}$ 的不同阶次 $P_{feed}, P_{feed}^2, P_{feed}^3$ embedding向量构建一个<strong>微网络（Micro-MLP）</strong>，将 $P_{induction}$ 的embedding向量作为该网络的输入，输出即为两特征的交互表示。Co-Action Unit 前向过程如下：</p>
+<p>CAN通过<strong>Co-Action Unit</strong>模块显式建模特征对之间的交互，原理是对于一对特征（$P<em>{induction}$, $P</em>{feed}$），使用 $P<em>{feed}$ 的不同阶次 $P</em>{feed}, P<em>{feed}^2, P</em>{feed}^3$ embedding向量构建一个<strong>微网络（Micro-MLP）</strong>，将 $P_{induction}$ 的embedding向量作为该网络的输入，输出即为两特征的交互表示。Co-Action Unit 前向过程如下：</p>
 <ol>
 <li>从 $P_{induction}$ 重构MLP参数。</li>
-<li>逐层计算：$h_0 = P_{feed}, h_i = \sigma(w_{i-1} \otimes h_{i-1} + b_{i-1}), \quad i=1,\dots,L$。其中使用了多阶增强 $H_{\text{Multi-order}}(P_{induction}, P_{feed}) = \sum_{c=1}^{C} H(P_{induction}, (P_{feed})^c)$</li>
+<li>逐层计算：$h<em>0 = P</em>{feed}, h<em>i = \sigma(w</em>{i-1} \otimes h<em>{i-1} + b</em>{i-1}), \quad i=1,\dots,L$。其中使用了多阶增强 $H<em>{\text{Multi-order}}(P</em>{induction}, P<em>{feed}) = \sum</em>{c=1}^{C} H(P<em>{induction}, (P</em>{feed})^c)$</li>
 <li>输出为各层输出的拼接：$F(u, m) = \big|_{i=1}^{L} h_i$</li>
 </ol>
 <p>CAN拥有近似笛卡尔积的表达能力，但是参数量大幅减少从 $O(N^2 \times D)$ 降至 $O(N \times (D’ + D))$。通过MLP和多阶增强捕捉复杂模式，效果显著优于FM、DeepFM等隐式方法，已成功应用于阿里巴巴广告系统，带来CTR +12%，RPM +8%的提升。但是整体计算复杂度较高，相比纯embedding模型，增加了MLP前向计算开销，且多层MLP需要充足数据才能有效训练。</p>
@@ -269,8 +270,8 @@
   <img src="DIN.png" height=100% width=100%>
 </div>
 
-<p>阿里在KDD2018上提出了DIN算法，给阿里广告系统带来+10.0%CTR和+3.8%RPM提升。DIN 在基础 Embedding&amp;MLP 模型上引入<strong>局部激活单元</strong>，公式如下：<br>$$v_U(A) = \sum_{j=1}^{H} a(e_j, v_A) \cdot e_j$$</p>
-<p>其中 $e_j$ 是用户第 $ j $ 个行为的embedding向量；$ v_A $ 是候选广告的embedding向量；$ a(\cdot) $ 是前馈网络，输入为 $ e_j $ 和 $ v_A $，输出为激活权重 $ w_j $。和传统注意力机制不同的是，传统注意力机制使用softmax约束权重和为 1，DIN 不做归一化，保留权重的绝对值，以反映兴趣强度。</p>
+<p>阿里在KDD2018上提出了DIN算法，给阿里广告系统带来+10.0%CTR和+3.8%RPM提升。DIN 在基础 Embedding&amp;MLP 模型上引入<strong>局部激活单元</strong>，公式如下：</p>
+<script type="math/tex; mode=display">v_U(A) = \sum_{j=1}^{H} a(e_j, v_A) \cdot e_j</script><p>其中 $e_j$ 是用户第 $ j $ 个行为的embedding向量；$ v_A $ 是候选广告的embedding向量；$ a(\cdot) $ 是前馈网络，输入为 $ e_j $ 和 $ v_A $，输出为激活权重 $ w_j $。和传统注意力机制不同的是，传统注意力机制使用softmax约束权重和为 1，DIN 不做归一化，保留权重的绝对值，以反映兴趣强度。</p>
 <p>另外，论文中提到了个训练技术：</p>
 <ul>
 <li>Mini-Batch Aware 正则化：传统 L2 正则化需计算所有参数的 L2 范数，计算量大，DIN 提出仅对<strong>当前 mini-batch 中出现的特征</strong>计算正则化项，显著降低计算量，适用于亿级参数稀疏网络</li>
@@ -283,19 +284,15 @@
 </div>
 
 <p><strong>兴趣提取层</strong>：使用 <strong>GRU</strong> 对用户行为序列建模，其中 $ i_t = e_b[t] $ 是第 $ t $ 个行为的embedding向量，$ h_t $ 是隐状态。</p>
-<p>  $$u_t = \sigma(W^u i_t + U^u h_{t-1} + b^u)$$</p>
-<p>  $$r_t = \sigma(W^r i_t + U^r h_{t-1} + b^r)$$</p>
-<p>  $$\mathbf{h_t} = tanh(W^h i_t + r_t \odot U^h h_{t-1} + b^h)$$</p>
-<p>  $$h_t = (1 - u_t) \odot h_{t-1} + u_t \odot \mathbf{h_t}$$</p>
-<p><strong>辅助损失</strong>：引入监督信号，用下一时刻的真实行为 $ e_b[t+1] $ 作为正样本，随机采样的负样本 $ \hat{e}_b[t+1] $ 作为负样本，目标是使隐状态 $ h_t $ 能预测下一行为，从而提升兴趣表示的语义质量。</p>
-<p>  $$<br>  L_{aux} = -\frac{1}{N} \sum_{i=1}^N \sum_t \left[ \log \sigma(h_t^i \cdot e_b^i[t+1]) + \log(1 - \sigma(h_t^i \cdot \hat{e}_b^i[t+1])) \right]<br>  $$</p>
-<p><strong>兴趣演化层</strong>： 输入兴趣序列 $ [h_1, h_2, …, h_T] $，使用 AUGRU（GRU with attention update gate） 建模兴趣演化，并融入注意力机制，注意力分数 $a_t = \frac{\exp(h_t W e_a)}{\sum_{j=1}^T \exp(h_j W e_a)}$，其中 $ e_a $ 是候选商品的embedding向量。将注意力分数作用于更新门 $ u’_t $：$\tilde{u}’_t = a_t \cdot u’_t$。然后更新隐状态。AUGRU 使用向量形式的更新门，而非标量注意力分数，保留各维度的重要性差异，提升演化建模的灵活性。论文中还尝试了其他形式的GRU：</p>
+<script type="math/tex; mode=display">u_t = \sigma(W^u i_t + U^u h_{t-1} + b^u)</script><script type="math/tex; mode=display">r_t = \sigma(W^r i_t + U^r h_{t-1} + b^r)</script><script type="math/tex; mode=display">\mathbf{h_t} = tanh(W^h i_t + r_t \odot U^h h_{t-1} + b^h)</script><script type="math/tex; mode=display">h_t = (1 - u_t) \odot h_{t-1} + u_t \odot \mathbf{h_t}</script><p><strong>辅助损失</strong>：引入监督信号，用下一时刻的真实行为 $ e_b[t+1] $ 作为正样本，随机采样的负样本 $ \hat{e}_b[t+1] $ 作为负样本，目标是使隐状态 $ h_t $ 能预测下一行为，从而提升兴趣表示的语义质量。</p>
+<script type="math/tex; mode=display">
+  L_{aux} = -\frac{1}{N} \sum_{i=1}^N \sum_t \left[ \log \sigma(h_t^i \cdot e_b^i[t+1]) + \log(1 - \sigma(h_t^i \cdot \hat{e}_b^i[t+1])) \right]</script><p><strong>兴趣演化层</strong>： 输入兴趣序列 $ [h<em>1, h_2, …, h_T] $，使用 AUGRU（GRU with attention update gate） 建模兴趣演化，并融入注意力机制，注意力分数 $a_t = \frac{\exp(h_t W e_a)}{\sum</em>{j=1}^T \exp(h_j W e_a)}$，其中 $ e_a $ 是候选商品的embedding向量。将注意力分数作用于更新门 $ u’_t $：$\tilde{u}’_t = a_t \cdot u’_t$。然后更新隐状态。AUGRU 使用向量形式的更新门，而非标量注意力分数，保留各维度的重要性差异，提升演化建模的灵活性。论文中还尝试了其他形式的GRU：</p>
 <ul>
 <li><strong>AIGRU</strong>：$ i’_t = h_t * a_t $，仅缩放输入，效果有限。</li>
 <li><strong>AGRU</strong>：用标量 $ a_t $ 替换更新门，丢失维度信息。</li>
 </ul>
 <p><strong>预测层</strong>：最终兴趣状态 $ h’_T $ 与候选商品、用户画像等特征拼接，输入 MLP 进行 CTR 预测。</p>
-<h3 id="BST-Behavior-Sequence-Transformer"><a href="#BST-Behavior-Sequence-Transformer" class="headerlink" title="BST (Behavior Sequence Transformer)"></a>BST (Behavior Sequence Transformer)</h3><p>BST是阿里2019发表的工作，BST 是<strong>首次将 Transformer 应用于推荐系统精排阶段</strong>的工业级模型。通过自注意力机制显式建模用户行为序列的时序依赖，学习上下文感知的商品表示。在淘宝推荐场景中在线 CTR 提升 7.57%，并成功部署服务于亿万用户。为后续基于 Transformer 的推荐模型比如 BERT4Rec、SASRec 等奠定了基础。</p>
+<h3 id="BST-Behavior-Sequence-Transformer"><a href="#BST-Behavior-Sequence-Transformer" class="headerlink" title="BST (Behavior Sequence Transformer)"></a>BST (Behavior Sequence Transformer)</h3><p>BST是阿里2019发表的工作，BST 是<strong>首次将 Transformer 应用于推荐系统精排阶段</strong>的工业级模型。通过自注意力机制显式建模用户行为序列的时序依赖，学习上下文感知的商品表示。在淘宝推荐场景中在线 CTR 提升 7.57\%，并成功部署服务于亿万用户。为后续基于 Transformer 的推荐模型比如 BERT4Rec、SASRec 等奠定了基础。</p>
 <div align="center">
   <img src="BST.png" height=100% width=100%>
 </div>
@@ -307,9 +304,9 @@
   <img src="DSIN.png" height=100% width=100%>
 </div>
 
-<p><strong>会话划分层（Session Division Layer）</strong>：将用户行为序列按<strong>时间间隔 &gt; 30分钟</strong>划分为多个会话（遵循常见实践）。设共有 $K$ 个会话，每个会话保留 $T$ 个行为，不足补零，过长截断。每个行为用 $d_{model}$ 维embedding向量表示，会话 $k$ 表示为矩阵：$Q_k \in \mathbb{R}^{T \times d_{model}}$。</p>
-<p><strong>会话兴趣提取层（Session Interest Extractor Layer）</strong>：使用多头自注意力提取每个会话的兴趣表示，并引入Bias Encoding编码会话、位置、embedding维度偏置。Bias Encoding 公式 $BE_{(k,t,c)} = w_k^K + w_t^T + w_c^C$。其中$ \mathbf{w}^K \in \mathbb{R}^K $ 为会话偏置向量，$ \mathbf{w}^T \in \mathbb{R}^T $ 为行为在会话中的位置偏置向量，$ \mathbf{w}^C \in \mathbb{R}^{d_{model}} $ 为embedding维度的偏置向量。更新会话表示 $Q = Q + \mathbf{BE}$。$\mathbf{Q}$经多头自注意力计算后通过FFN得到 $\mathbf{I}_k^Q$，最后平均池化得到会话兴趣：$\mathbf{I}_k = \text{Avg}(\mathbf{I}_k^Q)$。</p>
-<p><strong>会话兴趣交互层（Session Interest Interacting Layer）</strong>：使用 <strong>Bi-LSTM</strong> 建模会话兴趣序列的交互与演化 $H_t = \overrightarrow{h_{ft}} \oplus \overleftarrow{h_{bt}}$，输出隐藏状态序列 $H = [H_1, \dots, H_K]$，融入上下文信息。</p>
+<p><strong>会话划分层（Session Division Layer）</strong>：将用户行为序列按<strong>时间间隔 &gt; 30分钟</strong>划分为多个会话（遵循常见实践）。设共有 $K$ 个会话，每个会话保留 $T$ 个行为，不足补零，过长截断。每个行为用 $d<em>{model}$ 维embedding向量表示，会话 $k$ 表示为矩阵：$Q_k \in \mathbb{R}^{T \times d</em>{model}}$。</p>
+<p><strong>会话兴趣提取层（Session Interest Extractor Layer）</strong>：使用多头自注意力提取每个会话的兴趣表示，并引入Bias Encoding编码会话、位置、embedding维度偏置。Bias Encoding 公式 $BE<em>{(k,t,c)} = w_k^K + w_t^T + w_c^C$。其中$ \mathbf{w}^K \in \mathbb{R}^K $ 为会话偏置向量，$ \mathbf{w}^T \in \mathbb{R}^T $ 为行为在会话中的位置偏置向量，$ \mathbf{w}^C \in \mathbb{R}^{d</em>{model}} $ 为embedding维度的偏置向量。更新会话表示 $Q = Q + \mathbf{BE}$。$\mathbf{Q}$经多头自注意力计算后通过FFN得到 $\mathbf{I}_k^Q$，最后平均池化得到会话兴趣：$\mathbf{I}_k = \text{Avg}(\mathbf{I}_k^Q)$。</p>
+<p><strong>会话兴趣交互层（Session Interest Interacting Layer）</strong>：使用 <strong>Bi-LSTM</strong> 建模会话兴趣序列的交互与演化 $H<em>t = \overrightarrow{h</em>{ft}} \oplus \overleftarrow{h_{bt}}$，输出隐藏状态序列 $H = [H_1, \dots, H_K]$，融入上下文信息。</p>
 <p><strong>会话兴趣激活层（Session Interest Activating Layer）</strong>：使用DIN局部注意力机制计算各会话兴趣与目标商品的相关性权重。最后会将 $\mathbf{U}^I$、$\mathbf{U}^H$ 与user/item特征concat输入mlp。</p>
 <h3 id="MIMN-Multi-channel-user-Interest-Memory-Network"><a href="#MIMN-Multi-channel-user-Interest-Memory-Network" class="headerlink" title="MIMN (Multi-channel user Interest Memory Network)"></a>MIMN (Multi-channel user Interest Memory Network)</h3><p>传统模型DIN、DIEN、DSIN通常处理较短序列（≤ 150），而真实场景中用户行为序列长度会更长。长序列建模面临的两个挑战是存储压力和计算延迟。阿里在KDD2019提出MIMN支持1000+ 长度行为序列，是一个算法-系统协同设计方案：</p>
 <ul>
@@ -327,22 +324,15 @@
 
 <p><strong>神经图灵机NTM基础</strong>：维护外部记忆矩阵 $\mathbf{M}_t \in \mathbb{R}^{m \times d}$，$m$ 为记忆槽数，$d$ 为槽维度。每步接收行为embedding $\mathbf{e}_t$，通过控制器（全连接网络）生成读写键、添加向量、擦除向量。</p>
 <p>记忆读取：</p>
-<p>$$w_t^r(i) = \frac{\exp(K(k_t, M_t(i)))}{\sum_{j=1}^{m} \exp(K(k_t, M_t(j)))}$$</p>
-<p>$$K(k_t, M_t(i)) = \frac{\mathbf{k}_t^T M_t(i)}{|k_t| |\mathbf{M}_t(i)|}$$</p>
-<p>$$r_t = \sum_{i=1}^{m} \mathbf{w}_t^r(i) M_t(i)$$</p>
-<p>记忆写入：$$M_t = (1 - E_t) \odot M_{t-1} + \mathbf{A}_t$$</p>
-<p>$$\mathbf{E}_t = \mathbf{w}_t^w \otimes \mathbf{e}_t$$</p>
-<p>$$\mathbf{A}_t = \mathbf{w}_t^w \otimes \mathbf{a}_t$$</p>
-<p>其中$ \mathbf{M}_t $ 为擦除矩阵，$\mathbf{E}_t$ 为添加矩阵，$\otimes$ 为外积，$\odot$ 为逐元素乘。</p>
-<p><strong>记忆利用率正则化</strong>：热门商品频繁出现会导致某些记忆槽过度使用，而其他槽闲置。记忆利用率正则化对写入权重进行重新平衡，鼓励均匀使用。其中 $g_t = \sum_{c=1}^{t} \mathbf{w}_c^{s}$ 为累积写入权重。</p>
-<p>$$P_t = \text{softmax}(W_g \mathbf{g}_t)$$</p>
-<p>$$\mathbf{w}_t^{s} = \mathbf{w}_t^w P_t$$</p>
-<p>正则化损失为：<br>$$L_{reg} = \lambda \sum_{i=1}^{m} \left( \mathbf{w}^{s}(i) - \frac{1}{m} \sum_{j=1}^{m} \mathbf{w}^{s}(j) \right)^2$$</p>
-<p>$$\mathbf{w}^{s} = \sum_{t=1}^{T} \mathbf{w}_t^{s}$$</p>
-<p><strong>记忆归纳单元MIU</strong>：从 NTM 记忆中提取高阶兴趣演化信息。维护另一记忆矩阵 $\mathbf{S}_t \in \mathbb{R}^{m \times d}$，每个槽视为一个兴趣通道。每步选择 NTM 读取权重 $\mathbf{w}_t^r$ 的 top-k 个通道，使用 GRU 更新。</p>
+<script type="math/tex; mode=display">w_t^r(i) = \frac{\exp(K(k_t, M_t(i)))}{\sum_{j=1}^{m} \exp(K(k_t, M_t(j)))}</script><script type="math/tex; mode=display">K(k_t, M_t(i)) = \frac{\mathbf{k}_t^T M_t(i)}{\|k_t\| \|\mathbf{M}_t(i)\|}</script><script type="math/tex; mode=display">r_t = \sum_{i=1}^{m} \mathbf{w}_t^r(i) M_t(i)</script><p>记忆写入：<script type="math/tex">M_t = (1 - E_t) \odot M_{t-1} + \mathbf{A}_t</script></p>
+<script type="math/tex; mode=display">\mathbf{E}_t = \mathbf{w}_t^w \otimes \mathbf{e}_t</script><script type="math/tex; mode=display">\mathbf{A}_t = \mathbf{w}_t^w \otimes \mathbf{a}_t</script><p>其中$ \mathbf{M}_t $ 为擦除矩阵，$\mathbf{E}_t$ 为添加矩阵，$\otimes$ 为外积，$\odot$ 为逐元素乘。</p>
+<p><strong>记忆利用率正则化</strong>：热门商品频繁出现会导致某些记忆槽过度使用，而其他槽闲置。记忆利用率正则化对写入权重进行重新平衡，鼓励均匀使用。其中 $g<em>t = \sum</em>{c=1}^{t} \mathbf{w}_c^{s}$ 为累积写入权重。</p>
+<script type="math/tex; mode=display">P_t = \text{softmax}(W_g \mathbf{g}_t)</script><script type="math/tex; mode=display">\mathbf{w}_t^{s} = \mathbf{w}_t^w P_t</script><p>正则化损失为：</p>
+<script type="math/tex; mode=display">L_{reg} = \lambda \sum_{i=1}^{m} \left( \mathbf{w}^{s}(i) - \frac{1}{m} \sum_{j=1}^{m} \mathbf{w}^{s}(j) \right)^2</script><script type="math/tex; mode=display">\mathbf{w}^{s} = \sum_{t=1}^{T} \mathbf{w}_t^{s}</script><p><strong>记忆归纳单元MIU</strong>：从 NTM 记忆中提取高阶兴趣演化信息。维护另一记忆矩阵 $\mathbf{S}_t \in \mathbb{R}^{m \times d}$，每个槽视为一个兴趣通道。每步选择 NTM 读取权重 $\mathbf{w}_t^r$ 的 top-k 个通道，使用 GRU 更新。</p>
 <p><strong>用户兴趣中心UIC</strong>：离线时，当用户有新行为时，UIC 读取当前记忆状态 $(\mathbf{M}_t, \mathbf{S}_t)$，运行 NTM+MIU 更新，写回存储（如 TAIR）。实时预测时 RTP 服务器直接从存储读取用户当前记忆状态，拼接其他特征，输入右侧网络进行预测。实时预测仅需读取固定大小记忆张量，计算复杂度与序列长度无关。</p>
 <p>可以看到MIMN的模型复杂度很高，包括NTM + MIU + 正则化，训练与调试难度大。记忆槽数 $m$ 影响模型容量，需根据数据分布调整。UIC 服务也需要独立维护，增加运维与同步成本。适用于行为丰富、用户活跃的场景，对低频用户效果有限。</p>
-<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><table>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -353,7 +343,8 @@
 <th><strong>MIMN</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>思路</strong></td>
 <td>兴趣局部激活</td>
 <td>兴趣演化建模</td>
@@ -433,7 +424,9 @@
 <td>会话划分依赖阈值</td>
 <td>系统架构复杂，同步风险</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="长序列模型"><a href="#长序列模型" class="headerlink" title="长序列模型"></a>长序列模型</h2><h3 id="SIM-Search-based-User-Interest-Modeling"><a href="#SIM-Search-based-User-Interest-Modeling" class="headerlink" title="SIM (Search-based User Interest Modeling)"></a>SIM (Search-based User Interest Modeling)</h3><p>DIN、DIEN能处理数百长度的用户行为序列，但无法处理数千甚至数万长度的“终身行为序列”。阿里之前提出的MIMN模型虽能处理最多1000长度的序列，但当序列长度进一步增加比如1万以上时，模型性能下降，因为固定大小的记忆矩阵中引入了过多噪声。SIM发表于2020年，将用户行为序列扩展至54000，是MIMN的54倍，解决了超长序列建模难题。SIM 采用<strong>两阶段搜索机制</strong>，先粗筛再精搜，从海量行为数据中提取相关兴趣。在阿里巴巴展示广告系统中，CTR 提升 7.1%，RPM 提升 4.4%。</p>
 <div align="center">
   <img src="SIM.png" height=100% width=100%>
@@ -458,9 +451,10 @@
 <p>SDIM 通过多轮SimHash将用户行为物品与候选物品映射到哈希signature，直接聚合与候选物品signature相同的行为物品作为用户兴趣表示。</p>
 <p><strong>1. 哈希signature生成</strong>：使用 SimHash 对行为序列物品 $\mathbf{s}_j$ 和候选物品 $\mathbf{q}$ 进行哈希：$h(\mathbf{x}, \mathbf{r}) = \text{sign}(\mathbf{r}^\top \mathbf{x})$，其中 $\mathbf{r} \sim \mathcal{N}(0,1)$ 为随机投影向量。</p>
 <p><strong>2. 多轮哈希聚合</strong>：为降低噪声，采用 $(m, \tau)$-参数化 SimHash，采样 $m$ 个哈希函数，每 $\tau$ 个哈希码合并为一个signature。行为物品 $\mathbf{s}_j$ 与候选物品 $\mathbf{q}$ 碰撞的条件是它们在同一个signature桶中 $\tilde{p}^{(\mathbf{R}_i)}$</p>
-<p><strong>3. 兴趣聚合</strong>：直接聚合与候选物品signature相同的行为物品：$\text{Attn}(\mathbf{q},\mathbf{S}) = \frac{1}{m/\tau} \sum_{i=1}^{m/\tau} \ell_2\left( \sum_{j=1}^L \tilde{p}^{(\mathbf{R}_i)}_j \mathbf{s}_j \right)$，其中 $\ell_2$ 为 L2 归一化，使注意力权重和为 1。</p>
+<p><strong>3. 兴趣聚合</strong>：直接聚合与候选物品signature相同的行为物品：$\text{Attn}(\mathbf{q},\mathbf{S}) = \frac{1}{m/\tau} \sum<em>{i=1}^{m/\tau} \ell_2\left( \sum</em>{j=1}^L \tilde{p}^{(\mathbf{R}_i)}_j \mathbf{s}_j \right)$，其中 $\ell_2$ 为 L2 归一化，使注意力权重和为 1。</p>
 <p><strong>4. 理论近似性</strong>：期望碰撞概率与向量夹角相关：$\mathbb{E}[\tilde{p}_j] = \left(1 - \frac{\arccos(\mathbf{q}^\top \mathbf{s}_j)}{\pi}\right)^\tau$，当 $m/\tau$ 足够大时，SDIM 的注意力分布与 softmax 目标注意力高度一致。</p>
-<h3 id="对比-1"><a href="#对比-1" class="headerlink" title="对比"></a>对比</h3><table>
+<h3 id="对比-1"><a href="#对比-1" class="headerlink" title="对比"></a>对比</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -469,7 +463,8 @@
 <th><strong>SDIM</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>思路</strong></td>
 <td>两阶段检索（类目/预训练embedding） + 目标注意力</td>
 <td>端到端哈希检索（SimHash + 汉明距离） + 目标注意力</td>
@@ -499,10 +494,12 @@
 <td>1. 需要端到端训练<br>2. 实时性要求高<br>3. 序列较长（~1000）</td>
 <td>1. 极长序列建模（&gt;2000）<br>2. 对延迟要求极高<br>3. 希望避免检索偏差</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.ismll.uni-hildesheim.de/pub/pdfs/Rendle_et_al2011-Context_Aware.pdf">Fast Context-aware Recommendations with Factorization Machines</a></li>
-<li><a target="_blank" rel="noopener" href="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.8562-6/240842589_204052295113548_74168590424110542_n.pdf?_nc_cat=109&ccb=1-7&_nc_sid=e280be&_nc_ohc=7XnLUYJMKswQ7kNvwF-KOPA&_nc_oc=AdmcSNMLf6PFnnmyy0-IdyRkvtsul24ZfU1pC3aScB_fiM8bAndL7sFBcVbJIPqSzQs&_nc_zt=14&_nc_ht=scontent-hkg1-1.xx&_nc_gid=GgjAOmYtCd45yabbDULluA&oh=00_AfkIgb1zxBfUf3ZhmgAX5N_1_N0_gaAQLC8gUhsBrMdFbA&oe=6936DD8A">Practical Lessons from Predicting Clicks on Ads at Facebook</a></li>
+<li><a target="_blank" rel="noopener" href="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.8562-6/240842589_204052295113548_74168590424110542_n.pdf?_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=e280be&amp;_nc_ohc=7XnLUYJMKswQ7kNvwF-KOPA&amp;_nc_oc=AdmcSNMLf6PFnnmyy0-IdyRkvtsul24ZfU1pC3aScB_fiM8bAndL7sFBcVbJIPqSzQs&amp;_nc_zt=14&amp;_nc_ht=scontent-hkg1-1.xx&amp;_nc_gid=GgjAOmYtCd45yabbDULluA&amp;oh=00_AfkIgb1zxBfUf3ZhmgAX5N_1_N0_gaAQLC8gUhsBrMdFbA&amp;oe=6936DD8A">Practical Lessons from Predicting Clicks on Ads at Facebook</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf">Field-aware Factorization Machines for CTR Prediction</a></li>
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1606.07792">Wide &amp; Deep Learning for Recommender Systems</a></li>
 <li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1703.04247">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction</a></li>
