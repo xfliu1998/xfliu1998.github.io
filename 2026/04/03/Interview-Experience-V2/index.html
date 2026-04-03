@@ -1,0 +1,546 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Interview Experience V2 | 一直进步 做喜欢的</title><meta name="keywords" content="Machine Learning,Deep Learning,LLM"><meta name="author" content="哈希咪"><meta name="copyright" content="哈希咪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ML&#x2F;DL&#x2F;LLM算法面经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview Experience V2">
+<meta property="og:url" content="https://xfliu1998.github.io/2026/04/03/Interview-Experience-V2/index.html">
+<meta property="og:site_name" content="一直进步 做喜欢的">
+<meta property="og:description" content="ML&#x2F;DL&#x2F;LLM算法面经">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xfliu1998.github.io/2026/04/03/Interview-Experience-V2/cover.jpeg">
+<meta property="article:published_time" content="2026-04-03T06:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-03T06:26:08.456Z">
+<meta property="article:author" content="哈希咪">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xfliu1998.github.io/2026/04/03/Interview-Experience-V2/cover.jpeg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xfliu1998.github.io/2026/04/03/Interview-Experience-V2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Interview Experience V2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-04-03 14:26:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/pool.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/js/pool.min.js"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/js/mouse_snow.min.js"><link rel="stylesheet" href="/css/custom.css?v1"><link rel="stylesheet" href="//at.alicdn.com/t/font_2264842_b004iy0kk2b.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/head.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">68</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2026/04/03/Interview-Experience-V2/cover.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">一直进步 做喜欢的</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Interview Experience V2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-04-03T06:00:00.000Z" title="Created 2026-04-03 14:00:00">2026-04-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-04-03T06:26:08.456Z" title="Updated 2026-04-03 14:26:08">2026-04-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Machine-Learning-and-Deep-Learning/">Machine Learning and Deep Learning</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">11.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>37min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Interview Experience V2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2026/04/03/Interview-Experience-V2/#post-comment"><span class="gitalk-comment-count"></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>激活函数为网络引入非线性表达能力。常见激活函数如下：</p>
+<ol>
+<li>Sigmoid / Tanh：将输入压缩到(0,1)或(-1,1)的平滑S形曲线。容易导致梯度消失。计算涉及指数，较慢。</li>
+<li>ReLU：<code>f(x) = max(0, x)</code>，计算极其简单，解决了Sigmoid的梯度消失问题。输入为负时，梯度为0，神经元永久死亡。</li>
+<li>Leaky ReLU / PReLU：为解决死亡ReLU而设计，在负区间给予一个很小的斜率如0.01，让梯度可以回传。</li>
+<li>GELU：<code>f(x) = x * Φ(x)</code>，<code>Φ(x)</code>是标准高斯分布的累积分布函数。基于概率的门控机制。<code>Φ(x)</code>可以理解为输入有多大概率被保留/丢弃。当x很小时，概率接近0，输出被抑制；x很大时，概率接近1，输出被保留。这是一个平滑、非单调的曲线。在BERT、GPT-2/Vision Transformer等模型中广泛使用，表现优异。</li>
+</ol>
+<p>SiLU 是 Sigmoid Linear Unit 的缩写，由两个独立的团队在2017年左右发现，Google Brain的团队将其命名为 Swish。现在这两个名称通常混用。形式为<code>SiLU(x) = x * sigmoid(x)</code>；更一般的形式（带参数β）:<code>Swish-β(x) = x * sigmoid(β*x)</code>，β=1 时就是标准的 SiLU/Swish-1。SiLU是 ReLU的平滑、自门控版本。<code>sigmoid(x)</code>是一个 门控信号 或 平滑开关，值在0到1之间。它根据<code>x</code>的大小，动态地决定让多少原始信号通过。乘积 <code>x * sigmoid(x)</code>实现了门控机制。当<code>x</code>为正且很大时，sigmoid(x)→1，输出趋近于<code>x</code>。当<code>x</code>为负时，sigmoid(x)→0，输出趋近于0，但不是硬截断（不像ReLU直接归零），而是平滑地衰减。SiLU的优势如下：</p>
+<ul>
+<li>平滑性：处处可微，没有ReLU在0处的尖锐转折，优化过程更稳定，梯度更平滑，有助于模型收敛。</li>
+<li>非单调性：在<code>x</code>为负的小值区域，函数有一个小凸起或下冲。这是与Leaky ReLU等单调函数的本质区别。这个特性被证明能增加模型对权重初始化的鲁棒性，并可能增强模型的表达能力。研究表明，非单调激活函数（如Swish、GELU）在深层网络中能创造出更复杂、更丰富的损失曲面，允许模型探索更优的解空间，尤其在像LLM这样拥有数百甚至上千层的超深网络中。</li>
+<li>自门控：门控信号sigmoid直接由输入<code>x</code>本身产生，无需额外参数。形式上比GELU更简洁</li>
+</ul>
+<h2 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a><a href="https://xfliu1998.github.io/2025/02/27/LLM-Norm/">正则化</a></h2><h3 id="BatchNorm、LayerNorm、RMSNorm"><a href="#BatchNorm、LayerNorm、RMSNorm" class="headerlink" title="BatchNorm、LayerNorm、RMSNorm"></a>BatchNorm、LayerNorm、RMSNorm</h3><ul>
+<li>BatchNorm通过对每个特征通道在batch维度上进行均值和方差归一化来减少内部协变量偏移，其效果依赖于batch大小，在训练和推理时需区分处理，常见于CNN中。</li>
+<li>LayerNorm则对每个样本的所有特征进行归一化，独立于batch大小，适用于变长序列处理，在Transformer架构中广泛使用以提升训练稳定性。</li>
+<li>RMSNorm作为LayerNorm的简化版本，仅使用均方根进行缩放而不减均值，计算更高效，在一些研究中表现出与LayerNorm相近的性能。</li>
+</ul>
+<h3 id="PreNorm、PostNorm"><a href="#PreNorm、PostNorm" class="headerlink" title="PreNorm、PostNorm"></a>PreNorm、PostNorm</h3><ul>
+<li>PreNorm将层归一化置于残差块的主干路径之前，即先对输入进行归一化，再送入自注意力或前馈网络，最后与原始输入进行残差连接，优势是训练更稳定，梯度流动更平滑，有利于深层模型的优化。</li>
+<li>PostNorm是原始Transformer论文中的设计，将层归一化置于残差连接之后，即先进行自注意力或前馈网络计算并与输入残差相加，再对相加结果进行归一化，这种结构在理论上更严格但更容易出现梯度不稳定问题。</li>
+<li>两者区别在于梯度路径和训练稳定性，PreNorm的归一化操作位于残差分支内，为梯度回传提供了更直接的恒等路径，使得深层模型更容易训练；PostNorm的梯度则需流经所有归一化层，在模型很深时可能导致梯度消失或爆炸。多数LLM均采用PreNorm结构，因其能显著提升训练稳定性，使千亿参数级别的模型训练成为可能。</li>
+</ul>
+<h2 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a><a href="https://xfliu1998.github.io/2025/07/26/LLM-Position-Embedding/">位置编码</a></h2><p>Transformer的自注意力机制本质上是置换不变的，无法区分序列中元素的顺序关系，导致模型退化为词袋模型。位置编码将绝对或相对位置信息编码并整合到模型中，使模型能够理解序列的顺序结构。</p>
+<ul>
+<li>绝对位置编码：为序列的每个位置分配一个独立的标识。正弦/余弦编码是原始Transformer使用的方案，通过不同频率的正余弦函数生成固定模式的位置向量，与词嵌入相加；可学习的位置嵌入将位置索引映射为一个可学习的向量，类似词嵌入，这种方式简单灵活，但外推性（处理比训练时更长的序列）通常较差。</li>
+<li>相对位置编码：不关注词元的绝对位置，而是关注词元之间的相对距离。在自注意力机制中，通过修改注意力得分计算，使模型能学习到K和Q之间的距离关系。这是目前的主流方向。</li>
+<li>旋转位置编码：利用基于绝对位置 $t$ 的旋转矩阵 $R_{\theta, t}$ 来编码位置信息，其巧妙之处在于 $R_{\theta, i} R_{\theta, j}^T = R_{\theta, i-j}$，从而在计算注意力分数 $A_{ij}$ 时自然融入相对位置 $(i-j)$ 信息。</li>
+</ul>
+<p>为什么LLM中的位置编码都用RoPE？</p>
+<ul>
+<li>外推性优势显著：RoPE通过旋转矩阵将相对位置信息融入注意力计算，其数学形式具有较好的长度外推能力。这意味着即使推理时输入的序列长度略微超过训练长度，模型性能也不会立刻崩溃，而可学习的绝对位置编码在外推时表现通常很差。</li>
+<li>直接建模相对位置：其设计直体现了注意力得分应只依赖于词元间的相对位置的直觉。实验证明，这对模型理解文本的依赖关系和结构（如距离衰减效应）非常有益。</li>
+<li>兼容性与性能：RoPE可以无缝集成到自注意力公式中，不改变模型的主体架构，同时在多种下游任务上表现出稳定的优异性能。</li>
+<li>训练效率：与一些复杂的相对位置编码方案相比，RoPE的实现相对简洁高效，没有引入大量额外的可学习参数。</li>
+</ul>
+<h2 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h2><p>Transformer摒弃了RNN的序列依赖，通过并行化的自注意力机制高效捕获长距离依赖关系。Transformer 由Encoder和Decoder堆叠而成，每个编码器层包含两个子层：多头自注意力和前馈神经网络，每个子层后都接残差连接和层归一化。解码器在编码器基础上增加了一个编码器-解码器注意力子层，用于关注输入序列。</p>
+<h3 id="自注意力机制"><a href="#自注意力机制" class="headerlink" title="自注意力机制"></a>自注意力机制</h3><p>自注意力是Transformer的核心。对于输入序列 $X \in \mathbb{R}^{n \times d}$（$n$ 为序列长度，$d$ 为特征维度），通过三个可学习矩阵 $W_Q, W_K, W_V$ 分别映射得到查询（Query）、键（Key）、值（Value）矩阵 $Q, K, V \in \mathbb{R}^{n \times d_k}$（通常 $d_k = d / h$，$h$ 为头数）。然后计算注意力分数并进行加权求和：</p>
+<p>$$\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V$$</p>
+<p>多头自注意力将上述过程并行执行 $h$ 次，每次使用不同的投影矩阵，最后拼接并经过一次线性变换，使模型能从不同表示子空间关注信息。由于自注意力本身不包含位置信息，Transformer在输入嵌入中加入位置编码（正弦/余弦函数或可学习位置嵌入），使模型能感知顺序。</p>
+<h3 id="时间复杂度计算"><a href="#时间复杂度计算" class="headerlink" title="时间复杂度计算"></a>时间复杂度计算</h3><p>考虑单头自注意力，输入序列长度 $n$，特征维度 $d$。</p>
+<ul>
+<li>Q、K、V 的线性投影：输入 $X$ 分别乘以 $W_Q, W_K, W_V$，每个矩阵乘法复杂度为 $O(n d^2)$。三项总复杂度为 $O(n d^2)$。</li>
+<li>注意力分数矩阵计算（$QK^\top$）：$Q$（$n \times d$）与 $K^\top$（$d \times n$）相乘，复杂度为 $O(n^2 d)$。</li>
+<li>缩放与 softmax：对 $n \times n$ 矩阵的每个元素进行缩放，并对每一行计算 softmax，复杂度为 $O(n^2)$。</li>
+<li>加权求和（$\text{softmax}(\cdot)V$）：$n \times n$ 矩阵与 $V$（$n \times d$）相乘，复杂度为 $O(n^2 d)$。</li>
+<li>输出线性投影（多头拼接后的投影）： 复杂度 $O(n d^2)$，与输入投影类似。</li>
+</ul>
+<p>单头自注意力的主要计算开销为 $O(n^2 d + n d^2)$。当序列长度 $n$ 远大于特征维度 $d$ 时（长文本场景），主导项为 $O(n^2 d)$。多头注意力将 $d$ 划分为 $h$ 个头，每个头的维度 $d_k = d/h$。由于各头可并行计算，总计算量与单头相同（头数 $h$ 不改变渐进复杂度），仍为 $O(n^2 d + n d^2)$。</p>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>自注意力所需的内存主要来自存储中间激活值，其中最大的开销是注意力矩阵 $\text{softmax}(QK^\top/\sqrt{d_k})$，形状为 $n \times n$，存储它需要 $O(n^2)$ 的空间（假设每个元素为浮点数，占用4或8字节）。此外，还需存储 $Q, K, V$（各 $O(n d)$）、输出（$O(n d)$）、以及反向传播时所需的梯度等。</p>
+<p>对于多头注意力，如果并行计算时每个头独立存储其注意力矩阵，总空间为 $O(h n^2)$，但实际实现中往往通过分块计算或内存复用优化，通常仍将空间复杂度视为 $O(n^2)$（加上 $O(n d)$ 的辅助存储）。</p>
+<h2 id="KV-Cache"><a href="#KV-Cache" class="headerlink" title="KV Cache"></a><a href="https://xfliu1998.github.io/2025/04/06/LLM-KV-Cache/">KV Cache</a></h2><p>为了避免生成式任务中KV的自回归重复计算将KV提前缓存。针对KV Cache优化的典型方法分为：</p>
+<ul>
+<li>共享KV：通过减少 KV 头的数量降低显存占用与计算开销，如MQA、GQA、MLA。</li>
+<li>窗口KV：通过限制 KV 缓存长度，将显存占用从线性增长变为固定开销，如Longformer。</li>
+<li>量化压缩：通过降低 KV Cache 的数值精度，减少显存占用与数据传输开销。量化方法包括线性、非线性、动态和静态量化。</li>
+<li>硬件加速：通过软硬件协同设计最大化利用 GPU/TPU 的计算能力与存储层次。如FlashAttention、PagedAttention和批次管理优化。</li>
+</ul>
+<p>MLA通过低秩联合压缩Key-Value并解耦位置编码路径，在显著减少KV Cache显存占用的同时保持模型性能无损。</p>
+<h3 id="MHA-MQA-GQA"><a href="#MHA-MQA-GQA" class="headerlink" title="MHA, MQA, GQA"></a>MHA, MQA, GQA</h3><ul>
+<li>多头注意力的标准形式MHA为每个注意力头都分配独立的查询、键、值参数，虽表达能力强大但在长序列生成时计算和内存开销巨大；</li>
+<li>为优化效率，MQA通过让所有的查询头共享同一套键和值参数，大幅减少了键值缓存的内存占用和计算量，但可能牺牲一定的模型容量；</li>
+<li>作为两者的折中方案，GQA将查询头分组，组内共享同一套键值对，在尽量保持模型表达能力的同时，显著降低了推理时的资源消耗，成为当前许多先进大模型在效率与效果间平衡的主流选择。</li>
+</ul>
+<h3 id="Flash-Attenton-和-Paged-Attention"><a href="#Flash-Attenton-和-Paged-Attention" class="headerlink" title="Flash Attenton 和 Paged Attention"></a>Flash Attenton 和 Paged Attention</h3><ul>
+<li><p>传统注意力计算频繁读写显存（HBM），导致 IO 延迟成为瓶颈。FlashAttention 解决了传统注意力计算中因存储巨大中间矩阵 $QK^T$ 和 Softmax 结果而导致的内存访问瓶颈问题，通过分块计算与重计算技术，在不牺牲计算精度的前提下，将内存占用从平方级降至线性。其原理是将长序列切分为小块，利用 GPU 高速缓存逐块加载并计算注意力；同时，在计算时引入递推公式，动态维护并更新全局的 Softmax 统计量（最大值和求和项），从而无需存储整个注意力矩阵即可实现数学等价的正向计算。在反向传播时，则不保存中间矩阵，而是利用少量保存的统计量和输入数据重新计算梯度，以额外的计算开销换取内存的极大节省，最终使注意力操作从内存访问受限变为计算受限，充分发挥 GPU 算力，显著提升了长序列处理的训练与推理效率。</p>
+</li>
+<li><p>长序列生成时，KV Cache 显存分配不连续，导致碎片化与利用率低。PagedAttention借鉴操作系统的分页机制，将每个请求的KV Cache在逻辑上划分为固定大小的块，并在物理上分散存储在全局的共享显存池中，通过为每个请求维护一个类似于页表的块映射表来记录逻辑块到物理块的对应关系；这样一来，内存便能按请求的实际生成长度进行按需、非连续的分配，从而基本消除了内部碎片。这种设计天然支持不同请求或同一请求内的不同生成分支之间共享相同的物理块（例如共享相同的prompt前缀），实现了高效的内存共享，最终在相同的硬件条件下显著提升了并发处理能力和系统整体吞吐量。</p>
+</li>
+</ul>
+<h2 id="为什么现在的LLM都是Decoder-only的架构？"><a href="#为什么现在的LLM都是Decoder-only的架构？" class="headerlink" title="为什么现在的LLM都是Decoder only的架构？"></a><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/588325646/answer/3357252612">为什么现在的LLM都是Decoder only的架构？</a></h2><blockquote>
+<p>几种主要的架构：以BERT为代表的encoder-only、以T5为代表的encoder-decoder、以GPT为代表的decoder-only，还有以UNILM为代表的PrefixLM（相比于GPT只改了attention mask，前缀部分是双向，后面要生成的部分是单向的causal mask）。</p>
+<p>encoder-only架构用masked language modeling预训练，不擅长做生成任务，一般需要有监督的下游数据微调；decoder-only用next token prediction预训练，兼顾理解和生成，在各种下游任务上的zero-shot和few-shot泛化性能都很好。那么为什么引入了一部分双向attention的encoder-decoder和Prefix-LM没有被大部分大模型工作采用？它们也能兼顾理解和生成，泛化性能也不错。decoder-only泛化性能更好的潜在原因：</p>
+<ol>
+<li>注意力满秩问题，双向attention的注意力矩阵容易退化为低秩状态，而causal attention的注意力矩阵是下三角矩阵，必然是满秩的，建模能力更强；</li>
+<li>预训练任务难度问题，纯粹的decoder-only架构+next token predicition预训练，每个位置所能接触的信息比其他架构少，要预测下一个token难度更高，当模型足够大，数据足够多的时候，decoder-only模型学习通用表征的上限更高；</li>
+<li>causal attention具有隐式的位置编码功能，打破了transformer的位置不变性，而带有双向attention的模型，如果不带位置编码，双向attention的部分token可以对换也不改变表示，对语序的区分能力天生较弱。</li>
+<li>效率问题，decoder-only支持一直复用KV-Cache，对多轮对话更友好，因为每个token的表示只和它之前的输入有关，而encoder-decoder和PrefixLM就难以做到；</li>
+<li>轨迹依赖的问题：OpenAI以decoder-only架构为基础摸索出了一套行之有效的训练方法和Scaling Law，后来者鉴于时间和计算成本，自然不愿意做太多结构上的大改动，继续沿用decoder-only架构。</li>
+</ol>
+</blockquote>
+<h2 id="模型架构-MOE"><a href="#模型架构-MOE" class="headerlink" title="模型架构 MOE"></a><a href="https://xfliu1998.github.io/2025/05/05/LLM-MoE/">模型架构 MOE</a></h2><h3 id="Dense-Transformer-和-MoE-对比"><a href="#Dense-Transformer-和-MoE-对比" class="headerlink" title="Dense Transformer 和 MoE 对比"></a>Dense Transformer 和 MoE 对比</h3><ul>
+<li>Dense Transformer：所有token经过相同的全连接层处理，参数完全共享，计算量随模型规模线性增长。</li>
+<li>MoE：引入稀疏性，稀疏激活，每个输入token由门控网络动态分配仅激活部分专家（如1-2个），计算量仅随激活的专家数增长，模型总参数量可大幅增加但计算成本可控。适用于需极大规模模型如千亿参数以上但计算资源有限，任务需要异构计算（如不同子任务需要不同专家）。不适用于小规模模型（MoE收益不足以抵消通信开销）和对推理延迟敏感的场景（路由引入额外开销）。</li>
+</ul>
+<h3 id="MoE训练中的专家负载不均衡问题"><a href="#MoE训练中的专家负载不均衡问题" class="headerlink" title="MoE训练中的专家负载不均衡问题"></a>MoE训练中的专家负载不均衡问题</h3><p>专家负载不均衡表现为某些专家被过度激活（过载），而其他专家未被充分利用（欠载）。</p>
+<ol>
+<li>初始化与预热策略：在训练初期强制均匀分配样本，避免冷启动问题。</li>
+<li>硬性约束：强制限制每个专家处理的样本数量，确保最低利用率。截断式路由GShard在Top-k选择时，动态调整阈值，确保每个专家分配的样本数不低于预设值。负载感知重采样，若某专家负载过低，在反向传播时对其梯度进行加权放大，或在下一批次中增加其被选中的概率。</li>
+<li>动态路由策略：根据实时负载动态调整专家选择策略，优先激活欠载专家。在选择Top-k专家时，结合当前负载信息。根据专家利用率动态调整Softmax温度参数，欠载专家的温度升高以增加选择概率。</li>
+<li>辅助损失函数：通过引入额外的损失项，直接惩罚专家利用率的不均衡性，迫使门控网络均匀分配样本。专家利用率方差惩罚计算每个批次中专家被选中的概率的方差，并将其作为正则项加入总损失函数。最大化门控输出的熵，鼓励权重分布更均匀。</li>
+<li>正则化与相似性惩罚：通过约束专家之间的相似性，间接促进负载均衡。惩罚不同专家输出之间的相关性，例如最小化专家输出的余弦相似性。</li>
+</ol>
+<h3 id="为什么MoE模型更难收敛？如何缓解？"><a href="#为什么MoE模型更难收敛？如何缓解？" class="headerlink" title="为什么MoE模型更难收敛？如何缓解？"></a>为什么MoE模型更难收敛？如何缓解？</h3><ol>
+<li>专家初始化与冷启动问题：若某些专家在训练初期未被激活（责任权重接近零），其参数无法更新，形成死专家。</li>
+<li>路由决策的离散性与梯度不稳定性：门控网络的输出通常是基于Top-k选择的离散决策，导致路由函数的梯度不可导或近似梯度噪声大。    </li>
+<li>门控网络与专家的耦合优化：门控网络和专家的参数需同步优化，但两者的目标可能冲突（例如门控需快速切换专家，而专家需稳定学习局部特征）。导致训练过程震荡，收敛路径复杂。</li>
+</ol>
+<p>解决方案</p>
+<ol>
+<li>专家初始化与预热策略：训练初期固定门控网络输出为均匀分布$p_i = 1/N$，强制所有专家均被激活。逐步增加路由的选择自由度，例如从均匀分布过渡到动态门控，避免冷启动问题。</li>
+<li>改进路由机制的连续性：软性门控，用连续概率分布替代硬性Top-k选择，通过调节温度参数 $\tau$ 控制选择的软硬程度（高温更均匀，低温更尖锐）。 </li>
+<li>负载均衡与专家利用率约束：负载均衡损失在总损失中加入专家利用率的正则项，最小化其熵以鼓励均匀分配。硬性负载约束限制单个专家处理的样本比例不超过阈值（如2倍平均负载），超出部分强制重分配到其他专家。</li>
+<li>专家参数的正则化与共享：部分专家共享底层参数，减少冗余并降低优化难度；DropExpert正则化，随机丢弃部分专家，迫使模型依赖多样化路径；专家多样性损失，惩罚专家输出之间的相似性。</li>
+<li>分阶段训练与课程学习：先独立训练各专家（固定门控），再联合优化门控网络。从简单任务如粗粒度分类逐步过渡到复杂任务，帮助路由网络学习合理的分工策略。</li>
+<li>动态路由策略优化：重要性加权采样，对低频样本或任务增加路由权重，确保相关专家被激活。专家协作机制，允许专家间传递中间特征（如交叉注意力），缓解路由错误导致的性能损失。</li>
+</ol>
+<h2 id="训练优化"><a href="#训练优化" class="headerlink" title="训练优化"></a><a href="https://xfliu1998.github.io/2025/03/23/LLM-Efficient-Training/">训练优化</a></h2><ul>
+<li>并行训练：数据并行、流水线并行、张量并行</li>
+<li>零冗余优化器ZeRO123</li>
+<li>激活重计算：在前向传播时仅保存关键节点的激活值，在反向传播时重新计算部分中间结果激活值，而非全程保存，以时间换空间。可设置每N层保存一次激活值（平衡显存和计算时间）。</li>
+<li>混合精度训练：早期预训练语言模型如BERT主要使用单精度浮点数FP32表示模型参数并进行优化计算。混合精度训练同时使用半精度浮点数FP16（2个字节）和单精度浮点数FP32（4个字节）运算，实现显存开销减半、训练效率翻倍效果。BF16 的指数位与 FP32 相同（8位），与 FP32 动态范围相当，避免LLM训练中梯度下溢问题，现代加速器（如 TPU、NVIDIA Ampere）原生支持 BF16，具有硬件兼容性，更适合 LLM 的数值稳定性需求。</li>
+</ul>
+<h2 id="参数计算：训练一个7B的模型需要多少显存和时间？"><a href="#参数计算：训练一个7B的模型需要多少显存和时间？" class="headerlink" title="参数计算：训练一个7B的模型需要多少显存和时间？"></a><a href="https://xfliu1998.github.io/2025/06/21/LLM-Parameter-Calculation/">参数计算：训练一个7B的模型需要多少显存和时间？</a></h2><h2 id="SFT"><a href="#SFT" class="headerlink" title="SFT"></a><a href="https://xfliu1998.github.io/2025/09/18/LLM-SFT/">SFT</a></h2><h3 id="PEFT"><a href="#PEFT" class="headerlink" title="PEFT"></a>PEFT</h3><ul>
+<li>LoRA：研究发现LLM在特定任务适配时参数通常是过参数化的，即模型参数中大部分是冗余的。LoRA通过低秩分解将模型参数分解为两个低秩矩阵的乘积，实现参数的稀疏化。对于预训练权重矩阵 <code>W</code>，LoRA不直接更新它，而是通过注入一个旁路低秩分解矩阵来间接实现更新。其前向传播变为：<code>h = Wx + (B * A)x</code>。其中，<code>B</code> 和 <code>A</code> 是可训练的低秩矩阵（初始时 <code>A</code> 为随机高斯，<code>B</code> 为零），秩 <code>r</code> 远小于原矩阵维度。训练时仅更新 <code>B</code> 和 <code>A</code>，而冻结原始权重 <code>W</code>。推理时可将 <code>B*A</code> 加到 <code>W</code> 上，不引入任何额外延迟。</li>
+<li>AdaLoRA：动态调整不同矩阵的低秩参数，通过微调过程中的loss衡量不同参数矩阵对训练的重要性，重要性高的矩阵分配高秩。标准LoRA为所有目标模块分配固定的秩，AdaLoRA动态、自适应地将有限的参数预算分配给最重要的权重矩阵。将增量更新矩阵表示为 <code>PΛQ</code>，其中 <code>P</code>、<code>Q</code> 是正交矩阵，<code>Λ</code> 是对角矩阵（包含奇异值）。这样，奇异值的大小直接表征了该方向更新的重要性。在严格的参数预算约束下（例如，只能使用极少的可训练参数），追求极限的微调性能时，AdaLoRA是更优的选择。但它引入了更高的复杂性和调优成本。</li>
+<li>QLoRA：原权重4比特量化 + LoRA权重16比特训练，保持微调效果同时节省显存，2P-&gt;0.5P。</li>
+</ul>
+<h3 id="LoRA的应用"><a href="#LoRA的应用" class="headerlink" title="LoRA的应用"></a>LoRA的应用</h3><p>LoRA权重的初始化如何设计的：</p>
+<ul>
+<li>在常见的 LoRA 实现中如 HuggingFace PEFT 库，通常矩阵 B 负责降维或输出会被初始化为全零矩阵，矩阵 A 负责升维或输入通常采用服从均值为 0、方差为 $ \sigma^2 $ 的高斯分布（正态分布）进行随机初始化。</li>
+<li>这种设计主要是为了实现从零开始、逐步调整的效果。在训练开始时结果为零矩阵，LoRA 模块对原始模型不产生任何影响。微调开始前的第一次前向传播中，模型输出完全等同于预训练模型的输出。这保证了训练的起点是最优的预训练权重，不会因为引入 LoRA 而导致初始损失值突变。将 $ A $ 随机初始化为非零，在第一次反向传播后，$ B $ 会接收到非零的梯度从而变为非零。此时，$ A $ 中随机初始化的数值就成为了梯度更新的基础，使得模型能够朝着正确的方向优化。</li>
+<li>如果将矩阵 A 初始化为零、矩阵 B 随机初始化，理论上也是可行的，两种方案在数学上是对称的，但会导致不同的梯度流动顺序，可能带来一些细微的数值影响。建议遵循标准实现，以避免不必要的调试成本和潜在的不稳定性。</li>
+<li>LoRA 论文中通常还会引入一个缩放参数 $ \alpha $ 和一个缩放因子 $ \frac{\alpha}{r} $（其中 $ r $ 是秩）。如果 $ B $ 初始为零，那么一开始 $ \Delta W $ 的范数为 0。随着训练进行，$ B $ 逐渐变大，更新量会逐渐增加。这种从零开始的策略避免了在训练初期对预训练模型造成过大的扰动，有利于微调的稳定性。</li>
+</ul>
+<p>LoRA权重通常加在哪里：</p>
+<ul>
+<li>权重通常添加在Transformer 架构的自注意力模块和前馈神经网络的线性投影层上。Transformer 中绝大多数的参数量都集中在注意力投影和 FFN 的线性层中。对这些层进行微调可以高效地调整模型行为。研究表明注意力层的权重（尤其是 Q 和 V）对下游任务的适应最为敏感，调整它们足以捕捉任务特定的知识，而保持大部分参数冻结可以避免灾难性遗忘并降低计算开销。</li>
+<li>在原始 LoRA 论文应用于 $W_q$ 和 $W_v$，而保持 $W_k$ 和 $W_o$ 冻结。但后续实践表明，将 LoRA 应用于不同的组合如 $W_q, W_v, W_k$ 或同时应用于 $W_q, W_v, W_o$也能取得良好效果。现在主流的实现如 HuggingFace 的 PEFT 库默认会同时注入 $W_q$ 和 $W_v$，并允许用户自由配置要适配的目标模块。</li>
+<li>除了注意力层，Transformer 的每个块中还包含两个前馈层（通常是 $W_{fc1}$ 和 $W_{fc2}$，或者带有激活函数的门控线性单元）。一些研究与实践发现，对 FFN 的权重应用 LoRA 也能提升下游任务的性能，尤其是在需要更强语义理解的任务中。</li>
+</ul>
+<h3 id="阶梯状loss"><a href="#阶梯状loss" class="headerlink" title="阶梯状loss"></a>阶梯状loss</h3><p>过拟合是指模型在训练数据上表现很好，但在未见过的数据上表现不佳。在训练过程中，如果模型开始过拟合，它可能会过度记忆训练数据中的噪声或特定样本，而不是学习一般化的模式。这可能导致损失函数在训练集上不再平滑下降，而是出现阶梯状。阶梯状损失曲线可能反映以下情况：</p>
+<ul>
+<li>学习率调整：有时候，学习率调整策略（如阶梯式学习率衰减）也会导致损失曲线呈现阶梯状。但是，如果这种阶梯状与过拟合同时出现，那么可能意味着学习率调整的时机与模型过拟合的时机重合，或者学习率调整不当加剧了过拟合。</li>
+<li>训练数据量不足：当训练数据量不足时，模型更容易过拟合。在训练过程中，模型可能会迅速拟合少量数据，然后损失下降变慢，直到优化算法找到下一个下降方向，形成阶梯。</li>
+<li>数据分布问题：如果训练数据中存在一些重复的模式或噪声，模型可能会先拟合这些模式，然后当优化过程克服这些模式时，损失才会进一步下降。这也会导致损失曲线出现阶梯。</li>
+<li>模型容量过大：如果模型参数过多过于复杂，它可能会很快地拟合训练数据，然后在训练过程中，当优化算法如梯度下降试图进一步降低损失时，它可能会陷入局部最小值或平坦区域，直到某个时刻由于梯度更新或学习率调整等原因跳出该区域，导致损失突然下降。这个过程可能会重复发生，形成阶梯状。</li>
+</ul>
+<h3 id="过拟合欠拟合解决"><a href="#过拟合欠拟合解决" class="headerlink" title="过拟合欠拟合解决"></a>过拟合欠拟合解决</h3><p>如何应对阶梯状损失曲线？防止过拟合？</p>
+<ul>
+<li>数据：删减对应task_type的数据，或扩充task_type数据多样性，平衡数据分布。收集更多数据或使用数据增强技术。</li>
+<li>模型架构和正则化：使用更简单的模型，减少参数数量。使用L1、L2正则化，或者dropout等方法来防止模型过拟合。在优化器中设置权重衰减以惩罚大的权重值。也可以使用lora，降低lora_rank，秩越小越不容易过拟合。</li>
+<li>训练策略：尝试使用更小的学习率，或者使用学习率预热warm-up和余弦退火cosine annealing等策略来平滑训练过程。早停，根据验证集上的表现，在模型过拟合之前停止训练。</li>
+</ul>
+<p>欠拟合怎么办？</p>
+<ul>
+<li>检查训练数据是否准确；重写prompt增加背景知识，降低任务难度。</li>
+<li>调参：比如多训练1个epoch，调整学习率；</li>
+<li>如果任务较难看是否需要换更大参数的模型，减少正则化。</li>
+</ul>
+<h2 id="灾难性遗忘"><a href="#灾难性遗忘" class="headerlink" title="灾难性遗忘"></a>灾难性遗忘</h2><p>灾难性遗忘是指神经网络在序列化地学习多个任务或数据分布时，在学习新任务A后，其在旧任务B上的性能发生急剧、大幅下降的现象。<br>其神经科学根源在于人工神经网络使用相同的、高度互相关联的参数来编码所有知识。当使用新数据（任务A）的梯度来更新这些共享参数时，其更新方向是为了最优化任务A的损失函数，而这个优化过程会无意间、且不受控制地覆盖掉那些对旧任务B至关重要的参数配置。这并非模型忘记，而是其知识存储结构被重写了。</p>
+<p>解决方案：在适应新知识的同时，有策略地保护对旧任务至关重要的参数。主要技术路线分为以下两类：</p>
+<ul>
+<li>基于正则化的约束（稳定重要参数）：这类方法在损失函数中增加一个正则化项，惩罚那些对旧任务重要的参数发生大的变动。</li>
+<li>基于重演的动态记忆（保留数据本质）：这类方法认为，保护旧知识最直接的方式是让模型在学新知识时，也能重温旧数据。</li>
+<li>参数高效微调：以LoRA为代表的技术，通过冻结绝大部分预训练参数，仅微调少量新增的适配器参数，从根本上限制了新学习过程对原有核心知识网络的干扰。新知识被封装在适配器中，与旧知识解耦，这是当前防止大模型遗忘最有效、最主流的工程实践。</li>
+<li>持续学习友好架构：设计具有模块化、可扩展性的模型架构。例如，为每个新任务添加独立的子网络或适配器，或使用路由网络动态选择专家，实现知识的物理隔离和按需组合。</li>
+</ul>
+<h2 id="幻觉问题"><a href="#幻觉问题" class="headerlink" title="幻觉问题"></a>幻觉问题</h2><blockquote>
+<p>广义幻觉指模型回答错误，无解，仅仅可以通过sft/rlhf让模型知道什么时候拒绝回复，但没训练过的case依旧胡说八道。狭义幻觉指模型本身具备某个知识，但alignment后开始回答错误。可以通过魔改网络、loss、推理方式、训练方式等技巧缓解。</p>
+</blockquote>
+<h2 id="RLHF"><a href="#RLHF" class="headerlink" title="RLHF"></a><a href="https://xfliu1998.github.io/2025/10/24/LLM-RL4LLM/">RLHF</a></h2><ol>
+<li><p>PPO是一种策略梯度算法，它通过计算奖励函数关于策略参数的梯度，来更新策略（即语言模型），使得生成高奖励文本的概率增加。</p>
+<ul>
+<li>重要性采样与裁剪：PPO使用重要性采样来复用旧策略采集的数据，并通过裁剪概率比来限制每次更新步的幅度，确保更新稳定。在RLHF中，策略（当前模型）的更新会被约束，使其输出token分布与参考模型（SFT模型）的KL散度不会太大。这通过在目标函数中添加KL惩罚项或使用裁剪实现。</li>
+<li>流程：先训练一个奖励模型，通常是一个分类器，用于比较两段生成的文本哪个更符合人类偏好。然后，将SFT模型作为初始策略，使用PPO最大化从RM获得的奖励，同时最小化与参考模型的KL散度，从而生成更符合人类偏好的文本。</li>
+<li>优势：能够优化非可微的、复杂的奖励信号，理论成熟。</li>
+<li>局限：流程复杂，需要训练额外的奖励模型，且PPO训练不稳定，需要精细的超参调优和大量的工程技巧。</li>
+</ul>
+</li>
+<li><p>DPO：直接偏好优化，简化RLHF流程</p>
+<ul>
+<li>DPO旨在简化RLHF繁琐的多阶段训练（SFT -&gt; RM训练 -&gt; PPO）。它发现，对于通过Bradley-Terry模型建模的奖励函数，最优策略可以通过直接最大化偏好数据的似然来得到，而无需显式地学习奖励模型和运行强化学习算法。</li>
+<li>损失函数：是一个基于偏好对的交叉熵损失。鼓励模型对优选样本赋予比劣选样本更高的概率（在模型分布下的似然）。具体地，损失函数使得优选样本和劣选样本在策略下的对数概率之差，与它们在参考模型下的对数概率之差（即偏好强度）相匹配。</li>
+<li>流程：一个SFT模型作为参考模型，利用偏好数据直接优化当前策略，使得当前策略对优选样本的输出概率大于对劣选样本的输出概率，通过KL散度约束防止偏离参考模型太远。</li>
+<li>优势：训练稳定，不需要训练额外的奖励模型，也不需要运行复杂的PPO算法，大大简化了训练流程，降低了计算成本。</li>
+<li>局限：假设偏好数据可以由Bradley-Terry模型完美建模，且通常只适用于二元偏好。对于更复杂的奖励信号（如多维度、连续奖励），DPO可能不够灵活。</li>
+</ul>
+</li>
+<li><p>GRPO：基于分组相对策略优化的高效对齐</p>
+<ul>
+<li>PPO的优势函数基于Value Model计算，GRPO去掉了Value Model，使用Policy Model的多个output采样的Reward Model输出的多个奖励的平均值作为优势函数，它计算的是每个策略相对其他策略的相对优势，而不是绝对的累计奖励。PPO的KL散度约束在奖励函数中，GRPO直接在损失函数中计算KL散度，降低了奖励函数的计算复杂度。并且它的计算方案能保证归一化的KL值每次都是正值。</li>
+</ul>
+</li>
+</ol>
+<h2 id="语义id"><a href="#语义id" class="headerlink" title="语义id"></a>语义id</h2><p>语义ID为每一个实体（如商品、广告、用户兴趣点）或概念分配一个离散的、稠密的标识符，这个ID本身或其向量表示直接编码了该对象的深层语义信息。这与此前系统常用的随机ID或属性组合ID有本质区别。其动机在于解决传统推荐与检索系统的两大瓶颈：首先，基于随机ID的模型难以泛化到新物品，存在严重的冷启动问题；其次，基于原始特征的模型在处理高维稀疏特征时，难以捕获复杂、非线性的语义关联。语义ID旨在将物体映射到一个语义空间中的离散坐标，使相似之物有相近之ID，从而让系统具备强大的语义推理和泛化能力。</p>
+<p>端到端语义量化生成语义ID</p>
+<ul>
+<li><p>流程：利用一个编码器网络将物体（如商品标题、图片、属性）映射为一个连续的高维语义向量Embedding。然后，一个量化器将这个连续向量映射到一个预先定义的大型离散码本中的某一个或多个码字上。这个（组）码字的索引，就构成了该物体的语义ID。</p>
+</li>
+<li><p>VQ-VAE及其变种是经典框架。训练目标包括重建损失（编码-量化-解码后应能还原输入）和码本学习损失，迫使码本中的每个向量（即每个潜在的ID）都能代表一类特定的语义模式。更先进的方法会引入自监督对比学习，确保相似物体的编码在量化前就尽可能接近。</p>
+</li>
+<li><p>生成语义ID的其他量化方法对比：局部敏感哈希LSH、分层k-means聚类（会丢失不同簇之间的语义含义）、VQ-VAE（检索时生成候选的性能与RQ-VAE相似，但它没有ID的层次结构），这三个都不如RQ-VAE效果好。</p>
+</li>
+<li><p>语义ID碰撞处理：语义碰撞即多个item映射到同一个语义ID，通常会维护一个将语义ID映射到对应item的查找表来检测碰撞。为解决语义碰撞，在有序语义编码的末尾附加一个额外token确保唯一性，这个过程仅在RQ-VAE模型训练完成后执行一次。</p>
+</li>
+<li><p>生成无效的语义ID：Tiger论文中说这种情况很少，由于语义ID的层次结构，可以在模型生成无效token时进行前缀匹配，检索和模型生成token具有相似语义的item。</p>
+</li>
+</ul>
+<p>语义ID的优势：</p>
+<ul>
+<li>极致压缩与高效检索：codebook缩短了候选Token的个数，从千万级到256，语义ID是整数元组，相比高维embedding查找表（负采样+ANN）的存储效率更高。</li>
+<li>强大的零样本与冷启动泛化能力：一个新物品，只要能被编码器映射到语义空间，就会被量化为与同类物品相似的语义ID，从而立即继承该类物品的推荐逻辑，根本性缓解冷启动问题。</li>
+<li>因为语义ID的层次化特性，在解码过程中基于温度的采样可以控制模型预测的多样性。比如对语义ID的第一个token采样可以检索粗粒度类别的物品，对第二/三个token采样则可以在类别内采样物品。</li>
+</ul>
+<p>在实际应用中语义ID是存在一些问题的，后续的一些工作都在尝试通过混合建模、层次化结构等方法来弥补这些不足。</p>
+<ul>
+<li>区分能力问题：语义ID基于内容特征生成，相似的物品会有相似的ID前缀。这可能导致模型难以区分高度相似但用户偏好不同的物品。</li>
+<li>迁移能力局限：虽然语义ID理论上能改善冷启动，但实际效果受限。新物品的语义ID可能无法准确反映用户的潜在兴趣。模型需要足够的训练数据来学习语义ID与用户行为之间的复杂映射关系。</li>
+</ul>
+<h2 id="开源框架"><a href="#开源框架" class="headerlink" title="开源框架"></a>开源框架</h2><ul>
+<li>vLLM：最大化服务吞吐量，尤其适用于高并发、低延迟的在线服务场景，底层使用了PagedAttention。</li>
+<li>SGLang：面向复杂交互与程序化提示的运行时，底层是RadixAttention。当提示中包含大量重复模板、多轮对话、复杂的工具调用或分支逻辑时，传统方式会进行大量重复计算。<ol>
+<li>RadixAttention：在运行时自动构建并复用前缀树来缓存和共享所有请求中的公共前缀（如系统提示、工具定义、长上下文文档）的KV缓存，是一种自动化的、细粒度的KV缓存共享。</li>
+<li>编译器式执行：将提示词程序（如包含循环、分支、并行工具调用的代码）编译成一个有向无环图优化执行计划，实现并行采样、超前解码等优化。</li>
+</ol>
+</li>
+<li>TGI：来自Hugging Face，是易用性与动态批处理的代表。支持张量并行、量化，并与HF生态无缝集成，是快速原型部署和中小企业服务的优秀选择。</li>
+<li>TensorRT-LLM：NVIDIA的极致性能框架。通过将模型编译为高度优化的TensorRT引擎，在自家硬件上实现最低的单请求推理延迟和最高的能效比。</li>
+</ul>
+<h2 id="推理参数"><a href="#推理参数" class="headerlink" title="推理参数"></a>推理参数</h2><ul>
+<li>Temperature：温度参数控制着模型输出概率分布的平滑或尖锐程度。模型会为词表中的每个候选词计算一个原始分数（logit）。在应用softmax将其转换为概率之前，所有logits都除以温度值T。<code>概率 = softmax(logits / T)</code><ul>
+<li>T → 0（低温，如0.1）：<code>logits/T</code>变得非常大，softmax后的概率分布会变得非常尖锐。概率最高的词将占据几乎全部的权重，生成结果变得极其确定、保守、重复性高。适合需要事实性、一致性的任务（如代码生成、问答）。</li>
+<li>T = 1（默认）：不改变原始概率分布。模型保持其原始的预测置信度。</li>
+<li>T &gt; 1（高温，如1.5-2.0）：<code>logits/T</code>被缩小，概率分布变得更加平滑。低概率的词获得了相对更高的机会，生成结果更加多样、有创意、出人意料，但也可能产生不连贯或胡言乱语。适合创意写作、头脑风暴。</li>
+</ul>
+</li>
+<li>Top-k：在每个生成步骤中，模型只从概率最高的前k个候选词中采样下一个词，将它们的概率重新归一化（使其和为1）。k是一个固定的整数。<ul>
+<li>k值小（如5, 10）：候选集很小，生成非常集中和可预测。可能错过一些合理但不那么高频的选项。</li>
+<li>k值大（如50, 100）：候选集很大，多样性增加，但也会让一些极低概率的不良词进入候选池，可能导致不连贯。</li>
+<li>问题：固定k值有时不灵活。在某些上下文下，合理的选择可能集中在少数几个词里（此时k=50就引入了很多垃圾选项）；在另一些上下文下，可能有很多合理的候选词（此时k=10又限制过头）。</li>
+</ul>
+</li>
+<li>Top-p（或 Nucleus Sampling，核采样）：为了弥补Top-k的不足，Top-p采用一种动态的候选词选择方法。它选取累计概率超过阈值p的最小候选词集合。这个被选中的词集合（即核或 nucleus ）里的词，概率被重新归一化。<ul>
+<li>p值小（如0.5）：候选集合非常小，通常只包含几个最高概率的词，生成很确定。</li>
+<li>p值大（如0.9, 0.95）：候选集合会动态扩大，直到覆盖足够大的概率质量，允许更多样化的选择。</li>
+<li>优点：自适应。当模型很确信时（概率集中在几个词），候选集小；当模型不确定时（概率分布平缓），候选集会自动变大以覆盖更多选项。</li>
+</ul>
+</li>
+<li>用于控制生成文本的长度范围<ul>
+<li><code>max_length</code> / <code>max_new_tokens</code>: 生成内容的最大长度限制（总长度或新生成token数）。这是防止生成无限长文本的必要安全阀。</li>
+<li><code>min_length</code> / <code>min_new_tokens</code>: 生成内容的最小长度限制。确保模型不会过早地（例如在未完成句子时）因遇到结束符而停止。</li>
+<li><code>early_stopping</code>: 当遇到结束符时是否立即停止。通常设为 <code>True</code> 以提高效率。</li>
+<li><code>length_penalty</code>: 长度惩罚系数。用于束搜索中，惩罚过短的序列（值&gt;1.0）或过长的序列（值&lt;1.0），以调整生成文本的长度偏好。</li>
+</ul>
+</li>
+<li>搜索与采样策略参数：控制如何从概率分布中选择下一个token。<ul>
+<li><code>do_sample</code>: <code>do_sample=False</code> 时，模型使用贪婪解码，即永远选择概率最高的那个词（<code>Top-k=1, Top-p=0</code>）。结果完全确定但可能单调。<code>do_sample=True</code> 时，才会启用随机采样，此时<code>Temperature</code>、<code>Top-p</code>、<code>Top-k</code>等参数才生效。</li>
+<li><code>num_beams</code>: 束搜索的宽度。<code>num_beams=1</code> 即贪婪解码；<code>num_beams&gt;1</code>时，模型在每一步保留概率最高的<code>num_beams</code>个候选序列，最终选择整体概率最高的序列。</li>
+</ul>
+</li>
+</ul>
+<h2 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h2><h3 id="快排原地实现"><a href="#快排原地实现" class="headerlink" title="快排原地实现"></a>快排原地实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span>(<span class="params">arr, l, r</span>):</span> </span><br><span class="line">    <span class="keyword">if</span> l &gt;= r: <span class="keyword">return</span> </span><br><span class="line">    less, p = partition(arr, l, r) </span><br><span class="line">    quick_sort(arr, l, less - <span class="number">1</span>) </span><br><span class="line">    quick_sort(arr, p, r) </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span>(<span class="params">arr, l, r</span>):</span> </span><br><span class="line">    <span class="comment"># 优化：随机选取piovt </span></span><br><span class="line">    random_idx = random.randint(l, r) </span><br><span class="line">    arr[l], arr[random_idx] = arr[random_idx], arr[l]</span><br><span class="line">    piovt = arr[l] </span><br><span class="line">    i, j = l + <span class="number">1</span>, r + <span class="number">1</span> </span><br><span class="line">    less = l </span><br><span class="line">    <span class="keyword">while</span> i &lt; j: </span><br><span class="line">        <span class="keyword">if</span> arr[i] &lt; piovt: </span><br><span class="line">            less += <span class="number">1</span> </span><br><span class="line">            arr[i], arr[less] = arr[less], arr[i]</span><br><span class="line">            i += <span class="number">1</span> </span><br><span class="line">        <span class="keyword">elif</span> arr[i] == piovt: </span><br><span class="line">            i += <span class="number">1</span>   <span class="comment"># i最后指定的是&gt;piovt的元素</span></span><br><span class="line">        <span class="keyword">elif</span> arr[i] &gt; piovt: </span><br><span class="line">            j -= <span class="number">1</span>   <span class="comment"># j最后指定的是第一个&gt;piovt的元素</span></span><br><span class="line">            arr[i], arr[j] = arr[j], arr[i]  </span><br><span class="line">    arr[l], arr[less] = arr[less], arr[l]   <span class="comment"># less最后指定的是&lt;piovt的元素，交换后less-1&lt;piovt</span></span><br><span class="line">    <span class="keyword">return</span> less, j </span><br></pre></td></tr></table></figure>
+
+<h3 id="自注意力代码"><a href="#自注意力代码" class="headerlink" title="自注意力代码"></a>自注意力代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Attention</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, d_model=<span class="number">512</span>, num_heads=<span class="number">8</span>, dropout=<span class="number">0.1</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.d_model = d_model</span><br><span class="line">        self.num_heads = num_heads</span><br><span class="line">        self.d_k = d_model // num_heads</span><br><span class="line">        </span><br><span class="line">        self.qkv = nn.Linear(d_model, d_model * <span class="number">3</span>)</span><br><span class="line">        self.out = nn.Linear(d_model, d_model)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        batch, seq_len, _ = x.shape</span><br><span class="line">        qkv = self.qkv(x).reshape(batch, seq_len, <span class="number">3</span>, self.num_heads, self.d_k)</span><br><span class="line">        q, k, v = qkv.permute(<span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>)  <span class="comment"># [3, batch, heads, seq_len, d_k]</span></span><br><span class="line">        </span><br><span class="line">        scores = torch.matmul(q, k.transpose(-<span class="number">2</span>, -<span class="number">1</span>)) / math.sqrt(self.d_k)</span><br><span class="line">        </span><br><span class="line">        attn = torch.softmax(scores, dim=-<span class="number">1</span>)</span><br><span class="line">        attn = self.dropout(attn)</span><br><span class="line">        </span><br><span class="line">        output = torch.matmul(attn, v).transpose(<span class="number">1</span>, <span class="number">2</span>).reshape(batch, seq_len, self.d_model)</span><br><span class="line">        <span class="keyword">return</span> self.out(output), attn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">attn = Attention(d_model=<span class="number">512</span>, num_heads=<span class="number">8</span>)</span><br><span class="line">x = torch.randn(<span class="number">2</span>, <span class="number">10</span>, <span class="number">512</span>)  <span class="comment"># [batch, seq_len, d_model]</span></span><br><span class="line">output, weights = attn(x)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;输入: <span class="subst">&#123;x.shape&#125;</span> 输出: <span class="subst">&#123;output.shape&#125;</span> 注意力权重: <span class="subst">&#123;weights.shape&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">哈希咪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xfliu1998.github.io/2026/04/03/Interview-Experience-V2/">https://xfliu1998.github.io/2026/04/03/Interview-Experience-V2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Machine-Learning/">Machine Learning</a><a class="post-meta__tags" href="/tags/Deep-Learning/">Deep Learning</a><a class="post-meta__tags" href="/tags/LLM/">LLM</a></div><div class="post_share"><div class="social-share" data-image="/2026/04/03/Interview-Experience-V2/cover.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/03/22/EGMN/"><img class="next-cover" src="/2026/03/22/EGMN/cover.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">EGMN</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/10/24/LLM-RL4LLM/" title="LLM —— RL4LLM"><img class="cover" src="/2025/10/24/LLM-RL4LLM/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-24</div><div class="title">LLM —— RL4LLM</div></div></a></div><div><a href="/2025/09/18/LLM-SFT/" title="LLM —— SFT"><img class="cover" src="/2025/09/18/LLM-SFT/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-18</div><div class="title">LLM —— SFT</div></div></a></div><div><a href="/2025/08/03/LLM-Tokenize/" title="LLM —— Tokenize"><img class="cover" src="/2025/08/03/LLM-Tokenize/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-03</div><div class="title">LLM —— Tokenize</div></div></a></div><div><a href="/2025/07/26/LLM-Position-Embedding/" title="LLM —— Position Embedding"><img class="cover" src="/2025/07/26/LLM-Position-Embedding/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-26</div><div class="title">LLM —— Position Embedding</div></div></a></div><div><a href="/2025/06/21/LLM-Parameter-Calculation/" title="LLM —— Parameter Calculation"><img class="cover" src="/2025/06/21/LLM-Parameter-Calculation/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-21</div><div class="title">LLM —— Parameter Calculation</div></div></a></div><div><a href="/2025/05/05/LLM-MoE/" title="LLM —— MoE"><img class="cover" src="/2025/05/05/LLM-MoE/cover.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-05</div><div class="title">LLM —— MoE</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/head.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">哈希咪</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">68</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xfliu1998"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xfliu1998" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:liuxiaofei_7@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://www.zhihu.com/people/fan-xu-15-35/posts" target="_blank" title="Zhihu"><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">👋你好呀，欢迎围观～搭建这个小站源于一个朴素的愿望：对抗遗忘，沉淀思考。期待在代码与逻辑的世界里探索技术的深度与广度，永远保持热情与好奇。</div></div><div class="card-widget" id="newYear"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div id="newYear-main"><div class="mask"></div> <p class="title"></p> <div class="newYear-time"></div> <p class="today" style="text-align: right;"></p> </div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">激活函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-number">2.</span> <span class="toc-text">正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BatchNorm%E3%80%81LayerNorm%E3%80%81RMSNorm"><span class="toc-number">2.1.</span> <span class="toc-text">BatchNorm、LayerNorm、RMSNorm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PreNorm%E3%80%81PostNorm"><span class="toc-number">2.2.</span> <span class="toc-text">PreNorm、PostNorm</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E7%BC%96%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">位置编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transformer"><span class="toc-number">4.</span> <span class="toc-text">Transformer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-number">4.1.</span> <span class="toc-text">自注意力机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="toc-number">4.2.</span> <span class="toc-text">时间复杂度计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">4.3.</span> <span class="toc-text">空间复杂度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KV-Cache"><span class="toc-number">5.</span> <span class="toc-text">KV Cache</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MHA-MQA-GQA"><span class="toc-number">5.1.</span> <span class="toc-text">MHA, MQA, GQA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flash-Attenton-%E5%92%8C-Paged-Attention"><span class="toc-number">5.2.</span> <span class="toc-text">Flash Attenton 和 Paged Attention</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%8E%B0%E5%9C%A8%E7%9A%84LLM%E9%83%BD%E6%98%AFDecoder-only%E7%9A%84%E6%9E%B6%E6%9E%84%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">为什么现在的LLM都是Decoder only的架构？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84-MOE"><span class="toc-number">7.</span> <span class="toc-text">模型架构 MOE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dense-Transformer-%E5%92%8C-MoE-%E5%AF%B9%E6%AF%94"><span class="toc-number">7.1.</span> <span class="toc-text">Dense Transformer 和 MoE 对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MoE%E8%AE%AD%E7%BB%83%E4%B8%AD%E7%9A%84%E4%B8%93%E5%AE%B6%E8%B4%9F%E8%BD%BD%E4%B8%8D%E5%9D%87%E8%A1%A1%E9%97%AE%E9%A2%98"><span class="toc-number">7.2.</span> <span class="toc-text">MoE训练中的专家负载不均衡问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88MoE%E6%A8%A1%E5%9E%8B%E6%9B%B4%E9%9A%BE%E6%94%B6%E6%95%9B%EF%BC%9F%E5%A6%82%E4%BD%95%E7%BC%93%E8%A7%A3%EF%BC%9F"><span class="toc-number">7.3.</span> <span class="toc-text">为什么MoE模型更难收敛？如何缓解？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E4%BC%98%E5%8C%96"><span class="toc-number">8.</span> <span class="toc-text">训练优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AE%A1%E7%AE%97%EF%BC%9A%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA7B%E7%9A%84%E6%A8%A1%E5%9E%8B%E9%9C%80%E8%A6%81%E5%A4%9A%E5%B0%91%E6%98%BE%E5%AD%98%E5%92%8C%E6%97%B6%E9%97%B4%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">参数计算：训练一个7B的模型需要多少显存和时间？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SFT"><span class="toc-number">10.</span> <span class="toc-text">SFT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PEFT"><span class="toc-number">10.1.</span> <span class="toc-text">PEFT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LoRA%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">10.2.</span> <span class="toc-text">LoRA的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B6%E6%A2%AF%E7%8A%B6loss"><span class="toc-number">10.3.</span> <span class="toc-text">阶梯状loss</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%8B%9F%E5%90%88%E6%AC%A0%E6%8B%9F%E5%90%88%E8%A7%A3%E5%86%B3"><span class="toc-number">10.4.</span> <span class="toc-text">过拟合欠拟合解决</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%81%BE%E9%9A%BE%E6%80%A7%E9%81%97%E5%BF%98"><span class="toc-number">11.</span> <span class="toc-text">灾难性遗忘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BB%E8%A7%89%E9%97%AE%E9%A2%98"><span class="toc-number">12.</span> <span class="toc-text">幻觉问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RLHF"><span class="toc-number">13.</span> <span class="toc-text">RLHF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89id"><span class="toc-number">14.</span> <span class="toc-text">语义id</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6"><span class="toc-number">15.</span> <span class="toc-text">开源框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E5%8F%82%E6%95%B0"><span class="toc-number">16.</span> <span class="toc-text">推理参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%94%E8%AF%95"><span class="toc-number">17.</span> <span class="toc-text">笔试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%8E%92%E5%8E%9F%E5%9C%B0%E5%AE%9E%E7%8E%B0"><span class="toc-number">17.1.</span> <span class="toc-text">快排原地实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E4%BB%A3%E7%A0%81"><span class="toc-number">17.2.</span> <span class="toc-text">自注意力代码</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/2026/04/03/Interview-Experience-V2/cover.jpeg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 哈希咪</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '1b0c10ce649501ea4a72',
+      clientSecret: '741b5e861137e3d5a482bba272c8201b78da6cb0',
+      repo: 'xfliu1998.github.io',
+      owner: 'xfliu1998',
+      admin: ['xfliu1998'],
+      id: '39d748000854039f55260f3f4b2a1ec9',
+      language: 'en',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script src="/js/script.js?v1"></script><script src="https://cdn.staticfile.org/jquery/3.6.3/jquery.min.js"></script><script async data-pjax src="https://cdn.wpon.cn/2022-sucai/Gold-ingot.js"></script><script async data-pjax src="/js/newYear.js"></script><script async src="//at.alicdn.com/t/font_2264842_b004iy0kk2b.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='all'|| 'all' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Machine-Learning-and-Deep-Learning/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 机器学习与深度学习 (19)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Structures-and-Algorithms/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">😼 数据结构与算法 (16)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Search-Ads-Reco/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">🗂️ 搜索/广告/推荐 (15)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Data-Analysis-and-Processing/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📒 数据分析与处理 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Reading-Notes/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 阅读笔记 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://xfliu1998.github.io/categories/Daily/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">💡 日常随笔 (4)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://xfliu1998.github.io/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2023/03/25/Papers-Ideas/" alt=""><img width="48" height="48" src="2023/03/25/Papers-Ideas/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2023-03-25</span><a class="blog-slider__title" href="2023/03/25/Papers-Ideas/" alt="">Papers Ideas</a><div class="blog-slider__text">大模型时代下的科研思路</div><a class="blog-slider__button" href="2023/03/25/Papers-Ideas/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/09/17/Papers-Summary/" alt=""><img width="48" height="48" src="2022/09/17/Papers-Summary/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-09-17</span><a class="blog-slider__title" href="2022/09/17/Papers-Summary/" alt="">Papers Summary</a><div class="blog-slider__text">论文总结笔记</div><a class="blog-slider__button" href="2022/09/17/Papers-Summary/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/11/16/LLM-GRs/" alt=""><img width="48" height="48" src="2025/11/16/LLM-GRs/cover.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-11-16</span><a class="blog-slider__title" href="2025/11/16/LLM-GRs/" alt="">LLM —— GRs</a><div class="blog-slider__text">生成式在推荐广告领域的落地</div><a class="blog-slider__button" href="2025/11/16/LLM-GRs/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/11/26/LLM-Ad&amp;Rec/" alt=""><img width="48" height="48" src="2025/11/26/LLM-Ad&amp;Rec/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-11-26</span><a class="blog-slider__title" href="2025/11/26/LLM-Ad&amp;Rec/" alt="">LLM —— LLM4Ad&amp;Rec</a><div class="blog-slider__text">LLM在广告推荐领域的应用范式</div><a class="blog-slider__button" href="2025/11/26/LLM-Ad&amp;Rec/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/12/07/Rank-Model/" alt=""><img width="48" height="48" src="2025/12/07/Rank-Model/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-12-07</span><a class="blog-slider__title" href="2025/12/07/Rank-Model/" alt="">Rank Model</a><div class="blog-slider__text">精排模型——从特征交叉建模到深度兴趣序列建模</div><a class="blog-slider__button" href="2025/12/07/Rank-Model/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2026/01/18/Bidding/" alt=""><img width="48" height="48" src="2026/01/18/Bidding/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2026-01-18</span><a class="blog-slider__title" href="2026/01/18/Bidding/" alt="">Ad Bidding</a><div class="blog-slider__text">广告出价算法：从传统式到生成式</div><a class="blog-slider__button" href="2026/01/18/Bidding/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2022/01/21/Learning-Framework/" alt=""><img width="48" height="48" src="2022/01/21/Learning-Framework/cover.jpeg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-01-21</span><a class="blog-slider__title" href="2022/01/21/Learning-Framework/" alt="">学习大纲</a><div class="blog-slider__text">目录</div><a class="blog-slider__button" href="2022/01/21/Learning-Framework/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<container><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></container>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://gitcalendar.fomal.cc/api?xfliu1998",['#d9e0df', '#c6e0dc', '#a8dcd4', '#9adcd2', '#89ded1', '#77e0d0', '#5fdecb', '#47dcc6', '#39dcc3', '#1fdabe', '#00dab9'],'xfliu1998')
+    }
+  </script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
